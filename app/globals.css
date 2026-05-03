@@ -39,7 +39,37 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Disable background motion on mobile/tablet ── */
+@media (max-width: 1023px) {
+  .dot-grid,
+  [class*="dot-grid"],
+  [class*="dotted"],
+  body::before,
+  body::after,
+  canvas {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ── Visible focus ring on every interactive element ── */
+a:focus-visible,
+button:focus-visible,
+[role="link"]:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
 body {
   background-color: var(--bg);
@@ -57,13 +87,6 @@ canvas { opacity: 1; }
 nav {
   background: rgba(245, 242, 236, 0.85) !important;
   border-bottom-color: transparent !important;
-}
-
-/* ── Hero section: nudge below nav on mobile ── */
-@media (max-width: 768px) {
-  .hero-section {
-    padding-top: 112px !important;
-  }
 }
 
 /* ── Hero glass panels: soften edges to blend into background ── */

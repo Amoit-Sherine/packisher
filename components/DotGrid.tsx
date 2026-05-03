@@ -62,6 +62,8 @@ export default function DotGrid() {
     }
 
     function onScroll() {
+      // Disable scroll-driven drift on tablet/mobile (<1024px)
+      if (window.innerWidth < 1024) return;
       scrollRef.current = window.scrollY;
       scheduleFrame();
     }
