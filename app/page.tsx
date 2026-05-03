@@ -58,13 +58,13 @@ function ParcelsCardBody() {
   return (
     <>
       <div style={{ position: "relative", padding: "10px 14px", background: "rgba(122, 92, 56, 0.08)", borderBottom: "1px solid rgba(122,92,56,0.12)", display: "flex", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: "6px" }}>
+        <div style={{ display: "flex", gap: "3px" }}>
           <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#FF5F57" }} />
           <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#FFBD2E" }} />
           <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28C840" }} />
         </div>
-        <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
-          PARCEL SERVICES →
+        <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "10px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
+            PARCEL SERVICES→
         </span>
       </div>
       <div style={{ padding: "1.5rem", textAlign: "left" }}>
@@ -101,13 +101,13 @@ function TipperCardBody() {
   return (
     <>
       <div style={{ position: "relative", padding: "10px 14px", background: "rgba(122, 92, 56, 0.08)", borderBottom: "1px solid rgba(122,92,56,0.12)", display: "flex", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: "6px" }}>
+        <div style={{ display: "flex", gap: "3px" }}>
           <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#FF5F57" }} />
           <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#FFBD2E" }} />
           <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28C840" }} />
         </div>
-        <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
-          TRUCK SERVICES →
+        <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "10px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
+            TRUCK SERVICES→
         </span>
       </div>
       <div style={{ padding: "1.5rem", textAlign: "left" }}>
@@ -140,12 +140,271 @@ function TipperCardBody() {
   );
 }
 
+function MobilePipeCards({ isTablet }: { isTablet: boolean }) {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const parcelsRef = useRef<HTMLDivElement | null>(null);
+  const tipperRef = useRef<HTMLDivElement | null>(null);
+
+  const [geo, setGeo] = useState<null | {
+    width: number;
+    height: number;
+    path: string;
+    joints: { x: number; y: number }[];
+    caps: { x: number; y: number }[];
+    originDot: { x: number; y: number };
+  }>(null);
+
+  useEffect(() => {
+    const compute = () => {
+      const section = sectionRef.current;
+      const parcels = parcelsRef.current;
+      const tipper = tipperRef.current;
+      if (!section || !parcels || !tipper) return;
+      const s = section.getBoundingClientRect();
+      const p = parcels.getBoundingClientRect();
+      const t = tipper.getBoundingClientRect();
+
+      if (isTablet) {
+        // ── TABLET: center drop to arch, then split L/R into each card ──
+        const cx = s.width / 2;
+        const pipeStartY = 0;
+        const leftCardCx = (p.left + p.right) / 2 - s.left;
+        const rightCardCx = (t.left + t.right) / 2 - s.left;
+        const leftCardTopY = p.top - s.top;
+        const rightCardTopY = t.top - s.top;
+        const archPeakY = leftCardTopY - 32;
+
+        const tabletPath = [
+          `M ${cx} ${pipeStartY}`,
+          `L ${cx} ${archPeakY}`,
+          `M ${cx} ${archPeakY}`,
+          `L ${leftCardCx} ${archPeakY}`,
+          `L ${leftCardCx} ${leftCardTopY}`,
+          `M ${cx} ${archPeakY}`,
+          `L ${rightCardCx} ${archPeakY}`,
+          `L ${rightCardCx} ${rightCardTopY}`,
+        ].join(" ");
+
+        setGeo({
+          width: s.width,
+          height: Math.max(leftCardTopY, rightCardTopY) + 20,
+          path: tabletPath,
+          joints: [
+            { x: cx, y: archPeakY },
+            { x: leftCardCx, y: archPeakY },
+            { x: rightCardCx, y: archPeakY },
+          ],
+          caps: [
+            { x: leftCardCx, y: leftCardTopY },
+            { x: rightCardCx, y: rightCardTopY },
+          ],
+          originDot: { x: cx, y: pipeStartY },
+        });
+      } else {
+        // ── MOBILE: left-rail pipe with right branches into card title bars ──
+        const railX = 18;
+        const parcelsTopY = p.top - s.top;
+        const tipperTopY = t.top - s.top;
+        const tipperBottomY = t.bottom - s.top;
+        const branch1Y = parcelsTopY + 16;
+        const branch2Y = tipperTopY + 16;
+        const cardLeft = p.left - s.left;
+
+        const mobilePath = [
+          `M ${s.width / 2} 0`,
+          `L ${railX} 0`,
+          `L ${railX} ${branch1Y}`,
+          `L ${cardLeft} ${branch1Y}`,
+          `M ${railX} ${branch1Y}`,
+          `L ${railX} ${branch2Y}`,
+          `L ${cardLeft} ${branch2Y}`,
+          `M ${railX} ${branch2Y}`,
+          `L ${railX} ${tipperBottomY + 32}`,
+        ].join(" ");
+
+        setGeo({
+          width: s.width,
+          height: tipperBottomY + 48,
+          path: mobilePath,
+          joints: [
+            { x: railX, y: branch1Y },
+            { x: railX, y: branch2Y },
+          ],
+          caps: [
+            { x: cardLeft, y: branch1Y },
+            { x: cardLeft, y: branch2Y },
+            { x: railX, y: tipperBottomY + 32 },
+          ],
+          originDot: { x: s.width / 2, y: 0 },
+        });
+      }
+    };
+
+    const t = setTimeout(compute, 80);
+    let ro: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== "undefined" && sectionRef.current) {
+      ro = new ResizeObserver(compute);
+      ro.observe(sectionRef.current);
+    }
+    window.addEventListener("resize", compute);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", compute);
+      ro?.disconnect();
+    };
+  }, [isTablet]);
+
+  const sectionStyle: React.CSSProperties = isTablet
+    ? {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "24px",
+        position: "relative",
+        paddingTop: "52px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+        maxWidth: "600px",
+        margin: "40px auto 0",
+        width: "100%",
+        zIndex: 1,
+        overflow: "visible",
+      }
+    : {
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        position: "relative",
+        paddingTop: "16px",
+        paddingLeft: "0",
+        paddingRight: "16px",
+        maxWidth: "560px",
+        marginLeft: "0",
+        margin: "32px auto 0",
+        width: "100%",
+        zIndex: 1,
+        overflow: "visible",
+      };
+
+  // Mobile-only card wrapper offset so the left rail is visible
+  const cardWrapperExtra: React.CSSProperties = isTablet
+    ? {}
+    : {
+        marginLeft: "40px",
+        marginRight: "auto",
+        width: "calc(100% - 56px)",
+        maxWidth: "320px",
+      };
+
+  return (
+    <section ref={sectionRef} style={sectionStyle}>
+      {geo && (
+        <motion.svg
+          width={geo.width}
+          height={geo.height}
+          aria-hidden
+          style={{ position: "absolute", top: 0, left: 0, zIndex: 0, pointerEvents: "none", overflow: "visible" }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.path
+            d={geo.path}
+            fill="none"
+            stroke="var(--accent)"
+            strokeOpacity={0.7}
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1 } }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          />
+          <motion.circle
+            cx={geo.originDot.x}
+            cy={geo.originDot.y}
+            r={4}
+            fill="var(--accent)"
+            fillOpacity={0.6}
+            variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1 } }}
+            transition={{ duration: 0.25, delay: 0.5, ease: "easeOut" }}
+            style={{ transformOrigin: `${geo.originDot.x}px ${geo.originDot.y}px` }}
+          />
+          {geo.joints.map((j, i) => (
+            <motion.circle
+              key={`mjoint-${i}`}
+              cx={j.x}
+              cy={j.y}
+              r={4}
+              fill="var(--accent)"
+              fillOpacity={0.85}
+              variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1 } }}
+              transition={{ duration: 0.25, delay: 0.6 + i * 0.3, ease: "easeOut" }}
+              style={{ transformOrigin: `${j.x}px ${j.y}px` }}
+            />
+          ))}
+          {geo.caps.map((cap, i) => (
+            <motion.circle
+              key={`mcap-${i}`}
+              cx={cap.x}
+              cy={cap.y}
+              r={3}
+              fill="var(--accent)"
+              variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1 } }}
+              transition={{ duration: 0.25, delay: 0.9 + i * 0.15, ease: "easeOut" }}
+              style={{ transformOrigin: `${cap.x}px ${cap.y}px` }}
+            />
+          ))}
+        </motion.svg>
+      )}
+
+      <motion.div
+        ref={parcelsRef}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
+        style={{ position: "relative", zIndex: 2, width: "100%", ...cardWrapperExtra }}
+      >
+        <Link
+          href="/parcels"
+          aria-label="Packisher Parcels — same day parcel delivery and courier service in Nairobi"
+          style={{ textDecoration: "none", display: "block" }}
+        >
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2, ease: "easeOut" }} style={{ ...macCardStyle, padding: 0 }}>
+            <ParcelsCardBody />
+          </motion.div>
+        </Link>
+      </motion.div>
+
+      <motion.div
+        ref={tipperRef}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
+        style={{ position: "relative", zIndex: 2, width: "100%", ...cardWrapperExtra }}
+      >
+        <Link
+          href="/tipper"
+          aria-label="Packisher Tipper — construction material delivery and tipper truck hire in Western Kenya"
+          style={{ textDecoration: "none", display: "block" }}
+        >
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2, ease: "easeOut" }} style={{ ...macCardStyle, padding: 0 }}>
+            <TipperCardBody />
+          </motion.div>
+        </Link>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function HomePage() {
   const downloadHref = useOsHref();
   const mode = useViewportMode();
   const showSideCards = mode === "desktop" || mode === "tablet-landscape";
   const showMobileStacked = mode === "tablet-portrait" || mode === "mobile";
   const cardScale = mode === "tablet-landscape" ? 0.85 : 1;
+  const isMobile = mode === "mobile";
+  const isTablet = mode === "tablet-portrait";
 
   const heroRef = useRef<HTMLElement | null>(null);
   const centerRef = useRef<HTMLDivElement | null>(null);
@@ -180,6 +439,8 @@ export default function HomePage() {
       const heroWidth = h.width;
       const heroHeight = h.height;
 
+      const isTabletLandscape = heroWidth >= 1024 && heroWidth < 1280;
+
       // Pipe Y — just above headline vertical center
       const pipeY = (c.top - heroTop) + (c.height * 0.35);
 
@@ -187,13 +448,16 @@ export default function HomePage() {
       const cx = heroWidth / 2;
 
       // Drop points closer to center
-      const spread = heroWidth * 0.28;
+      const spread = isTabletLandscape ? heroWidth * 0.32 : heroWidth * 0.28;
       const leftDropX = cx - spread;
       const rightDropX = cx + spread;
 
-      // Staggered card tops
-      const leftCardTop = pipeY + 20;
-      const rightCardTop = pipeY + 60;
+      // On tablet-landscape, place cards BELOW the entire hero content
+      // block (no overlap possible). On desktop, keep them staggered
+      // beside the hero glass.
+      const heroContentBottom = (c.top - heroTop) + c.height;
+      const leftCardTop = isTabletLandscape ? heroContentBottom + 40 : pipeY + 20;
+      const rightCardTop = isTabletLandscape ? heroContentBottom + 80 : pipeY + 60;
 
       // Short vertical drop lengths
       const leftDropLength = 80;
@@ -249,15 +513,21 @@ export default function HomePage() {
       {/* ── HERO ── */}
       <section
         ref={heroRef}
-        className="hero-section"
+        className="hero-section hero-section-root"
         style={{
-          minHeight: "100vh",
+          minHeight:
+            mode === "tablet-landscape"
+              ? "auto"
+              : mode === "desktop"
+              ? "100vh"
+              : "auto",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: (isTablet || isMobile) ? "flex-start" : "center",
           position: "relative",
-          paddingTop: "64px",
+          paddingTop: isMobile ? "100px" : isTablet ? "120px" : "64px",
+          paddingBottom: mode === "tablet-landscape" ? "320px" : "0px",
           overflow: "hidden",
         }}
       >
@@ -366,7 +636,11 @@ export default function HomePage() {
               transition={{ duration: 0.4, delay: 1.6, ease: "easeOut" }}
               style={{ position: "absolute", left: "clamp(24px, 8vw, 120px)", top: pipeGeo ? pipeGeo.leftCardTop : "50%", width: "240px", zIndex: 2 }}
             >
-              <Link href="/parcels" style={{ textDecoration: "none", display: "block" }}>
+              <Link
+                href="/parcels"
+                aria-label="Packisher Parcels — same day parcel delivery and courier service in Nairobi"
+                style={{ textDecoration: "none", display: "block" }}
+              >
                 <motion.div
                   ref={leftCardRef}
                   whileHover={{ scale: 1.02 * cardScale }}
@@ -385,7 +659,11 @@ export default function HomePage() {
               transition={{ duration: 0.4, delay: 1.6, ease: "easeOut" }}
               style={{ position: "absolute", right: "clamp(24px, 8vw, 120px)", top: pipeGeo ? pipeGeo.rightCardTop : "55%", width: "240px", zIndex: 2 }}
             >
-              <Link href="/tipper" style={{ textDecoration: "none", display: "block" }}>
+              <Link
+                href="/tipper"
+                aria-label="Packisher Tipper — construction material delivery and tipper truck hire in Western Kenya"
+                style={{ textDecoration: "none", display: "block" }}
+              >
                 <motion.div
                   ref={rightCardRef}
                   whileHover={{ scale: 1.02 * cardScale }}
@@ -406,12 +684,18 @@ export default function HomePage() {
             animate="visible"
             className="hero-glass"
             style={{
-              padding: "52px 44px",
-              background: "rgba(245, 242, 236, 0.85)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
+              padding: isMobile ? "36px 24px 32px" : isTablet ? "44px 36px" : "52px 44px",
+              background: isMobile
+                ? "rgba(245, 242, 236, 0.92)"
+                : isTablet
+                ? "rgba(245, 242, 236, 0.88)"
+                : "rgba(245, 242, 236, 0.85)",
+              backdropFilter: isMobile ? "blur(8px)" : "blur(16px)",
+              WebkitBackdropFilter: isMobile ? "blur(8px)" : "blur(16px)",
               borderRadius: "var(--radius-lg)",
-              border: "1px solid rgba(255, 255, 255, 0.68)",
+              border: isMobile
+                ? "1px solid rgba(255,255,255,0.5)"
+                : "1px solid rgba(255, 255, 255, 0.68)",
               textAlign: "center",
             }}
           >
@@ -440,6 +724,23 @@ export default function HomePage() {
                 We run it.
               </span>
             </motion.h1>
+
+            {/* SEO: visually-hidden semantic content for indexing */}
+            <span
+              style={{
+                position: "absolute",
+                width: "1px",
+                height: "1px",
+                padding: 0,
+                margin: "-1px",
+                overflow: "hidden",
+                clip: "rect(0,0,0,0)",
+                whiteSpace: "nowrap",
+                border: 0,
+              }}
+            >
+              Packisher offers same day courier services, last mile parcel delivery, and errand services in Nairobi Kenya. We also provide tipper truck hire and construction material delivery including sand, ballast, and murram across Western Kenya and Busia County.
+            </span>
 
             <motion.p
               variants={fadeUp}
@@ -475,6 +776,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} style={{ marginBottom: "40px" }} className="download-btn-wrap">
               <a
                 href={downloadHref}
+                aria-label="Download the Packisher app for parcel delivery and courier services in Nairobi"
                 className="download-app-btn"
                 style={{
                   display: "inline-flex",
@@ -500,54 +802,34 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        <div style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", animation: "scrollBounce 2s ease-in-out infinite", color: "var(--text-muted)", zIndex: 1 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
-        </div>
+        {showSideCards && (
+          <div style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", animation: "scrollBounce 2s ease-in-out infinite", color: "var(--text-muted)", zIndex: 1 }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
+        )}
 
         <style>{`
           .download-app-btn:hover {
             background: rgba(122, 92, 56, 0.08) !important;
             box-shadow: 0 0 16px rgba(122, 92, 56, 0.12);
           }
+          @media (max-width: 767px) {
+            .hero-section-root .download-btn-wrap { margin-bottom: 0 !important; }
+            .hero-section-root .download-app-btn { width: 100%; }
+          }
         `}</style>
       </section>
 
-      {/* ── Stacked cards (<1024px) ── */}
-      {showMobileStacked && (
-        <section style={{ padding: "48px 24px 24px", maxWidth: "560px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <Link href="/parcels" style={{ textDecoration: "none", display: "block" }}>
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2, ease: "easeOut" }} style={macCardStyle}>
-                <ParcelsCardBody />
-              </motion.div>
-            </Link>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-          >
-            <Link href="/tipper" style={{ textDecoration: "none", display: "block" }}>
-              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2, ease: "easeOut" }} style={macCardStyle}>
-                <TipperCardBody />
-              </motion.div>
-            </Link>
-          </motion.div>
-        </section>
-      )}
+      {/* ── Vertical pipe + two spouts (<1024px) ── */}
+      {showMobileStacked && <MobilePipeCards isTablet={isTablet} />}
 
       {/* ── WHAT WE DO ── */}
-      <section style={{ padding: "80px 24px", maxWidth: "1100px", margin: "0 auto" }}>
+      <section className="what-we-do-section" style={{ padding: "80px 24px", maxWidth: "1100px", margin: "0 auto" }}>
         <GlassCard
           hover={false}
+          className="what-we-do-card"
           style={{
             padding: "52px 44px",
             background: "rgba(245, 242, 236, 0.85)",
@@ -611,7 +893,7 @@ export default function HomePage() {
               Western Kenya
             </p>
             <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "28px", color: "var(--text-primary)", lineHeight: 1.15 }}>
-              Trucks Services
+              Truck Services
             </h3>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
@@ -640,17 +922,24 @@ export default function HomePage() {
           @media (max-width: 768px) {
             .what-we-do-grid {
               grid-template-columns: 1fr !important;
-              gap: 48px !important;
+              gap: 32px !important;
             }
             .what-we-do-divider {
               display: none !important;
+            }
+            .what-we-do-section {
+              padding: 48px 16px !important;
+              margin-top: 48px;
+            }
+            .what-we-do-card {
+              padding: 28px 20px !important;
             }
           }
         `}</style>
       </section>
 
       {/* ── WHY PACKISHER ── */}
-      <section style={{ padding: "80px 24px", maxWidth: "1200px", margin: "0 auto" }}>
+      <section className="built-different-section" style={{ padding: "80px 24px", maxWidth: "1200px", margin: "0 auto" }}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "48px" }}>
           <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(36px, 5vw, 56px)", color: "var(--text-primary)", marginBottom: "8px" }}>
             Built different.
@@ -662,6 +951,7 @@ export default function HomePage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
+          className="built-different-grid"
           style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}
         >
           {[
@@ -679,46 +969,55 @@ export default function HomePage() {
             },
           ].map((item) => (
             <motion.div key={item.title} variants={fadeUp}>
-              <GlassCard hover style={{ padding: "32px", height: "100%" }}>
+              <GlassCard hover className="built-different-card" style={{ padding: "32px", height: "100%" }}>
                 <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "22px", color: "var(--text-primary)", marginBottom: "10px" }}>{item.title}</h3>
                 <p style={{ fontFamily: "var(--font-inter), sans-serif", color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.6 }}>{item.desc}</p>
               </GlassCard>
             </motion.div>
           ))}
         </motion.div>
-      </section>
-
-      {/* ── JOURNEY TEASER ── */}
-      <section style={{ padding: "80px 24px", maxWidth: "900px", margin: "0 auto" }}>
-        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <GlassCard hover={false} style={{ padding: "52px 44px", textAlign: "center" }}>
-            <p style={{ fontFamily: "var(--font-inter), sans-serif", color: "var(--text-muted)", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "20px" }}>
-              The Story
-            </p>
-            <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(32px, 4vw, 48px)", color: "var(--text-primary)", marginBottom: "20px" }}>
-              How we got here.
-            </h2>
-            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "17px", lineHeight: 1.75, marginBottom: "32px", maxWidth: "600px", margin: "0 auto 32px" }}>
-              Packisher started as a technology company. We saw the logistics gap in Kenya. We built the infrastructure to fill it.
-            </p>
-            <Button href="/journey" variant="outline" size="md">Read The Journey</Button>
-          </GlassCard>
-        </motion.div>
+        <style>{`
+          @media (max-width: 767px) {
+            .built-different-section { padding: 48px 16px !important; }
+            .built-different-grid { gap: 16px !important; }
+            .built-different-card { padding: 24px 20px !important; }
+          }
+        `}</style>
       </section>
 
       {/* ── FOOTER CTA ── */}
-      <section style={{ padding: "80px 24px", maxWidth: "900px", margin: "0 auto 40px" }}>
+      <section className="footer-cta-section" style={{ padding: "80px 24px", maxWidth: "900px", margin: "0 auto 40px" }}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <GlassCard hover={false} style={{ padding: "60px 40px", textAlign: "center", background: "rgba(122, 92, 56, 0.03)", border: "1px solid rgba(122, 92, 56, 0.12)" }}>
+          <GlassCard hover={false} className="footer-cta-card" style={{ padding: "60px 40px", textAlign: "center", background: "rgba(122, 92, 56, 0.03)", border: "1px solid rgba(122, 92, 56, 0.12)" }}>
             <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(32px, 5vw, 52px)", color: "var(--text-primary)", marginBottom: "16px" }}>
               Ready to move something?
             </h2>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", marginTop: "32px" }}>
-              <Button href="/parcels" variant="outline" size="md">Packisher Parcels</Button>
-              <Button href="/tipper" variant="primary" size="md">Book a Truck Service</Button>
+              <Button
+                href="/parcels"
+                variant="outline"
+                size="md"
+                aria-label="Open Packisher Parcels — courier and parcel delivery in Nairobi"
+              >
+                Packisher Parcels
+              </Button>
+              <Button
+                href="/tipper"
+                variant="primary"
+                size="md"
+                aria-label="Book a tipper truck for construction material delivery in Western Kenya"
+              >
+                Book a Truck Service
+              </Button>
             </div>
           </GlassCard>
         </motion.div>
+        <style>{`
+          @media (max-width: 767px) {
+            .footer-cta-section { padding: 48px 16px 40px !important; }
+            .footer-cta-card { padding: 36px 24px !important; }
+          }
+        `}</style>
       </section>
     </>
   );

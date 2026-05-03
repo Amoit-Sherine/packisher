@@ -19,42 +19,47 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const ROOT_TITLE =
+  "Packisher — Courier & Delivery Services in Nairobi | Tipper Truck Hire Western Kenya";
+const ROOT_DESCRIPTION =
+  "Same day parcel delivery and courier services in Nairobi. Tipper truck hire for sand, ballast and murram delivery across Western Kenya. Book online, pay via Mpesa.";
+
 export const metadata: Metadata = {
   title: {
-    default: "Packisher — Logistics across Kenya",
+    default: ROOT_TITLE,
     template: "%s | Packisher",
   },
-  description:
-    "Parcel delivery across Nairobi and construction material logistics across Western Kenya. Packisher Run and Packisher Haul. Pay via Mpesa.",
+  description: ROOT_DESCRIPTION,
   keywords: [
-    "Packisher",
-    "delivery Nairobi",
-    "parcel delivery Kenya",
+    "courier services Nairobi",
+    "parcel delivery Nairobi",
+    "same day delivery Nairobi Kenya",
+    "last mile delivery Nairobi",
+    "errand services Nairobi",
+    "tipper truck hire Kenya",
+    "tipper truck Western Kenya",
+    "sand delivery Busia County",
     "ballast delivery Western Kenya",
-    "sand delivery Busia",
     "murram delivery Kenya",
-    "Packisher Run",
-    "Packisher Haul",
-    "Mpesa delivery",
-    "tipper truck Kenya",
+    "construction material delivery Kenya",
+    "Mpesa delivery booking Kenya",
+    "courier app Nairobi",
   ],
   metadataBase: new URL("https://packisher.com"),
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Packisher — Logistics across Kenya",
-    description:
-      "Parcel delivery across Nairobi and construction material logistics across Western Kenya. Packisher Run and Packisher Haul. Pay via Mpesa.",
+    title: ROOT_TITLE,
+    description: ROOT_DESCRIPTION,
     url: "https://packisher.com",
     siteName: "Packisher",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Logistics" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher — Courier & Tipper Truck Services in Kenya" }],
     locale: "en_KE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Packisher — Logistics across Kenya",
-    description:
-      "Parcel delivery across Nairobi and construction material logistics across Western Kenya.",
+    title: ROOT_TITLE,
+    description: ROOT_DESCRIPTION,
     images: ["/og-image.png"],
   },
   alternates: {
@@ -69,12 +74,27 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "LocalBusiness",
   name: "Packisher",
+  description:
+    "Courier and parcel delivery services in Nairobi. Tipper truck hire across Western Kenya.",
   url: "https://packisher.com",
   logo: "https://packisher.com/logo.png",
-  description:
-    "Parcel delivery across Nairobi and construction material logistics across Western Kenya.",
+  areaServed: [
+    { "@type": "City", name: "Nairobi" },
+    { "@type": "AdministrativeArea", name: "Western Kenya" },
+    { "@type": "Country", name: "Kenya" },
+  ],
+  serviceType: [
+    "Courier Service",
+    "Parcel Delivery",
+    "Last Mile Delivery",
+    "Errand Service",
+    "Tipper Truck Hire",
+    "Construction Material Delivery",
+  ],
+  paymentAccepted: "Mpesa",
+  currenciesAccepted: "KES",
   sameAs: [
     "https://www.linkedin.com/company/packisher/",
     "https://www.instagram.com/packisher/",

@@ -1,29 +1,35 @@
 import type { Metadata } from "next";
 
+const PARCELS_TITLE = "Parcel Delivery & Courier Services in Nairobi | Packisher";
+const PARCELS_DESCRIPTION =
+  "Send parcels anywhere in Nairobi or across Kenya via bus station. Trained riders, photo proof, Mpesa payment. Download the Packisher app.";
+
 export const metadata: Metadata = {
-  title: "Packisher Parcels — Delivery across Nairobi",
-  description:
-    "Parcel pickup and drop off across Nairobi. Trained riders handle your deliveries, errands, and bus station drops. Pay via Mpesa. Join the waitlist.",
+  title: PARCELS_TITLE,
+  description: PARCELS_DESCRIPTION,
   keywords: [
-    "delivery Nairobi",
+    "courier services Nairobi",
     "parcel delivery Nairobi",
-    "errand service Nairobi",
+    "same day delivery Nairobi Kenya",
+    "last mile delivery Nairobi",
+    "errand services Nairobi",
     "bus station drop Nairobi",
-    "Mpesa delivery",
+    "Mpesa delivery booking Kenya",
+    "courier app Nairobi",
     "Packisher Parcels",
-    "last mile delivery Kenya",
   ],
   openGraph: {
-    title: "Packisher Parcels — Delivery across Nairobi",
-    description: "Parcel pickup and drop off across Nairobi. Trained riders. Pay via Mpesa.",
+    title: PARCELS_TITLE,
+    description: PARCELS_DESCRIPTION,
     url: "https://packisher.com/parcels",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Parcels" }],
+    locale: "en_KE",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Parcels — Courier & Delivery in Nairobi" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Packisher Parcels — Delivery across Nairobi",
-    description: "Parcel pickup and drop off across Nairobi. Trained riders. Pay via Mpesa.",
+    title: PARCELS_TITLE,
+    description: PARCELS_DESCRIPTION,
   },
   alternates: { canonical: "https://packisher.com/parcels" },
 };
