@@ -50,7 +50,7 @@ const cards: JourneyCard[] = [
     body: "Construction material logistics across Western Kenya. Sand, ballast, murram, and hardcore delivered to your site. Book online, pay via Mpesa, and receive driver contact and ETA on WhatsApp. Vetted truck operators on every job.",
     tags: ["Next.js 14", "Supabase", "Mpesa", "Google Maps", "Twilio"],
     statusPill: "Book Now",
-    cta: { label: "Book a Tipper", href: "/tipper#booking" },
+    cta: { label: "Book a Truck Service", href: "/tipper#booking" },
   },
   {
     status: "launching",
@@ -277,7 +277,7 @@ export default function JourneyPage() {
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <Button href="/parcels#waitlist" variant="outline" size="md">Join Parcels Waitlist</Button>
-              <Button href="/tipper#booking" variant="primary" size="md">Book a Tipper</Button>
+              <Button href="/tipper#booking" variant="primary" size="md">Book a Truck Service</Button>
             </div>
           </GlassCard>
         </motion.div>

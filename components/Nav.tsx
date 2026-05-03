@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Parcels", href: "/parcels" },
-  { label: "Tipper", href: "/tipper" },
+  { label: "Construction Trucks", href: "/tipper" },
   { label: "The Journey", href: "/journey" },
   { label: "About", href: "/about" },
 ];
@@ -122,7 +122,7 @@ export default function Nav() {
               }}
               className="book-btn"
             >
-              Book a Tipper
+              Book a Truck Service
             </Link>
 
             <style>{`

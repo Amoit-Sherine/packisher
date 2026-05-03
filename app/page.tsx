@@ -171,7 +171,7 @@ export default function HomePage() {
                         <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28C840" }} />
                       </div>
                       <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
-                        PACKISHER PARCELS
+                        PARCEL SERVICES
                       </span>
                     </div>
                     {/* Content */}
@@ -239,7 +239,7 @@ export default function HomePage() {
                         <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28C840" }} />
                       </div>
                       <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
-                        PACKISHER TIPPER
+                        CONSTRUCTION TRUCKS
                       </span>
                     </div>
                     {/* Content */}
@@ -271,7 +271,7 @@ export default function HomePage() {
                           onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href = "/tipper#booking"; }}
                           style={{ fontSize: "12px", color: "var(--text-muted)", fontWeight: 500 }}
                         >
-                          → Book a Tipper
+                          → Book a Truck Service
                         </span>
                       </div>
                     </div>
@@ -305,7 +305,7 @@ export default function HomePage() {
       <section style={{ padding: "80px 24px", maxWidth: "1200px", margin: "0 auto" }}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "48px" }}>
           <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(36px, 5vw, 56px)", color: "var(--text-primary)", marginBottom: "8px" }}>
-            Two services. Two regions.
+            Our Services.
           </h2>
         </motion.div>
 
@@ -320,7 +320,7 @@ export default function HomePage() {
             <GlassCard hover glow style={{ padding: "32px", height: "100%", display: "flex", flexDirection: "column", gap: "14px" }}>
               <Badge variant="active">Nairobi</Badge>
               <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "26px", color: "var(--text-primary)", letterSpacing: "0.04em" }}>
-                PACKISHER PARCELS
+                Parcel Services
               </h3>
               <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.7, fontFamily: "var(--font-inter), sans-serif", flex: 1 }}>
                 Parcel pickup and drop off across Nairobi. Trained riders handle your deliveries, errands, and bus station drops. Every step documented. Pay via Mpesa.
@@ -339,17 +339,17 @@ export default function HomePage() {
             <GlassCard hover glow style={{ padding: "32px", height: "100%", display: "flex", flexDirection: "column", gap: "14px" }}>
               <Badge variant="live">Western Kenya</Badge>
               <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "26px", color: "var(--text-primary)", letterSpacing: "0.04em" }}>
-                PACKISHER TIPPER
+                Construction Trucks
               </h3>
               <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.7, fontFamily: "var(--font-inter), sans-serif", flex: 1 }}>
-                Sand, ballast, murram and hardcore delivered to your construction site. Book a tipper online, confirm with Mpesa, and get your materials on site.
+                Sand, ballast, murram and hardcore delivered to your construction site. Book a Truck Service online, confirm with Mpesa, and get your materials on site.
               </p>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "8px 14px", background: "rgba(22, 163, 74, 0.08)", borderRadius: "var(--radius-sm)", border: "1px solid rgba(22, 163, 74, 0.18)", alignSelf: "flex-start" }}>
                 <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--status-live)", display: "inline-block" }} />
                 <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 600, color: "var(--status-live)", letterSpacing: "0.08em", textTransform: "uppercase" }}>Book Now</span>
               </div>
               <Button href="/tipper" variant="primary" size="sm" style={{ alignSelf: "flex-start" } as React.CSSProperties}>
-                Book a Tipper
+                Book a Truck Service
               </Button>
             </GlassCard>
           </motion.div>
@@ -422,7 +422,7 @@ export default function HomePage() {
             </h2>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", marginTop: "32px" }}>
               <Button href="/parcels" variant="outline" size="md">Packisher Parcels</Button>
-              <Button href="/tipper" variant="primary" size="md">Book a Tipper</Button>
+              <Button href="/tipper" variant="primary" size="md">Book a Truck Service</Button>
             </div>
           </GlassCard>
         </motion.div>

@@ -64,7 +64,7 @@ export default function TipperPage() {
                 Sand, ballast, murram, and hardcore delivered to your construction site across Western Kenya. Book online, pay via Mpesa, we handle the rest.
               </motion.p>
               <motion.div variants={fadeUp}>
-                <Button href="#booking" variant="primary" size="md">Book a Tipper</Button>
+                <Button href="#booking" variant="primary" size="md">Book a Truck Service</Button>
               </motion.div>
             </motion.div>
           </div>
@@ -133,7 +133,7 @@ export default function TipperPage() {
           <section id="booking" style={{ marginBottom: "80px", scrollMarginTop: "80px" }}>
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "32px" }}>
               <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(32px, 4vw, 48px)", color: "var(--text-primary)", marginBottom: "12px" }}>
-                Book a Tipper.
+                Book a Truck Service.
               </h2>
               <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "16px", lineHeight: 1.6 }}>
                 Fill in the details below. You will receive a quote and Mpesa payment prompt to confirm your booking.

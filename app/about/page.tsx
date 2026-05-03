@@ -92,7 +92,7 @@ export default function AboutPage() {
               Get in touch.
             </h2>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <Button href="/tipper#booking" variant="primary" size="md">Book a Tipper</Button>
+              <Button href="/tipper#booking" variant="primary" size="md">Book a Truck Service</Button>
               <Button href="/contact" variant="outline" size="md">Contact Us</Button>
             </div>
           </GlassCard>
