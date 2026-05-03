@@ -4,116 +4,99 @@ import { motion } from "framer-motion";
 import GlassCard from "@/components/GlassCard";
 import Button from "@/components/Button";
 import { fadeUp, staggerContainer } from "@/lib/animations";
-import HeroSketches from "@/components/HeroSketches";
 
-const values = [
+const howWeOperate = [
   {
-    title: "Defined scope",
-    desc: "Every engagement starts with a written scope. What is included, what is not, and what delivery looks like.",
+    title: "Accountable on every job",
+    desc: "Every delivery and every tipper load is documented with photo proof and Mpesa receipts. No excuses, no gaps.",
   },
   {
-    title: "Clear communication",
-    desc: "We give progress updates without being asked. If something changes, you hear about it the same day.",
+    title: "No middlemen",
+    desc: "You book directly with Packisher. Your rider or driver is a Packisher operator, not a random contractor from a pool.",
   },
   {
-    title: "Full ownership at handoff",
-    desc: "Code, accounts, domains, and credentials transfer to you at the end of every project. No exceptions.",
+    title: "Built for Kenya",
+    desc: "Mpesa payments. WhatsApp confirmations. Kenyan roads and Nairobi traffic baked into everything we build.",
   },
   {
-    title: "Transparent quoting",
-    desc: "We quote after a discovery call. Estimates reflect the actual work required, not a number to win the project.",
+    title: "Transparent pricing",
+    desc: "Pricing is shown before you pay. No surprise charges, no callbacks to negotiate, no hidden fees.",
   },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
+      {/* ── Hero ── */}
       <section className="hero-section" style={{ position: "relative", paddingTop: "96px", paddingBottom: "64px" }}>
-        <HeroSketches page="about" />
-        <div style={{ position: "relative", zIndex: 1, maxWidth: "720px", margin: "0 auto", padding: "0 24px" }}>
-          <div className="hero-glass" style={{ background: "rgba(245, 242, 236, 0.82)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderRadius: "var(--radius-md)", padding: "40px 48px", border: "1px solid rgba(255, 255, 255, 0.68)" }}>
-          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-            <motion.h1 variants={fadeUp} style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(36px, 6vw, 60px)", color: "var(--text-primary)", marginBottom: "32px", lineHeight: 1.1 }}>
-              Built across two markets.
-            </motion.h1>
-            <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-              {[
-                "Packisher is a technology and ventures company operating across Kenya and Canada. We build digital products for small businesses and manage property in Kenya. Both sides of the business come from direct experience in these markets.",
-                "The technology work covers websites, internal tools, payment integrations, and operational systems. The ventures side covers property management, land acquisition, and construction in Kenya. The two divisions are separate in how they run but connected in where they operate and why.",
-              ].map((para, i) => (
-                <p key={i} style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "17px", lineHeight: 1.75 }}>
-                  {para}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "800px", margin: "0 auto", padding: "0 24px" }}>
+          <div
+            className="hero-glass"
+            style={{ background: "rgba(245, 242, 236, 0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderRadius: "var(--radius-md)", padding: "48px 52px", border: "1px solid rgba(255,255,255,0.68)" }}
+          >
+            <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+              <motion.p
+                variants={fadeUp}
+                style={{ fontFamily: "var(--font-inter), sans-serif", color: "var(--text-muted)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "20px" }}
+              >
+                Packisher · Nairobi, Kenya
+              </motion.p>
+              <motion.h1
+                variants={fadeUp}
+                style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(36px, 6vw, 60px)", color: "var(--text-primary)", marginBottom: "20px", lineHeight: 1.1 }}
+              >
+                We handle the logistics.
+              </motion.h1>
+              <motion.h2
+                variants={fadeUp}
+                style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "clamp(22px, 3.5vw, 36px)", color: "var(--accent)", marginBottom: "32px", lineHeight: 1.2 }}
+              >
+                So you can focus on your business.
+              </motion.h2>
+              <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "17px", lineHeight: 1.75 }}>
+                  Packisher is a Nairobi-based logistics company. We deliver parcels across the city and construction materials across Western Kenya. Two services. One standard of accountability.
                 </p>
-              ))}
+                <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "17px", lineHeight: 1.75 }}>
+                  We built Packisher because small businesses in Kenya deserve logistics that actually works. No missing riders, no unconfirmed deliveries, no chasing the driver on phone. Every job documented. Every payment tracked. Every client updated on WhatsApp.
+                </p>
+                <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "17px", lineHeight: 1.75 }}>
+                  We understand Mpesa, Nairobi traffic, Western Kenya roads, and the reality of running a business here. We build around what is real, not what is ideal.
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Rest of content */}
-      <div style={{ maxWidth: "720px", margin: "0 auto", padding: "0 24px 80px" }}>
-
-        {/* Mission */}
-        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "64px" }}>
-          <GlassCard hover={false} style={{ padding: "28px 32px", borderLeft: "3px solid var(--accent-2)" }}>
-            <p style={{ color: "var(--text-primary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "18px", lineHeight: 1.7, fontStyle: "italic" }}>
-              &ldquo;We work with businesses that have a clear problem and want it solved properly. Every engagement is scoped upfront, delivered to timeline, and handed off with full client ownership.&rdquo;
-            </p>
-          </GlassCard>
-        </motion.div>
-
-        {/* Dual-base */}
+      {/* ── How We Operate ── */}
+      <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px 80px" }}>
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "64px" }}>
           <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 40px)", color: "var(--text-primary)", marginBottom: "32px" }}>
-            Two markets.
-          </h2>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px" }}>
-            <GlassCard hover style={{ padding: "24px" }}>
-              <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "20px", color: "var(--text-primary)", marginBottom: "16px" }}>
-                Canada
-              </h3>
-              <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "14px", lineHeight: 1.7 }}>
-                Packisher operates in Canada with infrastructure on Canadian platforms. Clients here are billed in CAD, hosted on Vercel, and supported within North American business hours.
-              </p>
-            </GlassCard>
-
-            <GlassCard hover style={{ padding: "24px" }}>
-              <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "20px", color: "var(--text-primary)", marginBottom: "16px" }}>
-                Kenya
-              </h3>
-              <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "14px", lineHeight: 1.7 }}>
-                Kenya is where most of our clients are and where our ventures division operates. We have worked in the Kenyan market long enough to understand its payment systems, its business culture, and the practical constraints that most foreign services are not built around.
-              </p>
-            </GlassCard>
-          </div>
-        </motion.div>
-
-        {/* Values */}
-        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "64px" }}>
-          <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 40px)", color: "var(--text-primary)", marginBottom: "32px" }}>
-            How We Work
+            How we operate.
           </h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px" }}>
-            {values.map((v) => (
-              <GlassCard key={v.title} hover style={{ padding: "24px" }}>
-                <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "18px", color: "var(--text-primary)", marginBottom: "8px" }}>{v.title}</h3>
-                <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "14px", lineHeight: 1.6 }}>{v.desc}</p>
+            {howWeOperate.map((item) => (
+              <GlassCard key={item.title} hover style={{ padding: "24px" }}>
+                <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "18px", color: "var(--text-primary)", marginBottom: "8px" }}>{item.title}</h3>
+                <p style={{ color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "14px", lineHeight: 1.6 }}>{item.desc}</p>
               </GlassCard>
             ))}
           </div>
         </motion.div>
 
-        {/* CTA */}
-        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ textAlign: "center" }}>
-          <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "18px", marginBottom: "24px" }}>
-            Want to work with us?
-          </p>
-          <Button href="/contact" variant="primary" size="lg">Book a Free Consultation</Button>
+        {/* ── Closing CTA ── */}
+        <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <GlassCard hover={false} style={{ padding: "40px", textAlign: "center" }}>
+            <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 36px)", color: "var(--text-primary)", marginBottom: "28px" }}>
+              Get in touch.
+            </h2>
+            <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+              <Button href="/tipper#booking" variant="primary" size="md">Book a Tipper</Button>
+              <Button href="/contact" variant="outline" size="md">Contact Us</Button>
+            </div>
+          </GlassCard>
         </motion.div>
-
       </div>
     </>
   );
