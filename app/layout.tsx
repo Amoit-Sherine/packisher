@@ -21,38 +21,40 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Packisher — Technology & Ventures",
+    default: "Packisher — Logistics across Kenya",
     template: "%s | Packisher",
   },
   description:
-    "Digital products for small businesses and property ventures in Kenya. We build websites, apps, and digital tools. Based in Canada with operations in Kenya.",
+    "Parcel delivery across Nairobi and construction material logistics across Western Kenya. Packisher Run and Packisher Haul. Pay via Mpesa.",
   keywords: [
     "Packisher",
-    "technology services Kenya",
-    "web development Kamloops",
-    "property management Kenya",
-    "land for sale Kenya",
-    "Kenyan diaspora property",
-    "M-Pesa integration",
-    "Google Workspace Kenya",
+    "delivery Nairobi",
+    "parcel delivery Kenya",
+    "ballast delivery Western Kenya",
+    "sand delivery Busia",
+    "murram delivery Kenya",
+    "Packisher Run",
+    "Packisher Haul",
+    "Mpesa delivery",
+    "tipper truck Kenya",
   ],
   metadataBase: new URL("https://packisher.com"),
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Packisher — Technology & Ventures",
+    title: "Packisher — Logistics across Kenya",
     description:
-      "Digital products for small businesses and property ventures in Kenya. We build websites, apps, and digital tools. Based in Canada with operations in Kenya.",
+      "Parcel delivery across Nairobi and construction material logistics across Western Kenya. Packisher Run and Packisher Haul. Pay via Mpesa.",
     url: "https://packisher.com",
-    siteName: "Packisher Technology Services",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Technology Services" }],
+    siteName: "Packisher",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Logistics" }],
     locale: "en_KE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Packisher — Technology & Ventures",
+    title: "Packisher — Logistics across Kenya",
     description:
-      "Digital products for small businesses and property ventures in Kenya. We build websites, apps, and digital tools. Based in Canada with operations in Kenya.",
+      "Parcel delivery across Nairobi and construction material logistics across Western Kenya.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -68,11 +70,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Packisher Technology Services",
+  name: "Packisher",
   url: "https://packisher.com",
   logo: "https://packisher.com/logo.png",
   description:
-    "Digital products for small businesses and property ventures in Kenya and Canada.",
+    "Parcel delivery across Nairobi and construction material logistics across Western Kenya.",
   sameAs: [
     "https://www.linkedin.com/company/packisher/",
     "https://www.instagram.com/packisher/",

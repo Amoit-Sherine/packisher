@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Technology Services", href: "/services" },
-  { label: "Ventures", href: "/ventures" },
+  { label: "Parcels", href: "/parcels" },
+  { label: "Tipper", href: "/tipper" },
+  { label: "The Journey", href: "/journey" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -18,15 +19,10 @@ export default function Footer() {
         background: "rgba(245, 242, 236, 0.97)",
         backdropFilter: "blur(24px) saturate(160%)",
         WebkitBackdropFilter: "blur(24px) saturate(160%)",
-        borderTop: "1px solid rgba(200, 184, 154, 0.18)",
+        borderTop: "1px solid rgba(122, 92, 56, 0.12)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* Row 1 */}
         <div
           style={{
@@ -43,7 +39,7 @@ export default function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/packisher-logo-light.svg" alt="" width={30} height={30} style={{ borderRadius: "6px", display: "block", flexShrink: 0 }} className="logo-light" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/packisher-logo-dark.svg"  alt="" width={30} height={30} style={{ borderRadius: "6px", display: "none",  flexShrink: 0 }} className="logo-dark"  />
+            <img src="/packisher-logo-dark.svg" alt="" width={30} height={30} style={{ borderRadius: "6px", display: "none", flexShrink: 0 }} className="logo-dark" />
             <span
               style={{
                 fontFamily: "var(--font-barlow), sans-serif",
@@ -80,7 +76,6 @@ export default function Footer() {
 
           {/* Social icons */}
           <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/company/packisher/"
               target="_blank"
@@ -93,7 +88,6 @@ export default function Footer() {
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
-            {/* Instagram */}
             <a
               href="https://www.instagram.com/packisher/"
               target="_blank"
@@ -122,9 +116,9 @@ export default function Footer() {
             fontFamily: "var(--font-inter), sans-serif",
           }}
         >
-          Packisher · Technology · Ventures
+          Packisher · Parcels · Tipper
           <br />
-          Nairobi, Kenya · Kamloops, BC
+          Nairobi, Kenya
           <br />
           © 2026 Packisher. All rights reserved.
         </div>

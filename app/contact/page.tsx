@@ -9,32 +9,26 @@ import { fadeUp, staggerContainer } from "@/lib/animations";
 
 function ContactPageContent() {
   const searchParams = useSearchParams();
-  const defaultService = searchParams.get("service") ?? undefined;
+  const defaultEnquiry = searchParams.get("enquiry") ?? undefined;
 
   return (
     <div style={{ paddingTop: "96px", minHeight: "100vh" }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px 80px" }}>
+      <div style={{ maxWidth: "760px", margin: "0 auto", padding: "0 24px 80px" }}>
 
         {/* Header */}
-        <motion.div variants={staggerContainer} initial="hidden" animate="visible" style={{ marginBottom: "56px" }}>
+        <motion.div variants={staggerContainer} initial="hidden" animate="visible" style={{ marginBottom: "48px" }}>
           <motion.h1 variants={fadeUp} style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(48px, 7vw, 80px)", color: "var(--text-primary)", marginBottom: "12px" }}>
-            Contact
+            Contact.
           </motion.h1>
-          <motion.p variants={fadeUp} style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "16px" }}>
-            Let&apos;s talk about your business.
+          <motion.p variants={fadeUp} style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "16px", lineHeight: 1.6 }}>
+            For truck bookings use the Haul page directly. For everything else, reach us below.
           </motion.p>
         </motion.div>
 
-        {/* Get in Touch */}
+        {/* Direct contact */}
         <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "48px" }}>
-          <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "clamp(24px, 4vw, 36px)", color: "var(--text-primary)", marginBottom: "8px" }}>
-            Get in Touch
-          </h2>
-          <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "15px", marginBottom: "24px", lineHeight: 1.6 }}>
-            Fill in the form below and we will get back to you within one business day. Prefer to reach us directly? Use the details below.
-          </p>
-          <GlassCard hover={false} style={{ padding: "24px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+          <GlassCard hover={false} style={{ padding: "28px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               {/* Email */}
               <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ color: "var(--accent)", flexShrink: 0 }}>
@@ -48,6 +42,7 @@ function ContactPageContent() {
                   </a>
                 </div>
               </div>
+
               {/* Instagram */}
               <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ color: "var(--accent)", flexShrink: 0 }}>
@@ -62,6 +57,7 @@ function ContactPageContent() {
                   </a>
                 </div>
               </div>
+
               {/* LinkedIn */}
               <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ color: "var(--accent)", flexShrink: 0 }}>
@@ -70,7 +66,7 @@ function ContactPageContent() {
                 <div>
                   <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "3px" }}>LinkedIn</p>
                   <a href="https://www.linkedin.com/company/packisher/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-primary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "15px", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-                    Packisher Technology Services
+                    Packisher
                   </a>
                 </div>
               </div>
@@ -78,74 +74,27 @@ function ContactPageContent() {
           </GlassCard>
         </motion.section>
 
-        {/* Inquiry Form */}
-        <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "64px" }}>
+        {/* Form */}
+        <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "clamp(24px, 4vw, 36px)", color: "var(--text-primary)", marginBottom: "24px" }}>
-            Send a Message
+            Send a message.
           </h2>
           <GlassCard hover={false} style={{ padding: "32px" }}>
-            <ContactForm defaultService={defaultService} />
-          </GlassCard>
-        </motion.section>
-
-        {/* Direct Payment */}
-        <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "64px" }}>
-          <GlassCard hover={false} style={{ padding: "32px", borderLeft: "3px solid var(--accent)" }}>
-            <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "24px", color: "var(--text-primary)", marginBottom: "8px" }}>
-              Have a quote? Pay here.
-            </h2>
-            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "14px", marginBottom: "24px", lineHeight: 1.6 }}>
-              Online payments for quoted work are coming soon. In the meantime, reach out and we will send you payment details directly.
-            </p>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "10px 18px", background: "rgba(200,184,154,0.1)", border: "1px solid rgba(200,184,154,0.25)", borderRadius: "var(--radius-sm)" }}>
-              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "var(--accent)", display: "inline-block", opacity: 0.7 }} />
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", fontWeight: 600, color: "var(--accent)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                Coming Soon
-              </span>
-            </div>
-          </GlassCard>
-        </motion.section>
-
-        {/* Section D — Contact details */}
-        <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <GlassCard hover={false} style={{ padding: "28px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "20px" }}>
-              {[
-                { label: "Email", value: "support@packisher.com", href: "mailto:support@packisher.com" },
-                { label: "Instagram", value: "@packisher", href: "https://www.instagram.com/packisher/", external: true },
-                { label: "Response Time", value: "Within 1 business day (Mon–Fri)" },
-                { label: "Time Zones", value: "EAT (UTC+3) · MST (UTC−7)" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <p style={{ color: "var(--accent-2)", fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "6px" }}>
-                    {item.label}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      style={{ color: "var(--text-primary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "15px", textDecoration: "underline", textUnderlineOffset: "3px" }}
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p style={{ color: "var(--text-primary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "15px" }}>{item.value}</p>
-                  )}
-                </div>
-              ))}
-            </div>
+            <ContactForm defaultEnquiry={defaultEnquiry} />
           </GlassCard>
         </motion.section>
       </div>
-
     </div>
   );
 }
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div style={{ paddingTop: "96px", textAlign: "center", color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif" }}>Loading…</div>}>
+    <Suspense fallback={
+      <div style={{ paddingTop: "96px", textAlign: "center", color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif" }}>
+        Loading…
+      </div>
+    }>
       <ContactPageContent />
     </Suspense>
   );

@@ -2,25 +2,17 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 
-const ENQUIRY_TYPES = [
-  "Packisher Parcels",
-  "Packisher Tipper",
-  "Business Account",
-  "Partnership",
-  "Other",
-] as const;
-
 const schema = z.object({
   fullName: z.string().min(2, "Please enter your full name"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  enquiryType: z.enum(ENQUIRY_TYPES, { message: "Please select an enquiry type" }),
-  message: z.string().min(10, "Please tell us a bit more (at least 10 characters)"),
+  phone: z.string().min(9, "Please enter a valid phone or WhatsApp number"),
+  email: z.string().email("Please enter a valid email").optional().or(z.literal("")),
+  type: z.enum(["individual", "business"], { message: "Please select one" }),
+  businessName: z.string().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -56,36 +48,30 @@ const errorStyle: React.CSSProperties = {
   marginTop: "6px",
 };
 
-export default function ContactForm({ defaultEnquiry }: { defaultEnquiry?: string }) {
+export default function ParcelsWaitlistForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
-
-  const defaultEnquiryType = ENQUIRY_TYPES.find((v) => v.toLowerCase().replace(/\s+/g, "-") === defaultEnquiry) ?? undefined;
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-    defaultValues: { enquiryType: defaultEnquiryType },
-  });
+  } = useForm<FormData>({ resolver: zodResolver(schema) });
+
+  const type = watch("type");
 
   const onSubmit = async (data: FormData) => {
     setSubmitError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/parcels-waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        if (res.status === 429) {
-          setSubmitError("Too many submissions. Please wait before trying again.");
-        } else {
-          setSubmitError(body.error || "Something went wrong. Please try again.");
-        }
+        setSubmitError(body.error || "Something went wrong. Please try again.");
         return;
       }
       setSubmitted(true);
@@ -108,10 +94,10 @@ export default function ContactForm({ defaultEnquiry }: { defaultEnquiry?: strin
         >
           <div style={{ fontSize: "36px", marginBottom: "16px" }}>✓</div>
           <h3 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 700, fontSize: "24px", color: "var(--text-primary)", marginBottom: "12px" }}>
-            Message received.
+            You are on the list.
           </h3>
           <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "16px", lineHeight: 1.6 }}>
-            We will get back to you within one business day.
+            We will reach you on WhatsApp when we launch.
           </p>
         </div>
       </motion.div>
@@ -126,40 +112,56 @@ export default function ContactForm({ defaultEnquiry }: { defaultEnquiry?: strin
         {errors.fullName && <p style={errorStyle}>{errors.fullName.message}</p>}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
-        <div>
-          <label style={labelStyle}>Email *</label>
-          <input {...register("email")} type="email" placeholder="you@example.com" className="glass-input-field" style={inputStyle} />
-          {errors.email && <p style={errorStyle}>{errors.email.message}</p>}
-        </div>
-        <div>
-          <label style={labelStyle}>Phone / WhatsApp <span style={{ opacity: 0.5, fontWeight: 400 }}>(optional)</span></label>
-          <input {...register("phone")} placeholder="+254 700 000 000" className="glass-input-field" style={inputStyle} />
-        </div>
+      <div>
+        <label style={labelStyle}>Phone / WhatsApp *</label>
+        <input {...register("phone")} placeholder="+254 700 000 000" className="glass-input-field" style={inputStyle} />
+        {errors.phone && <p style={errorStyle}>{errors.phone.message}</p>}
       </div>
 
       <div>
-        <label style={labelStyle}>Enquiry Type *</label>
-        <select {...register("enquiryType")} className="glass-input-field" style={{ ...inputStyle, cursor: "pointer", appearance: "none" }}>
-          <option value="">Select…</option>
-          {ENQUIRY_TYPES.map((t) => (
-            <option key={t} value={t}>{t}</option>
+        <label style={labelStyle}>Email <span style={{ opacity: 0.5, fontWeight: 400 }}>(optional)</span></label>
+        <input {...register("email")} type="email" placeholder="you@example.com" className="glass-input-field" style={inputStyle} />
+        {errors.email && <p style={errorStyle}>{errors.email.message}</p>}
+      </div>
+
+      <div>
+        <label style={labelStyle}>Individual or Business *</label>
+        <div style={{ display: "flex", gap: "12px" }}>
+          {(["individual", "business"] as const).map((val) => (
+            <label
+              key={val}
+              style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                padding: "12px 16px",
+                borderRadius: "var(--radius-sm)",
+                border: `1px solid ${type === val ? "var(--accent)" : "var(--glass-border)"}`,
+                background: type === val ? "rgba(122, 92, 56, 0.08)" : "rgba(255,255,255,0.55)",
+                cursor: "pointer",
+                fontFamily: "var(--font-inter), sans-serif",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: type === val ? "var(--accent)" : "var(--text-muted)",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <input type="radio" value={val} {...register("type")} style={{ display: "none" }} />
+              {val.charAt(0).toUpperCase() + val.slice(1)}
+            </label>
           ))}
-        </select>
-        {errors.enquiryType && <p style={errorStyle}>{errors.enquiryType.message}</p>}
+        </div>
+        {errors.type && <p style={errorStyle}>{errors.type.message}</p>}
       </div>
 
-      <div>
-        <label style={labelStyle}>Message *</label>
-        <textarea
-          {...register("message")}
-          rows={5}
-          placeholder="Tell us what you need…"
-          className="glass-input-field"
-          style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
-        />
-        {errors.message && <p style={errorStyle}>{errors.message.message}</p>}
-      </div>
+      {type === "business" && (
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+          <label style={labelStyle}>Business Name</label>
+          <input {...register("businessName")} placeholder="Acme Enterprises" className="glass-input-field" style={inputStyle} />
+        </motion.div>
+      )}
 
       <AnimatePresence>
         {submitError && (
@@ -184,7 +186,7 @@ export default function ContactForm({ defaultEnquiry }: { defaultEnquiry?: strin
         type="submit"
         disabled={isSubmitting}
         style={{
-          background: isSubmitting ? "rgba(122,92,56,0.5)" : "var(--accent)",
+          background: isSubmitting ? "rgba(122, 92, 56, 0.5)" : "var(--accent)",
           color: "var(--bg)",
           border: "none",
           borderRadius: "var(--radius-sm)",
@@ -203,10 +205,10 @@ export default function ContactForm({ defaultEnquiry }: { defaultEnquiry?: strin
         {isSubmitting ? (
           <>
             <span style={{ width: "16px", height: "16px", border: "2px solid rgba(245,242,236,0.3)", borderTop: "2px solid var(--bg)", borderRadius: "50%", animation: "spin 0.8s linear infinite", display: "inline-block" }} />
-            Sending…
+            Joining…
           </>
         ) : (
-          "Send Message"
+          "Join the Waitlist"
         )}
       </button>
 

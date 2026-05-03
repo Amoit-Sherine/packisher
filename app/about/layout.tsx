@@ -3,19 +3,20 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About | Packisher",
   description:
-    "Packisher is a technology and ventures company operating between Canada and Kenya. We build digital products for small businesses and manage property and land in Nairobi.",
+    "Kenyan founded. Canada based. Operating on the ground in Nairobi and Western Kenya. Packisher builds logistics infrastructure for both markets.",
   keywords: [
     "about Packisher",
     "Packisher founders",
-    "Kamloops tech company",
-    "Nairobi tech agency",
-    "Kenya Canada startup",
-    "remote-first agency Africa",
+    "Kenya Canada logistics",
+    "Nairobi delivery company",
+    "Western Kenya logistics",
+    "Packisher Run",
+    "Packisher Haul",
   ],
   openGraph: {
     title: "About | Packisher",
     description:
-      "Packisher is a technology and ventures company operating between Canada and Kenya. We build digital products for small businesses and manage property and land in Nairobi.",
+      "Kenyan founded. Canada based. Operating on the ground in Nairobi and Western Kenya.",
     url: "https://packisher.com/about",
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About Packisher" }],
@@ -23,8 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About | Packisher",
-    description:
-      "Packisher is a technology and ventures company operating between Canada and Kenya. We build digital products for small businesses and manage property and land in Nairobi.",
+    description: "Kenyan founded. Canada based. Operating on the ground in Nairobi and Western Kenya.",
   },
   alternates: {
     canonical: "https://packisher.com/about",
