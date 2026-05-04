@@ -16,17 +16,15 @@
 # production
 /build
 
-# misc
-.DS_Store
-*.pem
-
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
+# local env files (anything except the example template)
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
@@ -34,3 +32,30 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# secrets / credentials (defence-in-depth)
+*.pem
+*.key
+*.p12
+*.pfx
+*.cert
+*.crt
+secrets.json
+credentials.json
+service-account*.json
+
+# local archives / scratch (never commit these)
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# editor / agent state
+.claude/
+.cursor/
+.idea/
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
