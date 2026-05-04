@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Script from "next/script";
 import GlassCard from "@/components/GlassCard";
 import Button from "@/components/Button";
-import TipperBookingForm from "@/components/TipperBookingForm";
+import TipperBookingWizard from "@/components/TipperBookingWizard";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 
 const materials = [
@@ -140,8 +140,8 @@ export default function TipperPage() {
               </p>
             </motion.div>
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <GlassCard hover={false} style={{ padding: "36px" }}>
-                <TipperBookingForm />
+              <GlassCard hover={false} style={{ padding: "28px 16px" }}>
+                <TipperBookingWizard />
               </GlassCard>
             </motion.div>
           </section>
