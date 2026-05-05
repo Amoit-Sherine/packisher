@@ -7,21 +7,6 @@ import GlassCard from "@/components/GlassCard";
 import Button from "@/components/Button";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 
-function useOsHref() {
-  const [href, setHref] = useState("/parcels#download");
-  useEffect(() => {
-    const ua = navigator.userAgent;
-    if (/android/i.test(ua)) {
-      setHref("https://play.google.com/store/apps/details?id=com.packisher");
-    } else if (/iphone|ipad|ipod/i.test(ua)) {
-      setHref("https://apps.apple.com/app/packisher/id0000000000");
-    } else {
-      setHref("/parcels#download");
-    }
-  }, []);
-  return href;
-}
-
 type ViewportMode = "desktop" | "tablet-landscape" | "tablet-portrait" | "mobile";
 
 function useViewportMode(): ViewportMode {
@@ -398,7 +383,6 @@ function MobilePipeCards({ isTablet }: { isTablet: boolean }) {
 }
 
 export default function HomePage() {
-  const downloadHref = useOsHref();
   const mode = useViewportMode();
   const showSideCards = mode === "desktop" || mode === "tablet-landscape";
   const showMobileStacked = mode === "tablet-portrait" || mode === "mobile";
@@ -772,11 +756,11 @@ export default function HomePage() {
               Need a truck for your build in Western Kenya? We have that too.
             </motion.p>
 
-            {/* OS-detect download button */}
+            {/* CTA button */}
             <motion.div variants={fadeUp} style={{ marginBottom: "40px" }} className="download-btn-wrap">
               <a
-                href={downloadHref}
-                aria-label="Download the Packisher app for parcel delivery and courier services in Nairobi"
+                href="/parcels#booking"
+                aria-label="Book a parcel delivery with Packisher"
                 className="download-app-btn"
                 style={{
                   display: "inline-flex",
@@ -795,7 +779,7 @@ export default function HomePage() {
                   letterSpacing: "0.02em",
                 }}
               >
-                Download App
+                Book a Delivery
               </a>
             </motion.div>
 
@@ -874,12 +858,12 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 12px", background: "rgba(82, 72, 160, 0.08)", borderRadius: "999px", border: "1px solid rgba(82, 72, 160, 0.15)", alignSelf: "flex-start", marginTop: "4px" }}>
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--accent-2)" }} />
-              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 600, color: "var(--accent-2)", letterSpacing: "0.08em", textTransform: "uppercase" }}>App Coming Soon</span>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 12px", background: "rgba(22, 163, 74, 0.08)", borderRadius: "999px", border: "1px solid rgba(22, 163, 74, 0.18)", alignSelf: "flex-start", marginTop: "4px" }}>
+              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--status-live)" }} />
+              <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 600, color: "var(--status-live)", letterSpacing: "0.08em", textTransform: "uppercase" }}>Book Now</span>
             </div>
             <div style={{ marginTop: "8px" }}>
-              <Button href="/parcels#download" variant="outline" size="md">Download App</Button>
+              <Button href="/parcels#booking" variant="outline" size="md">Book a Delivery</Button>
             </div>
           </motion.div>
 

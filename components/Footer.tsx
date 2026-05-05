@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const navLinks = [
   { label: "Parcels", href: "/parcels" },
-  { label: "Tipper", href: "/tipper" },
+  { label: "Trucks", href: "/tipper" },
   { label: "The Journey", href: "/journey" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -116,7 +116,7 @@ export default function Footer() {
             fontFamily: "var(--font-inter), sans-serif",
           }}
         >
-          Packisher · Parcels · Tipper
+          Packisher · Parcels · Trucks
           <br />
           Nairobi, Kenya
           <br />

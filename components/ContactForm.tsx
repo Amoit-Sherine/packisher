@@ -9,7 +9,7 @@ import { fadeUp } from "@/lib/animations";
 
 const ENQUIRY_TYPES = [
   "Packisher Parcels",
-  "Packisher Tipper",
+  "Packisher Trucks",
   "Business Account",
   "Partnership",
   "Other",

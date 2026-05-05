@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Parcels", href: "/parcels" },
-  { label: "Construction Trucks", href: "/tipper" },
+  { label: "Trucks", href: "/tipper" },
   { label: "The Journey", href: "/journey" },
   { label: "About", href: "/about" },
 ];
@@ -105,6 +105,25 @@ export default function Nav() {
                 {link.label}
               </Link>
             ))}
+
+            <Link
+              href="/parcels#booking"
+              style={{
+                padding: "8px 18px",
+                border: "1px solid var(--accent)",
+                borderRadius: "var(--radius-sm)",
+                color: "var(--accent)",
+                fontSize: "14px",
+                fontWeight: 600,
+                fontFamily: "var(--font-inter), sans-serif",
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                letterSpacing: "0.02em",
+              }}
+              className="book-btn"
+            >
+              Book Delivery
+            </Link>
 
             <Link
               href="/tipper#booking"
@@ -220,6 +239,29 @@ export default function Nav() {
               transition={{ delay: navLinks.length * 0.07 }}
             >
               <Link
+                href="/parcels#booking"
+                style={{
+                  padding: "14px 32px",
+                  border: "1px solid var(--accent)",
+                  borderRadius: "var(--radius-sm)",
+                  color: "var(--accent)",
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  fontFamily: "var(--font-barlow), sans-serif",
+                  textDecoration: "none",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Book Delivery
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: (navLinks.length + 1) * 0.07 }}
+            >
+              <Link
                 href="/tipper#booking"
                 style={{
                   padding: "14px 32px",
@@ -234,7 +276,7 @@ export default function Nav() {
                   textTransform: "uppercase",
                 }}
               >
-                Book a Tipper
+                Book a Truck Service
               </Link>
             </motion.div>
           </motion.div>
