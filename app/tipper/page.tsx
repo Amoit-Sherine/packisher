@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Script from "next/script";
 import GlassCard from "@/components/GlassCard";
 import Button from "@/components/Button";
 import TipperBookingWizard from "@/components/TipperBookingWizard";
@@ -32,16 +31,8 @@ const trustPoints = [
 ];
 
 export default function TipperPage() {
-  const mapsKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? "";
-
   return (
     <>
-      {mapsKey && (
-        <Script
-          src={`https://maps.googleapis.com/maps/api/js?key=${mapsKey}&libraries=places`}
-          strategy="beforeInteractive"
-        />
-      )}
 
       <div style={{ paddingTop: "96px", minHeight: "100vh" }}>
         {/* ── HERO ── */}
@@ -55,7 +46,7 @@ export default function TipperPage() {
               style={{ background: "rgba(245, 242, 236, 0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderRadius: "var(--radius-md)", padding: "48px 52px", border: "1px solid rgba(255,255,255,0.68)" }}
             >
               <motion.p variants={fadeUp} style={{ fontFamily: "var(--font-inter), sans-serif", color: "var(--text-muted)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "20px" }}>
-                Packisher Tipper · Western Kenya
+                Packisher Trucks · Western Kenya
               </motion.p>
               <motion.h1 variants={fadeUp} style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(40px, 6vw, 72px)", color: "var(--text-primary)", marginBottom: "20px", lineHeight: 1.05 }}>
                 Materials on site.
@@ -150,7 +141,7 @@ export default function TipperPage() {
           <section>
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: "32px" }}>
               <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 42px)", color: "var(--text-primary)", marginBottom: "8px" }}>
-                Why book with Packisher Tipper.
+                Why book with Packisher Trucks.
               </h2>
             </motion.div>
             <motion.div

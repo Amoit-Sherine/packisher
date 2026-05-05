@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import MapPinDrop, { LocationValue } from "@/components/MapPinDrop";
 
 const MATERIALS = [
   { id: "Ballast", icon: "🪨", label: "Ballast" },
@@ -13,7 +14,7 @@ const MATERIALS = [
   { id: "Topsoil", icon: "🌿", label: "Topsoil" },
 ] as const;
 
-type MaterialId = (typeof MATERIALS)[number]["id"];
+type MaterialId = (typeof MATERIALS)[number]["id"] | "Other";
 type Urgency = "urgent" | "scheduled" | "flexible";
 type TimeWindow = "morning" | "afternoon";
 
@@ -26,7 +27,7 @@ const STEPS = [
 ];
 
 const WK_BOUNDS = { sw: { lat: 0.0, lng: 33.5 }, ne: { lat: 1.8, lng: 35.5 } };
-const BUSIA_CENTER = { lat: 0.4615, lng: 34.1112 };
+const BUSIA_CENTER = { lat: 0.4614, lng: 34.1117 };
 
 const KE_PHONE_RE = /^(?:\+254|254|0)(7\d{8}|1\d{8})$/;
 
@@ -176,48 +177,48 @@ function ProgressIndicator({ current }: { current: number }) {
 }
 
 // ── Step 1: Material + quantity ──────────────────────────────
-function Step1({ material, quantity, onChange, onNext }: {
+function Step1({ material, quantity, otherMaterial, onChange, onOtherChange, onNext }: {
   material: MaterialId | null;
   quantity: number;
+  otherMaterial: string;
   onChange: (m: MaterialId | null, q: number) => void;
+  onOtherChange: (v: string) => void;
   onNext: () => void;
 }) {
+  const canNext = material !== null && (material !== "Other" || otherMaterial.trim().length > 0);
+
   return (
     <>
       <h2 style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 4vw, 36px)", color: "var(--text-primary)", marginBottom: "24px" }}>
         What do you need?
       </h2>
 
-      <div className="material-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px", marginBottom: "32px" }}>
-        {MATERIALS.map((m) => {
-          const selected = material === m.id;
-          return (
-            <button
-              key={m.id}
-              type="button"
-              onClick={() => onChange(m.id, quantity)}
-              style={{
-                minHeight: "88px",
-                borderRadius: "12px",
-                border: selected ? "2px solid var(--accent)" : "1px solid var(--glass-border)",
-                background: selected ? "rgba(122,92,56,0.08)" : "rgba(245,242,236,0.6)",
-                cursor: "pointer",
-                padding: "12px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "6px",
-                transition: "all 0.15s ease",
-                fontFamily: "var(--font-inter), sans-serif",
-              }}
-            >
-              <span style={{ fontSize: "28px" }} aria-hidden>{m.icon}</span>
-              <span style={{ fontWeight: 600, fontSize: "14px", color: "var(--text-primary)" }}>{m.label}</span>
-            </button>
-          );
-        })}
+      <div style={{ marginBottom: material === "Other" ? "16px" : "32px" }}>
+        <label style={labelStyle}>Material</label>
+        <select
+          value={material ?? ""}
+          onChange={(e) => onChange((e.target.value || null) as MaterialId | null, quantity)}
+          style={{ ...inputStyle, cursor: "pointer" }}
+        >
+          <option value="" disabled>Select a material…</option>
+          {MATERIALS.map((m) => (
+            <option key={m.id} value={m.id}>{m.label}</option>
+          ))}
+          <option value="Other">Other</option>
+        </select>
       </div>
+
+      {material === "Other" && (
+        <div style={{ marginBottom: "32px" }}>
+          <label style={labelStyle}>Describe your material</label>
+          <input
+            value={otherMaterial}
+            onChange={(e) => onOtherChange(e.target.value)}
+            placeholder="e.g. Gravel, clay, aggregate…"
+            style={inputStyle}
+          />
+        </div>
+      )}
 
       <div style={{ marginBottom: "32px" }}>
         <label style={labelStyle}>Number of trucks</label>
@@ -247,13 +248,7 @@ function Step1({ material, quantity, onChange, onNext }: {
         </div>
       </div>
 
-      <PrimaryButton disabled={!material} onClick={onNext}>Next →</PrimaryButton>
-
-      <style>{`
-        @media (min-width: 640px) {
-          .material-grid { grid-template-columns: repeat(3, 1fr) !important; }
-        }
-      `}</style>
+      <PrimaryButton disabled={!canNext} onClick={onNext}>Next →</PrimaryButton>
     </>
   );
 }
@@ -265,159 +260,14 @@ function Step2({ value, onChange, onNext, onBack }: {
   onNext: () => void;
   onBack: () => void;
 }) {
-  const mapRef = useRef<HTMLDivElement | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mapInstance = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const markerInstance = useRef<any>(null);
-  const [mapsReady, setMapsReady] = useState(false);
-  const [mapsError, setMapsError] = useState<string | null>(null);
-  const [outOfBounds, setOutOfBounds] = useState(false);
-  const [isResolving, setIsResolving] = useState(false);
+  const locValue: LocationValue | null =
+    value.lat !== null && value.lng !== null
+      ? { lat: value.lat, lng: value.lng, address: value.address }
+      : null;
 
-  // Load Google Maps on demand (so the wizard works even if the parent
-  // Script tag failed or is missing) and surface failures clearly.
-  useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) {
-      setMapsError("Google Maps API key is not configured. Set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in .env.local.");
-      return;
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if ((window as any).google?.maps) {
-      setMapsReady(true);
-      return;
-    }
-
-    const SCRIPT_ID = "google-maps-js";
-    const existing = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
-
-    let cancelled = false;
-    const ready = () => { if (!cancelled) setMapsReady(true); };
-
-    if (existing) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const poll = setInterval(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if ((window as any).google?.maps) { clearInterval(poll); ready(); }
-      }, 150);
-      const timeout = setTimeout(() => {
-        clearInterval(poll);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if (!(window as any).google?.maps && !cancelled) {
-          setMapsError("Map could not load. Check your network or refresh the page.");
-        }
-      }, 8000);
-      return () => { cancelled = true; clearInterval(poll); clearTimeout(timeout); };
-    }
-
-    const script = document.createElement("script");
-    script.id = SCRIPT_ID;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-    script.async = true;
-    script.defer = true;
-    script.onload = ready;
-    script.onerror = () => {
-      if (!cancelled) setMapsError("Map could not load. The API key may be invalid or restricted, or the network blocked Google Maps.");
-    };
-    document.head.appendChild(script);
-
-    const timeout = setTimeout(() => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (!(window as any).google?.maps && !cancelled) {
-        setMapsError("Map is taking longer than expected. Check your connection and try again.");
-      }
-    }, 8000);
-
-    return () => { cancelled = true; clearTimeout(timeout); };
-  }, []);
-
-  // Initialize map
-  useEffect(() => {
-    if (!mapsReady || !mapRef.current || mapInstance.current) return;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const g: any = (window as any).google;
-    const map = new g.maps.Map(mapRef.current, {
-      center: value.lat && value.lng ? { lat: value.lat, lng: value.lng } : BUSIA_CENTER,
-      zoom: value.lat ? 14 : 10,
-      streetViewControl: false,
-      mapTypeControl: false,
-      fullscreenControl: false,
-      restriction: {
-        latLngBounds: { south: WK_BOUNDS.sw.lat, west: WK_BOUNDS.sw.lng, north: WK_BOUNDS.ne.lat, east: WK_BOUNDS.ne.lng },
-        strictBounds: false,
-      },
-    });
-    mapInstance.current = map;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const placePin = (pos: any) => {
-      const lat = pos.lat();
-      const lng = pos.lng();
-      const inside = lat >= WK_BOUNDS.sw.lat && lat <= WK_BOUNDS.ne.lat && lng >= WK_BOUNDS.sw.lng && lng <= WK_BOUNDS.ne.lng;
-      if (!inside) {
-        setOutOfBounds(true);
-        return;
-      }
-      setOutOfBounds(false);
-      if (markerInstance.current) {
-        markerInstance.current.setPosition(pos);
-      } else {
-        markerInstance.current = new g.maps.Marker({
-          position: pos,
-          map,
-          draggable: true,
-          animation: g.maps.Animation.DROP,
-        });
-        markerInstance.current.addListener("dragend", () => {
-          placePin(markerInstance.current.getPosition());
-        });
-      }
-      void resolveAddress(lat, lng);
-    };
-
-    map.addListener("click", (e: { latLng: unknown }) => placePin(e.latLng));
-
-    if (value.lat && value.lng) {
-      const pos = new g.maps.LatLng(value.lat, value.lng);
-      markerInstance.current = new g.maps.Marker({ position: pos, map, draggable: true });
-      markerInstance.current.addListener("dragend", () => placePin(markerInstance.current.getPosition()));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapsReady]);
-
-  const resolveAddress = async (lat: number, lng: number) => {
-    setIsResolving(true);
-    try {
-      const res = await fetch("/api/geocode", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lat, lng }),
-      });
-      const data = await res.json();
-      if (res.ok && data.address) {
-        onChange({ lat, lng, address: data.address });
-      } else {
-        onChange({ lat, lng, address: `${lat.toFixed(5)}, ${lng.toFixed(5)}` });
-      }
-    } catch {
-      onChange({ lat, lng, address: `${lat.toFixed(5)}, ${lng.toFixed(5)}` });
-    } finally {
-      setIsResolving(false);
-    }
+  const handleChange = (v: LocationValue | null) => {
+    onChange(v ? { lat: v.lat, lng: v.lng, address: v.address } : { lat: null, lng: null, address: "" });
   };
-
-  const clearPin = () => {
-    if (markerInstance.current) {
-      markerInstance.current.setMap(null);
-      markerInstance.current = null;
-    }
-    onChange({ lat: null, lng: null, address: "" });
-    setOutOfBounds(false);
-  };
-
-  const hasPin = value.lat !== null && value.lng !== null;
 
   return (
     <>
@@ -426,61 +276,22 @@ function Step2({ value, onChange, onNext, onBack }: {
         Where is your site?
       </h2>
       <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "14px", lineHeight: 1.6, marginBottom: "16px" }}>
-        Tap the map to drop your delivery pin. We deliver across Western Kenya including Busia, Kakamega, Kisumu, Mumias and surrounding areas.
+        Drag the pin to your delivery location. We deliver across Western Kenya including Busia, Kakamega, Kisumu, Mumias and surrounding areas.
       </p>
 
-      <div
-        ref={mapRef}
-        className="map-container"
-        style={{
-          width: "100%",
-          height: "300px",
-          borderRadius: "12px",
-          border: "1px solid var(--glass-border)",
-          background: "rgba(245,242,236,0.5)",
-          overflow: "hidden",
-          marginBottom: "12px",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {!mapsReady && !mapsError && (
-          <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "var(--text-muted)" }}>
-            Loading map…
-          </span>
-        )}
-        {mapsError && (
-          <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "#c0392b", padding: "0 16px", textAlign: "center" }}>
-            {mapsError}
-          </span>
-        )}
+      <MapPinDrop
+        defaultCenter={BUSIA_CENTER}
+        defaultZoom={10}
+        value={locValue}
+        onChange={handleChange}
+        bounds={WK_BOUNDS}
+        outOfBoundsMessage="We currently serve Western Kenya. Drag the pin within the highlighted area."
+        height="300px"
+      />
+
+      <div style={{ marginTop: "20px" }}>
+        <PrimaryButton disabled={!value.address} onClick={onNext}>Next →</PrimaryButton>
       </div>
-
-      {outOfBounds && (
-        <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", marginBottom: "12px" }}>
-          We currently serve Western Kenya. Tap within the highlighted area.
-        </p>
-      )}
-
-      {hasPin && (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", padding: "10px 14px", background: "rgba(122,92,56,0.08)", border: "1px solid rgba(122,92,56,0.18)", borderRadius: "999px", marginBottom: "20px" }}>
-          <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "13px", color: "var(--text-primary)", display: "flex", alignItems: "center", gap: "6px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-            <span aria-hidden>📍</span>
-            {isResolving ? "Resolving address…" : value.address}
-          </span>
-          <button type="button" onClick={clearPin} style={{ background: "none", border: "none", color: "var(--accent)", fontFamily: "var(--font-inter), sans-serif", fontSize: "12px", fontWeight: 600, cursor: "pointer", flexShrink: 0 }}>
-            Change location
-          </button>
-        </div>
-      )}
-
-      <PrimaryButton disabled={!hasPin || outOfBounds} onClick={onNext}>Next →</PrimaryButton>
-
-      <style>{`
-        @media (min-width: 640px) { .map-container { height: 400px !important; } }
-      `}</style>
     </>
   );
 }
@@ -769,7 +580,7 @@ function Step5({ summary, reference, onReset }: {
       </h2>
 
       <div style={{ background: "rgba(245,242,236,0.7)", border: "1px solid var(--glass-border)", borderRadius: "12px", padding: "20px 24px", marginBottom: "24px", textAlign: "left", fontFamily: "var(--font-inter), sans-serif" }}>
-        <p style={{ fontSize: "11px", color: "var(--text-muted)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "6px", textAlign: "center" }}>Packisher Tipper</p>
+        <p style={{ fontSize: "11px", color: "var(--text-muted)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "6px", textAlign: "center" }}>Packisher Trucks</p>
         <p style={{ fontFamily: "var(--font-barlow), sans-serif", fontWeight: 800, fontSize: "26px", color: "var(--accent)", textAlign: "center", marginBottom: "16px" }}>{reference}</p>
         <div style={{ borderTop: "1px solid var(--glass-border)", paddingTop: "12px", fontSize: "13px" }}>
           <SummaryRow k="Material" v={summary.material} />
@@ -833,6 +644,7 @@ function Step5({ summary, reference, onReset }: {
 export default function TipperBookingWizard() {
   const [step, setStep] = useState(1);
   const [material, setMaterial] = useState<MaterialId | null>(null);
+  const [otherMaterial, setOtherMaterial] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [location, setLocation] = useState<{ lat: number | null; lng: number | null; address: string }>({ lat: null, lng: null, address: "" });
   const [urgency, setUrgency] = useState<Urgency | null>(null);
@@ -854,7 +666,7 @@ export default function TipperBookingWizard() {
   const timeWindowLabel = timeWindow === "morning" ? "Morning 7am–11am" : timeWindow === "afternoon" ? "Afternoon 12pm–4pm" : "—";
 
   const summary = {
-    material: material ?? "—",
+    material: material === "Other" ? (otherMaterial || "Other") : (material ?? "—"),
     quantity,
     address: location.address || "—",
     scheduleSummary,
@@ -869,7 +681,7 @@ export default function TipperBookingWizard() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          material,
+          material: material === "Other" ? otherMaterial : material,
           quantity,
           deliveryLocation: location.address,
           deliveryLat: location.lat,
@@ -901,6 +713,7 @@ export default function TipperBookingWizard() {
   const reset = () => {
     setStep(1);
     setMaterial(null);
+    setOtherMaterial("");
     setQuantity(1);
     setLocation({ lat: null, lng: null, address: "" });
     setUrgency(null);
@@ -928,7 +741,9 @@ export default function TipperBookingWizard() {
             <Step1
               material={material}
               quantity={quantity}
+              otherMaterial={otherMaterial}
               onChange={(m, q) => { setMaterial(m); setQuantity(q); }}
+              onOtherChange={setOtherMaterial}
               onNext={() => setStep(2)}
             />
           )}

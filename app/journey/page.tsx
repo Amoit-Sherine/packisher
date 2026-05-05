@@ -45,8 +45,8 @@ const cards: JourneyCard[] = [
   {
     status: "live",
     statusLabel: "Live",
-    subtitle: "Packisher Tipper · Busia County and Western Kenya",
-    title: "Packisher Tipper launches.",
+    subtitle: "Packisher Trucks · Busia County and Western Kenya",
+    title: "Packisher Trucks launches.",
     body: "Construction material logistics across Western Kenya. Sand, ballast, murram, and hardcore delivered to your site. Book online, pay via Mpesa, and receive driver contact and ETA on WhatsApp. Vetted truck operators on every job.",
     tags: ["Next.js 14", "Supabase", "Mpesa", "Google Maps", "Twilio"],
     statusPill: "Book Now",
@@ -60,7 +60,7 @@ const cards: JourneyCard[] = [
     body: "Last mile parcel delivery and errands across Nairobi. Trained riders handle pickups, drops, bus station handoffs, and business errands. Full WhatsApp notifications, Mpesa receipts, and photo documentation on every job.",
     tags: ["Flutter", "Supabase", "Mpesa", "Twilio", "Google Maps"],
     statusPill: "Launching 2026",
-    cta: { label: "Join the Waitlist", href: "/parcels#waitlist" },
+    cta: { label: "Book a Delivery", href: "/parcels#booking" },
   },
   {
     status: "development",
@@ -70,14 +70,14 @@ const cards: JourneyCard[] = [
     body: "The full Packisher Parcels mobile app. Book, track, and pay from your phone. Built for individual senders and Nairobi businesses shipping regularly. Scan at pickup, signature at delivery, receipt in seconds.",
     tags: ["Flutter", "Dart", "Supabase", "Google Maps", "Mpesa"],
     statusPill: "In Development",
-    cta: { label: "Join the Waitlist", href: "/parcels#waitlist" },
+    cta: { label: "Book a Delivery", href: "/parcels#booking" },
   },
   {
     status: "soon",
     statusLabel: "Coming Soon",
     subtitle: "Packisher · Kenya",
     title: "Expanding across Kenya.",
-    body: "Packisher Tipper expanding beyond Western Kenya. Packisher Parcels scaling across Nairobi and into other counties. More routes, more operators, more coverage. The infrastructure for logistics that works the way Kenya works.",
+    body: "Packisher Trucks expanding beyond Western Kenya. Packisher Parcels scaling across Nairobi and into other counties. More routes, more operators, more coverage. The infrastructure for logistics that works the way Kenya works.",
     statusPill: "2026 and beyond",
   },
 ];
@@ -276,7 +276,7 @@ export default function JourneyPage() {
               We are looking for business partners, early clients, and riders to join the Packisher Parcels network in Nairobi.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <Button href="/parcels#waitlist" variant="outline" size="md">Join Parcels Waitlist</Button>
+              <Button href="/parcels#booking" variant="outline" size="md">Book a Delivery</Button>
               <Button href="/tipper#booking" variant="primary" size="md">Book a Truck Service</Button>
             </div>
           </GlassCard>
