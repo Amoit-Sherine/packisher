@@ -125,6 +125,49 @@ function TipperCardBody() {
   );
 }
 
+function TruckInfoCardBody() {
+  return (
+    <>
+      <div style={{ position: "relative", padding: "10px 14px", background: "rgba(122, 92, 56, 0.08)", borderBottom: "1px solid rgba(122,92,56,0.12)", display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "3px" }}>
+          <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#FF5F57" }} />
+          <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#FFBD2E" }} />
+          <div style={{ width: 11, height: 11, borderRadius: "50%", background: "#28C840" }} />
+        </div>
+        <span style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontSize: "10px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", pointerEvents: "none" }}>
+            TRUCK SERVICES→
+        </span>
+      </div>
+      <div style={{ padding: "1.5rem", textAlign: "left" }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "12px" }}>
+          <span style={{ fontSize: "16px", marginTop: "2px" }}>🚛</span>
+          <div>
+            <p style={{ fontSize: "10px", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "3px", fontWeight: 600 }}>Coverage</p>
+            <p style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary)" }}>Western Kenya</p>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "12px" }}>
+          <span style={{ fontSize: "16px", marginTop: "2px" }}>⚖️</span>
+          <div>
+            <p style={{ fontSize: "10px", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "3px", fontWeight: 600 }}>Capacity</p>
+            <p style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary)" }}>22 Tonnes per load</p>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "12px" }}>
+          <span style={{ fontSize: "16px", marginTop: "2px" }}>🏖️</span>
+          <div>
+            <p style={{ fontSize: "10px", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "3px", fontWeight: 600 }}>Materials</p>
+            <p style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary)" }}>Sand, Ballast, Murram</p>
+          </div>
+        </div>
+        <div>
+          <span style={{ display: "inline-block", fontSize: "9px", padding: "3px 8px", borderRadius: "99px", background: "rgba(40,200,64,0.14)", color: "#1a9e32", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>Confirmed</span>
+        </div>
+      </div>
+    </>
+  );
+}
+
 function MobilePipeCards({ isTablet }: { isTablet: boolean }) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const parcelsRef = useRef<HTMLDivElement | null>(null);
@@ -341,8 +384,9 @@ function MobilePipeCards({ isTablet }: { isTablet: boolean }) {
         </motion.svg>
       )}
 
+      {/* Parcels mobile card — hidden until parcels launches */}
+      {false && (
       <motion.div
-        ref={parcelsRef}
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -356,6 +400,27 @@ function MobilePipeCards({ isTablet }: { isTablet: boolean }) {
         >
           <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2, ease: "easeOut" }} style={{ ...macCardStyle, padding: 0 }}>
             <ParcelsCardBody />
+          </motion.div>
+        </Link>
+      </motion.div>
+      )}
+
+      {/* Left truck info card (mobile) */}
+      <motion.div
+        ref={parcelsRef}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
+        style={{ position: "relative", zIndex: 2, width: "100%", ...cardWrapperExtra }}
+      >
+        <Link
+          href="/tipper"
+          aria-label="Packisher Trucks — construction material delivery and truck services in Western Kenya"
+          style={{ textDecoration: "none", display: "block" }}
+        >
+          <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2, ease: "easeOut" }} style={{ ...macCardStyle, padding: 0 }}>
+            <TruckInfoCardBody />
           </motion.div>
         </Link>
       </motion.div>
@@ -613,12 +678,14 @@ export default function HomePage() {
         {/* ── Side cards (≥1024px) ── */}
         {showSideCards && (
           <>
+            {/* Parcels side card — hidden until parcels launches */}
+            {false && (
             <motion.div
               className="hero-side-card hero-side-left"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 1.6, ease: "easeOut" }}
-              style={{ position: "absolute", left: "clamp(24px, 8vw, 120px)", top: pipeGeo ? pipeGeo.leftCardTop : "50%", width: "240px", zIndex: 2 }}
+              style={{ position: "absolute", left: "clamp(24px, 8vw, 120px)", top: pipeGeo?.leftCardTop ?? "50%", width: "240px", zIndex: 2 }}
             >
               <Link
                 href="/parcels"
@@ -632,6 +699,31 @@ export default function HomePage() {
                   style={{ ...macCardStyle, transform: `scale(${cardScale})`, transformOrigin: "top left" }}
                 >
                   <ParcelsCardBody />
+                </motion.div>
+              </Link>
+            </motion.div>
+            )}
+
+            {/* Left truck info card */}
+            <motion.div
+              className="hero-side-card hero-side-left"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 1.6, ease: "easeOut" }}
+              style={{ position: "absolute", left: "clamp(24px, 8vw, 120px)", top: pipeGeo ? pipeGeo.leftCardTop : "50%", width: "240px", zIndex: 2 }}
+            >
+              <Link
+                href="/tipper"
+                aria-label="Packisher Trucks — construction material delivery and truck services in Western Kenya"
+                style={{ textDecoration: "none", display: "block" }}
+              >
+                <motion.div
+                  ref={leftCardRef}
+                  whileHover={{ scale: 1.02 * cardScale }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  style={{ ...macCardStyle, transform: `scale(${cardScale})`, transformOrigin: "top left" }}
+                >
+                  <TruckInfoCardBody />
                 </motion.div>
               </Link>
             </motion.div>
@@ -752,11 +844,11 @@ export default function HomePage() {
                 maxWidth: "560px",
               }}
             >
-              Send anything across Kenya without leaving your seat.<br />
-              Need a truck for your build in Western Kenya? We have that too.
+              Construction materials, agricultural haulage and site clearance across Western Kenya. Book online, we handle the rest.
             </motion.p>
 
-            {/* CTA button */}
+            {/* Parcels CTA — hidden until parcels launches */}
+            {false && (
             <motion.div variants={fadeUp} style={{ marginBottom: "40px" }} className="download-btn-wrap">
               <a
                 href="/parcels#booking"
@@ -780,6 +872,33 @@ export default function HomePage() {
                 }}
               >
                 Book a Delivery
+              </a>
+            </motion.div>
+            )}
+            {/* Trucks CTA */}
+            <motion.div variants={fadeUp} style={{ marginBottom: "40px" }} className="download-btn-wrap">
+              <a
+                href="/tipper#booking"
+                aria-label="Book a truck service with Packisher"
+                className="download-app-btn"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "12px 28px",
+                  minHeight: "48px",
+                  border: "1px solid var(--accent)",
+                  borderRadius: "var(--radius-sm)",
+                  color: "var(--accent)",
+                  fontSize: "15px",
+                  fontWeight: 600,
+                  fontFamily: "var(--font-inter), sans-serif",
+                  textDecoration: "none",
+                  transition: "all 0.2s ease",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                Book a Truck
               </a>
             </motion.div>
 
@@ -835,9 +954,10 @@ export default function HomePage() {
             whileInView="visible"
             viewport={{ once: true }}
             className="what-we-do-grid"
-            style={{ display: "grid", gridTemplateColumns: "1fr 1px 1fr", gap: "48px", alignItems: "start" }}
+            style={{ display: "flex", justifyContent: "center" }}
           >
-          {/* ── Parcels column ── */}
+          {/* ── Parcels column hidden — re-enable when parcels launches ── */}
+          {false && (
           <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ fontSize: "32px" }}>📦</div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
@@ -866,12 +986,14 @@ export default function HomePage() {
               <Button href="/parcels#booking" variant="outline" size="md">Book a Delivery</Button>
             </div>
           </motion.div>
-
-          {/* ── Divider ── */}
+          )}
+          {/* ── Divider hidden with parcels ── */}
+          {false && (
           <div className="what-we-do-divider" style={{ width: "1px", background: "var(--glass-border)", alignSelf: "stretch", minHeight: "300px" }} />
+          )}
 
           {/* ── Tipper column ── */}
-          <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "480px", width: "100%" }}>
             <div style={{ fontSize: "32px" }}>🚛</div>
             <p style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
               Western Kenya
@@ -881,9 +1003,10 @@ export default function HomePage() {
             </h3>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
-                "Sand, ballast, murram and hardcore",
-                "Book online in under 5 minutes",
-                "Pay deposit via Mpesa, truck dispatched same day",
+                "Sand, ballast, murram, hardcore and topsoil delivered to your site",
+                "Agricultural haulage — sugarcane, maize and produce",
+                "Site clearance and debris removal",
+                "Request a quote online, we respond within 2 hours",
               ].map((b) => (
                 <li key={b} style={{ display: "flex", gap: "10px", color: "var(--text-secondary)", fontFamily: "var(--font-inter), sans-serif", fontSize: "15px", lineHeight: 1.65 }}>
                   <span style={{ color: "var(--accent)", flexShrink: 0 }}>•</span>
@@ -941,15 +1064,15 @@ export default function HomePage() {
           {[
             {
               title: "Vetted and trained",
-              desc: "Every Packisher rider and truck operator is personally vetted and trained. No random contractors, no brokers.",
+              desc: "Every Packisher truck operator is personally vetted. No random contractors, no brokers.",
             },
             {
               title: "Every job documented",
-              desc: "Photo proof at pickup. Delivery confirmation. Mpesa receipts. Every single job.",
+              desc: "Photo proof at pickup and delivery. Mpesa receipts. Every single job.",
             },
             {
               title: "Built for businesses",
-              desc: "Individual senders and businesses both welcome. Business accounts include monthly invoicing and priority booking.",
+              desc: "Contractors, developers and individual builders welcome. Get a quote in under 2 hours via WhatsApp.",
             },
           ].map((item) => (
             <motion.div key={item.title} variants={fadeUp}>
@@ -977,6 +1100,8 @@ export default function HomePage() {
               Ready to move something?
             </h2>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", marginTop: "32px" }}>
+              {/* Parcels CTA hidden — re-enable when parcels launches */}
+              {false && (
               <Button
                 href="/parcels"
                 variant="outline"
@@ -985,6 +1110,7 @@ export default function HomePage() {
               >
                 Packisher Parcels
               </Button>
+              )}
               <Button
                 href="/tipper"
                 variant="primary"
