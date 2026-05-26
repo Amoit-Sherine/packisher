@@ -16,7 +16,7 @@ export function ensureMapsLoaded(): Promise<void> {
       version: "weekly",
       libraries: ["places"],
     });
-    mapsPromise = loader.load().then(() => undefined);
+    mapsPromise = loader.importLibrary("places").then(() => undefined);
   }
   return mapsPromise;
 }
