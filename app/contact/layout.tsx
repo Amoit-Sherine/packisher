@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "Get in touch with Packisher. For truck bookings use the Haul page.",
     url: "https://packisher.com/contact",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact Packisher" }],
+    images: [{ url: "/packisher-logo-light.svg", alt: "Contact Packisher" }],
   },
   twitter: {
     card: "summary_large_image",

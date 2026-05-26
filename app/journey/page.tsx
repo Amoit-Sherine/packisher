@@ -17,6 +17,7 @@ interface JourneyCard {
   tags?: string[];
   statusPill?: string;
   cta?: { label: string; href: string; external?: boolean };
+  hidden?: true;
 }
 
 function StatusBadge({ status, label }: { status: CardStatus; label: string }) {
@@ -54,30 +55,29 @@ const cards: JourneyCard[] = [
   },
   {
     status: "launching",
-    statusLabel: "Launching",
-    subtitle: "Packisher Parcels · Nairobi",
-    title: "Packisher Parcels launches in Nairobi.",
-    body: "Last mile parcel delivery and errands across Nairobi. Trained riders handle pickups, drops, bus station handoffs, and business errands. Full WhatsApp notifications, Mpesa receipts, and photo documentation on every job.",
-    tags: ["Flutter", "Supabase", "Mpesa", "Twilio", "Google Maps"],
+    statusLabel: "Coming Soon",
+    subtitle: "Packisher · Nairobi",
+    title: "Parcel delivery coming to Nairobi.",
+    body: "Last mile parcel delivery and errands across Nairobi. Trained riders, full WhatsApp tracking, Mpesa receipts and photo documentation on every job. Launching soon.",
     statusPill: "Launching 2026",
-    cta: { label: "Book a Delivery", href: "/parcels#booking" },
+    cta: { label: "Book a Truck Service", href: "/tipper#booking" },
   },
   {
+    hidden: true,
     status: "development",
-    statusLabel: "In Development",
-    subtitle: "Packisher Parcels · Android and iOS",
-    title: "Packisher Parcels App.",
-    body: "The full Packisher Parcels mobile app. Book, track, and pay from your phone. Built for individual senders and Nairobi businesses shipping regularly. Scan at pickup, signature at delivery, receipt in seconds.",
-    tags: ["Flutter", "Dart", "Supabase", "Google Maps", "Mpesa"],
+    statusLabel: "Coming Soon",
+    subtitle: "Packisher · Android and iOS",
+    title: "The Packisher app.",
+    body: "Book, track and pay from your phone. Built for individual senders and businesses shipping regularly. Coming soon.",
     statusPill: "In Development",
-    cta: { label: "Book a Delivery", href: "/parcels#booking" },
+    cta: { label: "Book a Truck Service", href: "/tipper#booking" },
   },
   {
     status: "soon",
     statusLabel: "Coming Soon",
     subtitle: "Packisher · Kenya",
     title: "Expanding across Kenya.",
-    body: "Packisher Trucks expanding beyond Western Kenya. Packisher Parcels scaling across Nairobi and into other counties. More routes, more operators, more coverage. The infrastructure for logistics that works the way Kenya works.",
+    body: "Packisher Trucks expanding beyond Western Kenya. More routes, more operators, more coverage. The infrastructure for logistics that works the way Kenya works.",
     statusPill: "2026 and beyond",
   },
 ];
@@ -231,7 +231,7 @@ export default function JourneyPage() {
             style={{ height: "100%" }}
           />
 
-          {cards.map((card, i) => {
+          {cards.filter(c => !c.hidden).map((card, i) => {
             const side: "left" | "right" = i % 2 === 0 ? "left" : "right";
             return (
               <div key={card.title} className="timeline-row">
@@ -252,7 +252,7 @@ export default function JourneyPage() {
         {/* ── Mobile Timeline ── */}
         <div className="mobile-timeline">
           <div className="mobile-timeline-inner">
-            {cards.map((card) => (
+            {cards.filter(c => !c.hidden).map((card) => (
               <div key={`m-${card.title}`} className="mobile-item">
                 <TimelineCard card={card} side="right" />
               </div>
@@ -273,10 +273,9 @@ export default function JourneyPage() {
               Want to be part of it?
             </h2>
             <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-inter), sans-serif", fontSize: "16px", lineHeight: 1.6, marginBottom: "32px", maxWidth: "500px", margin: "0 auto 32px" }}>
-              We are looking for business partners, early clients, and riders to join the Packisher Parcels network in Nairobi.
+              We are looking for business partners, early clients and truck operators across Western Kenya.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <Button href="/parcels#booking" variant="outline" size="md">Book a Delivery</Button>
               <Button href="/tipper#booking" variant="primary" size="md">Book a Truck Service</Button>
             </div>
           </GlassCard>

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "https://packisher.com/parcels",
     type: "website",
     locale: "en_KE",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Parcels — Courier & Delivery in Nairobi" }],
+    images: [{ url: "/packisher-logo-light.svg", alt: "Packisher Parcels | Courier & Delivery in Nairobi" }],
   },
   twitter: {
     card: "summary_large_image",

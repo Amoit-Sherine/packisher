@@ -20,9 +20,9 @@ const inter = Inter({
 });
 
 const ROOT_TITLE =
-  "Packisher — Courier & Delivery Services in Nairobi | Tipper Truck Hire Western Kenya";
+  "Packisher | Tipper Truck Hire Western Kenya";
 const ROOT_DESCRIPTION =
-  "Same day parcel delivery and courier services in Nairobi. Tipper truck hire for sand, ballast and murram delivery across Western Kenya. Book online, pay via Mpesa.";
+  "Tipper truck hire for sand, ballast, murram and construction material delivery across Western Kenya. Book online, pay via Mpesa.";
 
 export const metadata: Metadata = {
   title: {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: ROOT_DESCRIPTION,
     url: "https://packisher.com",
     siteName: "Packisher",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher — Courier & Tipper Truck Services in Kenya" }],
+    images: [{ url: "/packisher-logo-light.svg", alt: "Packisher | Tipper Truck Services in Kenya" }],
     locale: "en_KE",
     type: "website",
   },
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: ROOT_TITLE,
     description: ROOT_DESCRIPTION,
-    images: ["/og-image.png"],
+    images: ["/packisher-logo-light.svg"],
   },
   alternates: {
     canonical: "https://packisher.com",
@@ -79,7 +79,7 @@ const jsonLd = {
   description:
     "Courier and parcel delivery services in Nairobi. Tipper truck hire across Western Kenya.",
   url: "https://packisher.com",
-  logo: "https://packisher.com/logo.png",
+  logo: "https://packisher.com/packisher-logo-light.svg",
   areaServed: [
     { "@type": "City", name: "Nairobi" },
     { "@type": "AdministrativeArea", name: "Western Kenya" },

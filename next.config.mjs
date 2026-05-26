@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      { source: "/parcels", destination: "/", permanent: false },
+      { source: "/trucks",  destination: "/tipper", permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "The honest record of what Packisher has built, launched, and what is coming next.",
     url: "https://packisher.com/journey",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Packisher Journey" }],
+    images: [{ url: "/packisher-logo-light.svg", alt: "Packisher Journey" }],
   },
   twitter: {
     card: "summary_large_image",
