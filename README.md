@@ -20,3 +20,18 @@ at the top of the `<style>` in `index.html` (light first, then dark mode).
 
 The logistics site (`packisher-tech`) keeps its own repo and Vercel project and
 moves to `logistics.packisher.com`.
+
+## Contact form email
+
+The form posts to `/api/contact` (a Vercel function in `api/contact.js`), which
+sends the enquiry to support@packisher.com through Resend with the subject
+"[Studio site] New project enquiry from ...". Reply goes straight to the sender.
+
+In Vercel > Project > Settings > Environment Variables add:
+
+- `RESEND_API_KEY`: the Resend key (same one ROSC uses). Never commit it.
+- Optional: `CONTACT_TO` (default support@packisher.com) and `CONTACT_FROM`
+  (default "Packisher Studio Site <support@packisher.com>").
+
+If the key is missing or sending fails, the form falls back to opening the
+visitor's email app.
