@@ -70,14 +70,6 @@
       radial-gradient(28% 32% at 92% 88%, var(--wash-2), transparent 70%),
       var(--page); }
 
-  /* Floating platform tiles in the margins of wide screens. */
-  .floaters { position: fixed; inset: 0; z-index: -1; pointer-events: none; display: none; opacity: .28; filter: grayscale(1); }
-  .floaters i { position: absolute; width: 58px; height: 58px; border-radius: 16px; background: var(--card); display: grid; place-items: center; box-shadow: 0 18px 36px -14px rgba(var(--shade), .28), 0 0 0 1px rgba(var(--shade), .04); animation: bob 9s ease-in-out infinite; }
-  .floaters i:nth-child(2n) { animation-duration: 9s; animation-delay: -3s; }
-  .floaters i:nth-child(3n) { animation-duration: 11s; animation-delay: -5s; width: 50px; height: 50px; border-radius: 14px; }
-  .floaters svg { width: 24px; height: 24px; fill: var(--ink); }
-  @keyframes bob { 50% { transform: translateY(-6px) rotate(var(--r, 0deg)); } }
-  @media (min-width: 1380px) { .floaters { display: block; } }
 
   /* Nav stays visible the whole way down. */
   .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 60; height: var(--nav); background: color-mix(in srgb, var(--page) 78%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); }
@@ -97,18 +89,11 @@
   .btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
   .btn svg { width: 17px; height: 17px; fill: currentColor; }
 
-  /* The deck */
-  .deck { max-width: 1200px; margin: 0 auto; padding: 16px 16px 0; }
-  .card { position: relative; margin-bottom: 20px; background: var(--card); border-radius: 30px; box-shadow: 0 -12px 34px -6px rgba(var(--shade), .08), 0 1px 0 rgba(var(--shade), .04); padding: 72px 64px; overflow: clip; }
-  .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(var(--shade)); opacity: calc(var(--t, 0) * .08); pointer-events: none; }
-  .card:last-child { margin-bottom: 0; }
-  .open { margin-bottom: 20px; }
-  .open > .card:last-child { margin-bottom: 0; }
-  .card.hero { position: sticky; top: calc(var(--nav) + 14px); z-index: 0; }
-  #rosc { z-index: 1; box-shadow: 0 -18px 40px -8px rgba(var(--shade), .12); }
-  /* Content eases up once as it reaches the screen. */
-  .rv { transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-  .rv.pre { opacity: 0; transform: translateY(18px); }
+  /* One screen per section, scrolling like a normal page. */
+  .screen { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; justify-content: center; padding: 88px max(24px, calc((100% - 1120px) / 2)); position: relative; }
+  .screen.alt { background: color-mix(in srgb, var(--card) 88%, transparent); }
+  .rv { transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .rv.pre { opacity: 0; transform: translateY(16px); }
   .sec { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
   .sec > * { min-width: 0; }
   .num { font: 700 15px/1 var(--display); letter-spacing: .1em; color: var(--bronze); display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
@@ -117,29 +102,46 @@
   h2 .serif { font-size: 1.08em; letter-spacing: -.01em; color: var(--bronze); }
   .lead { font-size: 18px; color: var(--ink-2); margin: 0 0 22px; max-width: 520px; }
 
-  /* Hero */
-  .hero { padding-top: 64px; padding-bottom: 64px; }
-  .hero .sec { grid-template-columns: 1.3fr .7fr; }
-  .hero h1 { font: 600 clamp(38px, 5vw, 66px)/1.06 var(--sans); letter-spacing: -.035em; margin: 22px 0 20px; }
-  .hero h1 .serif { font-size: 1.07em; letter-spacing: -.01em; color: var(--bronze); }
-  .live { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px 7px 12px; border-radius: 999px; background: color-mix(in srgb, var(--emerald) 12%, var(--card)); color: var(--ink-2); font-size: 13.5px; font-weight: 500; text-decoration: none; }
-  .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 0 0 color-mix(in srgb, var(--emerald) 60%, transparent); animation: ping 2.4s ease-out infinite; }
-  @keyframes ping { 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+  /* Opening screen: a developer's desktop in the brand colours */
+  .desk { min-height: calc(100svh - var(--nav)); position: relative; display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: center; padding: 40px max(24px, calc((100% - 1180px) / 2)) 104px; overflow: hidden; }
+  .desk::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
+      radial-gradient(40% 55% at 80% 30%, var(--wash-1), transparent 70%),
+      radial-gradient(35% 45% at 20% 85%, var(--wash-2), transparent 70%); opacity: .9; }
+  .icons { display: grid; gap: 18px; align-self: start; padding-top: 12px; }
+  .icon { display: grid; justify-items: center; gap: 6px; padding: 8px 4px; border-radius: 10px; text-decoration: none; font-size: 12.5px; color: var(--ink-2); text-align: center; }
+  .icon:hover { background: color-mix(in srgb, var(--card) 70%, transparent); }
+  .icon span { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--card); box-shadow: 0 6px 16px -8px rgba(var(--shade), .35); }
+  .icon span img { width: 46px; height: 46px; border-radius: 12px; }
+  .icon svg { width: 22px; height: 22px; fill: var(--c, var(--ink-2)); }
+  .stage { display: flex; align-items: center; justify-content: center; gap: 48px; }
+  .win { width: min(100%, 620px); background: var(--card); border-radius: 12px; box-shadow: 0 30px 70px -30px rgba(var(--shade), .4), 0 0 0 1px rgba(var(--shade), .06); overflow: hidden; }
+  .win-bar { display: flex; align-items: center; height: 38px; padding-left: 14px; font-size: 12.5px; color: var(--muted); border-bottom: 1px solid var(--rule); background: color-mix(in srgb, var(--card-2) 60%, var(--card)); }
+  .win-bar img { width: 16px; height: 16px; border-radius: 4px; margin-right: 8px; }
+  .win-ctl { margin-left: auto; display: flex; height: 100%; }
+  .win-ctl i { width: 44px; display: grid; place-items: center; color: var(--muted); font-style: normal; font-size: 13px; }
+  .win-body { padding: 40px 44px 44px; }
+  .win-body h1 { font: 600 clamp(28px, 3.2vw, 40px)/1.15 var(--sans); letter-spacing: -.025em; margin: 16px 0 14px; }
+  .win-body .lead { font-size: 17px; margin-bottom: 26px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); }
   .reach { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
   .reach b { color: var(--ink-2); font-weight: 600; user-select: all; }
-  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-  .hero-art { position: relative; justify-self: center; padding: 10px 40px; }
   .phone { position: relative; width: 262px; max-width: 100%; aspect-ratio: 393 / 852; border-radius: 44px; padding: 9px; background: #121513; box-shadow: 0 40px 70px -24px rgba(var(--shade), .4); }
   .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 35px; }
   .phone::after { content: ""; position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 80px; height: 23px; background: #121513; border-radius: 999px; }
-  .hero-art .phone { transform: rotate(3deg); }
-  .toast { position: absolute; display: flex; gap: 11px; align-items: center; padding: 11px 14px; border-radius: 18px; background: color-mix(in srgb, var(--card) 90%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 18px 40px -14px rgba(var(--shade), .3); font-size: 12.5px; line-height: 1.35; color: var(--ink-2); }
-  .toast img { width: 34px; height: 34px; border-radius: 9px; flex: none; }
-  .toast b { display: block; color: var(--ink); font-size: 13px; }
-  .toast.a { left: -24px; top: 120px; width: 250px; }
-  .toast.b { right: 0; bottom: 84px; width: 200px; }
-  .toast .tick { width: 34px; height: 34px; border-radius: 50%; flex: none; display: grid; place-items: center; background: color-mix(in srgb, var(--emerald) 16%, transparent); color: var(--emerald); font-weight: 700; }
+  .widget .phone { border-radius: 36px; padding: 7px; }
+  .widget .phone img { border-radius: 29px; }
+  .widget .phone::after { top: 15px; width: 60px; height: 18px; }
+  .widget { flex: none; display: grid; justify-items: center; gap: 12px; font-size: 12.5px; color: var(--muted); text-decoration: none; }
+  .widget .phone { width: 200px; transform: rotate(3deg); }
+  .taskbar { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; height: 56px; padding: 0 10px; border-radius: 16px; background: color-mix(in srgb, var(--card) 82%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 40px -18px rgba(var(--shade), .35), 0 0 0 1px rgba(var(--shade), .06); white-space: nowrap; }
+  .taskbar a, .taskbar .tb { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; text-decoration: none; }
+  .taskbar a:hover { background: color-mix(in srgb, var(--card-2) 80%, transparent); }
+  .taskbar img { width: 26px; height: 26px; border-radius: 7px; }
+  .taskbar svg { width: 20px; height: 20px; fill: var(--c, var(--ink-2)); }
+  .taskbar .search { display: flex; align-items: center; gap: 8px; width: 210px; height: 38px; padding: 0 14px; border-radius: 10px; background: var(--card-2); color: var(--muted); font-size: 13px; text-decoration: none; margin: 0 4px; }
+  .search svg { width: 15px; height: 15px; fill: var(--muted); }
+  .tray { display: flex; align-items: center; gap: 12px; padding: 0 8px 0 12px; margin-left: 4px; border-left: 1px solid var(--rule); font-size: 12px; color: var(--ink-2); line-height: 1.25; text-align: right; }
+  .taskbar .tray .live { display: flex; align-items: center; gap: 6px; width: auto; height: auto; color: var(--ink-2); }
 
   /* ROSC */
   #rosc .num, #rosc h2 .serif { color: var(--rosc); }
@@ -270,15 +272,26 @@
   .formnote { font-size: 13px; color: var(--muted); margin: 0; }
   .formnote.ok { color: var(--rosc); font-weight: 600; }
 
-  footer { max-width: 1200px; margin: 0 auto; padding: 36px 40px 48px; display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; color: var(--muted); font-size: 14px; }
-  footer b { font: 700 20px/1 var(--display); color: var(--ink); letter-spacing: .4px; }
-  footer .links { margin-left: auto; display: flex; gap: 22px; flex-wrap: wrap; }
-  footer a { text-decoration: none; }
-  footer a:hover { color: var(--ink); }
+  /* Closing screen: founder note, then the footer */
+  .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
+  .ending .screen { flex: 1; min-height: 0; }
+  footer { padding: 48px max(24px, calc((100% - 1120px) / 2)) 36px; border-top: 1px solid var(--rule); background: color-mix(in srgb, var(--card) 88%, transparent); font-size: 14px; color: var(--muted); }
+  .f-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; }
+  .f-top > * { min-width: 0; }
+  .f-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .f-brand img { width: 30px; height: 30px; border-radius: 8px; }
+  .f-brand b { font: 700 24px/1 var(--display); letter-spacing: .4px; color: var(--bronze); }
+  .f-top p { margin: 12px 0 0; max-width: 280px; }
+  .f-col h4 { margin: 4px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+  .f-col a { display: block; padding: 4px 0; text-decoration: none; }
+  .f-col a:hover { color: var(--ink); }
+  .f-bottom { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 13px; }
+  .f-bottom b { color: var(--bronze); font-weight: 600; }
 
   @media (max-width: 980px) {
-    .card { padding: 56px 36px; }
-    .sec, .hero .sec { grid-template-columns: 1fr; gap: 40px; }
+    .screen { padding: 72px 32px; }
+    .sec { grid-template-columns: 1fr; gap: 40px; }
+    .widget { display: none; }
     .flip > :first-child { order: 2; }
     .m-body { grid-template-columns: 1fr; }
     .m-side { display: none; }
@@ -288,15 +301,17 @@
     .nav .in { padding: 0 16px; }
     .nav nav { display: none; }
     .nav .btn { margin-left: auto; }
-    .deck { padding: 10px 10px 0; }
-    .card { padding: 40px 20px 44px; border-radius: 24px; margin-bottom: 12px; }
+    .screen { padding: 56px 20px; }
     .lead { font-size: 16.5px; }
-    .hero-art { padding: 0 24px; }
+    .desk { grid-template-columns: 1fr; padding: 24px 16px 96px; align-content: center; }
+    .icons { grid-template-columns: repeat(4, 1fr); order: 2; gap: 6px; padding-top: 0; }
+    .win-body { padding: 28px 22px 30px; }
+    .taskbar .search { display: none; }
+    .taskbar { bottom: 14px; }
+    .tb-extra { display: none !important; }
     .phone { width: 228px; border-radius: 38px; padding: 8px; }
     .phone img { border-radius: 30px; }
     .phone::after { top: 16px; width: 66px; height: 19px; }
-    .toast.a { left: -8px; top: 88px; width: 218px; font-size: 12px; }
-    .toast.b { right: -4px; bottom: 60px; width: 184px; }
     .phones { height: 400px; }
     .phones .phone { width: 170px; border-radius: 30px; padding: 6px; }
     .phones .phone img { border-radius: 24px; }
@@ -310,13 +325,12 @@
     .notes { display: block; }
     .row { grid-template-columns: 1fr; }
     form { padding: 20px 16px; }
-    footer { padding: 28px 20px 40px; }
-    footer .links { margin-left: 0; }
+    footer { padding: 40px 20px 32px; }
+    .f-top { grid-template-columns: 1fr 1fr; }
+    .f-top > :first-child { grid-column: 1 / -1; }
   }
   @media (prefers-reduced-motion: reduce) {
     .rv.pre { opacity: 1; transform: none; }
-    .card::after { display: none; }
-    .floaters i, .live i { animation: none; }
     .btn { transition: none; }
   }
 </style>
@@ -346,14 +360,6 @@
 <symbol id="i-claude" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol>
 </svg>
 <div class="backdrop" aria-hidden="true"></div>
-<div class="floaters" aria-hidden="true">
-  <i style="left:3.2%;top:18%;--c:#02569B;--r:-4deg"><svg><use href="#i-flutter"/></svg></i>
-  <i style="left:5.4%;top:44%;--c:#3ECF8E;--r:5deg"><svg><use href="#i-supabase"/></svg></i>
-  <i style="left:2.6%;top:70%;--c:#F24E1E;--r:-3deg"><svg><use href="#i-figma"/></svg></i>
-  <i style="right:3.4%;top:22%;--c:#0D96F6;--r:4deg"><svg><use href="#i-appstore"/></svg></i>
-  <i style="right:5.6%;top:50%;--c:#34A853;--r:-5deg"><svg><use href="#i-googleplay"/></svg></i>
-  <i style="right:2.8%;top:76%;--c:#3178C6;--r:3deg"><svg><use href="#i-typescript"/></svg></i>
-</div>
 
 <header class="nav">
   <div class="in">
@@ -364,37 +370,55 @@
       <a href="#process">Process</a>
       <a href="#platforms">Platforms</a>
     </nav>
-    <a class="btn sm" href="#contact">Start a project</a>
+    <a class="btn sm" href="#contact">Contact us</a>
   </div>
 </header>
 
-<main class="deck">
-<div class="open">
-  <section class="card hero" id="top">
-    <div class="sec">
-      <div>
-        <div class="eyebrow">Venture &amp; software studio</div>
-        <h1>We craft software that connects communities and scales ideas.</h1>
-        <p class="lead">A dev studio building custom digital platforms and our own products, starting with ROSC.</p>
-        <div class="ctas">
-          <a class="btn" href="#contact">Start a project</a>
-          <a class="btn ghost" href="#rosc"><i class="dot"></i>See ROSC</a>
+<main>
+  <section class="desk" id="top">
+    <nav class="icons" aria-label="Shortcuts">
+      <a class="icon" href="#rosc"><span><img src="assets/rosc-icon.png" alt=""></span>ROSC</a>
+      <a class="icon" href="#services" style="--c:#2E6B56"><span><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
+      <a class="icon" href="#process" style="--c:#FF9500"><span><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
+      <a class="icon" href="#contact" style="--c:#7A5C38"><span><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact</a>
+    </nav>
+    <div class="stage">
+      <div class="win">
+        <div class="win-bar"><img src="assets/packisher-logo.svg" alt="">packisher.com<span class="win-ctl" aria-hidden="true"><i>–</i><i>□</i><i>✕</i></span></div>
+        <div class="win-body">
+          <div class="eyebrow">Venture &amp; software studio</div>
+          <h1>We craft software that connects communities and scales ideas.</h1>
+          <p class="lead">A dev studio building custom digital platforms and our own products, starting with ROSC.</p>
+          <div class="ctas">
+            <a class="btn" href="#contact">Start a project with us</a>
+            <a class="btn ghost" href="#rosc"><i class="dot"></i>See ROSC</a>
+          </div>
+          <p class="reach">Or email <b>support@packisher.com</b></p>
         </div>
-        <p class="reach">Or email <b>support@packisher.com</b></p>
       </div>
-      <div class="hero-art" aria-hidden="true">
+      <a class="widget" href="#rosc" aria-label="See ROSC">
         <div class="phone">
           <picture>
             <source srcset="assets/home-dark.jpg" media="(prefers-color-scheme: dark)">
             <img src="assets/home.jpg" alt="" width="590" height="1278">
           </picture>
         </div>
-        <div class="toast a"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b>KES 5,000 · turn 2 of 3</div></div>
-      </div>
+        ROSC · live on iOS and Android
+      </a>
+    </div>
+    <div class="taskbar" aria-label="Quick links">
+      <a href="#top" aria-label="Top"><img src="assets/packisher-logo.svg" alt=""></a>
+      <a class="search" href="#services"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>Search our work</a>
+      <a href="#rosc" aria-label="ROSC"><img src="assets/rosc-icon.png" alt=""></a>
+      <a class="tb-extra" href="#platforms" style="--c:#02569B" aria-label="Flutter"><svg><use href="#i-flutter"/></svg></a>
+      <a class="tb-extra" href="#platforms" style="--c:#3ECF8E" aria-label="Supabase"><svg><use href="#i-supabase"/></svg></a>
+      <a class="tb-extra" href="#platforms" style="--c:#F24E1E" aria-label="Figma"><svg><use href="#i-figma"/></svg></a>
+      <a class="tb-extra" href="#platforms" aria-label="GitHub"><svg><use href="#i-github"/></svg></a>
+      <div class="tray"><a class="live" href="#rosc"><i class="dot"></i>ROSC live</a><span id="clock">9:41</span></div>
     </div>
   </section>
 
-  <section class="card" id="rosc">
+  <section class="screen alt" id="rosc">
     <div class="sec">
       <div>
         <div class="num">01 · Our product</div>
@@ -427,9 +451,8 @@
       </div>
     </div>
   </section>
-</div>
 
-  <section class="card" id="services">
+  <section class="screen" id="services">
     <div class="sec flip">
       <div class="android" role="img" aria-label="Our services, shown as an Android screen">
         <div class="scr">
@@ -473,7 +496,7 @@
     </div>
   </section>
 
-  <section class="card" id="process">
+  <section class="screen alt" id="process">
     <div class="sec">
       <div>
         <div class="num">03 · Process</div>
@@ -496,7 +519,7 @@
     </div>
   </section>
 
-  <section class="card" id="platforms">
+  <section class="screen" id="platforms">
     <div class="num">04 · Platforms</div>
     <h2>Platforms we build on.</h2>
     <p class="lead">Established tools with long track records, so what we build is dependable and easy for anyone to pick up later.</p>
@@ -545,27 +568,10 @@
     </div>
   </section>
 
-  <section class="card" id="note">
-    <div class="sec">
-      <div>
-        <div class="num">05 · From the founder</div>
-        <h2>A note on how we build.</h2>
-        <p class="lead">Packisher started with one app for one family. That's still the standard every project gets held to.</p>
-      </div>
-      <div class="notes">
-        <div class="sticky">
-          <p>We build software the way we would want it built for us: thought through, tested in real life and looked after long after launch.</p>
-          <div class="sig">Sherine<small>Founder, Packisher</small></div>
-        </div>
-        <div class="sticky small"><p>P.S. ROSC began as our own family's savings group.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card" id="contact">
+  <section class="screen alt" id="contact">
     <div class="sec" style="align-items:start">
       <div>
-        <div class="num">06 · Contact</div>
+        <div class="num">05 · Contact</div>
         <h2>Tell us what you're building.</h2>
         <p class="lead">An app, a website or something in between. A few sentences is plenty to start.</p>
         <ol class="next">
@@ -596,48 +602,54 @@
       </form>
     </div>
   </section>
-</main>
+
+<div class="ending">
+  <section class="screen" id="note">
+    <div class="sec">
+      <div>
+        <div class="num">From the founder</div>
+        <h2>A note on how we build.</h2>
+        <p class="lead">Packisher started with one app for one family. That's still the standard every project gets held to.</p>
+      </div>
+      <div class="notes">
+        <div class="sticky">
+          <p>We build software the way we would want it built for us: thought through, tested in real life and looked after long after launch.</p>
+          <div class="sig">Sherine<small>Founder, Packisher</small></div>
+        </div>
+        <div class="sticky small"><p>P.S. ROSC began as our own family's savings group.</p></div>
+      </div>
+    </div>
+  </section>
 
 <footer>
-  <b>Packisher</b>
-  <span>&copy; 2026 Packisher</span>
-  <div class="links">
-    <a href="https://rosc.packisher.com">ROSC</a>
-    <a href="https://rosc.packisher.com/privacy">ROSC privacy</a>
-    <a href="https://logistics.packisher.com">Packisher Logistics</a>
-    <a href="#contact">Contact</a>
+  <div class="f-top">
+    <div>
+      <a class="f-brand" href="#top"><img src="assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
+      <p>A venture and software studio building custom platforms and our own products.</p>
+    </div>
+    <div class="f-col"><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a></div>
+    <div class="f-col"><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
+    <div class="f-col"><h4>Legal</h4><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
   </div>
+  <div class="f-bottom"><span>&copy; 2026 <b>Packisher</b>. All rights reserved.</span><span>support@packisher.com</span></div>
 </footer>
+</div>
+</main>
 
 <script>
 (() => {
-  const cards = [...document.querySelectorAll('.deck .card')];
-  const hero = document.querySelector('.card.hero');
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
-  let vh = innerHeight, nav = 0, queued = false;
+  const vh = innerHeight;
+  const nav = () => document.querySelector('.nav').offsetHeight;
 
-  // The opening screen holds still while ROSC slides up over it. Everything else scrolls normally.
-  function measure() {
-    vh = innerHeight;
-    nav = document.querySelector('.nav').offsetHeight;
-    const gap = innerWidth < 640 ? 8 : 14;
-    hero.style.top = Math.min(nav + gap, vh - hero.offsetHeight - gap) + 'px';
-    draw();
-  }
-  function draw() {
-    queued = false;
-    if (calm.matches) return;
-    const t = Math.min(1, Math.max(0, 1 - (cards[1].getBoundingClientRect().top - nav) / (vh - nav)));
-    hero.style.setProperty('--t', t.toFixed(3));
-  }
-  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(draw); } }, { passive: true });
-  addEventListener('resize', measure);
-  addEventListener('load', measure);
-  measure();
+  // Taskbar clock in the visitor's own time.
+  const clock = document.getElementById('clock');
+  const tick = () => { clock.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); };
+  tick(); setInterval(tick, 30000);
 
   // Ease content up once, only for things that start below the screen.
   if (!calm.matches && 'IntersectionObserver' in window) {
-    const items = document.querySelectorAll('.card:not(.hero) .num, .card:not(.hero) h2, .card:not(.hero) .lead, .android, .ios, .mac, .phones, .notes, .changelog, form, .next');
+    const items = document.querySelectorAll('.screen .num, .screen h2, .screen .lead, .android, .ios, .mac, .phones, .notes, .changelog, form, .next');
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
     }), { rootMargin: '0px 0px -10% 0px' });
@@ -652,7 +664,7 @@
     const el = document.querySelector(a.getAttribute('href'));
     if (!el) return;
     e.preventDefault();
-    const y = el === hero ? 0 : el.getBoundingClientRect().top + scrollY - nav - 12;
+    const y = el.id === 'top' ? 0 : el.getBoundingClientRect().top + scrollY - nav();
     scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }));
 
