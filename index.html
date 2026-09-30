@@ -337,6 +337,61 @@
   .os #rosc .rosc-id { display: none; }
   .os .changelog li { padding: 8px 0; }
 
+
+  /* ROSC layout: heading, phones, then actions */
+  .rosc-sec { grid-template-areas: "head phones" "actions phones"; grid-template-rows: auto 1fr; align-items: start; row-gap: 8px; }
+  .r-head { grid-area: head; align-self: end; }
+  .rosc-sec .phones { grid-area: phones; align-self: center; }
+  .r-actions { grid-area: actions; }
+  .r-actions .ctas { margin-top: 8px; align-items: center; display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 640px) { .r-actions .ctas .btn { width: 100%; } }
+  .btn.dark-alt { background: var(--ink); color: var(--page); }
+  .link-arrow { white-space: nowrap; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink); padding: 12px 4px; }
+  .link-arrow:hover { color: var(--rosc); }
+  .whatsnew { margin-top: 22px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .whatsnew summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; min-height: 52px; font-weight: 600; font-size: 15px; }
+  .whatsnew summary::-webkit-details-marker { display: none; }
+  .whatsnew summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--muted); transition: transform .25s; }
+  .whatsnew[open] summary::after { transform: rotate(45deg); }
+  .whatsnew .changelog { margin: 0 0 12px; border-top: 0; }
+  @media (max-width: 980px) {
+    .rosc-sec { grid-template-areas: "head" "phones" "actions"; grid-template-columns: 1fr; row-gap: 28px; }
+  }
+
+  /* Glass dialogs (message sent, privacy, terms) */
+  .glass-dlg { width: min(560px, calc(100vw - 32px)); max-height: min(80vh, 720px); padding: 0; border: 0; border-radius: 24px; color: var(--ink); overflow: hidden;
+    background: linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.3)); backdrop-filter: blur(40px) saturate(1.9); -webkit-backdrop-filter: blur(40px) saturate(1.9);
+    box-shadow: 0 40px 90px -30px rgba(var(--shade), .5), inset 0 1px 0 rgba(255,255,255,.8), 0 0 0 1px rgba(255,255,255,.55); }
+  .glass-dlg[open] { display: flex; flex-direction: column; animation: pop .28s cubic-bezier(.2,.8,.2,1); }
+  .glass-dlg.doc { width: min(720px, calc(100vw - 32px)); }
+  .glass-dlg::backdrop { background: rgba(var(--shade), .22); backdrop-filter: blur(3px); }
+  @keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.97); } }
+  .dlg-bar { display: flex; align-items: center; justify-content: space-between; height: 48px; padding: 0 8px 0 20px; font-size: 13px; font-weight: 600; color: var(--ink-2); border-bottom: 1px solid rgba(255,255,255,.5); flex: none; }
+  .dlg-body { padding: 26px 32px 30px; overflow: auto; font-size: 15px; color: var(--ink-2); }
+  .dlg-body h3 { margin: 0 0 10px; font-size: 24px; letter-spacing: -.02em; color: var(--ink); }
+  .doc .dlg-body h2 { font-size: 17px; margin: 22px 0 6px; color: var(--ink); letter-spacing: 0; }
+  .doc .dlg-body .date { color: var(--muted); margin: 0 0 12px; }
+  .dlg-body a { color: var(--bronze); }
+  .sent-ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 14px; font-size: 26px; font-weight: 700; color: #fff; background: var(--emerald); }
+  .dlg-body .next { margin: 14px 0; }
+  .dlg-body .small { font-size: 13.5px; color: var(--muted); }
+  .dlg-done { margin-top: 8px; }
+  [data-theme="dark"] .glass-dlg { background: linear-gradient(135deg, rgba(40,50,45,.72), rgba(18,24,21,.55)); box-shadow: 0 40px 90px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.1), 0 0 0 1px rgba(255,255,255,.08); }
+  [data-theme="dark"] .dlg-bar { border-bottom-color: rgba(255,255,255,.08); }
+
+  /* Red close buttons, like a real window */
+  .dlg-x, .chrome .c-close { border: 0; background: transparent; cursor: pointer; width: 44px; height: 44px; display: grid; place-items: center; }
+  .dlg-x svg, .chrome .c-close svg { width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: #E5484D; fill: #fff; transition: background .15s, transform .15s; }
+  .dlg-x:hover svg, .chrome .c-close:hover svg { background: #C62A2F; transform: scale(1.08); }
+  .chrome .c-close:hover { background: transparent; color: inherit; }
+
+  /* Clear glass for the laptop windows */
+  .os .win-sec { background: linear-gradient(135deg, rgba(255,255,255,.34), rgba(255,255,255,.08)); backdrop-filter: blur(48px) saturate(2); -webkit-backdrop-filter: blur(48px) saturate(2);
+    box-shadow: 0 50px 100px -30px rgba(var(--shade), .38), inset 0 1px 0 rgba(255,255,255,.85), inset 0 0 0 1px rgba(255,255,255,.35), 0 0 0 1px rgba(255,255,255,.5); }
+  .os .chrome { border-bottom-color: rgba(255,255,255,.45); }
+  [data-theme="dark"].os .win-sec { background: linear-gradient(135deg, rgba(44,54,49,.62), rgba(16,21,19,.42)); box-shadow: 0 50px 100px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 1px rgba(255,255,255,.08); }
+  [data-theme="dark"].os .chrome { border-bottom-color: rgba(255,255,255,.08); }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -604,10 +659,10 @@
     </div>
     <div class="widget" aria-hidden="true">
       <div class="phone back">
-        <img src="assets/detail.jpg" data-dark="assets/detail-dark.jpg" alt="" width="590" height="1278">
+        <img src="assets/detail-dark.jpg" data-dark="assets/detail-dark.jpg" data-light="assets/detail.jpg" alt="" width="590" height="1278">
       </div>
       <div class="phone front">
-        <img src="assets/home.jpg" data-dark="assets/home-dark.jpg" alt="" width="590" height="1278">
+        <img src="assets/home-dark.jpg" data-dark="assets/home-dark.jpg" data-light="assets/home.jpg" alt="" width="590" height="1278">
       </div>
       <div class="notif" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
       <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
@@ -644,32 +699,33 @@
   <section class="screen alt win-sec" id="rosc" aria-label="ROSC">
     <div class="chrome"><span class="t"><img src="assets/rosc-icon.png" alt="">ROSC</span><button class="c-min" type="button" aria-label="Minimize ROSC"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-max" type="button" aria-label="Expand ROSC" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6zm1.6 1.6v8.8h8.8V7.6z"/></svg></button><button class="c-close" type="button" aria-label="Close ROSC"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
     <div class="pane">
-    <div class="sec">
-      <div>
+    <div class="sec rosc-sec">
+      <div class="r-head">
         <div class="num">01 · Our product</div>
         <h2>Introducing ROSC.</h2>
-        <p class="lead">A shared record for rotating savings groups. Every turn, each member marks their share as sent, the person receiving confirms it, and the whole group sees the same record.</p>
-        <div class="rosc-id">
-          <img src="assets/rosc-icon.png" alt="ROSC app icon">
-          <div><b>ROSC</b><span>Started with a family savings group that ran on group chats and a notebook</span></div>
-        </div>
-        <ul class="changelog">
-          <li class="v">What's new <span>Version 1.1.0</span></li>
-          <li><span><b>Invite links</b> that open straight to the right group</span></li>
-          <li><span><b>A group noticeboard</b> for notes, reactions and pinned updates</span></li>
-          <li><span><b>Trust Score history</b>, so members can see their record build</span></li>
-          <li><span><b>Owing groups</b> that follow up missed payments with a clear balance</span></li>
-        </ul>
-        <div class="ctas">
-          <a class="btn" href="https://play.google.com/store/apps/details?id=com.roscapp.roscapp"><svg><use href="#i-googleplay"/></svg>Get it on Google Play</a>
-          <a class="btn ghost" href="https://rosc.packisher.com">rosc.packisher.com</a>
-        </div>
+        <p class="lead">A shared record for rotating savings groups. Everyone sees who paid, who received and whose turn is next.</p>
       </div>
       <div class="phones" aria-hidden="true">
-        <div class="phone a"><img src="assets/profile.jpg" alt="" loading="lazy" width="590" height="1278"></div>
+        <div class="phone a"><img src="assets/profile-dark.jpg" data-dark="assets/profile-dark.jpg" data-light="assets/profile.jpg" alt="" loading="lazy" width="590" height="1278"></div>
         <div class="phone b">
-          <img src="assets/detail.jpg" data-dark="assets/detail-dark.jpg" alt="" loading="lazy" width="590" height="1278">
+          <img src="assets/detail-dark.jpg" data-dark="assets/detail-dark.jpg" data-light="assets/detail.jpg" alt="" loading="lazy" width="590" height="1278">
         </div>
+      </div>
+      <div class="r-actions">
+        <div class="ctas">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.roscapp.roscapp"><svg aria-hidden="true"><use href="#i-googleplay"/></svg>Get it on Google Play</a>
+          <a class="btn dark-alt" href="https://rosc.packisher.com" data-testflight><svg aria-hidden="true"><use href="#i-apple"/></svg>Try it on TestFlight</a>
+          <a class="link-arrow" href="https://rosc.packisher.com">Visit rosc.packisher.com <span aria-hidden="true">→</span></a>
+        </div>
+        <details class="whatsnew">
+          <summary>What's new in version 1.1.0</summary>
+          <ul class="changelog">
+            <li><span><b>Invite links</b> that open straight to the right group</span></li>
+            <li><span><b>A group noticeboard</b> for notes, reactions and pinned updates</span></li>
+            <li><span><b>Trust Score history</b>, so members can see their record build</span></li>
+            <li><span><b>Owing groups</b> that follow up missed payments with a clear balance</span></li>
+          </ul>
+        </details>
       </div>
     </div>
     </div>
@@ -807,13 +863,8 @@
       <div>
         <div class="num">05 · Contact</div>
         <h2>Tell us what you're building.</h2>
-        <p class="lead">An app, a website or something in between. A few sentences is plenty to start.</p>
-        <ol class="next">
-          <li><span><b>Send a short note.</b> What it's for, who will use it and roughly when you'd like it live.</span></li>
-          <li><span><b>We reply within two business days</b> with questions or a first outline.</span></li>
-          <li><span><b>You get a written plan</b> covering scope, timeline and price before any work begins.</span></li>
-        </ol>
-        <p class="direct">Or email us directly: <b>support@packisher.com</b></p>
+        <p class="lead">An app, a website or something in between. Tell us what it's for and who will use it. A few sentences is plenty.</p>
+        <p class="direct">Prefer email? <b>support@packisher.com</b></p>
       </div>
       <form id="enquiry" novalidate>
         <div class="row">
@@ -832,7 +883,7 @@
         </fieldset>
         <label for="f-msg">About the project<textarea id="f-msg" name="message" required placeholder="What it's for, who will use it, and any timing."></textarea></label>
         <button class="btn" type="submit">Send enquiry</button>
-        <p class="formnote" id="formnote">Opens your email app with everything filled in, ready to send.</p>
+        <p class="formnote" id="formnote">This opens your email app with your message ready to send.</p>
       </form>
     </div>
     </div>
@@ -879,6 +930,55 @@
 </div>
 </main>
 
+<dialog class="glass-dlg" id="dlg-sent" aria-labelledby="sent-t">
+  <div class="dlg-bar"><span id="sent-t">Message ready</span><button class="dlg-x" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+  <div class="dlg-body">
+    <div class="sent-ic" aria-hidden="true">✓</div>
+    <h3 id="sent-h">Thanks. Your message is ready to send.</h3>
+    <p>Your email app should have opened with everything filled in. Once you send it, here is what happens next:</p>
+    <ol class="next">
+      <li><span><b>We reply within two business days</b> with questions or a first outline.</span></li>
+      <li><span><b>You get a written plan</b> covering scope, timeline and price before any work begins.</span></li>
+    </ol>
+    <p class="small">If your email app didn't open, write to <b>support@packisher.com</b>.</p>
+    <button class="btn dlg-done" type="button">Done</button>
+  </div>
+</dialog>
+<dialog class="glass-dlg doc" id="dlg-privacy" aria-labelledby="priv-t">
+  <div class="dlg-bar"><span id="priv-t">Privacy</span><button class="dlg-x" type="button" aria-label="Close privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+  <div class="dlg-body"><h3>Privacy</h3><p class="date">Last updated September 30, 2026</p>
+<p>This policy covers the Packisher website at packisher.com. Our apps have their own policies. For ROSC, see <a href="https://rosc.packisher.com/privacy">rosc.packisher.com/privacy</a>.</p>
+<h2>What we collect</h2>
+<p>This website does not ask you to create an account and does not use advertising or tracking cookies. If you use the enquiry form, it opens your own email app with your message filled in. Nothing is sent until you choose to send it.</p>
+<p>When you email us, we receive your name, email address and whatever you include in your message.</p>
+<h2>How we use it</h2>
+<p>We use your message only to reply to you and to discuss a possible project. We do not sell it or share it for marketing.</p>
+<h2>Hosting</h2>
+<p>Like any website, our hosting provider may keep standard server logs, such as IP address and browser type, to keep the site secure and running.</p>
+<h2>Keeping and deleting</h2>
+<p>We keep project emails for as long as they are useful for the conversation or any work that follows. You can ask us to delete your messages at any time.</p>
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:support@packisher.com">support@packisher.com</a></p></div>
+</dialog>
+<dialog class="glass-dlg doc" id="dlg-terms" aria-labelledby="terms-t">
+  <div class="dlg-bar"><span id="terms-t">Terms</span><button class="dlg-x" type="button" aria-label="Close terms"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+  <div class="dlg-body"><h3>Terms</h3><p class="date">Last updated September 30, 2026</p>
+<p>These terms apply to your use of the Packisher website at packisher.com. Our apps, including ROSC, have their own terms, which you can find on each app's website.</p>
+<h2>Using this website</h2>
+<p>You may browse and share this website for personal and business purposes. Please don't try to disrupt it, copy it wholesale or use it for anything unlawful.</p>
+<h2>Content</h2>
+<p>The text, design, logos and screenshots on this site belong to Packisher unless stated otherwise. Other product names and logos shown belong to their owners and are used only to describe tools we work with.</p>
+<h2>Project work</h2>
+<p>Nothing on this website is an offer or a contract. Any project we take on is covered by a separate written agreement covering scope, timeline, price and ownership.</p>
+<h2>No warranty</h2>
+<p>We keep this site accurate and up to date, but it is provided as is, and we are not liable for decisions made based on it.</p>
+<h2>Changes</h2>
+<p>We may update these terms from time to time. The date at the top shows the latest version.</p>
+<h2>Contact</h2>
+<p><a href="mailto:support@packisher.com">support@packisher.com</a></p></div>
+</dialog>
+
+
 <script>
 (() => {
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
@@ -890,10 +990,8 @@
   const toggles = [...document.querySelectorAll('.theme-toggle')];
   function applyTheme(t) {
     root.dataset.theme = t;
-    document.querySelectorAll('img[data-dark]').forEach(img => {
-      if (!img.dataset.light) img.dataset.light = img.getAttribute('src');
-      img.src = t === 'dark' ? img.dataset.dark : img.dataset.light;
-    });
+    // App pictures show the opposite theme so the screens stand out from the page.
+    document.querySelectorAll('img[data-dark]').forEach(img => { img.src = t === 'dark' ? img.dataset.light : img.dataset.dark; });
     toggles.forEach(b => {
       b.setAttribute('aria-pressed', t === 'dark');
       const label = t === 'dark' ? 'Light mode' : 'Dark mode';
@@ -970,9 +1068,12 @@
       pane.appendChild(f);
     }
     const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .notes')];
+    // Measure with dropdowns closed; an opened dropdown may scroll.
+    const opened = [...f.querySelectorAll('details[open]')];
+    opened.forEach(d => { d.open = false; });
     f.style.zoom = '';
     devices.forEach(d => { d.style.zoom = ''; });
-    if (!isOS()) return;
+    if (!isOS()) { opened.forEach(d => { d.open = true; }); return; }
     const cs = getComputedStyle(pane);
     const h = pane.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
     const wdt = pane.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
@@ -980,6 +1081,7 @@
     for (let d = .92; f.scrollHeight > h && d >= .5; d -= .06) devices.forEach(el => { el.style.zoom = d.toFixed(2); });
     const z = Math.min(1, h / f.scrollHeight, wdt / f.scrollWidth);
     if (z < 1) f.style.zoom = Math.max(.72, z - .01).toFixed(3);
+    opened.forEach(d => { d.open = true; });
   }
   let invoker = null;
   function open(id) {
@@ -1014,7 +1116,7 @@
   // Clicking the desktop outside a window tucks open windows into the taskbar.
   document.addEventListener('pointerdown', e => {
     if (!isOS() || e.button > 0) return;
-    if (e.target.closest('.win-sec, .taskbar, .startmenu, .nav, .icons')) return;
+    if (e.target.closest('.win-sec, .taskbar, .startmenu, .nav, .icons, .glass-dlg')) return;
     home();
   });
   function home() { for (const id of Object.keys(state)) if (state[id] === 'open') minimize(id); }
@@ -1078,7 +1180,7 @@
   q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; }, 100));
 
   document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape' || !isOS() || document.activeElement === q) return;
+    if (e.key !== 'Escape' || !isOS() || document.activeElement === q || document.querySelector('.glass-dlg[open]')) return;
     if (!menu.hidden) return setMenu(false);
     const top = topOpen();
     if (top) close(top.id);
@@ -1166,6 +1268,25 @@
     }, 450);
   }, 4200);
 
+  // Glass dialogs
+  function showDlg(id) {
+    const dl = document.getElementById(id);
+    if (!dl || dl.open) return;
+    if (typeof dl.showModal === 'function') dl.showModal(); else dl.setAttribute('open', '');
+  }
+  document.querySelectorAll('.glass-dlg').forEach(dl => {
+    dl.querySelectorAll('.dlg-x, .dlg-done').forEach(b => b.addEventListener('click', () => dl.close()));
+    dl.addEventListener('click', e => { if (e.target === dl) dl.close(); });
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href="privacy/"], a[href="terms/"]');
+    if (!a) return;
+    e.preventDefault();
+    if (typeof setMobileMenu === 'function' && !mmenu.hidden) setMobileMenu(false);
+    setMenu(false);
+    showDlg(a.getAttribute('href') === 'privacy/' ? 'dlg-privacy' : 'dlg-terms');
+  });
+
   // Enquiry form: compose an email with everything filled in.
   document.getElementById('enquiry').addEventListener('submit', e => {
     e.preventDefault();
@@ -1175,7 +1296,9 @@
     const needs = d.getAll('need').join(', ') || 'Not specified';
     const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nLooking for: ${needs}\n\n${d.get('message')}`;
     location.href = `mailto:support@packisher.com?subject=${encodeURIComponent('Project enquiry from ' + d.get('name'))}&body=${encodeURIComponent(body)}`;
-    document.getElementById('formnote').textContent = 'If your email app did not open, write to support@packisher.com.';
+    const first = String(d.get('name')).trim().split(/\s+/)[0];
+    document.getElementById('sent-h').textContent = `Thanks, ${first}. Your message is ready to send.`;
+    showDlg('dlg-sent');
   });
 })();
 </script>
