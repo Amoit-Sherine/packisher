@@ -102,46 +102,29 @@
   h2 .serif { font-size: 1.08em; letter-spacing: -.01em; color: var(--bronze); }
   .lead { font-size: 18px; color: var(--ink-2); margin: 0 0 22px; max-width: 520px; }
 
-  /* Opening screen: a developer's desktop in the brand colours */
-  .desk { min-height: calc(100svh - var(--nav)); position: relative; display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: center; padding: 40px max(24px, calc((100% - 1180px) / 2)) 104px; overflow: hidden; }
+  /* Opening screen. On phones it is the first screen of the scroll; on laptops it is the desktop. */
+  .desk { min-height: calc(100svh - var(--nav)); position: relative; display: grid; align-content: center; gap: 36px; padding: 48px max(24px, calc((100% - 1120px) / 2)); overflow: hidden; }
   .desk::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
       radial-gradient(40% 55% at 80% 30%, var(--wash-1), transparent 70%),
       radial-gradient(35% 45% at 20% 85%, var(--wash-2), transparent 70%); opacity: .9; }
-  .icons { display: grid; gap: 18px; align-self: start; padding-top: 12px; }
-  .icon { display: grid; justify-items: center; gap: 6px; padding: 8px 4px; border-radius: 10px; text-decoration: none; font-size: 12.5px; color: var(--ink-2); text-align: center; }
-  .icon:hover { background: color-mix(in srgb, var(--card) 70%, transparent); }
-  .icon span { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--card); box-shadow: 0 6px 16px -8px rgba(var(--shade), .35); }
-  .icon span img { width: 46px; height: 46px; border-radius: 12px; }
-  .icon svg { width: 22px; height: 22px; fill: var(--c, var(--ink-2)); }
-  .stage { display: flex; align-items: center; justify-content: center; gap: 48px; }
-  .win { width: min(100%, 620px); background: var(--card); border-radius: 12px; box-shadow: 0 30px 70px -30px rgba(var(--shade), .4), 0 0 0 1px rgba(var(--shade), .06); overflow: hidden; }
-  .win-bar { display: flex; align-items: center; height: 38px; padding-left: 14px; font-size: 12.5px; color: var(--muted); border-bottom: 1px solid var(--rule); background: color-mix(in srgb, var(--card-2) 60%, var(--card)); }
-  .win-bar img { width: 16px; height: 16px; border-radius: 4px; margin-right: 8px; }
-  .win-ctl { margin-left: auto; display: flex; height: 100%; }
-  .win-ctl i { width: 44px; display: grid; place-items: center; color: var(--muted); font-style: normal; font-size: 13px; }
-  .win-body { padding: 40px 44px 44px; }
-  .win-body h1 { font: 600 clamp(28px, 3.2vw, 40px)/1.15 var(--sans); letter-spacing: -.025em; margin: 16px 0 14px; }
-  .win-body .lead { font-size: 17px; margin-bottom: 26px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); }
+  .home { max-width: 640px; }
+  .home-logo { width: 64px; height: 64px; border-radius: 16px; margin-bottom: 26px; box-shadow: 0 18px 36px -16px rgba(var(--shade), .45); }
+  .home h1 { font: 600 clamp(30px, 3.4vw, 46px)/1.12 var(--sans); letter-spacing: -.028em; margin: 14px 0 14px; }
+  .home .lead { font-size: 18px; }
+  .icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 420px; }
+  .icon { display: grid; justify-items: center; gap: 7px; padding: 10px 4px; border-radius: 12px; text-decoration: none; font-size: 12.5px; color: var(--ink-2); text-align: center; }
+  .icon:hover, .icon:focus-visible { background: color-mix(in srgb, var(--card) 70%, transparent); }
+  .icon span { width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center; background: var(--card); box-shadow: 0 6px 16px -8px rgba(var(--shade), .35); }
+  .icon span img { width: 48px; height: 48px; border-radius: 13px; }
+  .icon svg, .pin svg, .chrome .t svg { width: 22px; height: 22px; fill: var(--c, var(--ink-2)); }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); }
   .reach { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
   .reach b { color: var(--ink-2); font-weight: 600; user-select: all; }
+  .widget, .taskbar, .startmenu, .chrome { display: none; }
+  html:not(.os) .icons { order: 2; }
   .phone { position: relative; width: 262px; max-width: 100%; aspect-ratio: 393 / 852; border-radius: 44px; padding: 9px; background: #121513; box-shadow: 0 40px 70px -24px rgba(var(--shade), .4); }
   .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 35px; }
   .phone::after { content: ""; position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 80px; height: 23px; background: #121513; border-radius: 999px; }
-  .widget .phone { border-radius: 36px; padding: 7px; }
-  .widget .phone img { border-radius: 29px; }
-  .widget .phone::after { top: 15px; width: 60px; height: 18px; }
-  .widget { flex: none; display: grid; justify-items: center; gap: 12px; font-size: 12.5px; color: var(--muted); text-decoration: none; }
-  .widget .phone { width: 200px; transform: rotate(3deg); }
-  .taskbar { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; height: 56px; padding: 0 10px; border-radius: 16px; background: color-mix(in srgb, var(--card) 82%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 40px -18px rgba(var(--shade), .35), 0 0 0 1px rgba(var(--shade), .06); white-space: nowrap; }
-  .taskbar a, .taskbar .tb { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; text-decoration: none; }
-  .taskbar a:hover { background: color-mix(in srgb, var(--card-2) 80%, transparent); }
-  .taskbar img { width: 26px; height: 26px; border-radius: 7px; }
-  .taskbar svg { width: 20px; height: 20px; fill: var(--c, var(--ink-2)); }
-  .taskbar .search { display: flex; align-items: center; gap: 8px; width: 210px; height: 38px; padding: 0 14px; border-radius: 10px; background: var(--card-2); color: var(--muted); font-size: 13px; text-decoration: none; margin: 0 4px; }
-  .search svg { width: 15px; height: 15px; fill: var(--muted); }
-  .tray { display: flex; align-items: center; gap: 12px; padding: 0 8px 0 12px; margin-left: 4px; border-left: 1px solid var(--rule); font-size: 12px; color: var(--ink-2); line-height: 1.25; text-align: right; }
-  .taskbar .tray .live { display: flex; align-items: center; gap: 6px; width: auto; height: auto; color: var(--ink-2); }
 
   /* ROSC */
   #rosc .num, #rosc h2 .serif { color: var(--rosc); }
@@ -288,6 +271,82 @@
   .f-bottom { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 13px; }
   .f-bottom b { color: var(--bronze); font-weight: 600; }
 
+
+  /* ===== Desktop mode (laptops and larger): one screen, sections open as windows ===== */
+  .os body { height: 100svh; overflow: hidden; }
+  .os .desk { position: fixed; top: var(--nav); left: 0; right: 0; bottom: 0; min-height: 0; grid-template-columns: 104px 1fr 250px; align-content: stretch; align-items: center; gap: 24px; padding: 28px 36px 104px; }
+  .os .icons { grid-template-columns: 1fr; align-self: start; gap: 6px; max-width: none; }
+  .os .home { justify-self: center; text-align: center; display: grid; justify-items: center; }
+  .os .home .lead { margin-left: auto; margin-right: auto; }
+  .os .ctas { justify-content: center; }
+  .os .widget { display: grid; justify-items: center; gap: 14px; align-self: center; font-size: 12.5px; color: var(--muted); text-decoration: none; }
+  .os .widget span { display: inline-flex; align-items: center; gap: 7px; }
+  .os .widget .phone { width: 200px; border-radius: 36px; padding: 7px; transform: rotate(2deg); transition: transform .3s ease; }
+  .os .widget:hover .phone { transform: rotate(0) translateY(-4px); }
+  .os .widget .phone img { border-radius: 29px; }
+  .os .widget .phone::after { top: 15px; width: 60px; height: 18px; }
+
+  .os .taskbar { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 50; display: flex; align-items: center; gap: 4px; height: 58px; padding: 0 10px; border-radius: 16px; background: color-mix(in srgb, var(--card) 84%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 16px 40px -18px rgba(var(--shade), .4), 0 0 0 1px rgba(var(--shade), .07); white-space: nowrap; }
+  .taskbar button { border: 0; background: transparent; cursor: pointer; font: inherit; color: inherit; }
+  .taskbar .start, .taskbar .pin { position: relative; width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; transition: background .15s; }
+  .taskbar .start:hover, .taskbar .pin:hover, .taskbar .start[aria-expanded="true"] { background: color-mix(in srgb, var(--card-2) 90%, transparent); }
+  .taskbar .start img { width: 28px; height: 28px; border-radius: 7px; }
+  .taskbar .pin img { width: 26px; height: 26px; border-radius: 7px; }
+  .taskbar .pin::after { content: ""; position: absolute; bottom: 3px; left: 50%; width: 0; height: 3px; border-radius: 3px; background: var(--muted); transform: translateX(-50%); transition: width .2s; }
+  .taskbar .pin.run::after { width: 6px; }
+  .taskbar .pin.active { background: color-mix(in srgb, var(--card-2) 90%, transparent); }
+  .taskbar .pin.active::after { width: 16px; background: var(--bronze); }
+  .search { position: relative; display: flex; align-items: center; gap: 8px; width: 220px; height: 40px; padding: 0 12px; margin: 0 6px; border-radius: 10px; background: var(--card-2); }
+  .search svg { width: 15px; height: 15px; fill: var(--muted); flex: none; }
+  .search input { border: 0; background: transparent; padding: 0; height: 100%; font-size: 13.5px; border-radius: 0; }
+  .search input:focus { border: 0; outline: none; }
+  .search:focus-within { box-shadow: 0 0 0 2px var(--bronze); }
+  .results { position: absolute; left: 0; bottom: calc(100% + 14px); width: 300px; padding: 8px; border-radius: 14px; background: var(--card); box-shadow: 0 24px 50px -20px rgba(var(--shade), .45), 0 0 0 1px rgba(var(--shade), .07); }
+  .results button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 9px 10px; border-radius: 9px; text-align: left; font-size: 14px; }
+  .results button span { color: var(--muted); font-size: 12.5px; margin-left: auto; }
+  .results button:hover, .results button.hi { background: var(--card-2); }
+  .results svg, .results img { width: 20px; height: 20px; border-radius: 5px; fill: var(--c, var(--ink-2)); }
+  .results p { margin: 6px 10px; font-size: 13px; color: var(--muted); }
+  .tray { display: flex; align-items: center; gap: 12px; padding: 0 8px 0 14px; margin-left: 6px; border-left: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-2); }
+  .live-tag { display: inline-flex; align-items: center; gap: 6px; }
+
+  .os .startmenu:not([hidden]) { display: block; position: fixed; left: 50%; bottom: 88px; transform: translateX(-50%); z-index: 55; width: 520px; padding: 22px; border-radius: 18px; background: var(--card); box-shadow: 0 30px 70px -26px rgba(var(--shade), .5), 0 0 0 1px rgba(var(--shade), .07); }
+  .sm-head { display: flex; gap: 12px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
+  .sm-head img { width: 40px; height: 40px; border-radius: 10px; }
+  .sm-head b { display: block; font: 700 22px/1 var(--display); color: var(--bronze); letter-spacing: .4px; }
+  .sm-head span { font-size: 13px; color: var(--muted); }
+  .sm-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 16px 0; }
+  .sm-cols h4 { margin: 0 0 8px; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .sm-cols a { display: block; padding: 5px 0; font-size: 14px; text-decoration: none; color: var(--ink-2); }
+  .sm-cols a:hover { color: var(--ink); }
+  .sm-foot { padding-top: 14px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--muted); }
+  .sm-foot b { color: var(--bronze); }
+
+  /* Windows */
+  .os .win-sec { position: fixed; top: calc(var(--nav) + 14px); left: 20px; right: 20px; bottom: 90px; z-index: 30; min-height: 0; padding: 0; display: flex; flex-direction: column; justify-content: flex-start; background: var(--card); border-radius: 14px; box-shadow: 0 40px 90px -30px rgba(var(--shade), .5), 0 0 0 1px rgba(var(--shade), .08); overflow: hidden;
+    opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(16px) scale(.985); transform-origin: 50% 100%;
+    transition: opacity .2s ease, transform .28s cubic-bezier(.2,.8,.2,1), visibility 0s linear .28s; }
+  .os .win-sec.open { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity .2s ease, transform .28s cubic-bezier(.2,.8,.2,1), visibility 0s; }
+  .os .win-sec.to-bar { transform: translateY(40%) scale(.22); }
+  .os .chrome { display: flex; flex: none; align-items: center; height: 44px; padding-left: 16px; border-bottom: 1px solid var(--rule); background: color-mix(in srgb, var(--card-2) 55%, var(--card)); font-size: 13px; font-weight: 500; color: var(--ink-2); user-select: none; }
+  .chrome .t { display: flex; align-items: center; gap: 9px; }
+  .chrome .t img { width: 18px; height: 18px; border-radius: 5px; }
+  .chrome .t svg { width: 17px; height: 17px; }
+  .chrome button { width: 52px; height: 100%; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; display: grid; place-items: center; }
+  .chrome .c-min { margin-left: auto; }
+  .chrome button svg { width: 15px; height: 15px; fill: currentColor; }
+  .chrome button:hover { background: color-mix(in srgb, var(--card-2) 90%, transparent); }
+  .chrome .c-close:hover { background: #C42B1C; color: #fff; }
+  .os .pane { flex: 1; overflow: auto; overscroll-behavior: contain; outline: none; padding: 56px max(48px, calc((100% - 1080px) / 2)) 64px; display: flex; flex-direction: column; }
+  .os .pane > * { flex: none; }
+  .os .pane > :first-child { margin-top: auto; }
+  .os .pane > :last-child { margin-bottom: auto; }
+  .os .screen.alt { background: var(--card); }
+  .os .ending { display: contents; }
+  .os footer { display: none; }
+  .os .rv.pre { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .os .win-sec, .os .win-sec.open { transition: none; } }
+
   @media (max-width: 980px) {
     .screen { padding: 72px 32px; }
     .sec { grid-template-columns: 1fr; gap: 40px; }
@@ -303,12 +362,9 @@
     .nav .btn { margin-left: auto; }
     .screen { padding: 56px 20px; }
     .lead { font-size: 16.5px; }
-    .desk { grid-template-columns: 1fr; padding: 24px 16px 96px; align-content: center; }
-    .icons { grid-template-columns: repeat(4, 1fr); order: 2; gap: 6px; padding-top: 0; }
-    .win-body { padding: 28px 22px 30px; }
-    .taskbar .search { display: none; }
-    .taskbar { bottom: 14px; }
-    .tb-extra { display: none !important; }
+    .desk { padding: 32px 20px 40px; gap: 28px; }
+    .home-logo { width: 52px; height: 52px; border-radius: 13px; margin-bottom: 20px; }
+    .icons { grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .phone { width: 228px; border-radius: 38px; padding: 8px; }
     .phone img { border-radius: 30px; }
     .phone::after { top: 16px; width: 66px; height: 19px; }
@@ -336,6 +392,7 @@
 </style>
 </head>
 <body>
+<script>if (matchMedia("(min-width: 1024px) and (min-height: 600px)").matches) document.documentElement.classList.add("os");</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-flutter" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></symbol>
 <symbol id="i-dart" viewBox="0 0 24 24"><path d="M4.105 4.105S9.158 1.58 11.684.316a3.079 3.079 0 0 1 1.481-.315c.766.047 1.677.788 1.677.788L24 9.948v9.789h-4.263V24H9.789l-9-9C.303 14.5 0 13.795 0 13.105c0-.319.18-.818.316-1.105l3.789-7.895zm.679.679v11.787c.002.543.021 1.024.498 1.508L10.204 23h8.533v-4.263L4.784 4.784zm12.055-.678c-.899-.896-1.809-1.78-2.74-2.643-.302-.267-.567-.468-1.07-.462-.37.014-.87.195-.87.195L6.341 4.105l10.498.001z"/></symbol>
@@ -376,49 +433,64 @@
 
 <main>
   <section class="desk" id="top">
-    <nav class="icons" aria-label="Shortcuts">
+    <nav class="icons" aria-label="Sections">
       <a class="icon" href="#rosc"><span><img src="assets/rosc-icon.png" alt=""></span>ROSC</a>
-      <a class="icon" href="#services" style="--c:#2E6B56"><span><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
-      <a class="icon" href="#process" style="--c:#FF9500"><span><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
-      <a class="icon" href="#contact" style="--c:#7A5C38"><span><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact</a>
+      <a class="icon" href="#services"><span><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
+      <a class="icon" href="#process"><span><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
+      <a class="icon" href="#platforms"><span><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span>Platforms</a>
+      <a class="icon" href="#contact"><span><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact us</a>
+      <a class="icon" href="#note"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M5 3h14a2 2 0 0 1 2 2v10l-6 6H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm9 16.2L19.2 14H15a1 1 0 0 0-1 1v4.2zM7 8h10V6H7v2zm0 4h10v-2H7v2z"/></svg></span>Founder's note</a>
     </nav>
-    <div class="stage">
-      <div class="win">
-        <div class="win-bar"><img src="assets/packisher-logo.svg" alt="">packisher.com<span class="win-ctl" aria-hidden="true"><i>–</i><i>□</i><i>✕</i></span></div>
-        <div class="win-body">
-          <div class="eyebrow">Venture &amp; software studio</div>
-          <h1>We craft software that connects communities and scales ideas.</h1>
-          <p class="lead">A dev studio building custom digital platforms and our own products, starting with ROSC.</p>
-          <div class="ctas">
-            <a class="btn" href="#contact">Start a project with us</a>
-            <a class="btn ghost" href="#rosc"><i class="dot"></i>See ROSC</a>
-          </div>
-          <p class="reach">Or email <b>support@packisher.com</b></p>
-        </div>
+    <div class="home">
+      <img class="home-logo" src="assets/packisher-logo.svg" alt="Packisher">
+      <div class="eyebrow">Venture &amp; software studio</div>
+      <h1>We craft software that connects communities and scales ideas.</h1>
+      <p class="lead">A dev studio building custom digital platforms and our own products, starting with ROSC.</p>
+      <div class="ctas">
+        <a class="btn" href="#contact">Start a project with us</a>
+        <a class="btn ghost" href="#rosc"><i class="dot"></i>See ROSC</a>
       </div>
-      <a class="widget" href="#rosc" aria-label="See ROSC">
-        <div class="phone">
-          <picture>
-            <source srcset="assets/home-dark.jpg" media="(prefers-color-scheme: dark)">
-            <img src="assets/home.jpg" alt="" width="590" height="1278">
-          </picture>
-        </div>
-        ROSC · live on iOS and Android
-      </a>
+      <p class="reach">Or email <b>support@packisher.com</b></p>
     </div>
-    <div class="taskbar" aria-label="Quick links">
-      <a href="#top" aria-label="Top"><img src="assets/packisher-logo.svg" alt=""></a>
-      <a class="search" href="#services"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>Search our work</a>
-      <a href="#rosc" aria-label="ROSC"><img src="assets/rosc-icon.png" alt=""></a>
-      <a class="tb-extra" href="#platforms" style="--c:#02569B" aria-label="Flutter"><svg><use href="#i-flutter"/></svg></a>
-      <a class="tb-extra" href="#platforms" style="--c:#3ECF8E" aria-label="Supabase"><svg><use href="#i-supabase"/></svg></a>
-      <a class="tb-extra" href="#platforms" style="--c:#F24E1E" aria-label="Figma"><svg><use href="#i-figma"/></svg></a>
-      <a class="tb-extra" href="#platforms" aria-label="GitHub"><svg><use href="#i-github"/></svg></a>
-      <div class="tray"><a class="live" href="#rosc"><i class="dot"></i>ROSC live</a><span id="clock">9:41</span></div>
-    </div>
+    <a class="widget" href="#rosc" aria-label="Open ROSC">
+      <div class="phone">
+        <picture>
+          <source srcset="assets/home-dark.jpg" media="(prefers-color-scheme: dark)">
+          <img src="assets/home.jpg" alt="" width="590" height="1278">
+        </picture>
+      </div>
+      <span><i class="dot"></i>ROSC · live on iOS and Android</span>
+    </a>
   </section>
 
-  <section class="screen alt" id="rosc">
+  <div class="taskbar" aria-label="Taskbar">
+    <button class="start" type="button" aria-label="Packisher menu" aria-expanded="false"><img src="assets/packisher-logo.svg" alt=""></button>
+    <div class="search">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
+      <input id="q" type="search" placeholder="Search our work" autocomplete="off" aria-label="Search our work">
+      <div class="results" id="results" hidden></div>
+    </div>
+    <button class="pin" type="button" data-open="rosc" aria-label="ROSC" title="ROSC"><img src="assets/rosc-icon.png" alt=""></button>
+    <button class="pin" type="button" data-open="services" aria-label="Services" title="Services"><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></button>
+    <button class="pin" type="button" data-open="process" aria-label="Process" title="Process"><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></button>
+    <button class="pin" type="button" data-open="platforms" aria-label="Platforms" title="Platforms"><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></button>
+    <button class="pin" type="button" data-open="contact" aria-label="Contact us" title="Contact us"><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></button>
+    <div class="tray"><span class="live-tag"><i class="dot"></i>ROSC live</span><span id="clock">9:41</span></div>
+  </div>
+
+  <div class="startmenu" id="startmenu" hidden>
+    <div class="sm-head"><img src="assets/packisher-logo.svg" alt=""><div><b>Packisher</b><span>Venture &amp; software studio</span></div></div>
+    <div class="sm-cols">
+      <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">Founder's note</a></div>
+      <div><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
+      <div><h4>Legal</h4><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
+    </div>
+    <div class="sm-foot">&copy; 2026 <b>Packisher</b> · support@packisher.com</div>
+  </div>
+
+  <section class="screen alt win-sec" id="rosc" aria-label="ROSC">
+    <div class="chrome"><span class="t"><img src="assets/rosc-icon.png" alt="">ROSC</span><button class="c-min" type="button" aria-label="Minimize ROSC"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close ROSC"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
     <div class="sec">
       <div>
         <div class="num">01 · Our product</div>
@@ -450,9 +522,12 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
-  <section class="screen" id="services">
+  <section class="screen win-sec" id="services" aria-label="Services">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg>Services</span><button class="c-min" type="button" aria-label="Minimize Services"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Services"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
     <div class="sec flip">
       <div class="android" role="img" aria-label="Our services, shown as an Android screen">
         <div class="scr">
@@ -494,9 +569,12 @@
         <p class="lead">Every project includes design, build, testing, store release and support once it's live.</p>
       </div>
     </div>
+    </div>
   </section>
 
-  <section class="screen alt" id="process">
+  <section class="screen alt win-sec" id="process" aria-label="Process">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>Process</span><button class="c-min" type="button" aria-label="Minimize Process"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Process"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
     <div class="sec">
       <div>
         <div class="num">03 · Process</div>
@@ -517,9 +595,12 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
-  <section class="screen" id="platforms">
+  <section class="screen win-sec" id="platforms" aria-label="Platforms">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg>Platforms</span><button class="c-min" type="button" aria-label="Minimize Platforms"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Platforms"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
     <div class="num">04 · Platforms</div>
     <h2>Platforms we build on.</h2>
     <p class="lead">Established tools with long track records, so what we build is dependable and easy for anyone to pick up later.</p>
@@ -566,9 +647,12 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
-  <section class="screen alt" id="contact">
+  <section class="screen alt win-sec" id="contact" aria-label="Contact us">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>Contact us</span><button class="c-min" type="button" aria-label="Minimize Contact us"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Contact us"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
     <div class="sec" style="align-items:start">
       <div>
         <div class="num">05 · Contact</div>
@@ -601,10 +685,13 @@
         <p class="formnote" id="formnote">Opens your email app with everything filled in, ready to send.</p>
       </form>
     </div>
+    </div>
   </section>
 
 <div class="ending">
-  <section class="screen" id="note">
+  <section class="screen win-sec" id="note" aria-label="Founder's note">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M5 3h14a2 2 0 0 1 2 2v10l-6 6H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm9 16.2L19.2 14H15a1 1 0 0 0-1 1v4.2zM7 8h10V6H7v2zm0 4h10v-2H7v2z"/></svg>Founder's note</span><button class="c-min" type="button" aria-label="Minimize Founder's note"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Founder's note"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
     <div class="sec">
       <div>
         <div class="num">From the founder</div>
@@ -618,6 +705,7 @@
         </div>
         <div class="sticky small"><p>P.S. ROSC began as our own family's savings group.</p></div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -639,16 +727,155 @@
 <script>
 (() => {
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
-  const vh = innerHeight;
+  const wide = matchMedia('(min-width: 1024px) and (min-height: 600px)');
+  const root = document.documentElement;
+  const isOS = () => root.classList.contains('os');
   const nav = () => document.querySelector('.nav').offsetHeight;
+  const wins = new Map([...document.querySelectorAll('.win-sec')].map(w => [w.id, w]));
+  const state = {}; // id -> 'open' | 'min'
+  let z = 30;
 
   // Taskbar clock in the visitor's own time.
   const clock = document.getElementById('clock');
   const tick = () => { clock.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); };
   tick(); setInterval(tick, 30000);
 
-  // Ease content up once, only for things that start below the screen.
-  if (!calm.matches && 'IntersectionObserver' in window) {
+  // ---------- Laptops: sections open as windows ----------
+  const pins = [...document.querySelectorAll('.pin')];
+  function topOpen() {
+    let best = null;
+    for (const [id, w] of wins) if (state[id] === 'open' && (!best || +w.style.zIndex > +best.style.zIndex)) best = w;
+    return best;
+  }
+  function sync() {
+    const top = topOpen();
+    pins.forEach(p => {
+      const id = p.dataset.open;
+      p.classList.toggle('run', !!state[id]);
+      p.classList.toggle('active', !!top && top.id === id);
+      p.setAttribute('aria-pressed', !!top && top.id === id);
+    });
+    const hash = top ? '#' + top.id : '';
+    if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname + location.search);
+  }
+  function open(id) {
+    const w = wins.get(id);
+    if (!w) return;
+    w.classList.remove('to-bar');
+    w.style.zIndex = ++z;
+    w.classList.add('open');
+    state[id] = 'open';
+    sync();
+    w.querySelector('.pane').focus({ preventScroll: true });
+  }
+  function minimize(id) {
+    const w = wins.get(id);
+    w.classList.add('to-bar');
+    w.classList.remove('open');
+    state[id] = 'min';
+    sync();
+  }
+  function close(id) {
+    wins.get(id).classList.remove('open', 'to-bar');
+    delete state[id];
+    sync();
+  }
+  function home() { for (const id of Object.keys(state)) if (state[id] === 'open') minimize(id); }
+
+  wins.forEach((w, id) => {
+    w.querySelector('.pane').tabIndex = -1;
+    w.querySelector('.c-min').addEventListener('click', () => minimize(id));
+    w.querySelector('.c-close').addEventListener('click', () => close(id));
+    w.addEventListener('pointerdown', () => { if (state[id] === 'open' && topOpen() !== w) { w.style.zIndex = ++z; sync(); } });
+  });
+  pins.forEach(p => p.addEventListener('click', () => {
+    const id = p.dataset.open, top = topOpen();
+    if (top && top.id === id) minimize(id); else open(id);
+  }));
+
+  // Start menu
+  const startBtn = document.querySelector('.start'), menu = document.getElementById('startmenu');
+  const setMenu = on => { menu.hidden = !on; startBtn.setAttribute('aria-expanded', on); };
+  startBtn.addEventListener('click', e => { e.stopPropagation(); setMenu(menu.hidden); });
+  document.addEventListener('click', e => { if (!menu.hidden && !menu.contains(e.target)) setMenu(false); });
+
+  // Search
+  const q = document.getElementById('q'), results = document.getElementById('results');
+  const index = [
+    ['rosc', 'ROSC', 'app savings groups chama rotating product mobile ios android'],
+    ['services', 'Services', 'mobile apps websites backends product design what we make build'],
+    ['process', 'Process', 'how we work listen design build launch timeline steps'],
+    ['platforms', 'Platforms', 'flutter dart supabase react next typescript tools stack firebase figma language models'],
+    ['contact', 'Contact us', 'start project enquiry email hire quote talk'],
+    ['note', "Founder's note", 'founder sherine about story'],
+  ];
+  const iconOf = id => document.querySelector(`.icon[href="#${id}"] span`)?.innerHTML || '';
+  let hits = [], hi = 0;
+  function render() {
+    const t = q.value.trim().toLowerCase();
+    hits = index.filter(([, title, words]) => !t || (title + ' ' + words).toLowerCase().includes(t));
+    hi = 0;
+    results.innerHTML = hits.length
+      ? hits.map(([id, title], i) => `<button type="button" data-id="${id}" class="${i === 0 ? 'hi' : ''}">${iconOf(id)}${title}<span>Open</span></button>`).join('')
+      : '<p>Nothing matches. Try "apps" or "contact".</p>';
+    results.hidden = false;
+  }
+  q.addEventListener('focus', render);
+  q.addEventListener('input', render);
+  q.addEventListener('keydown', e => {
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && hits.length) {
+      e.preventDefault();
+      hi = (hi + (e.key === 'ArrowDown' ? 1 : -1) + hits.length) % hits.length;
+      [...results.querySelectorAll('button')].forEach((b, i) => b.classList.toggle('hi', i === hi));
+    }
+    if (e.key === 'Enter' && hits[hi]) { open(hits[hi][0]); q.value = ''; q.blur(); }
+    if (e.key === 'Escape') q.blur();
+  });
+  results.addEventListener('mousedown', e => {
+    const b = e.target.closest('button[data-id]');
+    if (b) { e.preventDefault(); open(b.dataset.id); q.value = ''; q.blur(); }
+  });
+  q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; }, 100));
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape' || !isOS() || document.activeElement === q) return;
+    if (!menu.hidden) return setMenu(false);
+    const top = topOpen();
+    if (top) close(top.id);
+  });
+
+  // ---------- Links: open windows on laptops, scroll on phones ----------
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    e.preventDefault();
+    setMenu(false);
+    if (isOS()) { if (!id || id === 'top') home(); else open(id); return; }
+    const el = document.getElementById(id || 'top');
+    if (!el) return;
+    const y = el.id === 'top' ? 0 : el.getBoundingClientRect().top + scrollY - nav();
+    scrollTo({ top: y, behavior: calm.matches ? 'auto' : 'smooth' });
+  });
+
+  function mode() {
+    root.classList.toggle('os', wide.matches);
+    if (isOS()) {
+      const id = location.hash.slice(1);
+      if (wins.has(id) && state[id] !== 'open') open(id);
+    }
+  }
+  wide.addEventListener?.('change', mode);
+  addEventListener('hashchange', () => { if (isOS() && wins.has(location.hash.slice(1))) open(location.hash.slice(1)); });
+  mode();
+  if (!isOS() && location.hash.length > 1) {
+    const el = document.getElementById(location.hash.slice(1));
+    if (el) scrollTo(0, el.getBoundingClientRect().top + scrollY - nav());
+  }
+
+  // ---------- Phones: ease content up once as it scrolls in ----------
+  if (!calm.matches && !isOS() && 'IntersectionObserver' in window) {
+    const vh = innerHeight;
     const items = document.querySelectorAll('.screen .num, .screen h2, .screen .lead, .android, .ios, .mac, .phones, .notes, .changelog, form, .next');
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
@@ -659,15 +886,6 @@
     });
   }
 
-  // Anchor links land just under the nav.
-  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const el = document.querySelector(a.getAttribute('href'));
-    if (!el) return;
-    e.preventDefault();
-    const y = el.id === 'top' ? 0 : el.getBoundingClientRect().top + scrollY - nav();
-    scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }));
-
   // Enquiry form: compose an email with everything filled in.
   document.getElementById('enquiry').addEventListener('submit', e => {
     e.preventDefault();
@@ -677,8 +895,7 @@
     const needs = d.getAll('need').join(', ') || 'Not specified';
     const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nLooking for: ${needs}\n\n${d.get('message')}`;
     location.href = `mailto:support@packisher.com?subject=${encodeURIComponent('Project enquiry from ' + d.get('name'))}&body=${encodeURIComponent(body)}`;
-    const n = document.getElementById('formnote');
-    n.textContent = 'If your email app did not open, write to support@packisher.com.';
+    document.getElementById('formnote').textContent = 'If your email app did not open, write to support@packisher.com.';
   });
 })();
 </script>
