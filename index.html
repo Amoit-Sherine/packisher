@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Packisher | Software studio</title>
+<meta name="description" content="Packisher is a software studio that designs, builds and runs mobile apps and websites. Makers of ROSC.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Packisher | Software studio">
+<meta property="og:description" content="Software that starts with people. Makers of ROSC.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://packisher.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  /* Stone: a cool paper grey, with the logo's bronze as the only warm colour. */
+  :root, [data-palette="stone"] {
+    --bg: #E9EBE7;
+    --paper: #F6F7F4;
+    --ink: #15171A;
+    --ink-2: #3A3E42;
+    --muted: #62676B;
+    --faint: #A1A6A8;
+    --rule: #D3D7D1;
+    --bronze: #7A5C38;
+    --bronze-soft: #E7E0D4;
+    --on-bronze: #F6F7F4;
+    --shade: 21, 23, 26;
+  }
+  /* Chalk: near-white, like a printed page. */
+  [data-palette="chalk"] {
+    --bg: #F4F4F1;
+    --paper: #FFFFFF;
+    --ink: #111111;
+    --ink-2: #3A3A38;
+    --muted: #6A6A66;
+    --faint: #ABABA6;
+    --rule: #E2E2DD;
+    --bronze: #7A5C38;
+    --bronze-soft: #F0EBE3;
+    --on-bronze: #FFFFFF;
+    --shade: 17, 17, 17;
+  }
+  /* Night: deep blue-black with the logo's gold. Also the dark mode for the other two. */
+  [data-palette="night"] {
+    --bg: #12151A;
+    --paper: #1A1E25;
+    --ink: #EEF0F2;
+    --ink-2: #C7CCD2;
+    --muted: #8B929A;
+    --faint: #59606A;
+    --rule: #2A3039;
+    --bronze: #C9A66B;
+    --bronze-soft: #2A2720;
+    --on-bronze: #12151A;
+    --shade: 0, 0, 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root, :root[data-palette] {
+      --bg: #12151A;
+      --paper: #1A1E25;
+      --ink: #EEF0F2;
+      --ink-2: #C7CCD2;
+      --muted: #8B929A;
+      --faint: #59606A;
+      --rule: #2A3039;
+      --bronze: #C9A66B;
+      --bronze-soft: #2A2720;
+      --on-bronze: #12151A;
+      --shade: 0, 0, 0;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--ink); color: var(--ink); font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .brand-bar { height: 6px; background: var(--bronze); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  .display { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 700; line-height: .95; letter-spacing: .2px; }
+  .serif { font-family: Newsreader, Georgia, serif; font-style: italic; font-weight: 400; }
+  .kicker { font: 600 12px/1 Inter, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+
+  /* Header */
+  header .wrap { display: flex; align-items: center; height: 76px; gap: 28px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .brand b { font: 700 26px/1 "Barlow Condensed", sans-serif; letter-spacing: .5px; }
+  header nav { margin-left: auto; display: flex; gap: 26px; }
+  header nav a { text-decoration: none; font-size: 15px; color: var(--ink-2); }
+  header nav a:hover { color: var(--bronze); }
+  .link-btn { font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--bronze); padding-bottom: 2px; }
+
+  /* Hero */
+  .hero { min-height: 100svh; display: flex; flex-direction: column; }
+  .hero-main { flex: 1; display: grid; grid-template-columns: 1.25fr .75fr; gap: 40px; align-items: center; padding-top: 24px; padding-bottom: 40px; }
+  .hero h1 { font-size: clamp(54px, 8.6vw, 116px); text-transform: uppercase; margin: 22px 0 26px; }
+  .hero h1 .serif { display: block; text-transform: none; font-size: .8em; line-height: 1.05; color: var(--bronze); letter-spacing: 0; }
+  .hero-lede { font-size: 19px; color: var(--ink-2); max-width: 540px; margin: 0; }
+  .mark { width: 100%; max-width: 360px; justify-self: end; color: var(--bronze); }
+  .mark .p { fill: currentColor; fill-opacity: .08; fill-rule: evenodd; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+  .mark .d { fill: currentColor; opacity: 0; animation: dot .5s ease forwards; }
+  .mark .d.o { fill: none; stroke: currentColor; stroke-width: 1.5; }
+  @keyframes dot { to { opacity: var(--o, .75); } }
+  .values { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+  .values div { padding: 20px 24px 28px 0; }
+  .values div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+  .values b { display: block; font: 700 22px/1.1 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; }
+  .values span { color: var(--ink-2); font-size: 15px; }
+
+  /* The deck: each section is a card that slides over the one before. */
+  .deck { position: relative; }
+  .card { position: sticky; top: 0; background: var(--bg); border-radius: 28px 28px 0 0; box-shadow: 0 -18px 50px rgba(var(--shade), .10); transform-origin: 50% var(--oy, 0px); transform: scale(calc(1 - var(--p, 0) * .05)); will-change: transform; }
+  .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(var(--shade)); opacity: calc(var(--p, 0) * .28); pointer-events: none; }
+  .card.alt { background: var(--paper); }
+  .card.hero { border-radius: calc(var(--p, 0) * 28px); box-shadow: none; }
+  .card:last-child { transform: none; }
+
+  /* Numbered sections */
+  section { padding: 88px 0 104px; }
+  .sec-head { display: grid; grid-template-columns: 120px 1fr; gap: 24px; margin-bottom: 44px; }
+  .num { font: 700 18px/1 "Barlow Condensed", sans-serif; color: var(--bronze); letter-spacing: .08em; padding-top: 10px; border-top: 2px solid var(--bronze); align-self: start; }
+  .sec-head h2 { font-size: clamp(40px, 5.6vw, 64px); margin: 0; text-transform: uppercase; }
+  .sec-head p { margin: 14px 0 0; color: var(--ink-2); font-size: 18px; max-width: 620px; }
+  .indent { margin-left: 144px; }
+
+  /* ROSC feature */
+  .rosc { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .rosc-id { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .rosc-id img { width: 56px; height: 56px; border-radius: 15px; }
+  .rosc-id b { font-size: 22px; }
+  .rosc-id span { display: block; color: var(--muted); font-size: 14px; }
+  .story { font-size: 17px; color: var(--ink-2); margin: 0 0 28px; }
+  .changelog { border-top: 1px solid var(--rule); }
+  .changelog .head { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0 6px; }
+  .changelog .head b { font: 700 22px/1 "Barlow Condensed", sans-serif; letter-spacing: .4px; }
+  .pill { font-size: 12px; font-weight: 600; color: var(--bronze); background: var(--bronze-soft); padding: 4px 10px; border-radius: 999px; }
+  .changelog ul { list-style: none; margin: 0; padding: 0; }
+  .changelog li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--rule); color: var(--ink-2); font-size: 15.5px; }
+  .changelog li::before { content: ""; width: 7px; height: 7px; margin-top: 9px; border-radius: 50%; background: var(--bronze); }
+  .changelog li b { color: var(--ink); font-weight: 600; }
+  .more { display: inline-block; margin-top: 22px; }
+  .phones { position: relative; height: 560px; }
+  .phone { position: absolute; width: 250px; aspect-ratio: 1179 / 2556; border-radius: 38px; padding: 8px; background: #1A1814; box-shadow: 0 28px 60px rgba(26,24,20,.22); }
+  .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 30px; }
+  .phone::after { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 74px; height: 20px; background: #1A1814; border-radius: 999px; }
+  .phone.a { left: 0; top: 40px; transform: rotate(-3deg); }
+  .phone.b { right: 0; top: 0; transform: rotate(2.5deg); }
+
+  /* Services list */
+  .services { border-top: 1px solid var(--ink); }
+  .svc { display: grid; grid-template-columns: 36px 1fr 1.3fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  .svc .n { font: 600 14px/1 Inter, sans-serif; color: var(--faint); }
+  .svc h3 { margin: 0; font-size: 34px; text-transform: uppercase; }
+  .svc p { margin: 0; color: var(--ink-2); }
+
+  /* Process */
+  .process { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+  .process::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; border-top: 1px dashed var(--faint); }
+  .stage { padding-right: 24px; position: relative; }
+  .stage::before { content: ""; display: block; width: 15px; height: 15px; border-radius: 50%; background: var(--paper); border: 2px solid var(--bronze); margin-bottom: 22px; position: relative; }
+  .stage:last-child::before { background: var(--bronze); }
+  .stage h3 { margin: 0 0 8px; font-size: 28px; text-transform: uppercase; }
+  .stage p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* Note */
+  .note { background: var(--bg); border: 1px solid var(--rule); padding: 44px 48px; position: relative; }
+  .note::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--bronze); }
+  .note blockquote { margin: 0; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.45; color: var(--ink); }
+  .note .sig { margin-top: 26px; display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 15px; }
+  .note .sig b { color: var(--ink); font-weight: 600; }
+  .note .sig img { width: 30px; height: 30px; border-radius: 8px; }
+
+  /* Work with us */
+  .work { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; }
+  .work ol { margin: 0; padding: 0; list-style: none; counter-reset: w; }
+  .work li { counter-increment: w; display: grid; grid-template-columns: 44px 1fr; padding: 16px 0; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+  .work li::before { content: counter(w, decimal-leading-zero); font: 700 18px/1.6 "Barlow Condensed", sans-serif; color: var(--bronze); }
+  .work li b { color: var(--ink); font-weight: 600; }
+  .ask { background: var(--ink); color: var(--bg); padding: 36px; }
+  .ask h3 { margin: 0 0 12px; font-size: 40px; text-transform: uppercase; color: var(--bg); }
+  .ask p { color: color-mix(in srgb, var(--bg) 78%, transparent); margin: 0 0 26px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 24px; background: var(--bronze); color: var(--on-bronze); font-weight: 600; text-decoration: none; border-radius: 2px; }
+  .btn:hover { filter: brightness(1.08); }
+  .ask small { display: block; margin-top: 14px; color: color-mix(in srgb, var(--bg) 60%, transparent); }
+  @media (prefers-color-scheme: dark) { .ask { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); } .ask h3 { color: var(--ink); } .ask p { color: var(--ink-2); } .ask small { color: var(--muted); } }
+
+  footer { padding: 40px 0 56px; background: var(--bg); position: relative; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; color: var(--muted); font-size: 14px; }
+  footer .links { margin-left: auto; display: flex; gap: 22px; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--bronze); }
+
+  @media (max-width: 900px) {
+    .sec-head { grid-template-columns: 1fr; gap: 14px; }
+    .num { width: 64px; }
+    .indent { margin-left: 0; }
+    .rosc, .work { grid-template-columns: 1fr; gap: 40px; }
+    .phones { height: 480px; max-width: 460px; }
+    .phone { width: 210px; }
+    .svc { grid-template-columns: 1fr; gap: 8px; }
+    .process { grid-template-columns: 1fr 1fr; row-gap: 36px; }
+    .process::before { display: none; }
+    .hero-main { grid-template-columns: 1fr; gap: 8px; }
+    .mark { max-width: 220px; justify-self: start; order: -1; }
+  }
+  @media (max-width: 600px) {
+    header nav { display: none; }
+    header .link-btn { margin-left: auto; }
+    .wrap { padding: 0 20px; }
+    .mark { max-width: 132px; }
+    .hero-lede { font-size: 17px; }
+    .values { grid-template-columns: 1fr; }
+    .values div, .values div + div { padding: 16px 0; border-left: 0; }
+    .values div + div { border-top: 1px solid var(--rule); }
+    section { padding: 56px 0 72px; }
+    .card { border-radius: 22px 22px 0 0; }
+    .phones { height: 400px; }
+    .phone { width: 172px; border-radius: 30px; padding: 6px; }
+    .phone img { border-radius: 24px; }
+    .process { grid-template-columns: 1fr; }
+    .note { padding: 30px 26px; }
+    .ask { padding: 28px 24px; }
+    footer .links { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transform: none !important; }
+    .card::after { display: none; }
+    .mark .d { animation: none; opacity: var(--o, .75); }
+  }
+</style>
+</head>
+<body>
+<main class="deck">
+  <div class="card hero">
+    <div class="brand-bar"></div>
+    <header>
+      <div class="wrap">
+        <a class="brand" href="/"><img src="/assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
+        <nav aria-label="Main">
+          <a href="#rosc">ROSC</a>
+          <a href="#make">What we make</a>
+          <a href="#process">How we work</a>
+        </nav>
+        <a class="link-btn" href="#work">Work with us</a>
+      </div>
+    </header>
+    <div class="wrap hero-main">
+      <div>
+        <div class="kicker">Software studio</div>
+        <h1 class="display">Software that starts <span class="serif">with people.</span></h1>
+        <p class="hero-lede">We design, build and look after mobile apps and websites, shaped around how people already live and work. Our first product, ROSC, grew out of a family savings group.</p>
+      </div>
+      <svg class="mark" viewBox="0 0 170 160" aria-hidden="true">
+        <path class="p" d="M26 22H108Q112 22 112 26V94Q112 98 108 98H44V134Q44 138 40 138H26Q22 138 22 134V26Q22 22 26 22ZM44 44V76H90V44Z"/>
+        <circle class="d" cx="126" cy="108" r="4" style="--o:.75;animation-delay:0.40s"/><circle class="d" cx="126" cy="121" r="4" style="--o:.75;animation-delay:0.52s"/><circle class="d" cx="126" cy="134" r="4" style="--o:.75;animation-delay:0.64s"/><circle class="d" cx="139" cy="108" r="4" style="--o:.75;animation-delay:0.76s"/><circle class="d o" cx="139" cy="121" r="4" style="--o:.35;animation-delay:0.88s"/><circle class="d o" cx="139" cy="134" r="4" style="--o:.35;animation-delay:1.00s"/><circle class="d o" cx="152" cy="108" r="4" style="--o:.35;animation-delay:1.12s"/><circle class="d o" cx="152" cy="121" r="4" style="--o:.35;animation-delay:1.24s"/>
+      </svg>
+    </div>
+    <div class="wrap">
+      <div class="values">
+        <div><b>People first</b><span>We start with the people who will use it and design around their day.</span></div>
+        <div><b>Built to last</b><span>Tested in real life and looked after long past launch.</span></div>
+        <div><b>Light by design</b><span>Small, fast software that runs well on older phones and slow connections.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="rosc" class="card">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="num">01</div>
+        <div>
+          <h2 class="display">Now shipping: ROSC</h2>
+          <p>Live on iOS and Android.</p>
+        </div>
+      </div>
+      <div class="rosc indent">
+        <div>
+          <div class="rosc-id">
+            <img src="/assets/rosc-icon.png" alt="ROSC app icon">
+            <div><b>ROSC</b><span>Contributions, payouts and records for savings groups</span></div>
+          </div>
+          <p class="story">ROSC started with a family savings group, the kind that usually runs on group chats and someone's notebook. Every turn, each member marks their share as sent, the person receiving confirms it, and the whole group sees the same record.</p>
+          <div class="changelog">
+            <div class="head"><b>What's new</b><span class="pill">Version 1.1.0</span></div>
+            <ul>
+              <li><span><b>Invite links</b> that open straight to the right group</span></li>
+              <li><span><b>A group noticeboard</b> for notes, reactions and pinned updates</span></li>
+              <li><span><b>Trust Score history</b>, so members can see their record build</span></li>
+              <li><span><b>Owing groups</b> that follow up missed payments with a clear balance</span></li>
+              <li><span><b>A calmer design</b> in light and dark, with tighter security</span></li>
+            </ul>
+          </div>
+          <a class="link-btn more" href="https://rosc.packisher.com">Visit rosc.packisher.com</a>
+        </div>
+        <div class="phones" aria-hidden="true">
+          <div class="phone a"><img src="/assets/rosc-screen.jpg" alt=""></div>
+          <div class="phone b"><img src="/assets/rosc-turns.jpg" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="make" class="card alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="num">02</div>
+        <div>
+          <h2 class="display">What we make</h2>
+          <p>We take on a few client projects at a time, alongside our own products, and see each one through from the first sketch to launch day and after.</p>
+        </div>
+      </div>
+      <div class="services indent">
+        <div class="svc"><span class="n">A</span><h3 class="display">Mobile apps</h3><p>iOS and Android apps built from one codebase, tested properly and published to the App Store and Google Play.</p></div>
+        <div class="svc"><span class="n">B</span><h3 class="display">Websites</h3><p>Fast, considered websites and web apps, from a company site to booking flows and customer portals.</p></div>
+        <div class="svc"><span class="n">C</span><h3 class="display">Backends</h3><p>Accounts, databases, notifications and admin tools, with security and access rules designed in from the start.</p></div>
+        <div class="svc"><span class="n">D</span><h3 class="display">Product design</h3><p>User flows, screen design and clickable prototypes you can put in front of people before anything is built.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="card">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="num">03</div>
+        <div><h2 class="display">How we work</h2></div>
+      </div>
+      <div class="process indent">
+        <div class="stage"><h3 class="display">Listen</h3><p>We learn how your business runs and who the software is really for.</p></div>
+        <div class="stage"><h3 class="display">Design</h3><p>We map the flows and design the screens, and you try a working prototype.</p></div>
+        <div class="stage"><h3 class="display">Build</h3><p>We build in short stages and share a preview at every step.</p></div>
+        <div class="stage"><h3 class="display">Launch</h3><p>We publish, then stay on for fixes, updates and what comes next.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card alt">
+    <div class="wrap">
+      <div class="note indent">
+        <blockquote class="serif">“We build software the way we would want it built for us: thought through, tested in real life and looked after long after launch.”</blockquote>
+        <div class="sig"><img src="/assets/packisher-logo.svg" alt=""><span><b>Sherine Amoit</b>, Founder, Packisher</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="card">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="num">04</div>
+        <div>
+          <h2 class="display">Work with us</h2>
+          <p>Have an app or website in mind? Here is how it starts.</p>
+        </div>
+      </div>
+      <div class="work indent">
+        <ol>
+          <li><span><b>Tell us about it.</b> What it is for, who will use it and roughly when you would like it live.</span></li>
+          <li><span><b>We reply within two business days</b> with questions or a first outline.</span></li>
+          <li><span><b>You get a written plan</b> covering scope, timeline and price before any work begins.</span></li>
+        </ol>
+        <div class="ask">
+          <h3 class="display">Start the conversation</h3>
+          <p>A few sentences is plenty. Links, sketches or screenshots of anything you like are welcome.</p>
+          <a class="btn" href="mailto:support@packisher.com?subject=Project%20enquiry">Email the studio</a>
+          <small>support@packisher.com</small>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/packisher-logo.svg" alt="" style="width:26px;height:26px;border-radius:7px"><b style="font-size:20px">Packisher</b></a>
+    <span>&copy; 2026 Packisher</span>
+    <div class="links">
+      <a href="https://rosc.packisher.com">ROSC</a>
+      <a href="https://rosc.packisher.com/privacy">ROSC privacy</a>
+      <a href="https://logistics.packisher.com">Packisher Logistics</a>
+      <a href="#work">Work with us</a>
+    </div>
+  </div>
+</footer>
+<script>
+(() => {
+  const p = new URLSearchParams(location.search).get('palette');
+  if (p) document.documentElement.dataset.palette = p;
+  const cards = [...document.querySelectorAll('.deck > .card')];
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  let vh = innerHeight, queued = false;
+  function layout() {
+    vh = innerHeight;
+    // A card taller than the screen sticks once its bottom reaches the bottom.
+    for (const c of cards) {
+      const top = Math.min(0, vh - c.offsetHeight);
+      c.style.top = top + 'px';
+      c.style.setProperty('--oy', (-top + vh * 0.4) + 'px');
+    }
+    update();
+  }
+  function update() {
+    queued = false;
+    if (still.matches) return;
+    cards.forEach((c, i) => {
+      const next = cards[i + 1];
+      if (!next) return;
+      const t = next.getBoundingClientRect().top;
+      const p = Math.min(1, Math.max(0, 1 - t / vh));
+      c.style.setProperty('--p', p.toFixed(3));
+    });
+  }
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', layout);
+  addEventListener('load', layout);
+  layout();
+})();
+</script>
+</body>
+</html>
