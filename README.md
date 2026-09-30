@@ -8,14 +8,8 @@ The site at packisher.com. Plain HTML, no build step.
 
 ## Colours
 
-Three looks are built in. Preview any of them by adding `?palette=` to the address:
-
-- `/?palette=stone` (default)
-- `/?palette=chalk`
-- `/?palette=night`
-
-Dark mode always uses night. To change the default, edit the first block of
-colours at the top of the `<style>` in `index.html`.
+Ivory with a slow sage wash behind each section. All colours are the variables
+at the top of the `<style>` in `index.html` (light first, then dark mode).
 
 ## Deploy (Vercel)
 

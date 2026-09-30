@@ -2,281 +2,382 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Packisher | Software studio</title>
-<meta name="description" content="Packisher is a software studio that designs, builds and runs mobile apps and websites. Makers of ROSC.">
+<meta name="description" content="Packisher is a software studio that designs, builds and looks after mobile apps and websites. Makers of ROSC.">
+<meta name="theme-color" content="#F7F5EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141A16" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Packisher | Software studio">
-<meta property="og:description" content="Software that starts with people. Makers of ROSC.">
+<meta property="og:description" content="Apps and websites, built properly. Makers of ROSC.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://packisher.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
 <style>
-  /* Stone: a cool paper grey, with the logo's bronze as the only warm colour. */
-  :root, [data-palette="stone"] {
-    --bg: #E9EBE7;
-    --paper: #F6F7F4;
-    --ink: #15171A;
-    --ink-2: #3A3E42;
-    --muted: #62676B;
-    --faint: #A1A6A8;
-    --rule: #D3D7D1;
-    --bronze: #7A5C38;
-    --bronze-soft: #E7E0D4;
-    --on-bronze: #F6F7F4;
-    --shade: 21, 23, 26;
-  }
-  /* Chalk: near-white, like a printed page. */
-  [data-palette="chalk"] {
-    --bg: #F4F4F1;
-    --paper: #FFFFFF;
-    --ink: #111111;
-    --ink-2: #3A3A38;
-    --muted: #6A6A66;
-    --faint: #ABABA6;
-    --rule: #E2E2DD;
-    --bronze: #7A5C38;
-    --bronze-soft: #F0EBE3;
-    --on-bronze: #FFFFFF;
-    --shade: 17, 17, 17;
-  }
-  /* Night: deep blue-black with the logo's gold. Also the dark mode for the other two. */
-  [data-palette="night"] {
-    --bg: #12151A;
-    --paper: #1A1E25;
-    --ink: #EEF0F2;
-    --ink-2: #C7CCD2;
-    --muted: #8B929A;
-    --faint: #59606A;
-    --rule: #2A3039;
-    --bronze: #C9A66B;
-    --bronze-soft: #2A2720;
-    --on-bronze: #12151A;
-    --shade: 0, 0, 0;
+  :root {
+    --bg: #F7F5EE;
+    --paper: #FCFBF7;
+    --ink: #1B211D;
+    --ink-2: #3A433D;
+    --muted: #69726B;
+    --faint: #A8B0A7;
+    --rule: #DDE0D5;
+    --brand: #7A5C38;          /* the logo's bronze */
+    --brand-ink: #FCFBF7;
+    --brand-soft: #EFE7DA;
+    --sage: #3F5A48;           /* deep sage for secondary accents */
+    --sage-soft: #E3EADD;
+    --wash-1: #D3DEC9;
+    --wash-2: #EDE3CF;
+    --wash-3: #E6ECDD;
+    --rosc: #2E6B56;           /* ROSC's own green */
+    --rosc-soft: #E8F0EA;
+    --dark-panel: #1B211D;
+    --on-dark: #F2F0E8;
+    --shade: 27, 33, 29;
+    --radius: 26px;
   }
   @media (prefers-color-scheme: dark) {
-    :root, :root[data-palette] {
-      --bg: #12151A;
-      --paper: #1A1E25;
-      --ink: #EEF0F2;
-      --ink-2: #C7CCD2;
-      --muted: #8B929A;
-      --faint: #59606A;
-      --rule: #2A3039;
-      --bronze: #C9A66B;
-      --bronze-soft: #2A2720;
-      --on-bronze: #12151A;
+    :root {
+      --bg: #141A16;
+      --paper: #19201B;
+      --ink: #EEF1EA;
+      --ink-2: #C9D1C6;
+      --muted: #929C92;
+      --faint: #5D675F;
+      --rule: #2B342E;
+      --brand: #C8A677;
+      --brand-ink: #141A16;
+      --brand-soft: #2A251D;
+      --sage: #A9C09F;
+      --sage-soft: #222C25;
+      --wash-1: #1F2D25;
+      --wash-2: #2A271F;
+      --wash-3: #1C2620;
+      --rosc: #6BB08F;
+      --rosc-soft: #18231D;
+      --dark-panel: #1F2721;
+      --on-dark: #EEF1EA;
       --shade: 0, 0, 0;
     }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--ink); color: var(--ink); font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
   a { color: inherit; }
   img { display: block; max-width: 100%; }
-  .brand-bar { height: 6px; background: var(--bronze); }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
   .display { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 700; line-height: .95; letter-spacing: .2px; }
   .serif { font-family: Newsreader, Georgia, serif; font-style: italic; font-weight: 400; }
   .kicker { font: 600 12px/1 Inter, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  /* Buttons and links */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 50px; padding: 0 22px; border-radius: 999px; background: var(--brand); color: var(--brand-ink); font-weight: 600; font-size: 15px; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s ease, filter .2s ease; }
+  .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--rule); }
+  .btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .link { font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--brand); padding-bottom: 2px; }
+  .link:hover { color: var(--brand); }
 
   /* Header */
+  .brand-bar { height: 5px; background: var(--brand); }
   header .wrap { display: flex; align-items: center; height: 76px; gap: 28px; }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .brand img { width: 36px; height: 36px; border-radius: 9px; }
   .brand b { font: 700 26px/1 "Barlow Condensed", sans-serif; letter-spacing: .5px; }
   header nav { margin-left: auto; display: flex; gap: 26px; }
   header nav a { text-decoration: none; font-size: 15px; color: var(--ink-2); }
-  header nav a:hover { color: var(--bronze); }
-  .link-btn { font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--bronze); padding-bottom: 2px; }
+  header nav a:hover { color: var(--brand); }
+  header .btn { height: 40px; padding: 0 18px; font-size: 14px; }
+
+  /* Screens that stack: the one you leave settles back, the next slides over it. */
+  .stack { position: sticky; top: 0; transform-origin: 50% var(--oy, 30vh); will-change: transform; }
+  .stack::after { content: ""; position: absolute; inset: 0; z-index: 3; background: rgb(var(--shade)); opacity: calc(var(--t, 0) * .28); pointer-events: none; border-radius: inherit; }
+  .over { position: relative; z-index: 1; border-radius: var(--radius) var(--radius) 0 0; box-shadow: 0 -20px 50px rgba(var(--shade), .10); }
 
   /* Hero */
-  .hero { min-height: 100svh; display: flex; flex-direction: column; }
-  .hero-main { flex: 1; display: grid; grid-template-columns: 1.25fr .75fr; gap: 40px; align-items: center; padding-top: 24px; padding-bottom: 40px; }
-  .hero h1 { font-size: clamp(54px, 8.6vw, 116px); text-transform: uppercase; margin: 22px 0 26px; }
-  .hero h1 .serif { display: block; text-transform: none; font-size: .8em; line-height: 1.05; color: var(--bronze); letter-spacing: 0; }
-  .hero-lede { font-size: 19px; color: var(--ink-2); max-width: 540px; margin: 0; }
-  .mark { width: 100%; max-width: 360px; justify-self: end; color: var(--bronze); }
-  .mark .p { fill: currentColor; fill-opacity: .08; fill-rule: evenodd; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
-  .mark .d { fill: currentColor; opacity: 0; animation: dot .5s ease forwards; }
-  .mark .d.o { fill: none; stroke: currentColor; stroke-width: 1.5; }
-  @keyframes dot { to { opacity: var(--o, .75); } }
-  .values { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
-  .values div { padding: 20px 24px 28px 0; }
-  .values div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
-  .values b { display: block; font: 700 22px/1.1 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; }
-  .values span { color: var(--ink-2); font-size: 15px; }
+  .hero, .note-screen { border-radius: calc(var(--t, 0) * 26px); }
+  .hero { min-height: 100svh; display: flex; flex-direction: column; background: var(--bg); overflow: clip; isolation: isolate; }
+  .wash { position: absolute; inset: -20% -10%; z-index: -1; pointer-events: none; background:
+      radial-gradient(30% 36% at 70% 38%, var(--wash-1), transparent 70%),
+      radial-gradient(26% 32% at 88% 70%, var(--wash-2), transparent 70%),
+      radial-gradient(34% 40% at 18% 80%, var(--wash-3), transparent 72%);
+    animation: drift 28s ease-in-out infinite alternate; will-change: transform; }
+  @keyframes drift { from { transform: translate3d(0,0,0) rotate(0); } to { transform: translate3d(-4%,3%,0) rotate(-5deg); } }
+  .hero-main { flex: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding-top: 20px; padding-bottom: 56px; }
+  .hero h1 { font-size: clamp(54px, 8.2vw, 112px); text-transform: uppercase; margin: 20px 0 24px; }
+  .hero h1 .serif { display: block; text-transform: none; font-size: .8em; line-height: 1.1; color: var(--brand); letter-spacing: 0; }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 540px; margin: 0 0 30px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .live { margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; color: var(--muted); font-size: 14px; }
+  .live span { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-2); }
+  .live svg { width: 16px; height: 16px; fill: currentColor; }
 
-  /* The deck: each section is a card that slides over the one before. */
-  .deck { position: relative; }
-  .card { position: sticky; top: 0; background: var(--bg); border-radius: 28px 28px 0 0; box-shadow: 0 -18px 50px rgba(var(--shade), .10); transform-origin: 50% var(--oy, 0px); transform: scale(calc(1 - var(--p, 0) * .05)); will-change: transform; }
-  .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(var(--shade)); opacity: calc(var(--p, 0) * .28); pointer-events: none; }
-  .card.alt { background: var(--paper); }
-  .card.hero { border-radius: calc(var(--p, 0) * 28px); box-shadow: none; }
-  .card:last-child { transform: none; }
+  /* Phone frames */
+  .phone { position: relative; width: 270px; aspect-ratio: 393 / 852; border-radius: 44px; padding: 9px; background: #121513; box-shadow: 0 40px 80px -20px rgba(var(--shade), .35), 0 0 0 1px rgba(255,255,255,.06) inset; }
+  .phone img, .phone picture { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 35px; }
+  .phone::after { content: ""; position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 84px; height: 24px; background: #121513; border-radius: 999px; }
+  .hero-art { position: relative; justify-self: center; }
+  .hero-art .phone { transform: rotate(3deg); }
+  .toast { position: absolute; left: -64px; top: 128px; width: 262px; display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 18px; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 18px 40px -12px rgba(var(--shade), .28); font-size: 13px; line-height: 1.35; color: var(--ink-2); }
+  .toast img { width: 36px; height: 36px; border-radius: 9px; flex: none; }
+  .toast b { display: block; color: var(--ink); font-size: 13.5px; }
+  .toast.b { left: auto; right: -40px; top: auto; bottom: 90px; width: 214px; }
+  .toast .tick { width: 36px; height: 36px; border-radius: 50%; flex: none; display: grid; place-items: center; background: var(--rosc-soft); color: var(--rosc); font-weight: 700; }
 
-  /* Numbered sections */
-  section { padding: 88px 0 104px; }
-  .sec-head { display: grid; grid-template-columns: 120px 1fr; gap: 24px; margin-bottom: 44px; }
-  .num { font: 700 18px/1 "Barlow Condensed", sans-serif; color: var(--bronze); letter-spacing: .08em; padding-top: 10px; border-top: 2px solid var(--bronze); align-self: start; }
-  .sec-head h2 { font-size: clamp(40px, 5.6vw, 64px); margin: 0; text-transform: uppercase; }
-  .sec-head p { margin: 14px 0 0; color: var(--ink-2); font-size: 18px; max-width: 620px; }
+  /* Sections */
+  section { position: relative; background: var(--bg); padding: 104px 0; }
+  .sec-head { display: grid; grid-template-columns: 120px 1fr; gap: 24px; margin-bottom: 52px; }
+  .num { font: 700 17px/1 "Barlow Condensed", sans-serif; color: var(--brand); letter-spacing: .08em; padding-top: 10px; border-top: 2px solid var(--brand); align-self: start; }
+  .sec-head h2 { font: 600 clamp(30px, 3.5vw, 46px)/1.1 Inter, sans-serif; letter-spacing: -.025em; margin: 0; max-width: 760px; }
+  .sec-head h2 .serif { font-size: 1.08em; letter-spacing: 0; color: var(--brand); }
+  .sec-head p { margin: 16px 0 0; color: var(--ink-2); font-size: 18px; max-width: 640px; }
   .indent { margin-left: 144px; }
 
-  /* ROSC feature */
+  /* ROSC */
+  #rosc { background: var(--rosc-soft); overflow: clip; }
+  #rosc::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(40% 50% at 85% 40%, color-mix(in srgb, var(--rosc) 14%, transparent), transparent 70%); }
+  #rosc .num { color: var(--rosc); border-color: var(--rosc); }
+  #rosc .sec-head h2 .serif { color: var(--rosc); }
   .rosc { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   .rosc-id { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
   .rosc-id img { width: 56px; height: 56px; border-radius: 15px; }
-  .rosc-id b { font-size: 22px; }
+  .rosc-id b { font-size: 20px; }
   .rosc-id span { display: block; color: var(--muted); font-size: 14px; }
-  .story { font-size: 17px; color: var(--ink-2); margin: 0 0 28px; }
-  .changelog { border-top: 1px solid var(--rule); }
+  .story { font-size: 17px; color: var(--ink-2); margin: 0 0 26px; }
+  .changelog { border-top: 1px solid color-mix(in srgb, var(--rosc) 25%, var(--rule)); }
   .changelog .head { display: flex; justify-content: space-between; align-items: baseline; padding: 16px 0 6px; }
-  .changelog .head b { font: 700 22px/1 "Barlow Condensed", sans-serif; letter-spacing: .4px; }
-  .pill { font-size: 12px; font-weight: 600; color: var(--bronze); background: var(--bronze-soft); padding: 4px 10px; border-radius: 999px; }
+  .changelog .head b { font: 700 21px/1 "Barlow Condensed", sans-serif; letter-spacing: .4px; }
+  .pill { font-size: 12px; font-weight: 600; color: var(--rosc); background: color-mix(in srgb, var(--rosc) 12%, transparent); padding: 4px 10px; border-radius: 999px; }
   .changelog ul { list-style: none; margin: 0; padding: 0; }
-  .changelog li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--rule); color: var(--ink-2); font-size: 15.5px; }
-  .changelog li::before { content: ""; width: 7px; height: 7px; margin-top: 9px; border-radius: 50%; background: var(--bronze); }
+  .changelog li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 11px 0; border-bottom: 1px dashed color-mix(in srgb, var(--rosc) 22%, var(--rule)); color: var(--ink-2); font-size: 15.5px; }
+  .changelog li::before { content: ""; width: 7px; height: 7px; margin-top: 9px; border-radius: 50%; background: var(--rosc); }
   .changelog li b { color: var(--ink); font-weight: 600; }
-  .more { display: inline-block; margin-top: 22px; }
-  .phones { position: relative; height: 560px; }
-  .phone { position: absolute; width: 250px; aspect-ratio: 1179 / 2556; border-radius: 38px; padding: 8px; background: #1A1814; box-shadow: 0 28px 60px rgba(26,24,20,.22); }
-  .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 30px; }
-  .phone::after { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 74px; height: 20px; background: #1A1814; border-radius: 999px; }
-  .phone.a { left: 0; top: 40px; transform: rotate(-3deg); }
-  .phone.b { right: 0; top: 0; transform: rotate(2.5deg); }
+  .rosc .ctas { margin-top: 26px; }
+  .rosc .btn { background: var(--rosc); color: var(--brand-ink); }
+  .phones { position: relative; height: 600px; }
+  .phones .phone { position: absolute; width: 258px; }
+  .phones .a { left: 0; top: 52px; transform: rotate(-4deg); }
+  .phones .b { right: 0; top: 0; transform: rotate(3deg); }
 
-  /* Services list */
+  /* Services */
   .services { border-top: 1px solid var(--ink); }
   .svc { display: grid; grid-template-columns: 36px 1fr 1.3fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
   .svc .n { font: 600 14px/1 Inter, sans-serif; color: var(--faint); }
-  .svc h3 { margin: 0; font-size: 34px; text-transform: uppercase; }
+  .svc h3 { margin: 0; font: 600 23px/1.2 Inter, sans-serif; letter-spacing: -.015em; }
   .svc p { margin: 0; color: var(--ink-2); }
+
+  /* Platforms */
+  #platforms { background: var(--paper); }
+  .stackgrid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); }
+  .group { padding: 22px 22px 8px 0; }
+  .group + .group { padding-left: 22px; border-left: 1px solid var(--rule); }
+  .group h3 { margin: 0 0 4px; font: 600 15px/1.3 Inter, sans-serif; }
+  .group > p { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+  .logos { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .logos li { display: flex; align-items: center; gap: 12px; padding: 9px 0; font-size: 15px; color: var(--ink-2); }
+  .logos svg { width: 22px; height: 22px; fill: var(--ink); opacity: .82; flex: none; transition: fill .25s ease, opacity .25s ease; }
+  .logos li:hover svg { fill: var(--c); opacity: 1; }
+  .logos small { color: var(--muted); font-size: 13px; margin-left: auto; }
+  .models { margin-top: 36px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; padding: 22px 26px; border-radius: 18px; background: var(--sage-soft); }
+  .models .mk { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--paper); }
+  .models .mk svg { width: 24px; height: 24px; fill: #D97757; }
+  .models p { margin: 0; color: var(--ink-2); }
+  .models b { color: var(--ink); }
 
   /* Process */
   .process { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
   .process::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; border-top: 1px dashed var(--faint); }
   .stage { padding-right: 24px; position: relative; }
-  .stage::before { content: ""; display: block; width: 15px; height: 15px; border-radius: 50%; background: var(--paper); border: 2px solid var(--bronze); margin-bottom: 22px; position: relative; }
-  .stage:last-child::before { background: var(--bronze); }
-  .stage h3 { margin: 0 0 8px; font-size: 28px; text-transform: uppercase; }
+  .stage::before { content: ""; display: block; width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 2px solid var(--brand); margin-bottom: 22px; position: relative; }
+  .stage:last-child::before { background: var(--brand); }
+  .stage h3 { margin: 0 0 8px; font: 600 21px/1.2 Inter, sans-serif; letter-spacing: -.015em; }
   .stage p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
 
-  /* Note */
-  .note { background: var(--bg); border: 1px solid var(--rule); padding: 44px 48px; position: relative; }
-  .note::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--bronze); }
-  .note blockquote { margin: 0; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.45; color: var(--ink); }
-  .note .sig { margin-top: 26px; display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 15px; }
+  /* Founder note */
+  .note-screen { min-height: 100svh; display: flex; align-items: center; background: var(--bg); overflow: clip; isolation: isolate; }
+  .note-screen .wash { animation: none; }
+  .note { max-width: 860px; }
+  .note blockquote { margin: 0; font-size: clamp(26px, 3.4vw, 42px); line-height: 1.35; color: var(--ink); }
+  .note .sig { margin-top: 30px; color: var(--muted); font-size: 15px; }
   .note .sig b { color: var(--ink); font-weight: 600; }
-  .note .sig img { width: 30px; height: 30px; border-radius: 8px; }
 
-  /* Work with us */
-  .work { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; }
-  .work ol { margin: 0; padding: 0; list-style: none; counter-reset: w; }
-  .work li { counter-increment: w; display: grid; grid-template-columns: 44px 1fr; padding: 16px 0; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
-  .work li::before { content: counter(w, decimal-leading-zero); font: 700 18px/1.6 "Barlow Condensed", sans-serif; color: var(--bronze); }
-  .work li b { color: var(--ink); font-weight: 600; }
-  .ask { background: var(--ink); color: var(--bg); padding: 36px; }
-  .ask h3 { margin: 0 0 12px; font-size: 40px; text-transform: uppercase; color: var(--bg); }
-  .ask p { color: color-mix(in srgb, var(--bg) 78%, transparent); margin: 0 0 26px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 24px; background: var(--bronze); color: var(--on-bronze); font-weight: 600; text-decoration: none; border-radius: 2px; }
-  .btn:hover { filter: brightness(1.08); }
-  .ask small { display: block; margin-top: 14px; color: color-mix(in srgb, var(--bg) 60%, transparent); }
-  @media (prefers-color-scheme: dark) { .ask { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); } .ask h3 { color: var(--ink); } .ask p { color: var(--ink-2); } .ask small { color: var(--muted); } }
+  /* Contact */
+  #contact { background: var(--dark-panel); color: var(--on-dark); padding: 104px 0 88px; }
+  #contact .num { color: #C8A677; border-color: #C8A677; }
+  #contact .sec-head h2 { color: var(--on-dark); }
+  #contact .sec-head h2 .serif { color: #C8A677; }
+  #contact .sec-head p { color: color-mix(in srgb, var(--on-dark) 75%, transparent); }
+  .contact { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; }
+  .next { list-style: none; margin: 0; padding: 0; counter-reset: w; }
+  .next li { counter-increment: w; display: grid; grid-template-columns: 40px 1fr; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); color: color-mix(in srgb, var(--on-dark) 78%, transparent); }
+  .next li::before { content: counter(w, decimal-leading-zero); font: 700 17px/1.6 "Barlow Condensed", sans-serif; color: #C8A677; }
+  .next li b { color: var(--on-dark); font-weight: 600; }
+  .direct { margin-top: 28px; font-size: 15px; color: color-mix(in srgb, var(--on-dark) 70%, transparent); }
+  .direct a { color: var(--on-dark); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid #C8A677; }
+  form { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 22px; padding: 30px; display: grid; gap: 18px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  label { display: grid; gap: 8px; font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--on-dark) 80%, transparent); }
+  input, textarea { font: 15px/1.5 Inter, sans-serif; color: var(--on-dark); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 13px 14px; outline: none; transition: border-color .2s; width: 100%; }
+  input:focus, textarea:focus { border-color: #C8A677; }
+  textarea { min-height: 120px; resize: vertical; }
+  fieldset { border: 0; margin: 0; padding: 0; }
+  legend { font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--on-dark) 80%, transparent); margin-bottom: 10px; padding: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips input { position: absolute; opacity: 0; width: 1px; }
+  .chips span { display: inline-block; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); font-size: 14px; font-weight: 500; color: color-mix(in srgb, var(--on-dark) 85%, transparent); cursor: pointer; transition: all .2s; }
+  .chips input:checked + span { background: #C8A677; border-color: #C8A677; color: #1B211D; }
+  .chips input:focus-visible + span { outline: 2px solid #C8A677; outline-offset: 2px; }
+  form .btn { background: #C8A677; color: #1B211D; justify-self: start; }
+  .formnote { font-size: 13px; color: color-mix(in srgb, var(--on-dark) 55%, transparent); margin: -4px 0 0; }
 
-  footer { padding: 40px 0 56px; background: var(--bg); position: relative; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; color: var(--muted); font-size: 14px; }
+  footer { background: var(--dark-panel); color: color-mix(in srgb, var(--on-dark) 60%, transparent); padding: 28px 0 44px; font-size: 14px; position: relative; z-index: 1; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
+  footer b { font: 700 20px/1 "Barlow Condensed", sans-serif; color: var(--on-dark); letter-spacing: .4px; }
   footer .links { margin-left: auto; display: flex; gap: 22px; flex-wrap: wrap; }
   footer a { text-decoration: none; }
-  footer a:hover { color: var(--bronze); }
+  footer a:hover { color: #C8A677; }
 
-  @media (max-width: 900px) {
+  /* Things that ease in as they reach the screen */
+  .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+  .no-js .rv { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    .hero-main { grid-template-columns: 1fr; gap: 56px; padding-bottom: 72px; }
+    .hero-art { justify-self: center; }
     .sec-head { grid-template-columns: 1fr; gap: 14px; }
     .num { width: 64px; }
     .indent { margin-left: 0; }
-    .rosc, .work { grid-template-columns: 1fr; gap: 40px; }
-    .phones { height: 480px; max-width: 460px; }
-    .phone { width: 210px; }
-    .svc { grid-template-columns: 1fr; gap: 8px; }
+    .rosc, .contact { grid-template-columns: 1fr; gap: 44px; }
+    .phones { height: 520px; max-width: 480px; }
+    .phones .phone { width: 220px; }
+    .svc { grid-template-columns: 1fr; gap: 6px; }
+    .stackgrid { grid-template-columns: 1fr 1fr; }
+    .group:nth-child(3) { padding-left: 0; border-left: 0; }
+    .group:nth-child(n+3) { border-top: 1px solid var(--rule); }
     .process { grid-template-columns: 1fr 1fr; row-gap: 36px; }
     .process::before { display: none; }
-    .hero-main { grid-template-columns: 1fr; gap: 8px; }
-    .mark { max-width: 220px; justify-self: start; order: -1; }
   }
-  @media (max-width: 600px) {
-    header nav { display: none; }
-    header .link-btn { margin-left: auto; }
+  @media (max-width: 640px) {
     .wrap { padding: 0 20px; }
-    .mark { max-width: 132px; }
-    .hero-lede { font-size: 17px; }
-    .values { grid-template-columns: 1fr; }
-    .values div, .values div + div { padding: 16px 0; border-left: 0; }
-    .values div + div { border-top: 1px solid var(--rule); }
-    section { padding: 56px 0 72px; }
-    .card { border-radius: 22px 22px 0 0; }
-    .phones { height: 400px; }
-    .phone { width: 172px; border-radius: 30px; padding: 6px; }
-    .phone img { border-radius: 24px; }
+    header nav { display: none; }
+    header .btn { margin-left: auto; }
+    .lede { font-size: 17px; }
+    .phone { width: 232px; border-radius: 38px; padding: 8px; }
+    .phone img, .phone picture { border-radius: 30px; }
+    .phone::after { top: 16px; width: 70px; height: 20px; }
+    .toast { left: -34px; top: 96px; width: 226px; font-size: 12px; }
+    .toast.b { right: -26px; bottom: 70px; width: 190px; }
+    section { padding: 72px 0; }
+    .over { --radius: 22px; }
+    .phones { height: 430px; }
+    .phones .phone { width: 180px; border-radius: 30px; padding: 6px; }
+    .phones .phone img, .phones .phone picture { border-radius: 24px; }
+    .phones .phone::after { top: 12px; width: 54px; height: 16px; }
+    .stackgrid { grid-template-columns: 1fr; }
+    .logos { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+    .logos small { display: none; }
+    .group, .group + .group { padding: 20px 0 8px; border-left: 0; }
+    .group + .group { border-top: 1px solid var(--rule); }
+    .models { grid-template-columns: 1fr; padding: 20px; }
     .process { grid-template-columns: 1fr; }
-    .note { padding: 30px 26px; }
-    .ask { padding: 28px 24px; }
+    .row { grid-template-columns: 1fr; }
+    form { padding: 22px 18px; }
     footer .links { margin-left: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .card { transform: none !important; }
-    .card::after { display: none; }
-    .mark .d { animation: none; opacity: var(--o, .75); }
+    .stack { transform: none !important; }
+    .stack::after { display: none; }
+    .wash { animation: none; }
+    .rv { opacity: 1; transform: none; transition: none; }
+    .btn { transition: none; }
   }
 </style>
 </head>
-<body>
-<main class="deck">
-  <div class="card hero">
+<body class="no-js">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-flutter" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></symbol>
+<symbol id="i-dart" viewBox="0 0 24 24"><path d="M4.105 4.105S9.158 1.58 11.684.316a3.079 3.079 0 0 1 1.481-.315c.766.047 1.677.788 1.677.788L24 9.948v9.789h-4.263V24H9.789l-9-9C.303 14.5 0 13.795 0 13.105c0-.319.18-.818.316-1.105l3.789-7.895zm.679.679v11.787c.002.543.021 1.024.498 1.508L10.204 23h8.533v-4.263L4.784 4.784zm12.055-.678c-.899-.896-1.809-1.78-2.74-2.643-.302-.267-.567-.468-1.07-.462-.37.014-.87.195-.87.195L6.341 4.105l10.498.001z"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+<symbol id="i-android" viewBox="0 0 24 24"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></symbol>
+<symbol id="i-appstore" viewBox="0 0 24 24"><path d="M8.8086 14.9194l6.1107-11.0368c.0837-.1513.1682-.302.2437-.4584.0685-.142.1267-.2854.1646-.4403.0803-.3259.0588-.6656-.066-.9767-.1238-.3095-.3417-.5678-.6201-.7355a1.4175 1.4175 0 0 0-.921-.1924c-.3207.043-.6135.1935-.8443.4288-.1094.1118-.1996.2361-.2832.369-.092.1463-.175.2979-.259.4492l-.3864.6979-.3865-.6979c-.0837-.1515-.1667-.303-.2587-.4492-.0837-.1329-.1739-.2572-.2835-.369-.2305-.2353-.5233-.3857-.844-.429a1.4181 1.4181 0 0 0-.921.1926c-.2784.1677-.4964.426-.6203.7355-.1246.311-.1461.6508-.066.9767.038.155.0962.2984.1648.4403.0753.1564.1598.307.2437.4584l1.248 2.2543-4.8625 8.7825H2.0295c-.1676 0-.3351-.0007-.5026.0092-.1522.009-.3004.0284-.448.0714-.3108.0906-.5822.2798-.7783.548-.195.2665-.3006.5929-.3006.9279 0 .3352.1057.6612.3006.9277.196.2683.4675.4575.7782.548.1477.043.296.0623.4481.0715.1675.01.335.009.5026.009h13.0974c.0171-.0357.059-.1294.1-.2697.415-1.4151-.6156-2.843-2.0347-2.843zM3.113 18.5418l-.7922 1.5008c-.0818.1553-.1644.31-.2384.4705-.067.1458-.124.293-.1611.452-.0785.3346-.0576.6834.0645 1.0029.1212.3175.3346.583.607.7549.2727.172.5891.2416.9013.1975.3139-.044.6005-.1986.8263-.4402.1072-.1148.1954-.2424.2772-.3787.0902-.1503.1714-.3059.2535-.4612L6 19.4636c-.0896-.149-.9473-1.4704-2.887-.9218m20.5861-3.0056a1.4707 1.4707 0 0 0-.779-.5407c-.1476-.0425-.2961-.0616-.4483-.0705-.1678-.0099-.3352-.0091-.503-.0091H18.648l-4.3891-7.817c-.6655.7005-.9632 1.485-1.0773 2.1976-.1655 1.0333.0367 2.0934.546 3.0004l5.2741 9.3933c.084.1494.167.299.2591.4435.0837.131.1739.2537.2836.364.231.2323.5238.3809.8449.4232.3192.0424.643-.0244.9217-.1899.2784-.1653.4968-.4204.621-.7257.1246-.3072.146-.6425.0658-.9641-.0381-.1529-.0962-.2945-.165-.4346-.0753-.1543-.1598-.303-.2438-.4524l-1.216-2.1662h1.596c.1677 0 .3351.0009.5029-.009.1522-.009.3007-.028.4483-.0705a1.4707 1.4707 0 0 0 .779-.5407A1.5386 1.5386 0 0 0 24 16.452a1.539 1.539 0 0 0-.3009-.9158Z"/></symbol>
+<symbol id="i-googleplay" viewBox="0 0 24 24"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></symbol>
+<symbol id="i-xcode" viewBox="0 0 24 24"><path d="M19.06 5.3327c.4517-.1936.7744-.2581 1.097-.1936.5163.1291.7744.5163.968.7098.1936.3872.9034.7744 1.2261.8389.2581.0645.7098-.6453 1.0325-1.2906.3227-.5808.5163-1.3552.4517-1.5488-.0645-.1936-.968-.5808-1.1616-.5808-.1291 0-.3872.1291-.8389.0645-.4517-.0645-.9034-.5808-1.1616-.968-.4517-.6453-1.097-1.0325-1.6778-1.3552-.6453-.3227-1.3552-.5163-2.065-.6453-1.0325-.2581-2.065-.4517-3.0975-.3227-.5808.0645-1.2906.1291-1.8069.3227-.0645 0-.1936.1936-.0645.1936s.5808.0645.5808.0645-.5807.1292-.5807.2583c0 .1291.0645.1291.1291.1291.0645 0 1.4842-.0645 2.065 0 .6453.1291 1.3552.4517 1.8069 1.2261.7744 1.4197.4517 2.7749.2581 3.2266-.968 2.1295-8.6472 15.2294-9.0344 16.1328-.3873.9034-.5163 1.4842.5807 2.065s1.6778.3227 2.0005-.0645c.3872-.5163 7.0339-17.1654 9.2925-18.2624zm-3.6138 8.7117h1.5488c1.0325 0 1.2261.5163 1.2261.7098.0645.5163-.1936 1.1616-1.2261 1.1616h-.968l.7744 1.2906c.4517.7744.2581 1.1616 0 1.4197-.3872.3872-1.2261.3872-1.6778-.4517l-.9034-1.5488c-.6453 1.4197-1.2906 2.9684-2.065 4.7753h4.0009c1.9359 0 3.5492-1.6133 3.5492-3.5492V6.5588c-.0645-.1291-.1936-.0645-.2581 0-.3872.4517-1.4842 2.0004-4.001 7.4856zm-9.8087 8.0019h-.3227c-2.3231 0-4.1945-1.8714-4.1945-4.1945V7.0105c0-2.3231 1.8714-4.1945 4.1945-4.1945h9.3571c-.1936-.1936-.968-.5163-1.7423-.4517-.3227 0-.968.1291-1.3552-.1291-.3872-.3227-.3227-.5163-.9034-.5163H4.9277c-2.6458 0-4.7753 2.1295-4.7753 4.7753v11.7447c0 2.6458 2.1295 4.7753 4.4527 4.7108.6452 0 .8388-.5162 1.0324-.9034zM20.4152 6.9459v10.9058c0 2.3231-1.8714 4.1945-4.1945 4.1945H11.897s-.3872 1.0325.8389 1.0325h3.8719c2.6458 0 4.7753-2.1295 4.7753-4.7753V8.8173c.0646-.9034-.7098-1.4842-.9679-1.8714zm-18.5851.0646v10.8413c0 1.9359 1.6133 3.5492 3.5492 3.5492h.5808c0-.0645.7744-1.4197 2.4522-4.2591.1936-.3872.4517-.7744.7098-1.2261H4.4114c-.5808 0-.9034-.3872-.968-.7098-.1291-.5163.1936-1.1616.9034-1.1616h2.3877l3.033-5.2916s-.7098-1.2906-.9034-1.6133c-.2582-.4517-.1291-.9034.129-1.1615.3872-.3872 1.0325-.5808 1.6778.4517l.2581.3872.2581-.3872c.5808-.8389.968-.7744 1.2906-.7098.5163.1291.8389.7098.3872 1.6133L8.864 14.0444h1.3552c.4517-.7744.9034-1.5488 1.3552-2.3877-.0645-.3227-.1291-.7098-.0645-1.0325.0645-.5163.3227-.968.6453-1.3552l.3872.6453c1.2261-2.1295 2.1295-3.9364 2.3877-4.6463.1291-.3872.3227-1.1616.1291-1.8069H5.3794c-2.0005.0001-3.5493 1.6134-3.5493 3.5494zM4.605 17.7872c0-.0645.7744-1.4197.7744-1.4197 1.2261-.3227 1.8069.4517 1.8714.5163 0 0-.8389 1.4842-1.097 1.7423s-.5808.3227-.9034.2581c-.5164-.129-.839-.6453-.6454-1.097z"/></symbol>
+<symbol id="i-androidstudio" viewBox="0 0 24 24"><path d="M19.2693 10.3368c-.3321 0-.6026.2705-.6026.6031v9.8324h-1.7379l-3.3355-6.9396c.476-.5387.6797-1.286.5243-2.0009a2.2862 2.2862 0 0 0-1.2893-1.6248v-.8124c.0121-.2871-.1426-.5787-.4043-.7407-.1391-.0825-.2884-.1234-.4402-.1234a.8478.8478 0 0 0-.4318.1182c-.2701.1671-.4248.4587-.4123.7662l-.0003.721c-1.0149.3668-1.6619 1.4153-1.4867 2.5197a2.282 2.282 0 0 0 .5916 1.2103l-3.2096 6.9064H4.0928c-1.0949-.007-1.9797-.8948-1.9832-1.9896V5.016c-.0055 1.1024.8836 2.0006 1.9859 2.0062a2.024 2.024 0 0 0 .1326-.0037h14.7453s2.5343-.2189 2.8619 1.5392c-.2491.0287-.4449.2321-.4449.4889 0 .7115-.5791 1.2901-1.3028 1.2901h-.8183zM17.222 22.5366c.2347.4837.0329 1.066-.4507 1.3007-.1296.0629-.2666.0895-.4018.0927a.9738.9738 0 0 1-.3194-.0455c-.024-.0078-.046-.0209-.0694-.0305a.9701.9701 0 0 1-.2277-.1321c-.0247-.0192-.0495-.038-.0724-.0598-.0825-.0783-.1574-.1672-.21-.2757l-1.2554-2.6143-1.5585-3.2452a.7725.7725 0 0 0-.6995-.4443h-.0024a.792.792 0 0 0-.7083.4443l-1.5109 3.2452-1.2321 2.6464a.9722.9722 0 0 1-.7985.5795c-.0626.0053-.1238-.0024-.185-.0087-.0344-.0036-.069-.0053-.1025-.0124-.0489-.0103-.0954-.0278-.142-.0452-.0301-.0113-.0613-.0197-.0901-.0339-.0496-.0244-.0948-.0565-.1397-.0889-.0217-.0156-.0457-.0275-.0662-.045a.9862.9862 0 0 1-.1695-.1844.9788.9788 0 0 1-.0708-.9852l.8469-1.8223 3.2676-7.0314a1.7964 1.7964 0 0 1-.7072-1.1637c-.1555-.9799.5129-1.9003 1.4928-2.0559V9.3946a.3542.3542 0 0 1 .1674-.3155.3468.3468 0 0 1 .3541 0 .354.354 0 0 1 .1674.3155v1.159l.0129.0064a1.8028 1.8028 0 0 1 1.2878 1.378 1.7835 1.7835 0 0 1-.6439 1.7836l3.3889 7.0507.8481 1.7643zM12.9841 12.306c.0042-.6081-.4854-1.1044-1.0935-1.1085a1.1204 1.1204 0 0 0-.7856.3219 1.101 1.101 0 0 0-.323.7716c-.0042.6081.4854 1.1044 1.0935 1.1085h.0077c.6046 0 1.0967-.488 1.1009-1.0935zm-1.027 5.2768c-.1119.0005-.2121.0632-.2571.1553l-1.4127 3.0342h3.3733l-1.4564-3.0328a.274.274 0 0 0-.2471-.1567zm8.1432-6.7459l-.0129-.0001h-.8177a.103.103 0 0 0-.103.103v12.9103a.103.103 0 0 0 .0966.103h.8435c.9861-.0035 1.7836-.804 1.7836-1.79V9.0468c0 .9887-.8014 1.7901-1.7901 1.7901zM2.6098 5.0161v.019c.0039.816.6719 1.483 1.4874 1.4869a12.061 12.061 0 0 1 .1309-.0034h1.1286c.1972-1.315.7607-2.525 1.638-3.4859H4.0993c-.9266.0031-1.6971.6401-1.9191 1.4975.2417.0355.4296.235.4296.4859zm6.3381-2.8977L7.9112.3284a.219.219 0 0 1 0-.2189A.2384.2384 0 0 1 8.098 0a.219.219 0 0 1 .1867.1094l1.0496 1.8158a6.4907 6.4907 0 0 1 5.3186 0L15.696.1094a.2189.2189 0 0 1 .3734.2189l-1.0302 1.79c1.6671.9125 2.7974 2.5439 3.0975 4.4018l-12.286-.0014c.3004-1.8572 1.4305-3.488 3.0972-4.4003zm5.3774 2.6202a.515.515 0 0 0 .5271.5028.515.515 0 0 0 .5151-.5151.5213.5213 0 0 0-.8885-.367.5151.5151 0 0 0-.1537.3793zm-5.7178-.0067a.5151.5151 0 0 0 .5207.5095.5086.5086 0 0 0 .367-.1481.5215.5215 0 1 0-.734-.7341.515.515 0 0 0-.1537.3727z"/></symbol>
+<symbol id="i-nextdotjs" viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></symbol>
+<symbol id="i-react" viewBox="0 0 24 24"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></symbol>
+<symbol id="i-typescript" viewBox="0 0 24 24"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></symbol>
+<symbol id="i-tailwindcss" viewBox="0 0 24 24"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></symbol>
+<symbol id="i-vercel" viewBox="0 0 24 24"><path d="m12 1.608 12 20.784H0Z"/></symbol>
+<symbol id="i-netlify" viewBox="0 0 24 24"><path d="M6.49 19.04h-.23L5.13 17.9v-.23l1.73-1.71h1.2l.15.15v1.2L6.5 19.04ZM5.13 6.31V6.1l1.13-1.13h.23L8.2 6.68v1.2l-.15.15h-1.2L5.13 6.31Zm9.96 9.09h-1.65l-.14-.13v-3.83c0-.68-.27-1.2-1.1-1.23-.42 0-.9 0-1.43.02l-.07.08v4.96l-.14.14H8.9l-.13-.14V8.73l.13-.14h3.7a2.6 2.6 0 0 1 2.61 2.6v4.08l-.13.14Zm-8.37-2.44H.14L0 12.82v-1.64l.14-.14h6.58l.14.14v1.64l-.14.14Zm17.14 0h-6.58l-.14-.14v-1.64l.14-.14h6.58l.14.14v1.64l-.14.14ZM11.05 6.55V1.64l.14-.14h1.65l.14.14v4.9l-.14.14h-1.65l-.14-.13Zm0 15.81v-4.9l.14-.14h1.65l.14.13v4.91l-.14.14h-1.65l-.14-.14Z"/></symbol>
+<symbol id="i-supabase" viewBox="0 0 24 24"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></symbol>
+<symbol id="i-postgresql" viewBox="0 0 24 24"><path d="M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z"/></symbol>
+<symbol id="i-firebase" viewBox="0 0 24 24"><path d="M19.455 8.369c-.538-.748-1.778-2.285-3.681-4.569-.826-.991-1.535-1.832-1.884-2.245a146 146 0 0 0-.488-.576l-.207-.245-.113-.133-.022-.032-.01-.005L12.57 0l-.609.488c-1.555 1.246-2.828 2.851-3.681 4.64-.523 1.064-.864 2.105-1.043 3.176-.047.241-.088.489-.121.738-.209-.017-.421-.028-.632-.033-.018-.001-.035-.002-.059-.003a7.46 7.46 0 0 0-2.28.274l-.317.089-.163.286c-.765 1.342-1.198 2.869-1.252 4.416-.07 2.01.477 3.954 1.583 5.625 1.082 1.633 2.61 2.882 4.42 3.611l.236.095.071.025.003-.001a9.59 9.59 0 0 0 2.941.568q.171.006.342.006c1.273 0 2.513-.249 3.69-.742l.008.004.313-.145a9.63 9.63 0 0 0 3.927-3.335c1.01-1.49 1.577-3.234 1.641-5.042.075-2.161-.643-4.304-2.133-6.371m-7.083 6.695c.328 1.244.264 2.44-.191 3.558-1.135-1.12-1.967-2.352-2.475-3.665-.543-1.404-.87-2.74-.974-3.975.48.157.922.366 1.315.622 1.132.737 1.914 1.902 2.325 3.461zm.207 6.022c.482.368.99.712 1.513 1.028-.771.21-1.565.302-2.369.273a8 8 0 0 1-.373-.022c.458-.394.869-.823 1.228-1.279zm1.347-6.431c-.516-1.957-1.527-3.437-3.002-4.398-.647-.421-1.385-.741-2.194-.95.011-.134.026-.268.043-.4.014-.113.03-.216.046-.313.133-.689.332-1.37.589-2.025.099-.25.206-.499.321-.74l.004-.008c.177-.358.376-.719.61-1.105l.092-.152-.003-.001c.544-.851 1.197-1.627 1.942-2.311l.288.341c.672.796 1.304 1.548 1.878 2.237 1.291 1.549 2.966 3.583 3.612 4.48 1.277 1.771 1.893 3.579 1.83 5.375-.049 1.395-.461 2.755-1.195 3.933-.694 1.116-1.661 2.05-2.8 2.708-.636-.318-1.559-.839-2.539-1.599.79-1.575.952-3.28.479-5.072zm-2.575 5.397c-.725.939-1.587 1.55-2.09 1.856-.081-.029-.163-.06-.243-.093l-.065-.026c-1.49-.616-2.747-1.656-3.635-3.01-.907-1.384-1.356-2.993-1.298-4.653.041-1.19.338-2.327.882-3.379.316-.07.638-.114.96-.131l.084-.002c.162-.003.324-.003.478 0 .227.011.454.035.677.07.073 1.513.445 3.145 1.105 4.852.637 1.644 1.694 3.162 3.144 4.515z"/></symbol>
+<symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+<symbol id="i-figma" viewBox="0 0 24 24"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></symbol>
+<symbol id="i-resend" viewBox="0 0 24 24"><path d="M14.679 0c4.648 0 7.413 2.765 7.413 6.434s-2.765 6.434-7.413 6.434H12.33L24 24h-8.245l-8.88-8.44c-.636-.588-.93-1.273-.93-1.86 0-.831.587-1.565 1.713-1.883l4.574-1.224c1.737-.465 2.936-1.81 2.936-3.572 0-2.153-1.761-3.4-3.939-3.4H0V0z"/></symbol>
+<symbol id="i-claude" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol>
+</svg>
+<main>
+  <div class="hero stack" id="top">
+    <div class="wash" aria-hidden="true"></div>
     <div class="brand-bar"></div>
     <header>
       <div class="wrap">
         <a class="brand" href="/"><img src="/assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
         <nav aria-label="Main">
-          <a href="#rosc">ROSC</a>
-          <a href="#make">What we make</a>
-          <a href="#process">How we work</a>
+          <a href="#rosc">Work</a>
+          <a href="#make">Services</a>
+          <a href="#platforms">Platforms</a>
+          <a href="#process">Process</a>
         </nav>
-        <a class="link-btn" href="#work">Work with us</a>
+        <a class="btn" href="#contact">Contact</a>
       </div>
     </header>
     <div class="wrap hero-main">
       <div>
         <div class="kicker">Software studio</div>
-        <h1 class="display">Software that starts <span class="serif">with people.</span></h1>
-        <p class="hero-lede">We design, build and look after mobile apps and websites, shaped around how people already live and work. Our first product, ROSC, grew out of a family savings group.</p>
+        <h1 class="display">Apps and websites, <span class="serif">built properly.</span></h1>
+        <p class="lede">Packisher is a software studio. We design, build and look after mobile apps and websites for businesses and communities, and we build our own products too, starting with ROSC.</p>
+        <div class="ctas">
+          <a class="btn" href="#contact">Tell us about your project</a>
+          <a class="btn ghost" href="#rosc">See our work</a>
+        </div>
+        <div class="live">
+          ROSC is live on
+          <span><svg><use href="#i-apple"/></svg>iOS</span>
+          <span><svg><use href="#i-googleplay"/></svg>Google Play</span>
+        </div>
       </div>
-      <svg class="mark" viewBox="0 0 170 160" aria-hidden="true">
-        <path class="p" d="M26 22H108Q112 22 112 26V94Q112 98 108 98H44V134Q44 138 40 138H26Q22 138 22 134V26Q22 22 26 22ZM44 44V76H90V44Z"/>
-        <circle class="d" cx="126" cy="108" r="4" style="--o:.75;animation-delay:0.40s"/><circle class="d" cx="126" cy="121" r="4" style="--o:.75;animation-delay:0.52s"/><circle class="d" cx="126" cy="134" r="4" style="--o:.75;animation-delay:0.64s"/><circle class="d" cx="139" cy="108" r="4" style="--o:.75;animation-delay:0.76s"/><circle class="d o" cx="139" cy="121" r="4" style="--o:.35;animation-delay:0.88s"/><circle class="d o" cx="139" cy="134" r="4" style="--o:.35;animation-delay:1.00s"/><circle class="d o" cx="152" cy="108" r="4" style="--o:.35;animation-delay:1.12s"/><circle class="d o" cx="152" cy="121" r="4" style="--o:.35;animation-delay:1.24s"/>
-      </svg>
-    </div>
-    <div class="wrap">
-      <div class="values">
-        <div><b>People first</b><span>We start with the people who will use it and design around their day.</span></div>
-        <div><b>Built to last</b><span>Tested in real life and looked after long past launch.</span></div>
-        <div><b>Light by design</b><span>Small, fast software that runs well on older phones and slow connections.</span></div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="phone">
+          <picture>
+            <source srcset="/assets/home-dark.jpg" media="(prefers-color-scheme: dark)">
+            <img src="/assets/home.jpg" alt="" width="590" height="1278">
+          </picture>
+        </div>
+        <div class="toast"><img src="/assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b>KES 5,000 · turn 2 of 3</div></div>
+        <div class="toast b"><span class="tick">✓</span><div><b>Cycle complete</b>Everyone paid on time</div></div>
       </div>
     </div>
   </div>
 
-  <section id="rosc" class="card">
+  <section id="rosc" class="over">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head rv">
         <div class="num">01</div>
         <div>
-          <h2 class="display">Now shipping: ROSC</h2>
+          <h2>Our own product: ROSC, a shared record for <span class="serif">savings groups.</span></h2>
           <p>Live on iOS and Android.</p>
         </div>
       </div>
       <div class="rosc indent">
-        <div>
+        <div class="rv">
           <div class="rosc-id">
             <img src="/assets/rosc-icon.png" alt="ROSC app icon">
             <div><b>ROSC</b><span>Contributions, payouts and records for savings groups</span></div>
@@ -292,79 +393,162 @@
               <li><span><b>A calmer design</b> in light and dark, with tighter security</span></li>
             </ul>
           </div>
-          <a class="link-btn more" href="https://rosc.packisher.com">Visit rosc.packisher.com</a>
+          <div class="ctas">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.roscapp.roscapp"><svg><use href="#i-googleplay"/></svg>Get it on Google Play</a>
+            <a class="link" href="https://rosc.packisher.com">rosc.packisher.com</a>
+          </div>
         </div>
-        <div class="phones" aria-hidden="true">
-          <div class="phone a"><img src="/assets/rosc-screen.jpg" alt=""></div>
-          <div class="phone b"><img src="/assets/rosc-turns.jpg" alt=""></div>
+        <div class="phones rv" aria-hidden="true">
+          <div class="phone a"><img src="/assets/profile.jpg" alt="" loading="lazy" width="590" height="1278"></div>
+          <div class="phone b">
+            <picture>
+              <source srcset="/assets/detail-dark.jpg" media="(prefers-color-scheme: dark)">
+              <img src="/assets/detail.jpg" alt="" loading="lazy" width="590" height="1278">
+            </picture>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="make" class="card alt">
+  <section id="make">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head rv">
         <div class="num">02</div>
         <div>
-          <h2 class="display">What we make</h2>
+          <h2>What we <span class="serif">make.</span></h2>
           <p>We take on a few client projects at a time, alongside our own products, and see each one through from the first sketch to launch day and after.</p>
         </div>
       </div>
       <div class="services indent">
-        <div class="svc"><span class="n">A</span><h3 class="display">Mobile apps</h3><p>iOS and Android apps built from one codebase, tested properly and published to the App Store and Google Play.</p></div>
-        <div class="svc"><span class="n">B</span><h3 class="display">Websites</h3><p>Fast, considered websites and web apps, from a company site to booking flows and customer portals.</p></div>
-        <div class="svc"><span class="n">C</span><h3 class="display">Backends</h3><p>Accounts, databases, notifications and admin tools, with security and access rules designed in from the start.</p></div>
-        <div class="svc"><span class="n">D</span><h3 class="display">Product design</h3><p>User flows, screen design and clickable prototypes you can put in front of people before anything is built.</p></div>
+        <div class="svc rv"><span class="n">A</span><h3>Mobile apps</h3><p>iOS and Android apps built from one codebase, tested properly and published to the App Store and Google Play.</p></div>
+        <div class="svc rv"><span class="n">B</span><h3>Websites</h3><p>Fast, considered websites and web apps, from a company site to booking flows and customer portals.</p></div>
+        <div class="svc rv"><span class="n">C</span><h3>Backends</h3><p>Accounts, databases, notifications and admin tools, with security and access rules designed in from the start.</p></div>
+        <div class="svc rv"><span class="n">D</span><h3>Product design</h3><p>User flows, screen design and clickable prototypes you can put in front of people before anything is built.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="process" class="card">
+  <section id="platforms">
     <div class="wrap">
-      <div class="sec-head">
+      <div class="sec-head rv">
         <div class="num">03</div>
-        <div><h2 class="display">How we work</h2></div>
+        <div>
+          <h2>Platforms we build <span class="serif">on.</span></h2>
+          <p>Established tools with long track records, so what we build is dependable and easy for anyone to pick up later.</p>
+        </div>
+      </div>
+      <div class="indent">
+        <div class="stackgrid">
+          <div class="group rv">
+            <h3>Mobile</h3><p>One codebase, both stores</p>
+            <ul class="logos">
+              <li style="--c:#02569B"><svg><use href="#i-flutter"/></svg>Flutter</li>
+              <li style="--c:#0175C2"><svg><use href="#i-dart"/></svg>Dart</li>
+              <li style="--c:#147EFB"><svg><use href="#i-xcode"/></svg>Xcode</li>
+              <li style="--c:#3DDC84"><svg><use href="#i-androidstudio"/></svg>Android Studio</li>
+              <li style="--c:#0D96F6"><svg><use href="#i-appstore"/></svg>App Store</li>
+              <li style="--c:#414141"><svg><use href="#i-googleplay"/></svg>Google Play</li>
+            </ul>
+          </div>
+          <div class="group rv">
+            <h3>Web</h3><p>Fast sites and web apps</p>
+            <ul class="logos">
+              <li style="--c:#000"><svg><use href="#i-nextdotjs"/></svg>Next.js</li>
+              <li style="--c:#149ECA"><svg><use href="#i-react"/></svg>React</li>
+              <li style="--c:#3178C6"><svg><use href="#i-typescript"/></svg>TypeScript</li>
+              <li style="--c:#06B6D4"><svg><use href="#i-tailwindcss"/></svg>Tailwind CSS</li>
+              <li style="--c:#000"><svg><use href="#i-vercel"/></svg>Vercel</li>
+              <li style="--c:#00AD9F"><svg><use href="#i-netlify"/></svg>Netlify</li>
+            </ul>
+          </div>
+          <div class="group rv">
+            <h3>Backend and data</h3><p>Accounts, data and access rules</p>
+            <ul class="logos">
+              <li style="--c:#3ECF8E"><svg><use href="#i-supabase"/></svg>Supabase</li>
+              <li style="--c:#4169E1"><svg><use href="#i-postgresql"/></svg>PostgreSQL</li>
+              <li style="--c:#181717"><svg><use href="#i-github"/></svg>GitHub</li>
+            </ul>
+          </div>
+          <div class="group rv">
+            <h3>Design and integrations</h3><p>From first screen to inbox</p>
+            <ul class="logos">
+              <li style="--c:#F24E1E"><svg><use href="#i-figma"/></svg>Figma</li>
+              <li style="--c:#000"><svg><use href="#i-resend"/></svg>Resend<small>Email</small></li>
+              <li style="--c:#DD2C00"><svg><use href="#i-firebase"/></svg>Cloud Messaging<small>Push</small></li>
+            </ul>
+          </div>
+        </div>
+        <div class="models rv">
+          <div class="mk"><svg><use href="#i-claude"/></svg></div>
+          <p><b>Language model features, where they earn their place.</b> Drafting, search, summaries and support replies, built on leading language models and kept behind your own rules for privacy and review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div class="num">04</div>
+        <div><h2>How we <span class="serif">work.</span></h2></div>
       </div>
       <div class="process indent">
-        <div class="stage"><h3 class="display">Listen</h3><p>We learn how your business runs and who the software is really for.</p></div>
-        <div class="stage"><h3 class="display">Design</h3><p>We map the flows and design the screens, and you try a working prototype.</p></div>
-        <div class="stage"><h3 class="display">Build</h3><p>We build in short stages and share a preview at every step.</p></div>
-        <div class="stage"><h3 class="display">Launch</h3><p>We publish, then stay on for fixes, updates and what comes next.</p></div>
+        <div class="stage rv"><h3>Listen</h3><p>We learn how your business runs and who the software is really for.</p></div>
+        <div class="stage rv"><h3>Design</h3><p>We map the flows and design the screens, and you try a working prototype.</p></div>
+        <div class="stage rv"><h3>Build</h3><p>We build in short stages and share a preview at every step.</p></div>
+        <div class="stage rv"><h3>Launch</h3><p>We publish, then stay on for fixes, updates and what comes next.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="card alt">
+  <div class="note-screen stack">
+    <div class="wash" aria-hidden="true"></div>
     <div class="wrap">
       <div class="note indent">
         <blockquote class="serif">“We build software the way we would want it built for us: thought through, tested in real life and looked after long after launch.”</blockquote>
-        <div class="sig"><img src="/assets/packisher-logo.svg" alt=""><span><b>Sherine Amoit</b>, Founder, Packisher</span></div>
+        <div class="sig"><b>Sherine Amoit</b>, Founder, Packisher</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="work" class="card">
+  <section id="contact" class="over">
     <div class="wrap">
       <div class="sec-head">
-        <div class="num">04</div>
+        <div class="num">05</div>
         <div>
-          <h2 class="display">Work with us</h2>
-          <p>Have an app or website in mind? Here is how it starts.</p>
+          <h2>Tell us what you're <span class="serif">building.</span></h2>
+          <p>An app, a website or something in between. A few sentences is plenty to start.</p>
         </div>
       </div>
-      <div class="work indent">
-        <ol>
-          <li><span><b>Tell us about it.</b> What it is for, who will use it and roughly when you would like it live.</span></li>
-          <li><span><b>We reply within two business days</b> with questions or a first outline.</span></li>
-          <li><span><b>You get a written plan</b> covering scope, timeline and price before any work begins.</span></li>
-        </ol>
-        <div class="ask">
-          <h3 class="display">Start the conversation</h3>
-          <p>A few sentences is plenty. Links, sketches or screenshots of anything you like are welcome.</p>
-          <a class="btn" href="mailto:support@packisher.com?subject=Project%20enquiry">Email the studio</a>
-          <small>support@packisher.com</small>
+      <div class="contact indent">
+        <div>
+          <ol class="next">
+            <li><span><b>Send a short note.</b> What it is for, who will use it and roughly when you would like it live.</span></li>
+            <li><span><b>We reply within two business days</b> with questions or a first outline.</span></li>
+            <li><span><b>You get a written plan</b> covering scope, timeline and price before any work begins.</span></li>
+          </ol>
+          <p class="direct">Prefer email? Write to <a href="mailto:support@packisher.com">support@packisher.com</a></p>
         </div>
+        <form id="enquiry" novalidate>
+          <div class="row">
+            <label>Your name<input name="name" autocomplete="name" required></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          </div>
+          <fieldset>
+            <legend>What do you need?</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="need" value="Mobile app"><span>Mobile app</span></label>
+              <label><input type="checkbox" name="need" value="Website"><span>Website</span></label>
+              <label><input type="checkbox" name="need" value="Backend"><span>Backend</span></label>
+              <label><input type="checkbox" name="need" value="Product design"><span>Product design</span></label>
+              <label><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
+          <label>About the project<textarea name="message" required placeholder="What it's for, who will use it, and any timing."></textarea></label>
+          <button class="btn" type="submit">Send enquiry</button>
+          <p class="formnote">This opens your email app with everything filled in, ready to send.</p>
+        </form>
       </div>
     </div>
   </section>
@@ -372,48 +556,90 @@
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/packisher-logo.svg" alt="" style="width:26px;height:26px;border-radius:7px"><b style="font-size:20px">Packisher</b></a>
+    <b>Packisher</b>
     <span>&copy; 2026 Packisher</span>
     <div class="links">
       <a href="https://rosc.packisher.com">ROSC</a>
       <a href="https://rosc.packisher.com/privacy">ROSC privacy</a>
       <a href="https://logistics.packisher.com">Packisher Logistics</a>
-      <a href="#work">Work with us</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </footer>
+
 <script>
 (() => {
-  const p = new URLSearchParams(location.search).get('palette');
-  if (p) document.documentElement.dataset.palette = p;
-  const cards = [...document.querySelectorAll('.deck > .card')];
+  document.body.classList.remove('no-js');
   const still = matchMedia('(prefers-reduced-motion: reduce)');
-  let vh = innerHeight, queued = false;
-  function layout() {
+
+  // Ease sections in as they arrive.
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Two places where one screen settles back and the next slides over it:
+  // the opening into ROSC, and the founder note into Contact.
+  const pairs = [...document.querySelectorAll('.stack')].map(s => ({ s, next: s.nextElementSibling }));
+  let vh = innerHeight, queued = false, idle, busy = false;
+
+  function measure() {
     vh = innerHeight;
-    // A card taller than the screen sticks once its bottom reaches the bottom.
-    for (const c of cards) {
-      const top = Math.min(0, vh - c.offsetHeight);
-      c.style.top = top + 'px';
-      c.style.setProperty('--oy', (-top + vh * 0.4) + 'px');
+    for (const p of pairs) {
+      const h = p.s.offsetHeight;
+      const top = Math.min(0, vh - h);
+      p.s.style.top = top + 'px';
+      p.s.style.setProperty('--oy', (-top + vh * .35) + 'px');
+      p.start = p.next.offsetTop - vh;   // next screen starts to cover
+      p.end = p.next.offsetTop;          // fully covered
     }
-    update();
+    draw();
   }
-  function update() {
+  function draw() {
     queued = false;
     if (still.matches) return;
-    cards.forEach((c, i) => {
-      const next = cards[i + 1];
-      if (!next) return;
-      const t = next.getBoundingClientRect().top;
-      const p = Math.min(1, Math.max(0, 1 - t / vh));
-      c.style.setProperty('--p', p.toFixed(3));
-    });
+    const y = scrollY;
+    for (const p of pairs) {
+      const t = Math.min(1, Math.max(0, (y - p.start) / vh));
+      if (t === p.t) continue;
+      p.t = t;
+      p.s.style.transform = t ? `scale(${1 - t * .06})` : '';
+      p.s.style.setProperty('--t', t.toFixed(3));
+    }
   }
-  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
-  addEventListener('resize', layout);
-  addEventListener('load', layout);
-  layout();
+  // Stop halfway and the move finishes itself, so the new screen clicks into place.
+  function settle() {
+    if (still.matches || busy) return;
+    const y = scrollY;
+    for (const p of pairs) {
+      if (y > p.start + 4 && y < p.end - 4) {
+        const t = (y - p.start) / vh;
+        busy = true;
+        scrollTo({ top: t > .35 ? p.end : p.start, behavior: 'smooth' });
+        setTimeout(() => busy = false, 650);
+        return;
+      }
+    }
+  }
+  addEventListener('scroll', () => {
+    if (!queued) { queued = true; requestAnimationFrame(draw); }
+    clearTimeout(idle); idle = setTimeout(settle, 140);
+  }, { passive: true });
+  addEventListener('resize', measure);
+  addEventListener('load', measure);
+  measure();
+
+  // Contact form: compose an email with everything filled in.
+  document.getElementById('enquiry').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, d = new FormData(f);
+    const bad = ['name', 'email', 'message'].find(k => !String(d.get(k) || '').trim()) ||
+      (!f.email.checkValidity() && 'email');
+    if (bad) { f[bad].focus(); f[bad].setAttribute('aria-invalid', 'true'); return; }
+    const needs = d.getAll('need').join(', ') || 'Not specified';
+    const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nLooking for: ${needs}\n\n${d.get('message')}`;
+    location.href = `mailto:support@packisher.com?subject=${encodeURIComponent('Project enquiry from ' + d.get('name'))}&body=${encodeURIComponent(body)}`;
+  });
 })();
 </script>
 </body>
