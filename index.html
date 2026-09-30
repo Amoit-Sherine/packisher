@@ -6,6 +6,7 @@
 <title>Packisher | Venture and software studio</title>
 <meta name="description" content="Packisher is a venture and software studio building custom digital platforms and in-house products, starting with ROSC.">
 <meta name="theme-color" content="#F4F1EA">
+<meta name="color-scheme" content="light dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Packisher | Venture and software studio">
 <meta property="og:description" content="We craft software that connects communities and scales ideas. Makers of ROSC.">
@@ -39,13 +40,6 @@
     --sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
     --serif: Newsreader, Georgia, serif;
     --hand: Caveat, "Bradley Hand", "Segoe Print", cursive;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --page: #111614; --card: #181E1B; --card-2: #1F2622; --ink: #EDF0EA; --ink-2: #C8D0C7; --muted: #929C93; --rule: #2A332E;
-      --forest: #E6E1D3; --on-forest: #111614; --bronze: #C8A677; --wash-1: #1B2A22; --wash-2: #28251D; --wash-3: #19231E;
-      --rosc: #6BB08F; --logo-dark: #EDF0EA; --shade: 0, 0, 0; color-scheme: dark;
-    }
   }
   :root[data-theme="dark"] {
     --page: #111614; --card: #181E1B; --card-2: #1F2622; --ink: #EDF0EA; --ink-2: #C8D0C7; --muted: #929C93; --rule: #2A332E;
@@ -282,6 +276,67 @@
   @keyframes wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-9deg) scale(1.06); } 40% { transform: rotate(7deg) scale(1.06); } 60% { transform: rotate(-4deg) scale(1.04); } 80% { transform: rotate(2deg); } }
   .icon:hover span, .icon:focus-visible span, .taskbar .pin:hover > *, .taskbar .start:hover img { animation: wiggle .55s ease; }
 
+
+  /* Accessibility helpers */
+  .skip { position: fixed; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; border-radius: 10px; background: var(--forest); color: var(--on-forest); font-weight: 600; text-decoration: none; transition: top .2s; }
+  .skip:focus { top: 12px; }
+  main:focus { outline: none; }
+  :focus-visible { outline: 2.5px solid var(--bronze); outline-offset: 3px; }
+
+  /* Theme switch */
+  .theme-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rule); background: color-mix(in srgb, var(--card) 70%, transparent); color: var(--ink-2); font: 500 14px/1 var(--sans); cursor: pointer; }
+  .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
+  .theme-toggle .sun, [data-theme="dark"] .theme-toggle .moon { display: none; }
+  [data-theme="dark"] .theme-toggle .sun { display: block; }
+  .theme-toggle.icon-only { width: 40px; padding: 0; justify-content: center; }
+
+  /* Menu button and full-screen menu (phones and tablets) */
+  .menu-btn { display: none; width: 44px; height: 44px; margin-left: auto; border: 0; border-radius: 12px; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+  .menu-btn span { display: block; width: 22px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .25s ease, opacity .2s; }
+  .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  html:not(.os) .nav nav, html:not(.os) .nav .btn.sm { display: none; }
+  html:not(.os) .menu-btn { display: flex; }
+  .mmenu { position: fixed; left: 0; right: 0; bottom: 0; top: var(--nav); z-index: 59; padding: 20px 20px calc(24px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 18px; overflow-y: auto; background: color-mix(in srgb, var(--page) 80%, transparent); backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6); }
+  .mmenu[hidden] { display: none; }
+  .mmenu nav { display: grid; gap: 4px; }
+  .mmenu nav a { display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 8px 12px; border-radius: 16px; font-size: 20px; font-weight: 600; letter-spacing: -.01em; text-decoration: none; color: var(--ink); }
+  .mmenu nav a:hover, .mmenu nav a:focus-visible { background: color-mix(in srgb, var(--card) 80%, transparent); }
+  .mi { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--card); box-shadow: 0 6px 16px -10px rgba(var(--shade), .4); flex: none; }
+  .mi img { width: 44px; height: 44px; border-radius: 12px; }
+  .mi svg { width: 22px; height: 22px; fill: var(--c, var(--ink-2)); }
+  .mm-cta { width: 100%; height: 54px; }
+  .mm-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+  .mm-foot a { color: var(--ink-2); }
+  body.menu-open { overflow: hidden; }
+  .f-bottom .theme-toggle { font-size: 13px; min-height: 36px; }
+  .os .mmenu { display: none; }
+
+  /* Phones and tablets: even spacing between sections, one logo in the header */
+  html:not(.os) .screen { min-height: 0; padding-top: 72px; padding-bottom: 72px; border-top: 1px solid var(--rule); }
+  html:not(.os) .home-logo { display: none; }
+  html:not(.os) .desk { min-height: 0; padding-top: 56px; padding-bottom: 64px; }
+  html:not(.os) .ending { min-height: 0; }
+  html:not(.os) .ending .screen { flex: none; }
+  @media (max-width: 640px) { html:not(.os) .screen { padding-top: 60px; padding-bottom: 60px; } }
+
+  /* Glass windows, like the notifications on the phone */
+  .os .win-sec { background: color-mix(in srgb, var(--card) 50%, transparent); backdrop-filter: blur(40px) saturate(1.9); -webkit-backdrop-filter: blur(40px) saturate(1.9); border-radius: 26px; box-shadow: 0 40px 90px -30px rgba(var(--shade), .4), inset 0 1px 0 rgba(255,255,255,.7), 0 0 0 1px rgba(255,255,255,.45); }
+  .os .chrome { background: transparent; border-bottom: 1px solid color-mix(in srgb, var(--rule) 50%, transparent); }
+  .os .win-sec form, .os .person { background: color-mix(in srgb, var(--card) 45%, transparent); box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 1px rgba(255,255,255,.4); }
+  .os .win-sec input, .os .win-sec textarea, .os .pick span { background: color-mix(in srgb, var(--card) 70%, transparent); }
+  [data-theme="dark"].os .win-sec { background: color-mix(in srgb, var(--card) 55%, transparent); }
+  [data-theme="dark"].os .win-sec form, [data-theme="dark"].os .person { box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 0 0 1px rgba(255,255,255,.06); }
+
+  /* Bigger windows; content is scaled to fit, so nothing needs scrolling */
+  .os .win-sec { top: calc(var(--nav) + 12px); width: min(1280px, calc(100vw - 264px)); height: calc(100svh - var(--nav) - 12px - 96px); }
+  .os .win-sec.max { width: calc(100vw - 32px); }
+  .os .pane { padding: 28px 48px 32px; overflow: auto; }
+  .os .fit { margin: auto 0; transform-origin: 50% 0; }
+  .os #rosc .rosc-id { display: none; }
+  .os .changelog li { padding: 8px 0; }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -364,11 +419,11 @@
   .os .widget .cap { position: absolute; left: 0; right: 0; bottom: -6px; margin: 0; text-align: center; font-size: 12px; color: var(--muted); display: flex; justify-content: center; align-items: center; gap: 7px; }
   .notif { display: none; }
   .legal { display: none; }
-  .os .legal { position: fixed; left: 32px; bottom: 30px; z-index: 5; display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
+  .os .legal { position: fixed; left: 32px; bottom: 26px; z-index: 5; display: flex; align-items: center; gap: 14px; font-size: 12px; color: var(--muted); }
   .os .legal a { text-decoration: none; }
   .os .legal a:hover { color: var(--ink); }
   .os .legal b { color: var(--bronze); font-weight: 600; }
-  @media (max-width: 1279px) { .os .legal { display: none; } }
+  @media (max-width: 1279px) { .os .legal > :not(.theme-toggle) { display: none; } }
   .os .notif { display: flex; position: absolute; right: 6%; top: -78px; z-index: 2; width: 250px; align-items: center; gap: 11px; padding: 11px 13px; border-radius: 20px; background: color-mix(in srgb, var(--card) 62%, transparent); backdrop-filter: blur(22px) saturate(1.7); -webkit-backdrop-filter: blur(22px) saturate(1.7); box-shadow: 0 18px 40px -16px rgba(var(--shade), .35), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(255,255,255,.35); font-size: 12.5px; line-height: 1.35; color: var(--ink-2); transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
   .os .notif.out { opacity: 0; transform: translateY(-10px) scale(.97); }
   .os .notif.in { opacity: 0; transform: translateY(12px) scale(.97); transition: none; }
@@ -394,9 +449,7 @@
   .os .chrome { background: color-mix(in srgb, var(--card) 35%, transparent); border-bottom-color: color-mix(in srgb, var(--rule) 60%, transparent); height: 46px; }
   .os .startmenu:not([hidden]), .os .results { background: color-mix(in srgb, var(--card) 66%, transparent); backdrop-filter: blur(30px) saturate(1.7); -webkit-backdrop-filter: blur(30px) saturate(1.7); box-shadow: 0 30px 70px -26px rgba(var(--shade), .45), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(255,255,255,.35); border-radius: 20px; }
   .os .taskbar { background: color-mix(in srgb, var(--card) 58%, transparent); box-shadow: 0 16px 40px -18px rgba(var(--shade), .35), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(255,255,255,.35); border-radius: 20px; }
-  @media (prefers-color-scheme: dark) {
-    .os .win-sec, .os .startmenu:not([hidden]), .os .results, .os .taskbar, .os .notif { box-shadow: 0 40px 90px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(255,255,255,.07); }
-  }
+  [data-theme="dark"].os .win-sec, [data-theme="dark"].os .startmenu:not([hidden]), [data-theme="dark"].os .results, [data-theme="dark"].os .taskbar, [data-theme="dark"].os .notif { box-shadow: 0 40px 90px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.09), 0 0 0 1px rgba(255,255,255,.08); }
   @media (prefers-reduced-motion: reduce) { .os .silk i, .os .widget .phone { animation: none; } .icon:hover span, .taskbar .pin:hover > *, .taskbar .start:hover img { animation: none; } }
 
   /* Windows */
@@ -499,6 +552,7 @@
 <div class="backdrop" aria-hidden="true"></div>
 <div class="silk" aria-hidden="true"><i></i><i></i><i></i></div>
 
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="in">
     <a class="brand" href="#top"><img src="assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
@@ -509,10 +563,27 @@
       <a href="#platforms">Platforms</a>
     </nav>
     <a class="btn sm" href="#contact">Contact us</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<main>
+<div class="mmenu" id="mmenu" hidden>
+  <nav aria-label="Menu">
+    <a href="#rosc"><span class="mi"><img src="assets/rosc-icon.png" alt=""></span>ROSC</a>
+    <a href="#services"><span class="mi" style="--c:#2E6B56"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
+    <a href="#process"><span class="mi" style="--c:#FF9500"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
+    <a href="#platforms"><span class="mi" style="--c:#3178C6"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span>Platforms</a>
+    <a href="#contact"><span class="mi" style="--c:#7A5C38"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact us</a>
+    <a href="#note"><span class="mi" style="--c:#C9A227"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span>The team</a>
+  </nav>
+  <a class="btn mm-cta" href="#contact">Start a project with us</a>
+  <div class="mm-foot">
+    <button class="theme-toggle" type="button" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg><span>Dark mode</span></button>
+    <span><a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></span>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
   <section class="desk" id="top">
     <nav class="icons" aria-label="Sections">
       <a class="icon" href="#rosc"><span><img src="assets/rosc-icon.png" alt=""></span>ROSC</a>
@@ -533,23 +604,17 @@
     </div>
     <div class="widget" aria-hidden="true">
       <div class="phone back">
-        <picture>
-          <source srcset="assets/detail-dark.jpg" media="(prefers-color-scheme: dark)">
-          <img src="assets/detail.jpg" alt="" width="590" height="1278">
-        </picture>
+        <img src="assets/detail.jpg" data-dark="assets/detail-dark.jpg" alt="" width="590" height="1278">
       </div>
       <div class="phone front">
-        <picture>
-          <source srcset="assets/home-dark.jpg" media="(prefers-color-scheme: dark)">
-          <img src="assets/home.jpg" alt="" width="590" height="1278">
-        </picture>
+        <img src="assets/home.jpg" data-dark="assets/home-dark.jpg" alt="" width="590" height="1278">
       </div>
       <div class="notif" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
       <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
     </div>
   </section>
 
-  <div class="legal"><span>&copy; 2026 <b>Packisher</b></span><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
+  <div class="legal"><button class="theme-toggle icon-only" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg></button><span>&copy; 2026 <b>Packisher</b></span><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
 
   <div class="taskbar" aria-label="Taskbar">
     <button class="start" type="button" aria-label="Packisher menu" aria-expanded="false"><img src="assets/packisher-logo.svg" alt=""></button>
@@ -603,10 +668,7 @@
       <div class="phones" aria-hidden="true">
         <div class="phone a"><img src="assets/profile.jpg" alt="" loading="lazy" width="590" height="1278"></div>
         <div class="phone b">
-          <picture>
-            <source srcset="assets/detail-dark.jpg" media="(prefers-color-scheme: dark)">
-            <img src="assets/detail.jpg" alt="" loading="lazy" width="590" height="1278">
-          </picture>
+          <img src="assets/detail.jpg" data-dark="assets/detail-dark.jpg" alt="" loading="lazy" width="590" height="1278">
         </div>
       </div>
     </div>
@@ -812,7 +874,7 @@
     <div class="f-col"><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
     <div class="f-col"><h4>Legal</h4><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
   </div>
-  <div class="f-bottom"><span>&copy; 2026 <b>Packisher</b>. All rights reserved.</span><span>support@packisher.com</span></div>
+  <div class="f-bottom"><span>&copy; 2026 <b>Packisher</b>. All rights reserved.</span><button class="theme-toggle" type="button" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg><span>Dark mode</span></button></div>
 </footer>
 </div>
 </main>
@@ -824,6 +886,52 @@
   const root = document.documentElement;
   const isOS = () => root.classList.contains('os');
   const nav = () => document.querySelector('.nav').offsetHeight;
+  // ---------- Theme: light by default, dark when switched on ----------
+  const toggles = [...document.querySelectorAll('.theme-toggle')];
+  function applyTheme(t) {
+    root.dataset.theme = t;
+    document.querySelectorAll('img[data-dark]').forEach(img => {
+      if (!img.dataset.light) img.dataset.light = img.getAttribute('src');
+      img.src = t === 'dark' ? img.dataset.dark : img.dataset.light;
+    });
+    toggles.forEach(b => {
+      b.setAttribute('aria-pressed', t === 'dark');
+      const label = t === 'dark' ? 'Light mode' : 'Dark mode';
+      const span = b.querySelector('span');
+      if (span) span.textContent = label; else b.setAttribute('aria-label', label);
+    });
+    (document.querySelector('meta[name="theme-color"]')||{}).content = t === 'dark' ? '#111614' : '#F4F1EA';
+  }
+  let saved = null;
+  try { saved = localStorage.getItem('packisher-theme'); } catch (e) {}
+  applyTheme(saved === 'dark' ? 'dark' : 'light');
+  toggles.forEach(b => b.addEventListener('click', () => {
+    const t = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(t);
+    try { localStorage.setItem('packisher-theme', t); } catch (e) {}
+  }));
+
+  // ---------- Phones and tablets: full-screen menu ----------
+  const menuBtn = document.querySelector('.menu-btn'), mmenu = document.getElementById('mmenu');
+  function setMobileMenu(on) {
+    mmenu.hidden = !on;
+    menuBtn.setAttribute('aria-expanded', on);
+    menuBtn.setAttribute('aria-label', on ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('menu-open', on);
+    if (on) mmenu.querySelector('a').focus(); 
+  }
+  menuBtn.addEventListener('click', () => setMobileMenu(mmenu.hidden));
+  mmenu.addEventListener('click', e => { if (e.target.closest('a')) setMobileMenu(false); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !mmenu.hidden) { setMobileMenu(false); menuBtn.focus(); }
+    if (e.key === 'Tab' && !mmenu.hidden) {
+      const f = [menuBtn, ...mmenu.querySelectorAll('a, button')];
+      const i = f.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+
   const wins = new Map([...document.querySelectorAll('.win-sec')].map(w => [w.id, w]));
   const state = {}; // id -> 'open' | 'min'
   let z = 30;
@@ -851,24 +959,54 @@
     const hash = top ? '#' + top.id : '';
     if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname + location.search);
   }
+  // Scale a window's content down just enough to fit without scrolling.
+  function fit(w) {
+    const pane = w.querySelector('.pane');
+    let f = pane.querySelector(':scope > .fit');
+    if (!f) {
+      f = document.createElement('div');
+      f.className = 'fit';
+      while (pane.firstChild) f.appendChild(pane.firstChild);
+      pane.appendChild(f);
+    }
+    const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .notes')];
+    f.style.zoom = '';
+    devices.forEach(d => { d.style.zoom = ''; });
+    if (!isOS()) return;
+    const cs = getComputedStyle(pane);
+    const h = pane.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const wdt = pane.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    // Shrink the device pictures first so the text stays a comfortable size.
+    for (let d = .92; f.scrollHeight > h && d >= .5; d -= .06) devices.forEach(el => { el.style.zoom = d.toFixed(2); });
+    const z = Math.min(1, h / f.scrollHeight, wdt / f.scrollWidth);
+    if (z < 1) f.style.zoom = Math.max(.72, z - .01).toFixed(3);
+  }
+  let invoker = null;
   function open(id) {
     const w = wins.get(id);
     if (!w) return;
+    if (!w.contains(document.activeElement)) invoker = document.activeElement;
     w.classList.remove('to-bar');
     w.style.zIndex = ++z;
     w.classList.add('open');
     state[id] = 'open';
     sync();
+    fit(w);
     w.querySelector('.pane').focus({ preventScroll: true });
+  }
+  function giveBackFocus(w) {
+    if (w.contains(document.activeElement)) (invoker && document.contains(invoker) ? invoker : document.querySelector(`.pin[data-open="${w.id}"]`) || document.getElementById('main')).focus({ preventScroll: true });
   }
   function minimize(id) {
     const w = wins.get(id);
+    giveBackFocus(w);
     w.classList.add('to-bar');
     w.classList.remove('open');
     state[id] = 'min';
     sync();
   }
   function close(id) {
+    giveBackFocus(wins.get(id));
     wins.get(id).classList.remove('open', 'to-bar');
     delete state[id];
     sync();
@@ -886,7 +1024,7 @@
     w.querySelector('.c-min').addEventListener('click', () => minimize(id));
     w.querySelector('.c-close').addEventListener('click', () => close(id));
     const mx = w.querySelector('.c-max');
-    mx.addEventListener('click', () => { const on = w.classList.toggle('max'); mx.setAttribute('aria-pressed', on); mx.setAttribute('aria-label', (on ? 'Restore ' : 'Expand ') + w.getAttribute('aria-label')); });
+    mx.addEventListener('click', () => { const on = w.classList.toggle('max'); setTimeout(() => fit(w), 320); mx.setAttribute('aria-pressed', on); mx.setAttribute('aria-label', (on ? 'Restore ' : 'Expand ') + w.getAttribute('aria-label')); });
     w.querySelector('.chrome').addEventListener('dblclick', e => { if (!e.target.closest('button')) mx.click(); });
     w.addEventListener('pointerdown', () => { if (state[id] === 'open' && topOpen() !== w) { w.style.zIndex = ++z; sync(); } });
   });
@@ -962,12 +1100,21 @@
 
   function mode() {
     root.classList.toggle('os', wide.matches);
+    wins.forEach(w => {
+      if (isOS()) { w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'false'); }
+      else { w.removeAttribute('role'); w.removeAttribute('aria-modal'); }
+      fit(w);
+    });
+    if (isOS() && !mmenu.hidden) setMobileMenu(false);
     if (isOS()) {
       const id = location.hash.slice(1);
       if (wins.has(id) && state[id] !== 'open') open(id);
     }
   }
   wide.addEventListener?.('change', mode);
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => wins.forEach((w, id) => { if (state[id] === 'open') fit(w); }), 120); });
+  document.fonts?.ready.then(() => wins.forEach((w, id) => { if (state[id] === 'open') fit(w); }));
   addEventListener('hashchange', () => { if (isOS() && wins.has(location.hash.slice(1))) open(location.hash.slice(1)); });
   mode();
   if (!isOS() && location.hash.length > 1) {
