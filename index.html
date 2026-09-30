@@ -146,31 +146,44 @@
   .phones .a { left: 4%; top: 50px; transform: rotate(-4deg); }
   .phones .b { right: 4%; top: 0; transform: rotate(3deg); }
 
-  /* Android screen (Services) */
-  .android { width: 100%; max-width: 400px; justify-self: center; border-radius: 34px; padding: 10px; background: #1D1B20; box-shadow: 0 40px 70px -26px rgba(var(--shade), .45); font-family: Roboto, var(--sans); }
-  .android .scr { background: #F7F2FA; border-radius: 26px; overflow: hidden; color: #1D1B20; }
-  .a-status { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px 4px; font-size: 13px; font-weight: 500; }
-  .a-status span { display: flex; gap: 5px; align-items: center; }
-  .a-status i { display: block; width: 14px; height: 10px; background: #1D1B20; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-  .a-status i.b { width: 20px; height: 10px; border-radius: 2px; clip-path: none; }
-  .a-bar { display: flex; align-items: center; gap: 16px; padding: 12px 18px 6px; font-size: 22px; font-weight: 400; }
-  .a-bar svg { width: 24px; height: 24px; }
-  .chips { display: flex; gap: 8px; padding: 8px 18px 12px; overflow: hidden; }
-  .chip { flex: none; font-size: 13px; font-weight: 500; padding: 6px 13px; border-radius: 8px; border: 1px solid #79747E; color: #49454F; }
-  .chip.on { background: #D8E8DC; border-color: #D8E8DC; color: #0F2A1C; padding-left: 9px; }
+  /* Android 16 screen (Services), Material 3 Expressive */
+  .android { width: 100%; max-width: 400px; justify-self: center; border-radius: 40px; padding: 9px; background: #1B1B1F; box-shadow: 0 40px 70px -26px rgba(var(--shade), .45); font-family: "Google Sans", Roboto, var(--sans); }
+  .android .scr { background: #F3F6F1; border-radius: 32px; overflow: hidden; color: #191C1A; }
+  .a-status { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px 2px; font-size: 13px; font-weight: 500; }
+  .a-status .sys { display: flex; gap: 5px; align-items: center; }
+  .a-status .sys svg { width: 13px; height: 13px; fill: #191C1A; }
+  .a-status .bat { display: block; width: 22px; height: 11px; border-radius: 4px; background: linear-gradient(90deg, #191C1A 78%, #C4C8C2 78%); }
+  .a-head { padding: 22px 18px 6px; }
+  .a-head h3 { margin: 0 0 14px 6px; font-size: 32px; font-weight: 400; letter-spacing: -.01em; }
+  .a-search { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 18px; border-radius: 999px; background: #E4EAE3; color: #414942; font-size: 15px; }
+  .a-search svg { width: 20px; height: 20px; fill: #414942; }
+  .chips { display: flex; gap: 8px; padding: 12px 18px 12px; overflow: hidden; }
+  .chip { flex: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 10px; border: 1px solid #C1C9BF; color: #414942; }
+  .chip.on { background: #CDE8D4; border-color: #CDE8D4; color: #0B2014; border-radius: 999px; padding-left: 10px; }
   .chip.on::before { content: "✓ "; }
-  .a-list { background: #FFFFFF; margin: 0 12px; border-radius: 22px; overflow: hidden; }
-  .a-item { display: grid; grid-template-columns: 44px 1fr 18px; gap: 14px; align-items: center; padding: 14px 16px; }
-  .a-item + .a-item { border-top: 1px solid #ECE6F0; }
-  .a-item .ic { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: var(--ci); }
+  .a-list { list-style: none; margin: 0 12px; padding: 0; display: grid; gap: 3px; }
+  .a-list li { background: #FFFFFF; border-radius: 6px; overflow: hidden; }
+  .a-list li:first-child { border-radius: 24px 24px 6px 6px; }
+  .a-list li:last-child { border-radius: 6px 6px 24px 24px; }
+  .a-item { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 44px 1fr 20px; column-gap: 14px; align-items: center; padding: 13px 16px; cursor: pointer; transition: background .2s; }
+  .a-item:hover, .a-item[aria-expanded="true"] { background: #EDF3EC; }
+  .a-item:focus-visible { outline: 2px solid #3B6A4A; outline-offset: -2px; }
+  .a-item .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--c); color: var(--ci); transition: border-radius .3s ease; }
+  .a-item:hover .ic, .a-item[aria-expanded="true"] .ic { border-radius: 50%; }
   .a-item .ic svg { width: 22px; height: 22px; fill: currentColor; }
-  .a-item b { display: block; font-size: 15.5px; font-weight: 500; }
-  .a-item span { display: block; font-size: 13.2px; line-height: 1.4; color: #49454F; }
-  .a-item .ch { width: 18px; height: 18px; fill: #49454F; }
-  .a-foot { position: relative; height: 92px; }
-  .fab { position: absolute; right: 16px; top: 16px; display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 18px; border-radius: 16px; background: #CDE7D3; color: #0F2A1C; font-size: 14.5px; font-weight: 500; text-decoration: none; box-shadow: 0 6px 14px rgba(0,0,0,.14); }
-  .fab svg { width: 20px; height: 20px; fill: currentColor; }
-  .gesture { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 110px; height: 4px; border-radius: 4px; background: #1D1B20; opacity: .8; }
+  .a-item .tx b { display: block; font-size: 15.5px; font-weight: 500; }
+  .a-item .tx span { display: block; font-size: 13px; line-height: 1.4; color: #414942; }
+  .a-item .ch { width: 20px; height: 20px; fill: #414942; transition: transform .3s ease; }
+  .a-item:hover .ch, .a-item[aria-expanded="true"] .ch { transform: rotate(180deg); }
+  .a-item .more { grid-column: 2 / 4; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+  .a-item .more > span { overflow: hidden; font-size: 13px; line-height: 1.5; color: #2F3831; }
+  .a-item:hover .more, .a-item[aria-expanded="true"] .more { grid-template-rows: 1fr; }
+  .a-item:hover .more > span, .a-item[aria-expanded="true"] .more > span { padding-top: 8px; }
+  .a-foot { position: relative; height: 96px; }
+  .fab { position: absolute; right: 16px; top: 18px; display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; border-radius: 18px; background: #B8EFC6; color: #002110; font-size: 15px; font-weight: 500; text-decoration: none; box-shadow: 0 6px 14px rgba(0,0,0,.14); transition: border-radius .25s; }
+  .fab:hover { border-radius: 28px; }
+  .fab svg { width: 22px; height: 22px; fill: currentColor; }
+  .gesture { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 108px; height: 4px; border-radius: 4px; background: #191C1A; opacity: .75; }
 
   /* iOS Reminders (Process) */
   .ios { width: 100%; max-width: 400px; justify-self: center; border-radius: 46px; padding: 10px; background: #0F0F10; box-shadow: 0 40px 70px -26px rgba(var(--shade), .45); font-family: -apple-system, "SF Pro Text", var(--sans); }
@@ -255,6 +268,20 @@
   .formnote { font-size: 13px; color: var(--muted); margin: 0; }
   .formnote.ok { color: var(--rosc); font-weight: 600; }
 
+
+  /* Team */
+  .people { display: grid; gap: 10px; margin: 6px 0 24px; max-width: 460px; }
+  .person { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 16px; background: color-mix(in srgb, var(--card-2) 70%, transparent); }
+  .person .av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--forest); color: var(--on-forest); font-weight: 600; font-size: 15px; flex: none; }
+  .person.open-role .av { background: transparent; color: var(--muted); border: 1.5px dashed var(--rule); font-size: 20px; font-weight: 400; }
+  .person b { display: block; font-size: 15px; }
+  .person span { font-size: 13.5px; color: var(--muted); }
+  .btn.li svg { fill: #0A66C2; }
+
+  /* A little wiggle when you hover an app icon */
+  @keyframes wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-9deg) scale(1.06); } 40% { transform: rotate(7deg) scale(1.06); } 60% { transform: rotate(-4deg) scale(1.04); } 80% { transform: rotate(2deg); } }
+  .icon:hover span, .icon:focus-visible span, .taskbar .pin:hover > *, .taskbar .start:hover img { animation: wiggle .55s ease; }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -321,6 +348,50 @@
   .sm-cols a:hover { color: var(--ink); }
   .sm-foot { padding-top: 14px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--muted); }
   .sm-foot b { color: var(--bronze); }
+
+
+  /* Centred intro, phones low on the right */
+  .os .desk { display: block; }
+  .os .icons { position: absolute; left: 32px; top: 28px; width: 96px; }
+  .os .home { position: absolute; left: 50%; top: calc(50% - 40px); transform: translate(-50%, -50%); width: min(600px, calc(100% - 2 * clamp(270px, 26vw, 360px))); min-width: 420px; }
+  .os .widget { position: absolute; right: clamp(24px, 3vw, 56px); bottom: 104px; width: clamp(210px, 20vw, 290px); height: clamp(300px, 46vh, 430px); display: block; }
+  .os .widget .phone { position: absolute; width: clamp(118px, 11vw, 168px); border-radius: 30px; padding: 6px; transform: none; animation: float 8s ease-in-out infinite; }
+  .os .widget .phone img { border-radius: 24px; }
+  .os .widget .phone::after { top: 12px; width: 44px; height: 14px; }
+  .os .widget .back { right: 0; top: 0; rotate: 5deg; opacity: .96; animation-delay: -4s; }
+  .os .widget .front { left: 0; bottom: 28px; rotate: -3deg; }
+  @keyframes float { 50% { translate: 0 -10px; } }
+  .os .widget .cap { position: absolute; left: 0; right: 0; bottom: -6px; margin: 0; text-align: center; font-size: 12px; color: var(--muted); display: flex; justify-content: center; align-items: center; gap: 7px; }
+  .notif { display: none; }
+  .os .notif { display: flex; position: absolute; right: 6%; top: -78px; z-index: 2; width: 250px; align-items: center; gap: 11px; padding: 11px 13px; border-radius: 20px; background: color-mix(in srgb, var(--card) 62%, transparent); backdrop-filter: blur(22px) saturate(1.7); -webkit-backdrop-filter: blur(22px) saturate(1.7); box-shadow: 0 18px 40px -16px rgba(var(--shade), .35), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(255,255,255,.35); font-size: 12.5px; line-height: 1.35; color: var(--ink-2); transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+  .os .notif.out { opacity: 0; transform: translateY(-10px) scale(.97); }
+  .os .notif.in { opacity: 0; transform: translateY(12px) scale(.97); transition: none; }
+  .notif img { width: 34px; height: 34px; border-radius: 9px; flex: none; }
+  .notif b { display: block; color: var(--ink); font-size: 13px; }
+  .notif time { align-self: flex-start; margin-left: auto; font-size: 11px; color: var(--muted); }
+
+  /* Silky background that drifts slowly (large screens only) */
+  .silk { display: none; }
+  .os .silk { display: block; position: fixed; inset: -20%; z-index: -1; pointer-events: none; filter: blur(60px); opacity: .9; }
+  .os .silk i { position: absolute; border-radius: 50%; will-change: transform; }
+  .os .silk i:nth-child(1) { width: 55vw; height: 45vw; left: 45%; top: 5%; background: var(--wash-1); animation: silk1 38s ease-in-out infinite alternate; }
+  .os .silk i:nth-child(2) { width: 50vw; height: 40vw; left: 0; top: 45%; background: var(--wash-2); animation: silk2 46s ease-in-out infinite alternate; }
+  .os .silk i:nth-child(3) { width: 40vw; height: 34vw; left: 30%; top: 30%; background: var(--wash-3); animation: silk3 52s ease-in-out infinite alternate; }
+  @keyframes silk1 { to { transform: translate(-18vw, 14vh) rotate(25deg) scale(1.1); } }
+  @keyframes silk2 { to { transform: translate(22vw, -16vh) rotate(-20deg) scale(1.15); } }
+  @keyframes silk3 { to { transform: translate(-10vw, 18vh) scale(.85); } }
+  .os .desk::before { display: none; }
+
+  /* Glass windows and menus */
+  .os .win-sec { background: color-mix(in srgb, var(--card) 66%, transparent); backdrop-filter: blur(34px) saturate(1.7); -webkit-backdrop-filter: blur(34px) saturate(1.7); box-shadow: 0 40px 90px -30px rgba(var(--shade), .45), inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 1px rgba(255,255,255,.4); border-radius: 22px; }
+  .os .screen.alt { background: transparent; }
+  .os .chrome { background: color-mix(in srgb, var(--card) 35%, transparent); border-bottom-color: color-mix(in srgb, var(--rule) 60%, transparent); height: 46px; }
+  .os .startmenu:not([hidden]), .os .results { background: color-mix(in srgb, var(--card) 66%, transparent); backdrop-filter: blur(30px) saturate(1.7); -webkit-backdrop-filter: blur(30px) saturate(1.7); box-shadow: 0 30px 70px -26px rgba(var(--shade), .45), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(255,255,255,.35); border-radius: 20px; }
+  .os .taskbar { background: color-mix(in srgb, var(--card) 58%, transparent); box-shadow: 0 16px 40px -18px rgba(var(--shade), .35), inset 0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(255,255,255,.35); border-radius: 20px; }
+  @media (prefers-color-scheme: dark) {
+    .os .win-sec, .os .startmenu:not([hidden]), .os .results, .os .taskbar, .os .notif { box-shadow: 0 40px 90px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(255,255,255,.07); }
+  }
+  @media (prefers-reduced-motion: reduce) { .os .silk i, .os .widget .phone { animation: none; } .icon:hover span, .taskbar .pin:hover > *, .taskbar .start:hover img { animation: none; } }
 
   /* Windows */
   .os .win-sec { position: fixed; top: calc(var(--nav) + 14px); left: 20px; right: 20px; bottom: 90px; z-index: 30; min-height: 0; padding: 0; display: flex; flex-direction: column; justify-content: flex-start; background: var(--card); border-radius: 14px; box-shadow: 0 40px 90px -30px rgba(var(--shade), .5), 0 0 0 1px rgba(var(--shade), .08); overflow: hidden;
@@ -417,6 +488,7 @@
 <symbol id="i-claude" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol>
 </svg>
 <div class="backdrop" aria-hidden="true"></div>
+<div class="silk" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <header class="nav">
   <div class="in">
@@ -439,7 +511,7 @@
       <a class="icon" href="#process"><span><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
       <a class="icon" href="#platforms"><span><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span>Platforms</a>
       <a class="icon" href="#contact"><span><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact us</a>
-      <a class="icon" href="#note"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M5 3h14a2 2 0 0 1 2 2v10l-6 6H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm9 16.2L19.2 14H15a1 1 0 0 0-1 1v4.2zM7 8h10V6H7v2zm0 4h10v-2H7v2z"/></svg></span>Founder's note</a>
+      <a class="icon" href="#note"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span>The team</a>
     </nav>
     <div class="home">
       <img class="home-logo" src="assets/packisher-logo.svg" alt="Packisher">
@@ -448,19 +520,25 @@
       <p class="lead">A dev studio building custom digital platforms and our own products, starting with ROSC.</p>
       <div class="ctas">
         <a class="btn" href="#contact">Start a project with us</a>
-        <a class="btn ghost" href="#rosc"><i class="dot"></i>See ROSC</a>
       </div>
       <p class="reach">Or email <b>support@packisher.com</b></p>
     </div>
-    <a class="widget" href="#rosc" aria-label="Open ROSC">
-      <div class="phone">
+    <div class="widget" aria-hidden="true">
+      <div class="phone back">
+        <picture>
+          <source srcset="assets/detail-dark.jpg" media="(prefers-color-scheme: dark)">
+          <img src="assets/detail.jpg" alt="" width="590" height="1278">
+        </picture>
+      </div>
+      <div class="phone front">
         <picture>
           <source srcset="assets/home-dark.jpg" media="(prefers-color-scheme: dark)">
           <img src="assets/home.jpg" alt="" width="590" height="1278">
         </picture>
       </div>
-      <span><i class="dot"></i>ROSC · live on iOS and Android</span>
-    </a>
+      <div class="notif" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
+      <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
+    </div>
   </section>
 
   <div class="taskbar" aria-label="Taskbar">
@@ -481,7 +559,7 @@
   <div class="startmenu" id="startmenu" hidden>
     <div class="sm-head"><img src="assets/packisher-logo.svg" alt=""><div><b>Packisher</b><span>Venture &amp; software studio</span></div></div>
     <div class="sm-cols">
-      <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">Founder's note</a></div>
+      <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">The team</a></div>
       <div><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
       <div><h4>Legal</h4><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
     </div>
@@ -529,33 +607,33 @@
     <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg>Services</span><button class="c-min" type="button" aria-label="Minimize Services"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Services"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
     <div class="pane">
     <div class="sec flip">
-      <div class="android" role="img" aria-label="Our services, shown as an Android screen">
+      <div class="android" aria-label="Our services, shown as an Android screen">
         <div class="scr">
-          <div class="a-status"><span>9:41</span><span><i></i><i class="b"></i></span></div>
-          <div class="a-bar"><svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>Services</div>
+          <div class="a-status"><span>9:41</span><span class="sys"><svg viewBox="0 0 24 24"><path d="M12 21 1 9.5a15.6 15.6 0 0 1 22 0z"/></svg><svg viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg><i class="bat"></i></span></div>
+          <div class="a-head"><h3>Services</h3><div class="a-search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>Search services</div></div>
           <div class="chips"><span class="chip on">All</span><span class="chip">Mobile</span><span class="chip">Web</span><span class="chip">Backend</span><span class="chip">Design</span></div>
-          <div class="a-list">
-            <div class="a-item" style="--c:#D8E8DC;--ci:#1E4D34">
+          <ul class="a-list">
+            <li><button class="a-item" type="button" aria-expanded="false" style="--c:#D8E8DC;--ci:#1E4D34">
               <span class="ic"><svg viewBox="0 0 24 24"><path d="M17 1H7a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm0 18H7V5h10v14z"/></svg></span>
-              <div><b>Mobile apps</b><span>iOS and Android from one codebase, published to both stores</span></div>
-              <svg class="ch" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6-1.4-1.4 4.6-4.6-4.6-4.6z"/></svg>
-            </div>
-            <div class="a-item" style="--c:#DCE3F9;--ci:#1D3A7A">
+              <span class="tx"><b>Mobile apps</b><span>iOS and Android from one codebase</span></span><svg class="ch" viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg>
+              <span class="more"><span>Flutter apps with sign-in, payments, push notifications and offline support. We handle App Store and Google Play submission for you.</span></span>
+            </button></li>
+            <li><button class="a-item" type="button" aria-expanded="false" style="--c:#DCE3F9;--ci:#1D3A7A">
               <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.9a15.6 15.6 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8 8 0 0 1 0-4h3.4a16 16 0 0 0 0 4H4.3zm.8 2h2.9c.3 1.3.8 2.5 1.4 3.6A8 8 0 0 1 5.1 16zM8 8H5.1a8 8 0 0 1 4.3-3.6C8.8 5.5 8.3 6.7 8 8zm4 12c-.8-1.2-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.8-1.9 4zm2.3-6H9.7a14 14 0 0 1 0-4h4.6a14 14 0 0 1 0 4zm.3 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.9a8 8 0 0 1-4.3 3.6zm1.7-5.6a16 16 0 0 0 0-4h3.4a8 8 0 0 1 0 4h-3.4z"/></svg></span>
-              <div><b>Websites</b><span>Company sites, booking flows and customer portals</span></div>
-              <svg class="ch" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6-1.4-1.4 4.6-4.6-4.6-4.6z"/></svg>
-            </div>
-            <div class="a-item" style="--c:#F6E3C8;--ci:#6A4312">
+              <span class="tx"><b>Websites</b><span>Company sites, bookings and portals</span></span><svg class="ch" viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg>
+              <span class="more"><span>Marketing sites, booking and ordering flows, customer portals and dashboards. Fast on slow connections and easy for your team to update.</span></span>
+            </button></li>
+            <li><button class="a-item" type="button" aria-expanded="false" style="--c:#F6E3C8;--ci:#6A4312">
               <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3C7.6 3 4 4.3 4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6c0-1.7-3.6-3-8-3zm6 15c-.3.4-2.5 1-6 1s-5.7-.6-6-1v-2.2c1.5.8 3.6 1.2 6 1.2s4.5-.4 6-1.2V18zm0-4c-.3.4-2.5 1-6 1s-5.7-.6-6-1v-2.2c1.5.8 3.6 1.2 6 1.2s4.5-.4 6-1.2V14zm-6-3c-3.5 0-5.7-.6-6-1V8.8c1.5.8 3.6 1.2 6 1.2s4.5-.4 6-1.2V10c-.3.4-2.5 1-6 1zm0-3c-3.5 0-5.7-.6-6-1 .3-.4 2.5-1 6-1s5.7.6 6 1c-.3.4-2.5 1-6 1z"/></svg></span>
-              <div><b>Backends</b><span>Accounts, data, notifications and admin tools, secure from day one</span></div>
-              <svg class="ch" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6-1.4-1.4 4.6-4.6-4.6-4.6z"/></svg>
-            </div>
-            <div class="a-item" style="--c:#F4DAE4;--ci:#7A2346">
+              <span class="tx"><b>Backends</b><span>Accounts, data and notifications</span></span><svg class="ch" viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg>
+              <span class="more"><span>Databases, user accounts, roles and permissions, file storage, email and push, and admin panels, with access rules tested before launch.</span></span>
+            </button></li>
+            <li><button class="a-item" type="button" aria-expanded="false" style="--c:#F4DAE4;--ci:#7A2346">
               <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 17.3V21h3.8l11-11.1-3.7-3.7L3 17.3zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7L20.7 7z"/></svg></span>
-              <div><b>Product design</b><span>Flows, screens and clickable prototypes before any code</span></div>
-              <svg class="ch" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6-1.4-1.4 4.6-4.6-4.6-4.6z"/></svg>
-            </div>
-          </div>
+              <span class="tx"><b>Product design</b><span>Flows, screens and prototypes</span></span><svg class="ch" viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg>
+              <span class="more"><span>Research, user flows, wireframes and polished screens in Figma, plus a clickable prototype you can test with real people before we build.</span></span>
+            </button></li>
+          </ul>
           <div class="a-foot">
             <a class="fab" href="#contact"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>New project</a>
             <span class="gesture"></span>
@@ -689,19 +767,24 @@
   </section>
 
 <div class="ending">
-  <section class="screen win-sec" id="note" aria-label="Founder's note">
-    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M5 3h14a2 2 0 0 1 2 2v10l-6 6H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm9 16.2L19.2 14H15a1 1 0 0 0-1 1v4.2zM7 8h10V6H7v2zm0 4h10v-2H7v2z"/></svg>Founder's note</span><button class="c-min" type="button" aria-label="Minimize Founder's note"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close Founder's note"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+  <section class="screen win-sec" id="note" aria-label="The team">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg>The team</span><button class="c-min" type="button" aria-label="Minimize The team"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-close" type="button" aria-label="Close The team"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
     <div class="pane">
     <div class="sec">
       <div>
-        <div class="num">From the founder</div>
-        <h2>A note on how we build.</h2>
-        <p class="lead">Packisher started with one app for one family. That's still the standard every project gets held to.</p>
+        <div class="num">The team</div>
+        <h2>The people behind Packisher.</h2>
+        <p class="lead">A small studio that brings in designers and engineers as each project needs them. New members will be introduced here as the team grows.</p>
+        <div class="people">
+          <div class="person"><span class="av">SA</span><div><b>Sherine A.</b><span>Founder · Product and engineering</span></div></div>
+          <div class="person open-role"><span class="av">+</span><div><b>Growing soon</b><span>Designers and engineers, project by project</span></div></div>
+        </div>
+        <a class="btn ghost li" href="https://www.linkedin.com/company/packisher" data-linkedin><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Follow us on LinkedIn</a>
       </div>
       <div class="notes">
         <div class="sticky">
           <p>We build software the way we would want it built for us: thought through, tested in real life and looked after long after launch.</p>
-          <div class="sig">Sherine<small>Founder, Packisher</small></div>
+          <div class="sig">Sherine A.<small>Founder, Packisher</small></div>
         </div>
         <div class="sticky small"><p>P.S. ROSC began as our own family's savings group.</p></div>
       </div>
@@ -807,7 +890,7 @@
     ['process', 'Process', 'how we work listen design build launch timeline steps'],
     ['platforms', 'Platforms', 'flutter dart supabase react next typescript tools stack firebase figma language models'],
     ['contact', 'Contact us', 'start project enquiry email hire quote talk'],
-    ['note', "Founder's note", 'founder sherine about story'],
+    ['note', 'The team', 'team people founder sherine about linkedin join careers'],
   ];
   const iconOf = id => document.querySelector(`.icon[href="#${id}"] span`)?.innerHTML || '';
   let hits = [], hi = 0;
@@ -885,6 +968,37 @@
       if (el.getBoundingClientRect().top > vh) { el.classList.add('pre'); io.observe(el); }
     });
   }
+
+  // Services: tap or click to expand an item (hover also expands on laptops).
+  document.querySelectorAll('.a-item').forEach(b => b.addEventListener('click', () => {
+    const on = b.getAttribute('aria-expanded') !== 'true';
+    document.querySelectorAll('.a-item').forEach(x => x.setAttribute('aria-expanded', 'false'));
+    b.setAttribute('aria-expanded', on);
+  }));
+
+  // Notifications beside the phones, cycling slowly.
+  const note = document.getElementById('notif');
+  const feed = [
+    ['assets/rosc-icon.png', 'Amina confirmed your payment', 'KES 5,000 · turn 2 of 3'],
+    ['assets/rosc-icon.png', 'Kwame marked his share as sent', 'CAD 400 · Solidarity Circle'],
+    ['assets/rosc-icon.png', "It's your turn to receive", 'Umoja Circle · KES 15,000'],
+    ['assets/rosc-icon.png', 'New note on the noticeboard', 'Jamii Circle · 2 reactions'],
+    ['assets/rosc-icon.png', 'Cycle complete', 'Everyone paid on time'],
+  ];
+  let fi = 0;
+  if (note && !calm.matches) setInterval(() => {
+    if (!isOS() || document.hidden) return;
+    note.classList.add('out');
+    setTimeout(() => {
+      fi = (fi + 1) % feed.length;
+      const [img, t, sub] = feed[fi];
+      note.querySelector('img').src = img;
+      note.querySelector('b').textContent = t;
+      note.querySelector('span').textContent = sub;
+      note.classList.remove('out'); note.classList.add('in');
+      requestAnimationFrame(() => requestAnimationFrame(() => note.classList.remove('in')));
+    }, 450);
+  }, 4200);
 
   // Enquiry form: compose an email with everything filled in.
   document.getElementById('enquiry').addEventListener('submit', e => {
