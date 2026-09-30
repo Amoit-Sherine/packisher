@@ -71,12 +71,12 @@
       var(--page); }
 
   /* Floating platform tiles in the margins of wide screens. */
-  .floaters { position: fixed; inset: 0; z-index: -1; pointer-events: none; display: none; }
-  .floaters i { position: absolute; width: 58px; height: 58px; border-radius: 16px; background: var(--card); display: grid; place-items: center; box-shadow: 0 18px 36px -14px rgba(var(--shade), .28), 0 0 0 1px rgba(var(--shade), .04); animation: bob 7s ease-in-out infinite; }
+  .floaters { position: fixed; inset: 0; z-index: -1; pointer-events: none; display: none; opacity: .28; filter: grayscale(1); }
+  .floaters i { position: absolute; width: 58px; height: 58px; border-radius: 16px; background: var(--card); display: grid; place-items: center; box-shadow: 0 18px 36px -14px rgba(var(--shade), .28), 0 0 0 1px rgba(var(--shade), .04); animation: bob 9s ease-in-out infinite; }
   .floaters i:nth-child(2n) { animation-duration: 9s; animation-delay: -3s; }
   .floaters i:nth-child(3n) { animation-duration: 11s; animation-delay: -5s; width: 50px; height: 50px; border-radius: 14px; }
-  .floaters svg { width: 26px; height: 26px; fill: var(--c); }
-  @keyframes bob { 50% { transform: translateY(-12px) rotate(var(--r, 0deg)); } }
+  .floaters svg { width: 24px; height: 24px; fill: var(--ink); }
+  @keyframes bob { 50% { transform: translateY(-6px) rotate(var(--r, 0deg)); } }
   @media (min-width: 1380px) { .floaters { display: block; } }
 
   /* Nav stays visible the whole way down. */
@@ -99,9 +99,16 @@
 
   /* The deck */
   .deck { max-width: 1200px; margin: 0 auto; padding: 16px 16px 0; }
-  .card { position: sticky; top: calc(var(--nav) + 14px); margin-bottom: 28px; background: var(--card); border-radius: 30px; box-shadow: 0 -12px 34px -6px rgba(var(--shade), .08), 0 1px 0 rgba(var(--shade), .04); padding: 72px 64px; overflow: clip; transform-origin: 50% 0; will-change: transform; }
-  .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(var(--shade)); opacity: calc(var(--t, 0) * .10); pointer-events: none; }
+  .card { position: relative; margin-bottom: 20px; background: var(--card); border-radius: 30px; box-shadow: 0 -12px 34px -6px rgba(var(--shade), .08), 0 1px 0 rgba(var(--shade), .04); padding: 72px 64px; overflow: clip; }
+  .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(var(--shade)); opacity: calc(var(--t, 0) * .08); pointer-events: none; }
   .card:last-child { margin-bottom: 0; }
+  .open { margin-bottom: 20px; }
+  .open > .card:last-child { margin-bottom: 0; }
+  .card.hero { position: sticky; top: calc(var(--nav) + 14px); z-index: 0; }
+  #rosc { z-index: 1; box-shadow: 0 -18px 40px -8px rgba(var(--shade), .12); }
+  /* Content eases up once as it reaches the screen. */
+  .rv { transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .rv.pre { opacity: 0; transform: translateY(18px); }
   .sec { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
   .sec > * { min-width: 0; }
   .num { font: 700 15px/1 var(--display); letter-spacing: .1em; color: var(--bronze); display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
@@ -118,6 +125,9 @@
   .live { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px 7px 12px; border-radius: 999px; background: color-mix(in srgb, var(--emerald) 12%, var(--card)); color: var(--ink-2); font-size: 13.5px; font-weight: 500; text-decoration: none; }
   .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 0 0 color-mix(in srgb, var(--emerald) 60%, transparent); animation: ping 2.4s ease-out infinite; }
   @keyframes ping { 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); }
+  .reach { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
+  .reach b { color: var(--ink-2); font-weight: 600; user-select: all; }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
   .hero-art { position: relative; justify-self: center; padding: 10px 40px; }
   .phone { position: relative; width: 262px; max-width: 100%; aspect-ratio: 393 / 852; border-radius: 44px; padding: 9px; background: #121513; box-shadow: 0 40px 70px -24px rgba(var(--shade), .4); }
@@ -279,7 +289,7 @@
     .nav nav { display: none; }
     .nav .btn { margin-left: auto; }
     .deck { padding: 10px 10px 0; }
-    .card { padding: 40px 20px 44px; border-radius: 24px; margin-bottom: 16px; top: calc(var(--nav) + 8px); }
+    .card { padding: 40px 20px 44px; border-radius: 24px; margin-bottom: 12px; }
     .lead { font-size: 16.5px; }
     .hero-art { padding: 0 24px; }
     .phone { width: 228px; border-radius: 38px; padding: 8px; }
@@ -304,7 +314,7 @@
     footer .links { margin-left: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .card { transform: none !important; }
+    .rv.pre { opacity: 1; transform: none; }
     .card::after { display: none; }
     .floaters i, .live i { animation: none; }
     .btn { transition: none; }
@@ -359,17 +369,18 @@
 </header>
 
 <main class="deck">
+<div class="open">
   <section class="card hero" id="top">
     <div class="sec">
       <div>
         <div class="eyebrow">Venture &amp; software studio</div>
-        <h1>We craft software that <span class="serif">connects communities</span> and scales ideas.</h1>
-        <p class="lead">Packisher is a dev studio building custom digital platforms and in-house products, starting with ROSC, our mobile app for rotating savings groups.</p>
-        <a class="live" href="#rosc"><i></i>ROSC is live on iOS and Android</a>
+        <h1>We craft software that connects communities and scales ideas.</h1>
+        <p class="lead">A dev studio building custom digital platforms and our own products, starting with ROSC.</p>
         <div class="ctas">
           <a class="btn" href="#contact">Start a project</a>
-          <a class="btn ghost" href="#rosc">Meet ROSC</a>
+          <a class="btn ghost" href="#rosc"><i class="dot"></i>See ROSC</a>
         </div>
+        <p class="reach">Or email <b>support@packisher.com</b></p>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="phone">
@@ -379,7 +390,6 @@
           </picture>
         </div>
         <div class="toast a"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b>KES 5,000 · turn 2 of 3</div></div>
-        <div class="toast b"><span class="tick">✓</span><div><b>Cycle complete</b>Everyone paid on time</div></div>
       </div>
     </div>
   </section>
@@ -388,7 +398,7 @@
     <div class="sec">
       <div>
         <div class="num">01 · Our product</div>
-        <h2>Introducing <span class="serif">ROSC.</span></h2>
+        <h2>Introducing ROSC.</h2>
         <p class="lead">A shared record for rotating savings groups. Every turn, each member marks their share as sent, the person receiving confirms it, and the whole group sees the same record.</p>
         <div class="rosc-id">
           <img src="assets/rosc-icon.png" alt="ROSC app icon">
@@ -417,6 +427,7 @@
       </div>
     </div>
   </section>
+</div>
 
   <section class="card" id="services">
     <div class="sec flip">
@@ -455,7 +466,7 @@
       </div>
       <div>
         <div class="num">02 · Services</div>
-        <h2>What we <span class="serif">make.</span></h2>
+        <h2>What we make.</h2>
         <p class="lead">We take on a few client projects at a time, alongside our own products, and see each one through from the first sketch to launch day and after.</p>
         <p class="lead">Every project includes design, build, testing, store release and support once it's live.</p>
       </div>
@@ -466,7 +477,7 @@
     <div class="sec">
       <div>
         <div class="num">03 · Process</div>
-        <h2>How we <span class="serif">work.</span></h2>
+        <h2>How we work.</h2>
         <p class="lead">Short stages with something to see at every step, so you always know where things stand.</p>
       </div>
       <div class="ios" role="img" aria-label="How we work, shown as an iOS Reminders list">
@@ -487,7 +498,7 @@
 
   <section class="card" id="platforms">
     <div class="num">04 · Platforms</div>
-    <h2>Platforms we build <span class="serif">on.</span></h2>
+    <h2>Platforms we build on.</h2>
     <p class="lead">Established tools with long track records, so what we build is dependable and easy for anyone to pick up later.</p>
     <div class="mac" role="img" aria-label="Platforms we build on, shown as a Mac window">
       <div class="m-bar"><div class="lights"><i></i><i></i><i></i></div><b>Platforms</b><span></span></div>
@@ -538,7 +549,7 @@
     <div class="sec">
       <div>
         <div class="num">05 · From the founder</div>
-        <h2>A note on how we <span class="serif">build.</span></h2>
+        <h2>A note on how we build.</h2>
         <p class="lead">Packisher started with one app for one family. That's still the standard every project gets held to.</p>
       </div>
       <div class="notes">
@@ -555,7 +566,7 @@
     <div class="sec" style="align-items:start">
       <div>
         <div class="num">06 · Contact</div>
-        <h2>Tell us what you're <span class="serif">building.</span></h2>
+        <h2>Tell us what you're building.</h2>
         <p class="lead">An app, a website or something in between. A few sentences is plenty to start.</p>
         <ol class="next">
           <li><span><b>Send a short note.</b> What it's for, who will use it and roughly when you'd like it live.</span></li>
@@ -600,51 +611,48 @@
 
 <script>
 (() => {
-  const cards = [...document.querySelectorAll('.deck > .card')];
-  const fancy = matchMedia('(min-width: 900px) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  const cards = [...document.querySelectorAll('.deck .card')];
+  const hero = document.querySelector('.card.hero');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
   let vh = innerHeight, nav = 0, queued = false;
 
-  // Cards stick under the nav. A card taller than the screen scrolls to its end first.
+  // The opening screen holds still while ROSC slides up over it. Everything else scrolls normally.
   function measure() {
     vh = innerHeight;
     nav = document.querySelector('.nav').offsetHeight;
     const gap = innerWidth < 640 ? 8 : 14;
-    for (const c of cards) {
-      c.style.top = '';
-      const room = vh - nav - gap;
-      c.style.top = (c.offsetHeight > room ? vh - c.offsetHeight - gap : nav + gap) + 'px';
-    }
+    hero.style.top = Math.min(nav + gap, vh - hero.offsetHeight - gap) + 'px';
     draw();
   }
-
-  // On laptops the card underneath eases back a touch as the next one arrives.
   function draw() {
     queued = false;
-    if (!fancy.matches) { cards.forEach(c => { c.style.transform = ''; c.style.removeProperty('--t'); }); return; }
-    for (let i = 0; i < cards.length - 1; i++) {
-      const top = cards[i + 1].getBoundingClientRect().top;
-      const t = Math.min(1, Math.max(0, 1 - (top - nav) / (vh - nav)));
-      const c = cards[i];
-      if (c._t === t) continue;
-      c._t = t;
-      c.style.transform = t ? `scale(${(1 - t * .04).toFixed(4)})` : '';
-      c.style.setProperty('--t', t.toFixed(3));
-    }
+    if (calm.matches) return;
+    const t = Math.min(1, Math.max(0, 1 - (cards[1].getBoundingClientRect().top - nav) / (vh - nav)));
+    hero.style.setProperty('--t', t.toFixed(3));
   }
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(draw); } }, { passive: true });
   addEventListener('resize', measure);
   addEventListener('load', measure);
-  fancy.addEventListener?.('change', measure);
   measure();
+
+  // Ease content up once, only for things that start below the screen.
+  if (!calm.matches && 'IntersectionObserver' in window) {
+    const items = document.querySelectorAll('.card:not(.hero) .num, .card:not(.hero) h2, .card:not(.hero) .lead, .android, .ios, .mac, .phones, .notes, .changelog, form, .next');
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -10% 0px' });
+    items.forEach(el => {
+      el.classList.add('rv');
+      if (el.getBoundingClientRect().top > vh) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
 
   // Anchor links land just under the nav.
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const el = document.querySelector(a.getAttribute('href'));
     if (!el) return;
     e.preventDefault();
-    const idx = cards.indexOf(el);
-    let y = 0;
-    for (let i = 0; i < idx; i++) y += cards[i].offsetHeight + parseFloat(getComputedStyle(cards[i]).marginBottom);
+    const y = el === hero ? 0 : el.getBoundingClientRect().top + scrollY - nav - 12;
     scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }));
 
