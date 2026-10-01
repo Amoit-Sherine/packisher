@@ -537,6 +537,57 @@
   .pick span { user-select: none; }
   .pick input:focus-visible + span { outline: 2.5px solid var(--bronze); outline-offset: 2px; }
 
+
+  /* Silver group card in the demo */
+  .d-card { background: linear-gradient(135deg, #F3F5F7 0%, #C9CFD5 38%, #EEF1F3 62%, #AEB5BC 100%); color: #1D2226; box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 8px 20px -10px rgba(0,0,0,.35); }
+  .d-card-h em { background: rgba(29,34,38,.1); }
+  .d-card-l, .d-card-f { opacity: .75; }
+
+  /* Demo phone in dark (shown when the page is light) */
+  .dscr.dk { background: #101412; color: #ECF0ED; }
+  .dscr.dk .d-sys i { background: #ECF0ED; }
+  .dscr.dk .d-sum { background: #1B2520; color: #9AA59E; }
+  .dscr.dk .d-sum b { color: #ECF0ED; }
+  .dscr.dk .d-label, .dscr.dk .d-tx span, .dscr.dk .d-feed span, .dscr.dk .d-stats { color: #9AA59E; }
+  .dscr.dk .d-row, .dscr.dk .d-members li, .dscr.dk .d-feed li, .dscr.dk .d-ts { background: #1A211D; box-shadow: none; }
+  .dscr.dk .d-feed li.new { background: #1E3328; }
+  .dscr.dk .d-ts b, .dscr.dk .d-stats b { color: #ECF0ED; }
+  .dscr.dk .d-av.sm { background: #26302B; color: #CFE3D6; }
+  .dscr.dk .d-prog i { background: #26302B; }
+  .dscr.dk .d-prog i b { background: #6BB08F; }
+  .dscr.dk .d-members em { color: #9AA59E; } .dscr.dk .d-members em.ok { color: #7FD0A5; } .dscr.dk .d-members em.wait { color: #E8C27A; } .dscr.dk .d-members em.rc { color: #D9BC8E; }
+  .dscr.dk .d-btn { background: #6BB08F; color: #0E1411; }
+  .dscr.dk .d-btn[disabled] { background: #26302B; color: #9AA59E; }
+  .dscr.dk .d-tabs { background: #141A17; border-top-color: #222B26; }
+  .dscr.dk .d-tabs button { color: #9AA59E; }
+  .dscr.dk .d-tabs button.on { background: #22322A; color: #CFE3D6; }
+  .dscr.dk .d-toast { background: rgba(32,40,36,.88); color: #ECF0ED; }
+  .dscr.dk .d-back { color: #ECF0ED; }
+
+  .tester { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+  .tester a { color: var(--ink); font-weight: 600; }
+  .m-process { display: none; }
+
+  /* ===== Phones and tablets ===== */
+  /* First screen fills the whole screen: intro, then the shortcuts */
+  html:not(.os) .desk { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; justify-content: center; gap: 40px; padding-top: 32px; padding-bottom: 40px; }
+  html:not(.os) .icons { grid-template-columns: repeat(4, 1fr); max-width: 460px; }
+  html:not(.os) .home h1 { font-size: clamp(32px, 9vw, 44px); }
+  /* A shorter page: ROSC, Services (with the process), Platforms, Contact */
+  html:not(.os) #process, html:not(.os) #note,
+  html:not(.os) .icons a[href="#process"], html:not(.os) .icons a[href="#note"],
+  html:not(.os) .mmenu a[href="#process"], html:not(.os) .mmenu a[href="#note"] { display: none; }
+  html:not(.os) .m-process { display: block; margin-top: 8px; }
+  .m-process h3 { margin: 0 0 8px; font-size: 17px; }
+  .m-process ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 8px; }
+  .m-process li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; color: var(--ink-2); font-size: 15.5px; }
+  .m-process li::before { content: counter(s, decimal-leading-zero); font: 700 15px/1.6 var(--display); color: var(--bronze); }
+  .m-process b { color: var(--ink); }
+  /* ROSC on phones: one interactive phone */
+  html:not(.os) .rosc-sec .phones { display: none; }
+  html:not(.os) .demo { display: grid; grid-area: phones; justify-items: center; gap: 12px; }
+  html:not(.os) .dphone { width: min(300px, 82vw); }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -856,13 +907,13 @@
         </div>
       </div>
       <div class="demo" aria-label="Interactive ROSC demo with sample data">
-        <p class="demo-hint" id="demo-hint">Try it: open <b>Umoja Circle</b> and mark your share as sent.</p>
+        <p class="demo-hint" id="demo-hint">Try it: tap <b>Mark as sent</b> to pay your share.</p>
         <div class="dphone">
           <div class="dscr" id="dscr">
             <div class="d-status" aria-hidden="true"><span>9:41</span><span class="d-isl"></span><span class="d-sys"><i></i><i></i><i class="b"></i></span></div>
             <div class="d-toast" id="d-toast" role="status" aria-live="polite"></div>
 
-            <section class="dv" data-view="home" aria-label="Home">
+            <section class="dv" data-view="home" aria-label="Home" hidden>
               <h4 class="d-hi">Hi, friend</h4>
               <div class="d-sum"><span>Cycled through your groups</span><b>KES 20,250.00</b><b class="s">CAD 600.00</b><small>Across 3 groups</small></div>
               <p class="d-label">Needs you</p>
@@ -872,7 +923,7 @@
               <div class="d-row static"><span class="d-av j">J</span><span class="d-tx"><b>Jamii Circle</b><span>Next turn starts Sep 12</span></span><span class="d-amt">KES 2,000</span></div>
             </section>
 
-            <section class="dv" data-view="group" aria-label="Umoja Circle" hidden>
+            <section class="dv" data-view="group" aria-label="Umoja Circle">
               <div class="d-top"><button class="d-back" type="button" data-go="home" aria-label="Back to home">‹</button><b>Umoja Circle</b></div>
               <div class="d-card">
                 <div class="d-card-h"><span>Turn 2 of 3</span><em>Weekly</em></div>
@@ -918,6 +969,7 @@
           <a class="btn store tf" href="https://rosc.packisher.com" data-testflight><svg aria-hidden="true"><use href="#i-apple"/></svg>Try it on TestFlight</a>
           <a class="link-arrow" href="https://rosc.packisher.com">Visit rosc.packisher.com <span aria-hidden="true">→</span></a>
         </div>
+        <p class="tester">ROSC is in closed testing. Not on the tester list yet? <a href="#contact" data-tester>Request tester access</a></p>
         <details class="whatsnew">
           <summary>Features</summary>
           <ul class="changelog">
@@ -1002,6 +1054,15 @@
         <h2>What we make.</h2>
         <p class="lead">We take on a few client projects at a time, alongside our own products, and see each one through from the first sketch to launch day and after.</p>
         <p class="lead">Every project includes design, build, testing, store release and support once it's live.</p>
+        <div class="m-process">
+          <h3>How we work</h3>
+          <ol>
+            <li><span><b>Listen.</b> Learn how your business runs and who it's for.</span></li>
+            <li><span><b>Design.</b> Map the flows and try a working prototype.</span></li>
+            <li><span><b>Build.</b> Short stages with a preview at every step.</span></li>
+            <li><span><b>Launch.</b> Publish, then stay on for fixes and updates.</span></li>
+          </ol>
+        </div>
       </div>
     </div>
     </div>
@@ -1189,6 +1250,7 @@
   const toggles = [...document.querySelectorAll('.theme-toggle')];
   function applyTheme(t) {
     root.dataset.theme = t;
+    document.getElementById('dscr')?.classList.toggle('dk', t !== 'dark');
     // App pictures show the opposite theme so the screens stand out from the page.
     document.querySelectorAll('img[data-on-light]').forEach(img => { img.src = t === 'dark' ? img.dataset.onDark : img.dataset.onLight; });
     toggles.forEach(b => {
@@ -1536,8 +1598,8 @@
       document.getElementById('d-ontime').textContent = '11';
       document.querySelectorAll('#d-feed li.new').forEach(li => li.remove());
       document.getElementById('d-badge').hidden = true;
-      hint.innerHTML = 'Try it: open <b>Umoja Circle</b> and mark your share as sent.';
-      go('home');
+      hint.innerHTML = 'Try it: tap <b>Mark as sent</b> to pay your share.';
+      go('group');
     }
     document.getElementById('d-reset').addEventListener('click', reset);
   })();
@@ -1547,6 +1609,13 @@
     const w = d.closest('.win-sec');
     if (w && isOS()) fit(w, true);
   }));
+  // "Request tester access" prefills the contact form.
+  document.querySelectorAll('[data-tester]').forEach(a => a.addEventListener('click', () => {
+    const m = document.getElementById('f-msg');
+    if (m && !m.value.trim()) m.value = "I'd like to join the ROSC testing group. My phone is an iPhone / Android (delete one).";
+    const ns = document.getElementById('n5'); if (ns) ns.checked = false;
+  }));
+
   // Glass dialogs
   function showDlg(id) {
     const dl = document.getElementById(id);
