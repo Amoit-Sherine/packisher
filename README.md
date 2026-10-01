@@ -38,7 +38,8 @@ visitor's email app.
 
 ## Posting news
 
-The News panel (top right of the desktop) and the News window share the same
-posts. In `index.html`, search for `nf-list` and copy an existing `<li class="nf-item">`
-to the top of BOTH lists. Each post has a tag (Launch, ROSC, Community...), a date,
-a title, one or two sentences, and an optional link. Newest goes first.
+All posts live in `assets/news.js`. Copy one block, paste it at the top of the
+list, change the type, date, title and text, then commit and push. The desktop
+News panel and the News window both update from that one file.
+
+Types: launch, rosc, community, studio, research (each has its own icon and colour).

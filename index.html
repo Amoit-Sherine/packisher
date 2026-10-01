@@ -669,6 +669,44 @@
   .nf-list.big .nf-item p { font-size: 14px; }
   .nf-list.big .nf-item:nth-child(n+4) { grid-column: 1 / -1; padding: 18px 0 0; border-top: 1px solid var(--rule); }
 
+
+  /* News panel: grey glass with a status bar, rotating posts */
+  .os .newsfeed { background: rgba(232,233,229,.72); }
+  [data-theme="dark"].os .newsfeed { background: rgba(58,64,61,.78); }
+  .nf-head { align-items: center; gap: 8px; }
+  .nf-status { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; }
+  .nf-status svg { width: 13px; height: 13px; }
+  .nf-status .wifi { fill: #0A84FF; } .nf-status .bt { fill: #30D158; }
+  .nf-status .bat { position: relative; display: block; width: 22px; height: 11px; border-radius: 3px; border: 1.3px solid var(--ink-2); }
+  .nf-status .bat i { position: absolute; left: 1.5px; top: 1.5px; bottom: 1.5px; width: 70%; border-radius: 1.5px; background: #30D158; }
+  .nf-count { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 40px; text-align: right; }
+  .nf-item { grid-template-columns: auto auto 1fr; column-gap: 8px; align-items: center; }
+  .nf-ic { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: color-mix(in srgb, var(--tc) 16%, transparent); }
+  .nf-ic svg { width: 15px; height: 15px; fill: var(--tc); }
+  .nf-tag { color: var(--tc); }
+  .nf-by { display: none; }
+  .os .newsfeed .nf-item { background: rgba(255,255,255,.55); }
+  [data-theme="dark"].os .newsfeed .nf-item { background: rgba(255,255,255,.07); }
+
+  /* News window: a newspaper front page */
+  .mast { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 12px; padding-bottom: 10px; border-bottom: 3px double var(--ink); font-size: 11.5px; color: var(--muted); letter-spacing: .04em; }
+  .mast span:last-child { text-align: right; }
+  .mast h2 { margin: 0; font-family: "Newsreader", Georgia, serif; font-style: normal; font-weight: 600; font-size: clamp(30px, 3vw, 42px); letter-spacing: -.01em; text-align: center; color: var(--ink); }
+  .news-page > .lead { text-align: center; font-family: var(--serif); font-style: italic; border-bottom: 1px solid var(--rule); margin: 8px 0 20px; padding-bottom: 12px; }
+  .news-page .num { display: none; }
+  .nf-list.big .nf-item { grid-template-columns: auto auto 1fr; align-content: start; }
+  .nf-list.big .nf-item b { font-family: "Newsreader", Georgia, serif; font-weight: 600; }
+  .nf-list.big .nf-by { display: flex; grid-column: 1 / -1; align-items: center; gap: 8px; margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+  .nf-list.big .nf-by i { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 10px; font-weight: 700; background: var(--forest); color: var(--on-forest); }
+  .nf-list.big .nf-item:first-child .nf-ic { width: 30px; height: 30px; }
+  .nf-list.big .nf-item:first-child::after { content: ""; grid-column: 1 / -1; order: -1; }
+
+  /* Slimmer pulled-out notification on the desktop phone */
+  .os .notif.pulled { padding: 7px 11px; border-radius: 15px; gap: 9px; font-size: 11.5px; line-height: 1.3; }
+  .os .notif.pulled img { width: 26px; height: 26px; border-radius: 7px; }
+  .os .notif.pulled b { font-size: 12px; }
+  .os .notif.pulled time { font-size: 10px; }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -935,8 +973,8 @@
     </div>
 
   <aside class="newsfeed" aria-label="News from Packisher">
-    <div class="nf-head"><b>News</b><span>3 updates</span></div>
-    <ul class="nf-list"><li class="nf-item"><span class="nf-tag">Launch</span><time datetime="2026-09-30">Sep 30, 2026</time><b>The new packisher.com is live</b><p>Our studio site launched today. Every icon on this desktop opens a window, so click around and say hello.</p></li><li class="nf-item"><span class="nf-tag">ROSC</span><time datetime="2026-09-28">Sep 2026</time><b>ROSC 1.1.0 is rolling out</b><p>Invite links, a group noticeboard, Trust Score history and owing groups are on their way to testers on iOS and Android.</p><a class="nf-link" href="#rosc">Take a look</a></li><li class="nf-item"><span class="nf-tag">Community</span><time datetime="2026-09-27">Sep 2026</time><b>Join the ROSC testing group</b><p>ROSC is in closed testing. If your savings group wants early access, request a tester invite.</p><a class="nf-link" href="#contact" data-tester>Request access</a></li></ul>
+    <div class="nf-head"><b>News</b><span class="nf-status" aria-hidden="true"><svg class="wifi" viewBox="0 0 24 24"><path d="M12 20.5 15.6 16a5.8 5.8 0 0 0-7.2 0zM12 4C7.5 4 3.4 5.6.3 8.3l2.2 2.8A12.6 12.6 0 0 1 12 7.6c3.6 0 6.9 1.3 9.5 3.5l2.2-2.8C20.6 5.6 16.5 4 12 4zm0 5.4c-2.9 0-5.5 1-7.6 2.7l2.2 2.8A8.4 8.4 0 0 1 12 13c2 0 3.9.7 5.4 1.9l2.2-2.8A12 12 0 0 0 12 9.4z"/></svg><svg class="bt" viewBox="0 0 24 24"><path d="M17.7 7.7 12 2h-1v7.6L6.4 5 5 6.4 10.6 12 5 17.6 6.4 19l4.6-4.6V22h1l5.7-5.7-4.3-4.3 4.3-4.3zM13 5.8l1.9 1.9L13 9.6V5.8zm1.9 10.5L13 18.2v-3.8l1.9 1.9z"/></svg><i class="bat"><i></i></i></span><span class="nf-count" aria-live="off"></span></div>
+    <ul class="nf-list" id="nf-mini"></ul>
     <a class="nf-all" href="#news">See all updates</a>
   </aside>
     <a class="widget" href="#rosc" aria-label="Open ROSC">
@@ -1266,9 +1304,9 @@
     <div class="pane">
     <div class="news-page">
       <div class="num">Updates</div>
-      <h2>News from Packisher</h2>
+      <div class="mast"><span>Vol. 1</span><h2>The Packisher Report</h2><span id="nf-today"></span></div>
       <p class="lead">Launches, product updates and notes for our community.</p>
-      <ul class="nf-list big"><li class="nf-item"><span class="nf-tag">Launch</span><time datetime="2026-09-30">Sep 30, 2026</time><b>The new packisher.com is live</b><p>Our studio site launched today. Every icon on this desktop opens a window, so click around and say hello.</p></li><li class="nf-item"><span class="nf-tag">ROSC</span><time datetime="2026-09-28">Sep 2026</time><b>ROSC 1.1.0 is rolling out</b><p>Invite links, a group noticeboard, Trust Score history and owing groups are on their way to testers on iOS and Android.</p><a class="nf-link" href="#rosc">Take a look</a></li><li class="nf-item"><span class="nf-tag">Community</span><time datetime="2026-09-27">Sep 2026</time><b>Join the ROSC testing group</b><p>ROSC is in closed testing. If your savings group wants early access, request a tester invite.</p><a class="nf-link" href="#contact" data-tester>Request access</a></li></ul>
+      <ul class="nf-list big" id="nf-full"></ul>
     </div>
     </div>
   </section>
@@ -1332,6 +1370,7 @@
 </dialog>
 
 
+<script src="assets/news.js"></script>
 <script>
 (() => {
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
@@ -1684,11 +1723,53 @@
     if (w && isOS()) fit(w, true);
   }));
   // "Request tester access" prefills the contact form.
-  document.querySelectorAll('[data-tester]').forEach(a => a.addEventListener('click', () => {
+  document.addEventListener('click', e => { const a = e.target.closest('[data-tester]'); if (!a) return; (() => {
     const m = document.getElementById('f-msg');
     if (m && !m.value.trim()) m.value = "I'd like to join the ROSC testing group. My phone is an iPhone / Android (delete one).";
     const ns = document.getElementById('n5'); if (ns) ns.checked = false;
-  }));
+  })(); });
+
+  // ---------- News (posts live in assets/news.js) ----------
+  (() => {
+    const posts = (window.PACKISHER_NEWS || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+    const TYPES = {
+      launch:    { label: 'Launch',    c: '#2F6FED', icon: '<path d="M12 2c3 2.2 5 5.8 5 9.6V16l2 3h-4l-1.2 2h-3.6L9 19H5l2-3v-4.4C7 7.8 9 4.2 12 2zm0 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>' },
+      rosc:      { label: 'ROSC',      c: '#2E6B56', icon: '<path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 3.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM7 12a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm10 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-5 4.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>' },
+      community: { label: 'Community', c: '#C2410C', icon: '<path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/>' },
+      studio:    { label: 'Studio',    c: '#7A5C38', icon: '<path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/>' },
+      research:  { label: 'Research',  c: '#7C3AED', icon: '<path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/>' },
+    };
+    const esc = t => String(t || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+    const item = p => {
+      const t = TYPES[p.type] || TYPES.studio;
+      const link = p.link ? `<a class="nf-link" href="${esc(p.link)}"${p.link === '#contact' ? ' data-tester' : ''}${/^https?:/.test(p.link) ? ' target="_blank" rel="noopener"' : ''}>${esc(p.linkText || 'Read more')}</a>` : '';
+      return `<li class="nf-item" style="--tc:${t.c}"><span class="nf-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${t.icon}</svg></span><span class="nf-tag">${t.label}</span><time datetime="${esc(p.date)}">${fmt(p.date)}</time><b>${esc(p.title)}</b><p>${esc(p.text)}</p><span class="nf-by"><i aria-hidden="true">${esc((p.by || 'Sherine A.').split(/\s+/).map(w => w[0]).join('').slice(0, 2))}</i>${esc(p.by || 'Sherine A.')}</span>${link}</li>`;
+    };
+    const mini = document.getElementById('nf-mini'), full = document.getElementById('nf-full');
+    if (mini) mini.innerHTML = posts.map(item).join('');
+    if (full) full.innerHTML = posts.map(item).join('');
+    const today = document.getElementById('nf-today');
+    if (today) today.textContent = new Date().toLocaleDateString('en-CA', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    const count = document.querySelector('.nf-count');
+    // Rotate the desktop panel one post at a time, every 4.5 seconds.
+    let i = 0, paused = false;
+    const show = n => {
+      i = (n + posts.length) % posts.length;
+      mini.scrollTo({ top: mini.children[i]?.offsetTop - mini.firstElementChild.offsetTop || 0, behavior: calm.matches ? 'auto' : 'smooth' });
+      if (count) count.textContent = `${i + 1} of ${posts.length}`;
+    };
+    if (mini && posts.length) {
+      show(0);
+      const box = mini.closest('.newsfeed');
+      box.addEventListener('mouseenter', () => paused = true);
+      box.addEventListener('mouseleave', () => paused = false);
+      box.addEventListener('focusin', () => paused = true);
+      box.addEventListener('focusout', () => paused = false);
+      mini.addEventListener('scroll', () => { const h = mini.clientHeight; const n = Math.round(mini.scrollTop / (h + 8)); if (count) count.textContent = `${Math.min(n, posts.length - 1) + 1} of ${posts.length}`; i = n; }, { passive: true });
+      if (!calm.matches && posts.length > 1) setInterval(() => { if (!paused && !document.hidden && isOS() && !root.classList.contains('win-open')) show(i + 1); }, 4500);
+    }
+  })();
 
   // Glass dialogs
   function showDlg(id) {
