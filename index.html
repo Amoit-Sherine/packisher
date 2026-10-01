@@ -596,6 +596,49 @@
   html:not(.os) .demo { display: grid; grid-area: phones; justify-items: center; gap: 12px; }
   html:not(.os) .dphone { width: min(300px, 82vw); }
 
+
+  /* Direct contact options */
+  .direct { margin-top: 22px; }
+  .direct p { margin: 0 0 10px; font-size: 14.5px; color: var(--muted); }
+  .reach-row { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 18px 8px 10px; margin: 0 8px 8px 0; border-radius: 16px; border: 1px solid var(--rule); background: color-mix(in srgb, var(--card) 70%, transparent); text-decoration: none; color: var(--ink); }
+  .reach-row:hover { border-color: var(--ink-2); }
+  .reach-row svg { width: 36px; height: 36px; padding: 8px; border-radius: 10px; fill: #fff; background: var(--bronze); flex: none; }
+  .reach-row.wa svg { background: #25D366; }
+  .reach-row span { display: grid; font-size: 14px; line-height: 1.3; color: var(--ink-2); }
+  .reach-row b { font-size: 13px; color: var(--ink); }
+
+
+  /* News: a glass panel on the desktop, plus a News window */
+  .newsfeed, .news-win { display: none; }
+  .os .news-win { display: flex; }
+  .os .newsfeed { display: flex; flex-direction: column; position: absolute; right: clamp(24px, 3vw, 56px); top: 24px; width: clamp(250px, 21vw, 300px); max-height: calc(100% - clamp(300px, 46vh, 430px) - 226px); min-height: 150px; border-radius: 22px; overflow: hidden; z-index: 3;
+    background: color-mix(in srgb, var(--card) 62%, transparent); backdrop-filter: blur(24px) saturate(1.7); -webkit-backdrop-filter: blur(24px) saturate(1.7);
+    box-shadow: 0 18px 40px -18px rgba(var(--shade), .35), inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 1px rgba(255,255,255,.4); transition: opacity .35s ease, transform .35s ease; }
+  [data-theme="dark"].os .newsfeed { background: rgba(34,42,38,.86); box-shadow: 0 18px 40px -18px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.1), 0 0 0 1px rgba(255,255,255,.12); }
+  .os.win-open .newsfeed { opacity: 0; transform: translateY(-12px); pointer-events: none; }
+  .nf-head { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px 6px; }
+  .nf-head b { font-size: 14px; }
+  .nf-head span { font-size: 12px; color: var(--muted); }
+  .newsfeed .nf-list { overflow-y: auto; overscroll-behavior: contain; padding: 0 8px; }
+  .nf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .nf-item { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: baseline; padding: 10px 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--card) 70%, transparent); }
+  .nf-tag { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--bronze); }
+  .nf-item time { font-size: 11.5px; color: var(--muted); justify-self: end; }
+  .nf-item b { grid-column: 1 / -1; font-size: 13.5px; margin-top: 4px; }
+  .nf-item p { grid-column: 1 / -1; margin: 3px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+  .nf-link { grid-column: 1 / -1; justify-self: start; margin-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+  .nf-all { display: block; padding: 10px 16px 14px; font-size: 12.5px; font-weight: 600; color: var(--ink); text-decoration: none; }
+  .nf-all:hover, .nf-link:hover { color: var(--bronze); }
+  .news-page { max-width: 720px; }
+  .nf-list.big { gap: 10px; margin-top: 8px; }
+  .nf-list.big .nf-item { padding: 16px 18px; border: 1px solid var(--rule); }
+  .nf-list.big .nf-item b { font-size: 17px; }
+  .nf-list.big .nf-item p { font-size: 15px; }
+  /* Shorter laptop screens: the news panel takes the place of the floating notification */
+  @media (max-height: 860px) { html.os .notif { display: none; } html.os .newsfeed { max-height: calc(100% - clamp(300px, 46vh, 430px) - 150px); } }
+
+  @media (max-height: 800px) { .os .icons { gap: 0; top: 16px; } .os .icon { padding: 5px 4px; gap: 4px; } .os .icon span, .os .icon span img { width: 42px; height: 42px; } }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -860,6 +903,12 @@
         <a class="btn" href="#contact">Start a project with us</a>
       </div>
     </div>
+
+  <aside class="newsfeed" aria-label="News from Packisher">
+    <div class="nf-head"><b>News</b><span>3 updates</span></div>
+    <ul class="nf-list"><li class="nf-item"><span class="nf-tag">Launch</span><time datetime="2026-09-30">Sep 30, 2026</time><b>The new packisher.com is live</b><p>Our studio site launched today. Every icon on this desktop opens a window, so click around and say hello.</p></li><li class="nf-item"><span class="nf-tag">ROSC</span><time datetime="2026-09-28">Sep 2026</time><b>ROSC 1.1.0 is rolling out</b><p>Invite links, a group noticeboard, Trust Score history and owing groups are on their way to testers on iOS and Android.</p><a class="nf-link" href="#rosc">Take a look</a></li><li class="nf-item"><span class="nf-tag">Community</span><time datetime="2026-09-27">Sep 2026</time><b>Join the ROSC testing group</b><p>ROSC is in closed testing. If your savings group wants early access, request a tester invite.</p><a class="nf-link" href="#contact" data-tester>Request access</a></li></ul>
+    <a class="nf-all" href="#news">See all updates</a>
+  </aside>
     <a class="widget" href="#rosc" aria-label="Open ROSC">
       <div class="phone back">
         <img src="assets/detail.jpg" data-on-light="assets/detail.jpg" data-on-dark="assets/detail.jpg" alt="" width="590" height="1278">
@@ -892,7 +941,7 @@
   <div class="startmenu" id="startmenu" hidden>
     <div class="sm-head"><img src="assets/packisher-logo.svg" alt=""><div><b>Packisher</b><span>Venture &amp; software studio</span></div></div>
     <div class="sm-cols">
-      <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">The team</a></div>
+      <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">The team</a><a href="#news">News</a></div>
       <div><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
       <div><h4>Legal</h4><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a><a href="legal/" target="_blank" rel="noopener">All policies</a></div>
     </div>
@@ -1154,9 +1203,12 @@
     <div class="sec" style="align-items:start">
       <div>
         <div class="num">05 · Contact</div>
-        <h2>Tell us what you're building.</h2>
-        <p class="lead">An app, a website or something in between. Tell us what it's for and who will use it. A few sentences is plenty.</p>
-        <p class="direct">Prefer email? <b>support@packisher.com</b></p>
+        <h2>Let's build something together.</h2>
+        <p class="lead">An app, a website or something in between? Tell us more.</p>
+        <div class="direct">
+          <p>Prefer to reach us directly?</p>
+          <a class="reach-row" href="mailto:support@packisher.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><span><b>Email</b>support@packisher.com</span></a>
+        </div>
       </div>
       <form id="enquiry" novalidate>
         <div class="row">
@@ -1178,6 +1230,18 @@
         <p class="formnote" id="formnote" role="status" aria-live="polite"></p>
         <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
       </form>
+    </div>
+    </div>
+  </section>
+
+  <section class="screen win-sec news-win" id="news" aria-label="News">
+    <div class="chrome"><span class="t"><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M4 5h13v14H5a1 1 0 0 1-1-1V5zm13 3h3v10a1 1 0 0 1-2 0v-1h-1V8zM7 8h7v2H7V8zm0 4h7v1.6H7V12zm0 3.4h5V17H7v-1.6z"/></svg>News</span><button class="c-min" type="button" aria-label="Minimize News"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-max" type="button" aria-label="Expand News" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6zm1.6 1.6v8.8h8.8V7.6z"/></svg></button><button class="c-close" type="button" aria-label="Close News"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="pane">
+    <div class="news-page">
+      <div class="num">Updates</div>
+      <h2>News from Packisher</h2>
+      <p class="lead">Launches, product updates and notes for our community.</p>
+      <ul class="nf-list big"><li class="nf-item"><span class="nf-tag">Launch</span><time datetime="2026-09-30">Sep 30, 2026</time><b>The new packisher.com is live</b><p>Our studio site launched today. Every icon on this desktop opens a window, so click around and say hello.</p></li><li class="nf-item"><span class="nf-tag">ROSC</span><time datetime="2026-09-28">Sep 2026</time><b>ROSC 1.1.0 is rolling out</b><p>Invite links, a group noticeboard, Trust Score history and owing groups are on their way to testers on iOS and Android.</p><a class="nf-link" href="#rosc">Take a look</a></li><li class="nf-item"><span class="nf-tag">Community</span><time datetime="2026-09-27">Sep 2026</time><b>Join the ROSC testing group</b><p>ROSC is in closed testing. If your savings group wants early access, request a tester invite.</p><a class="nf-link" href="#contact" data-tester>Request access</a></li></ul>
     </div>
     </div>
   </section>
@@ -1381,7 +1445,7 @@
   // Clicking the desktop outside a window tucks open windows into the taskbar.
   document.addEventListener('pointerdown', e => {
     if (!isOS() || e.button > 0) return;
-    if (e.target.closest('.win-sec, .taskbar, .startmenu, .nav, .icons, .glass-dlg, .widget')) return;
+    if (e.target.closest('.win-sec, .taskbar, .startmenu, .nav, .icons, .glass-dlg, .widget, .newsfeed')) return;
     home();
   });
   function home() { for (const id of Object.keys(state)) if (state[id] === 'open') minimize(id); }
@@ -1415,6 +1479,7 @@
     ['platforms', 'Platforms', 'flutter dart supabase react next typescript tools stack firebase figma language models'],
     ['contact', 'Contact us', 'start project enquiry email hire quote talk'],
     ['note', 'The team', 'team people founder sherine about linkedin join careers'],
+    ['news', 'News', 'news updates blog launch announcements community notice'],
   ];
   const iconOf = id => document.querySelector(`.icon[href="#${id}"] span`)?.innerHTML || '';
   let hits = [], hi = 0;

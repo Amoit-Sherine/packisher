@@ -35,3 +35,10 @@ In Vercel > Project > Settings > Environment Variables add:
 
 If the key is missing or sending fails, the form falls back to opening the
 visitor's email app.
+
+## Posting news
+
+The News panel (top right of the desktop) and the News window share the same
+posts. In `index.html`, search for `nf-list` and copy an existing `<li class="nf-item">`
+to the top of BOTH lists. Each post has a tag (Launch, ROSC, Community...), a date,
+a title, one or two sentences, and an optional link. Newest goes first.
