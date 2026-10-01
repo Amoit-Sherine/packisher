@@ -4,37 +4,76 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terms | Packisher</title>
+<meta name="description" content="Terms for using the Packisher website.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+  try { if (localStorage.getItem("packisher-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+</script>
 <style>
-  :root { --page:#F4F1EA; --card:#FBF9F4; --ink:#1C211E; --ink-2:#3B433E; --muted:#6A726C; --rule:#E1E0D6; --bronze:#7A5C38; }
-  [data-theme="dark"] { --page:#111614; --card:#181E1B; --ink:#EDF0EA; --ink-2:#C8D0C7; --muted:#929C93; --rule:#2A332E; --bronze:#C8A677; color-scheme: dark; }
-  body { margin:0; background:var(--page); color:var(--ink); font:16px/1.7 Inter, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-  header { border-bottom:1px solid var(--rule); }
-  header div, main { max-width:760px; margin:0 auto; padding:0 24px; }
-  header div { height:64px; display:flex; align-items:center; }
-  header a { display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
-  header img { width:30px; height:30px; border-radius:8px; }
-  header b { font:700 22px/1 "Barlow Condensed", sans-serif; }
-  main { padding-top:56px; padding-bottom:80px; }
-  h1 { font-size:36px; letter-spacing:-.02em; margin:0 0 6px; }
-  .date { color:var(--muted); margin:0 0 36px; }
-  h2 { font-size:19px; margin:36px 0 8px; }
-  p, li { color:var(--ink-2); }
-  a { color:var(--bronze); }
+  :root { --page:#F4F1EA; --card:#FBF9F4; --ink:#1C211E; --ink-2:#3B433E; --muted:#6A726C; --rule:#DDDAD0; --bronze:#7A5C38; --link:#6A4E2E; --note:#EFE7DA; }
+  [data-theme="dark"] { --page:#111614; --card:#181E1B; --ink:#EDF0EA; --ink-2:#C8D0C7; --muted:#97A198; --rule:#2C352F; --bronze:#C8A677; --link:#D9BC8E; --note:#231F18; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.65 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  .skip { position: absolute; left: 12px; top: -60px; padding: 10px 14px; background: var(--ink); color: var(--page); border-radius: 8px; z-index: 9; }
+  .skip:focus { top: 12px; }
+  .brand-bar { height: 6px; background: var(--bronze); }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 32px 24px 96px; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 40px; font-size: 14px; }
+  .top a { color: var(--ink-2); text-decoration: none; }
+  .top a:hover { color: var(--ink); text-decoration: underline; }
+  .theme { border: 1px solid var(--rule); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .brand img { width: 52px; height: 52px; border-radius: 12px; display: block; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -.01em; }
+  .tag { color: var(--muted); font-size: 14.5px; margin: 0; }
+  nav.docs { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 0; }
+  nav.docs a { font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--ink-2); padding: 7px 12px; border: 1px solid var(--rule); }
+  nav.docs a[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: var(--page); }
+  nav.docs a:hover { border-color: var(--ink-2); }
+  h2 { font-size: 20px; margin: 40px 0 10px; border-top: 1px solid var(--rule); padding-top: 32px; }
+  h3 { font-size: 16.5px; margin: 26px 0 6px; }
+  p, li { color: var(--ink-2); max-width: 68ch; }
+  ul { padding-left: 20px; }
+  li { margin: 4px 0; }
+  strong { color: var(--ink); }
+  a { color: var(--link); text-underline-offset: 2px; }
+  .date { font-style: italic; color: var(--muted); }
+  .notice { margin: 24px 0; padding: 16px 18px; border: 1.5px solid var(--bronze); background: var(--note); color: var(--ink); }
+  .notice p { margin: 0; color: var(--ink); }
+  .cards { display: grid; gap: 12px; margin-top: 32px; }
+  .card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 18px 20px; border: 1px solid var(--rule); background: var(--card); text-decoration: none; color: var(--ink); }
+  .card:hover { border-color: var(--bronze); }
+  .card b { display: block; font-size: 16px; }
+  .card span { color: var(--muted); font-size: 14px; }
+  .card i { font-style: normal; color: var(--bronze); font-size: 18px; }
+  .footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); }
+  .footer .maker { display: block; margin-bottom: 4px; color: var(--bronze); font-weight: 600; }
+  :focus-visible { outline: 2.5px solid var(--bronze); outline-offset: 3px; }
 </style>
 </head>
 <body>
-<script>try{if(localStorage.getItem("packisher-theme")==="dark"){document.documentElement.dataset.theme="dark"}}catch(e){}</script>
-<header><div><a href="../"><img src="../assets/packisher-logo.svg" alt=""><b>Packisher</b></a></div></header>
-<main>
-<h1>Terms</h1>
+<a class="skip" href="#doc">Skip to content</a>
+<div class="brand-bar"></div>
+<div class="wrap">
+  <div class="top"><a href="../">← Back to packisher.com</a><button class="theme" type="button">Dark mode</button></div>
+  <header class="brand">
+    <img src="../assets/packisher-logo.svg" alt="Packisher logo" width="52" height="52">
+    <div><h1>Terms</h1><p class="tag">Packisher studio website</p></div>
+  </header>
+  <nav class="docs" aria-label="Policies"><a href="../legal/">All policies</a><a href="../privacy/">Studio privacy</a><a href="../terms/" aria-current="page">Studio terms</a><a href="https://rosc.packisher.com/privacy">ROSC privacy</a><a href="https://rosc.packisher.com/terms">ROSC terms</a></nav>
+  <main id="doc" tabindex="-1">
+<h2>About these terms</h2>
 <p class="date">Last updated September 30, 2026</p>
-<p>These terms apply to your use of the Packisher website at packisher.com. Our apps, including ROSC, have their own terms, which you can find on each app's website.</p>
+<p>These terms apply to your use of the Packisher website at packisher.com. Our apps, including ROSC, have their own terms. For ROSC, see the <a href="https://rosc.packisher.com/terms">ROSC terms</a>.</p>
+<div class="notice"><p><strong>In short:</strong> browse and share the site freely. Any project we take on is covered by its own written agreement.</p></div>
 <h2>Using this website</h2>
 <p>You may browse and share this website for personal and business purposes. Please don't try to disrupt it, copy it wholesale or use it for anything unlawful.</p>
 <h2>Content</h2>
 <p>The text, design, logos and screenshots on this site belong to Packisher unless stated otherwise. Other product names and logos shown belong to their owners and are used only to describe tools we work with.</p>
+<h2>The ROSC demo</h2>
+<p>The interactive ROSC demo on this site uses sample data only. Nothing you do in it is saved or sent anywhere.</p>
 <h2>Project work</h2>
 <p>Nothing on this website is an offer or a contract. Any project we take on is covered by a separate written agreement covering scope, timeline, price and ownership.</p>
 <h2>No warranty</h2>
@@ -43,6 +82,21 @@
 <p>We may update these terms from time to time. The date at the top shows the latest version.</p>
 <h2>Contact</h2>
 <p><a href="mailto:support@packisher.com">support@packisher.com</a></p>
-</main>
+  </main>
+  <div class="footer"><span class="maker">Packisher</span>Venture &amp; software studio · <a href="mailto:support@packisher.com">support@packisher.com</a> · &copy; 2026</div>
+</div>
+<script>
+  (function () {
+    var b = document.querySelector('.theme');
+    function label() { b.textContent = document.documentElement.dataset.theme === 'dark' ? 'Light mode' : 'Dark mode'; b.setAttribute('aria-pressed', document.documentElement.dataset.theme === 'dark'); }
+    label();
+    b.addEventListener('click', function () {
+      var t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = t;
+      try { localStorage.setItem('packisher-theme', t); } catch (e) {}
+      label();
+    });
+  })();
+</script>
 </body>
 </html>

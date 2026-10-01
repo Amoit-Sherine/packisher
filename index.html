@@ -360,6 +360,8 @@
   .btn.store:hover { filter: brightness(1.08); }
   .link-arrow { white-space: nowrap; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink); padding: 12px 4px; }
   .link-arrow:hover { color: var(--rosc); }
+  .whatsnew + .whatsnew { margin-top: 0; border-top: 0; }
+  .os .whatsnew .changelog { max-height: 200px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; }
   .whatsnew { margin-top: 22px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
   .whatsnew summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; min-height: 52px; font-weight: 600; font-size: 15px; }
   .whatsnew summary::-webkit-details-marker { display: none; }
@@ -485,7 +487,7 @@
   /* Desktop phones: clickable, and tucked away while ROSC is open */
   .os .widget { cursor: pointer; transition: opacity .35s ease, transform .35s ease; }
   .os .widget:focus-visible { outline: 2.5px solid var(--bronze); outline-offset: 8px; border-radius: 24px; }
-  .os.rosc-open .widget { opacity: 0; transform: translateY(24px) scale(.94); pointer-events: none; }
+  .os.win-open .widget { opacity: 0; transform: translateY(24px) scale(.94); pointer-events: none; }
 
   /* Team network cards */
   .person.net .av { background: var(--card-2); color: var(--ink-2); }
@@ -526,6 +528,14 @@
   [data-theme="dark"].os .chrome { background: rgba(255,255,255,.04); border-bottom-color: rgba(255,255,255,.1); }
   [data-theme="dark"].os .win-sec form, [data-theme="dark"].os .person { background: rgba(255,255,255,.05); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(255,255,255,.1); }
   [data-theme="dark"].os .taskbar, [data-theme="dark"].os .startmenu:not([hidden]), [data-theme="dark"].os .results { background: rgba(34,42,38,.86); box-shadow: 0 20px 50px -18px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 1px rgba(255,255,255,.14); }
+
+
+  /* Selected choices: clearly filled, in both themes */
+  .pick input:checked + span, .os .win-sec .pick input:checked + span { background: #1B2E2B; border-color: #1B2E2B; color: #F4F1EA; }
+  .pick input:checked + span::before { content: "✓ "; font-weight: 700; }
+  [data-theme="dark"] .pick input:checked + span, [data-theme="dark"].os .win-sec .pick input:checked + span { background: #C8A677; border-color: #C8A677; color: #141A16; }
+  .pick span { user-select: none; }
+  .pick input:focus-visible + span { outline: 2.5px solid var(--bronze); outline-offset: 2px; }
 
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
@@ -769,7 +779,7 @@
   <a class="btn mm-cta" href="#contact">Start a project with us</a>
   <div class="mm-foot">
     <button class="theme-toggle" type="button" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg><span>Dark mode</span></button>
-    <span><a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></span>
+    <span><a href="privacy/" target="_blank" rel="noopener">Privacy</a> · <a href="terms/" target="_blank" rel="noopener">Terms</a></span>
   </div>
 </div>
 
@@ -803,7 +813,7 @@
     </a>
   </section>
 
-  <div class="legal"><button class="theme-toggle icon-only" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg></button><span>&copy; 2026 <b>Packisher</b></span><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
+  <div class="legal"><button class="theme-toggle icon-only" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg></button><span>&copy; 2026 <b>Packisher</b></span><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a></div>
 
   <div class="taskbar" aria-label="Taskbar">
     <button class="start" type="button" aria-label="Packisher menu" aria-expanded="false"><img src="assets/packisher-logo.svg" alt=""></button>
@@ -825,7 +835,7 @@
     <div class="sm-cols">
       <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">The team</a></div>
       <div><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
-      <div><h4>Legal</h4><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
+      <div><h4>Legal</h4><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a><a href="legal/" target="_blank" rel="noopener">All policies</a></div>
     </div>
     <div class="sm-foot">&copy; 2026 <b>Packisher</b> · support@packisher.com</div>
   </div>
@@ -908,6 +918,19 @@
           <a class="btn store tf" href="https://rosc.packisher.com" data-testflight><svg aria-hidden="true"><use href="#i-apple"/></svg>Try it on TestFlight</a>
           <a class="link-arrow" href="https://rosc.packisher.com">Visit rosc.packisher.com <span aria-hidden="true">→</span></a>
         </div>
+        <details class="whatsnew">
+          <summary>Features</summary>
+          <ul class="changelog">
+            <li><span><b>One shared record</b> of who paid, who received and whose turn is next</span></li>
+            <li><span><b>Mark as sent, confirm as received</b>, so every payment is agreed by both sides</span></li>
+            <li><span><b>Payout order and reminders</b> before each turn is due</span></li>
+            <li><span><b>Group noticeboard</b> for notes, reactions and pinned updates</span></li>
+            <li><span><b>Trust Score</b> that builds with on-time payments</span></li>
+            <li><span><b>Statements and group history</b> for every cycle</span></li>
+            <li><span><b>Any currency</b>, with totals kept per currency</span></li>
+            <li><span><b>Face ID or fingerprint lock</b>, plus light and dark mode</span></li>
+          </ul>
+        </details>
         <details class="whatsnew">
           <summary>What's new in version 1.1.0</summary>
           <ul class="changelog">
@@ -1075,7 +1098,7 @@
       <form id="enquiry" novalidate>
         <div class="row">
           <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" required></label>
-          <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+          <label for="f-email">Email<input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="formnote"></label>
         </div>
         <fieldset>
           <legend>What do you need?</legend>
@@ -1132,7 +1155,7 @@
     </div>
     <div class="f-col"><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a></div>
     <div class="f-col"><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
-    <div class="f-col"><h4>Legal</h4><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
+    <div class="f-col"><h4>Legal</h4><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a></div>
   </div>
   <div class="f-bottom"><span>&copy; 2026 <b>Packisher</b>. All rights reserved.</span><button class="theme-toggle" type="button" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg><span>Dark mode</span></button></div>
 </footer>
@@ -1152,39 +1175,6 @@
     <p class="small">Need anything in the meantime? Write to <b>support@packisher.com</b>.</p>
     <button class="btn dlg-done" type="button">Done</button>
   </div>
-</dialog>
-<dialog class="glass-dlg doc" id="dlg-privacy" aria-labelledby="priv-t">
-  <div class="dlg-bar"><span id="priv-t">Privacy</span><button class="dlg-x" type="button" aria-label="Close privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
-  <div class="dlg-body"><h3>Privacy</h3><p class="date">Last updated September 30, 2026</p>
-<p>This policy covers the Packisher website at packisher.com. Our apps have their own policies. For ROSC, see <a href="https://rosc.packisher.com/privacy">rosc.packisher.com/privacy</a>.</p>
-<h2>What we collect</h2>
-<p>This website does not ask you to create an account and does not use advertising or tracking cookies. If you use the enquiry form, it opens your own email app with your message filled in. Nothing is sent until you choose to send it.</p>
-<p>When you email us, we receive your name, email address and whatever you include in your message.</p>
-<h2>How we use it</h2>
-<p>We use your message only to reply to you and to discuss a possible project. We do not sell it or share it for marketing.</p>
-<h2>Hosting</h2>
-<p>Like any website, our hosting provider may keep standard server logs, such as IP address and browser type, to keep the site secure and running.</p>
-<h2>Keeping and deleting</h2>
-<p>We keep project emails for as long as they are useful for the conversation or any work that follows. You can ask us to delete your messages at any time.</p>
-<h2>Contact</h2>
-<p>Questions about this policy: <a href="mailto:support@packisher.com">support@packisher.com</a></p></div>
-</dialog>
-<dialog class="glass-dlg doc" id="dlg-terms" aria-labelledby="terms-t">
-  <div class="dlg-bar"><span id="terms-t">Terms</span><button class="dlg-x" type="button" aria-label="Close terms"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
-  <div class="dlg-body"><h3>Terms</h3><p class="date">Last updated September 30, 2026</p>
-<p>These terms apply to your use of the Packisher website at packisher.com. Our apps, including ROSC, have their own terms, which you can find on each app's website.</p>
-<h2>Using this website</h2>
-<p>You may browse and share this website for personal and business purposes. Please don't try to disrupt it, copy it wholesale or use it for anything unlawful.</p>
-<h2>Content</h2>
-<p>The text, design, logos and screenshots on this site belong to Packisher unless stated otherwise. Other product names and logos shown belong to their owners and are used only to describe tools we work with.</p>
-<h2>Project work</h2>
-<p>Nothing on this website is an offer or a contract. Any project we take on is covered by a separate written agreement covering scope, timeline, price and ownership.</p>
-<h2>No warranty</h2>
-<p>We keep this site accurate and up to date, but it is provided as is, and we are not liable for decisions made based on it.</p>
-<h2>Changes</h2>
-<p>We may update these terms from time to time. The date at the top shows the latest version.</p>
-<h2>Contact</h2>
-<p><a href="mailto:support@packisher.com">support@packisher.com</a></p></div>
 </dialog>
 
 
@@ -1263,12 +1253,12 @@
       p.classList.toggle('active', !!top && top.id === id);
       p.setAttribute('aria-pressed', !!top && top.id === id);
     });
-    root.classList.toggle('rosc-open', state.rosc === 'open');
+    root.classList.toggle('win-open', Object.values(state).includes('open'));
     const hash = top ? '#' + top.id : '';
     if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname + location.search);
   }
   // Scale a window's content down just enough to fit without scrolling.
-  function fit(w) {
+  function fit(w, keepOpen) {
     const pane = w.querySelector('.pane');
     let f = pane.querySelector(':scope > .fit');
     if (!f) {
@@ -1279,16 +1269,16 @@
     }
     const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .notes, .demo')];
     // Measure with dropdowns closed; an opened dropdown may scroll.
-    const opened = [...f.querySelectorAll('details[open]')];
+    const opened = keepOpen ? [] : [...f.querySelectorAll('details[open]')];
     opened.forEach(d => { d.open = false; });
     f.style.zoom = '';
-    devices.forEach(d => { d.style.zoom = ''; });
+    if (!keepOpen) devices.forEach(d => { d.style.zoom = ''; });
     if (!isOS()) { opened.forEach(d => { d.open = true; }); return; }
     const cs = getComputedStyle(pane);
     const h = pane.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
     const wdt = pane.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     // Shrink the device pictures first so the text stays a comfortable size.
-    for (let d = .92; f.scrollHeight > h && d >= .5; d -= .06) devices.forEach(el => { el.style.zoom = d.toFixed(2); });
+    for (let d = .92; !keepOpen && f.scrollHeight > h && d >= .5; d -= .06) devices.forEach(el => { el.style.zoom = d.toFixed(2); });
     const z = Math.min(1, h / f.scrollHeight, wdt / f.scrollWidth);
     if (z < 1) f.style.zoom = Math.max(.72, z - .01).toFixed(3);
     opened.forEach(d => { d.open = true; });
@@ -1552,6 +1542,11 @@
     document.getElementById('d-reset').addEventListener('click', reset);
   })();
 
+  document.querySelectorAll('.whatsnew').forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) document.querySelectorAll('.whatsnew').forEach(o => { if (o !== d) o.open = false; });
+    const w = d.closest('.win-sec');
+    if (w && isOS()) fit(w, true);
+  }));
   // Glass dialogs
   function showDlg(id) {
     const dl = document.getElementById(id);
@@ -1562,14 +1557,6 @@
     dl.querySelectorAll('.dlg-x, .dlg-done').forEach(b => b.addEventListener('click', () => dl.close()));
     dl.addEventListener('click', e => { if (e.target === dl) dl.close(); });
   });
-  document.addEventListener('click', e => {
-    const a = e.target.closest('a[href="privacy/"], a[href="terms/"]');
-    if (!a) return;
-    e.preventDefault();
-    if (typeof setMobileMenu === 'function' && !mmenu.hidden) setMobileMenu(false);
-    setMenu(false);
-    showDlg(a.getAttribute('href') === 'privacy/' ? 'dlg-privacy' : 'dlg-terms');
-  });
 
   // Enquiry form: sends through /api/contact (Resend). Falls back to the visitor's email app.
   const form = document.getElementById('enquiry');
@@ -1578,7 +1565,8 @@
     const f = e.target, d = new FormData(f), note = document.getElementById('formnote');
     note.className = 'formnote'; note.textContent = '';
     f.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
-    const bad = ['name', 'email', 'message'].find(k => !String(d.get(k) || '').trim()) || (!f.email.checkValidity() && 'email');
+    const okEmail = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(String(d.get('email') || '').trim());
+    const bad = ['name', 'email', 'message'].find(k => !String(d.get(k) || '').trim()) || (!okEmail && 'email');
     if (bad) {
       f[bad].setAttribute('aria-invalid', 'true'); f[bad].focus();
       note.className = 'formnote err';
