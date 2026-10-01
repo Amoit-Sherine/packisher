@@ -588,10 +588,9 @@
   html:not(.os) .pane, html:not(.os) .dv { overscroll-behavior: auto; }
   html:not(.os) .m-process { display: block; margin-top: 8px; }
   .m-process h3 { margin: 0 0 8px; font-size: 17px; }
-  .m-process ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 8px; }
-  .m-process li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; color: var(--ink-2); font-size: 15.5px; }
-  .m-process li::before { content: counter(s, decimal-leading-zero); font: 700 15px/1.6 var(--display); color: var(--bronze); }
-  .m-process b { color: var(--ink); }
+  .m-process ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .m-process li { counter-increment: s; display: inline-flex; align-items: baseline; gap: 6px; font-weight: 600; font-size: 15.5px; color: var(--ink); }
+  .m-process li::before { content: counter(s, decimal-leading-zero); font: 700 14px/1 var(--display); color: var(--bronze); }
   /* ROSC on phones: one interactive phone */
   html:not(.os) .rosc-sec .phones { display: none; }
   html:not(.os) .demo { display: grid; grid-area: phones; justify-items: center; gap: 12px; }
@@ -1060,17 +1059,11 @@
       </div>
       <div>
         <div class="num">02 · Services</div>
-        <h2>What we make.</h2>
-        <p class="lead">We take on a few client projects at a time, alongside our own products, and see each one through from the first sketch to launch day and after.</p>
-        <p class="lead">Every project includes design, build, testing, store release and support once it's live.</p>
-        <div class="m-process">
+        <h2>Software that works as hard as you do.</h2>
+        <p class="lead">We build apps, websites and the systems behind them for businesses and community organisations ready to grow. Clear plans, honest timelines and a product your customers will actually use.</p>
+        <div class="m-process" aria-label="How we work">
           <h3>How we work</h3>
-          <ol>
-            <li><span><b>Listen.</b> Learn how your business runs and who it's for.</span></li>
-            <li><span><b>Design.</b> Map the flows and try a working prototype.</span></li>
-            <li><span><b>Build.</b> Short stages with a preview at every step.</span></li>
-            <li><span><b>Launch.</b> Publish, then stay on for fixes and updates.</span></li>
-          </ol>
+          <ol><li>Listen</li><li>Design</li><li>Build</li><li>Launch</li></ol>
         </div>
       </div>
     </div>
@@ -1208,7 +1201,7 @@
       </div>
       <div class="notes">
         <div class="sticky">
-          <p>We build software the way we would want it built for us: thought through, tested in real life and looked after long after launch.</p>
+          <p>The digital world has taken us far. We're building the tools that bring us back to each other.</p>
           <div class="sig">Sherine A.<small>Founder, Packisher</small></div>
         </div>
         <div class="sticky small"><p>P.S. ROSC began as our own family's savings group.</p></div>
@@ -1339,7 +1332,7 @@
       while (pane.firstChild) f.appendChild(pane.firstChild);
       pane.appendChild(f);
     }
-    const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .notes, .demo')];
+    const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .demo')];
     // Measure with dropdowns closed; an opened dropdown may scroll.
     const opened = keepOpen ? [] : [...f.querySelectorAll('details[open]')];
     opened.forEach(d => { d.open = false; });
