@@ -356,6 +356,7 @@
   .btn.store.play { background: #01875F; }
   .btn.store.tf { background: #0071E3; }
   #rosc .btn.store.play { background: #01875F; }
+  #rosc .btn.store.tf { background: #0071E3; color: #fff; }
   .btn.store:hover { filter: brightness(1.08); }
   .link-arrow { white-space: nowrap; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink); padding: 12px 4px; }
   .link-arrow:hover { color: var(--rosc); }
@@ -403,6 +404,128 @@
   .os .chrome { border-bottom-color: rgba(255,255,255,.45); }
   [data-theme="dark"].os .win-sec { background: linear-gradient(135deg, rgba(44,54,49,.62), rgba(16,21,19,.42)); box-shadow: 0 50px 100px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 1px rgba(255,255,255,.08); }
   [data-theme="dark"].os .chrome { border-bottom-color: rgba(255,255,255,.08); }
+
+
+  /* Interactive ROSC demo (laptops) */
+  .demo { display: none; }
+  .os .rosc-sec .phones { display: none; }
+  .os .demo { grid-area: phones; display: grid; justify-items: center; gap: 12px; align-self: center; }
+  .demo-hint { margin: 0; font-size: 13.5px; color: var(--ink-2); text-align: center; }
+  .dphone { width: 300px; aspect-ratio: 393 / 800; border-radius: 46px; padding: 10px; background: #121513; box-shadow: 0 40px 70px -26px rgba(var(--shade), .45); }
+  .dscr { position: relative; height: 100%; border-radius: 37px; overflow: hidden; background: #F6F8F7; color: #111418; font-family: Geist, var(--sans); display: flex; flex-direction: column; }
+  .d-status { display: flex; justify-content: space-between; align-items: center; padding: 12px 22px 4px; font-size: 13px; font-weight: 600; }
+  .d-isl { width: 84px; height: 24px; border-radius: 999px; background: #121513; }
+  .d-sys { display: flex; gap: 3px; align-items: center; }
+  .d-sys i { width: 4px; height: 10px; border-radius: 2px; background: #111418; }
+  .d-sys i.b { width: 20px; height: 10px; border-radius: 3px; margin-left: 3px; }
+  .dv { flex: 1; overflow: hidden; padding: 6px 16px 0; }
+  .dv[hidden] { display: none; }
+  .d-hi { margin: 8px 2px 12px; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  .d-sum { display: grid; padding: 14px 16px; border-radius: 18px; background: #E7EFEA; font-size: 11.5px; color: #4A5650; }
+  .d-sum b { font-size: 20px; color: #111418; letter-spacing: -.01em; }
+  .d-sum b.s { font-size: 15px; }
+  .d-label { margin: 14px 2px 6px; font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #6B7570; }
+  .d-row { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; margin-bottom: 6px; border-radius: 16px; background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.04); font-size: 12px; }
+  button.d-row { cursor: pointer; outline: 2px solid transparent; transition: outline-color .2s, transform .15s; }
+  button.d-row:hover { outline-color: #2E6B56; }
+  button.d-row:focus-visible { outline: 2.5px solid #2E6B56; }
+  .d-tx b { display: block; font-size: 13.5px; }
+  .d-tx span { color: #5C6661; }
+  .d-amt { text-align: right; font-weight: 600; font-size: 12.5px; }
+  .d-amt em { display: block; font-style: normal; font-size: 10.5px; font-weight: 600; color: #8A5A00; background: #FCEFD6; padding: 2px 7px; border-radius: 999px; margin-top: 3px; }
+  .d-amt em.ok { color: #1E6B47; background: #DDF1E5; }
+  .d-av { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; font-weight: 700; color: #fff; background: #2E6B56; flex: none; }
+  .d-av.s { background: #3D5A4C; } .d-av.j { background: #8A6B3A; } .d-av.g { background: #2E6B56; }
+  .d-av.sm { width: 28px; height: 28px; border-radius: 50%; font-size: 12px; background: #E1E9E4; color: #2E4A3E; }
+  .d-top { display: flex; align-items: center; gap: 6px; margin: 4px 0 12px; font-size: 16px; }
+  .d-back { all: unset; cursor: pointer; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; line-height: 1; }
+  .d-back:focus-visible { outline: 2px solid #2E6B56; }
+  .d-card { padding: 14px 16px; border-radius: 20px; color: #fff; background: linear-gradient(135deg, #2F6A55, #1E4A3B); display: grid; gap: 2px; }
+  .d-card-h { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; }
+  .d-card-h em { font-style: normal; font-size: 10.5px; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,.18); }
+  .d-card-l { margin-top: 8px; font-size: 11.5px; opacity: .85; }
+  .d-card-a { font-size: 24px; letter-spacing: -.01em; }
+  .d-card-f { display: flex; justify-content: space-between; margin-top: 8px; font-size: 10px; opacity: .9; }
+  .d-card-f b { display: block; font-size: 11.5px; }
+  .d-prog { margin: 14px 2px 8px; font-size: 12px; font-weight: 600; }
+  .d-prog i { display: block; height: 5px; margin-top: 6px; border-radius: 5px; background: #DDE5E0; overflow: hidden; }
+  .d-prog i b { display: block; height: 100%; background: #2E6B56; transition: width .6s ease; }
+  .d-members { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; font-size: 12.5px; }
+  .d-members li { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 12px; background: #fff; }
+  .d-members em { margin-left: auto; font-style: normal; font-size: 11px; font-weight: 600; color: #6B7570; }
+  .d-members em.ok { color: #1E6B47; } .d-members em.rc { color: #8A6B3A; } .d-members em.wait { color: #8A5A00; }
+  .d-btn { all: unset; box-sizing: border-box; width: 100%; height: 44px; display: grid; place-items: center; border-radius: 14px; background: #2E6B56; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .d-btn:focus-visible { outline: 2.5px solid #C9A66B; outline-offset: 2px; }
+  .d-btn[disabled] { background: #C9D4CE; color: #4A5650; cursor: default; }
+  .d-feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .d-feed li { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: #fff; font-size: 12px; }
+  .d-feed li.new { background: #E7F3EC; }
+  .d-feed b { display: block; font-size: 12.5px; }
+  .d-feed span { color: #5C6661; }
+  .d-ts { display: grid; justify-items: start; padding: 16px; border-radius: 18px; background: #fff; font-size: 11px; color: #5C6661; }
+  .d-ts b { font-size: 40px; color: #111418; line-height: 1.1; }
+  .d-ts em { font-style: normal; font-weight: 600; font-size: 11px; color: #1E6B47; background: #DDF1E5; padding: 2px 8px; border-radius: 999px; }
+  .d-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 10px; text-align: center; font-size: 11px; color: #5C6661; }
+  .d-stats b { display: block; font-size: 18px; color: #111418; }
+  .d-tabs { display: flex; justify-content: space-around; padding: 8px 10px 16px; border-top: 1px solid #E3E8E5; background: #fff; }
+  .d-tabs button { all: unset; position: relative; cursor: pointer; padding: 7px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 600; color: #6B7570; }
+  .d-tabs button.on { background: #E1EEE6; color: #1E4A3B; }
+  .d-tabs button:focus-visible { outline: 2px solid #2E6B56; }
+  .d-badge { position: absolute; top: 4px; right: 6px; width: 7px; height: 7px; border-radius: 50%; background: #E5484D; }
+  .d-badge[hidden] { display: none; }
+  .d-toast { position: absolute; left: 10px; right: 10px; top: 44px; z-index: 3; display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 18px; background: rgba(255,255,255,.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 12px 30px -10px rgba(0,0,0,.3); font-size: 11.5px; opacity: 0; transform: translateY(-12px); transition: opacity .3s, transform .3s; pointer-events: none; }
+  .d-toast.show { opacity: 1; transform: none; }
+  .d-toast img { width: 30px; height: 30px; border-radius: 8px; }
+  .d-toast b { display: block; font-size: 12px; }
+  .d-reset { all: unset; cursor: pointer; font-size: 12.5px; font-weight: 600; color: var(--muted); padding: 6px 10px; border-radius: 8px; }
+  .d-reset:hover { color: var(--ink); }
+  .d-reset:focus-visible { outline: 2px solid var(--bronze); }
+  @media (prefers-reduced-motion: reduce) { .d-toast, .d-prog i b { transition: none; } }
+
+  /* Desktop phones: clickable, and tucked away while ROSC is open */
+  .os .widget { cursor: pointer; transition: opacity .35s ease, transform .35s ease; }
+  .os .widget:focus-visible { outline: 2.5px solid var(--bronze); outline-offset: 8px; border-radius: 24px; }
+  .os.rosc-open .widget { opacity: 0; transform: translateY(24px) scale(.94); pointer-events: none; }
+
+  /* Team network cards */
+  .person.net .av { background: var(--card-2); color: var(--ink-2); }
+  .os #note .people { grid-template-columns: 1fr 1fr; max-width: 560px; }
+  .os #note .person { padding: 10px 12px; }
+  .person.net .av svg { width: 20px; height: 20px; fill: currentColor; }
+
+  /* Desktop icon labels: a soft glass pill so they read on any wallpaper */
+  .os .icon { color: var(--ink); font-weight: 500; }
+  .os .icon { text-shadow: none; }
+  .os .icon > :not(span) { }
+  .os .icon { gap: 6px; }
+  .os .icon::after { content: none; }
+  .os .icons .icon { font-size: 12.5px; }
+  .os .icons .icon { --lbl: color-mix(in srgb, var(--card) 72%, transparent); }
+  .os .icons .icon { background: none; }
+  .icon .lbl { font-weight: 500; }
+  .os .icons .icon .lbl { padding: 2px 8px; border-radius: 7px; background: var(--lbl); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 0 0 1px color-mix(in srgb, var(--rule) 60%, transparent); }
+  [data-theme="dark"].os .icons .icon { --lbl: rgba(30,38,34,.78); color: #F1F4EF; }
+  .os .icons .icon:hover .lbl, .os .icons .icon:focus-visible .lbl { background: var(--forest); color: var(--on-forest); }
+
+  /* Form fields: a soft tint so it's clear where to type */
+  input, textarea { background: color-mix(in srgb, var(--wash-3) 55%, var(--card)); border: 1.5px solid color-mix(in srgb, var(--rule) 70%, var(--muted) 30%); }
+  input:hover, textarea:hover { border-color: var(--muted); }
+  input:focus, textarea:focus { border-color: var(--forest); box-shadow: 0 0 0 3px color-mix(in srgb, var(--forest) 18%, transparent); background: var(--card); }
+  .pick span { background: color-mix(in srgb, var(--wash-3) 55%, var(--card)); border: 1.5px solid color-mix(in srgb, var(--rule) 70%, var(--muted) 30%); }
+  .pick label:hover span { border-color: var(--muted); }
+  ::placeholder { color: var(--muted); opacity: 1; }
+  .os .win-sec input, .os .win-sec textarea, .os .win-sec .pick span { background: color-mix(in srgb, var(--wash-3) 55%, var(--card)); }
+  [data-theme="dark"] input, [data-theme="dark"] textarea, [data-theme="dark"] .pick span,
+  [data-theme="dark"].os .win-sec input, [data-theme="dark"].os .win-sec textarea, [data-theme="dark"].os .win-sec .pick span { background: #26302B; border-color: #4A564F; color: var(--ink); }
+  [data-theme="dark"] input:focus, [data-theme="dark"] textarea:focus { background: #2C3832; border-color: #C8A677; box-shadow: 0 0 0 3px rgba(200,166,119,.25); }
+  [data-theme="dark"] .pick input:checked + span { background: var(--forest); border-color: var(--forest); color: var(--on-forest); }
+  input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #D92D20 !important; }
+
+  /* Dark mode glass: more body and a clear edge */
+  [data-theme="dark"].os .win-sec { background: linear-gradient(160deg, rgba(48,59,53,.9), rgba(26,33,29,.88)); box-shadow: 0 50px 100px -30px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.16), 0 0 0 1px rgba(255,255,255,.16); }
+  [data-theme="dark"].os .chrome { background: rgba(255,255,255,.04); border-bottom-color: rgba(255,255,255,.1); }
+  [data-theme="dark"].os .win-sec form, [data-theme="dark"].os .person { background: rgba(255,255,255,.05); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(255,255,255,.1); }
+  [data-theme="dark"].os .taskbar, [data-theme="dark"].os .startmenu:not([hidden]), [data-theme="dark"].os .results { background: rgba(34,42,38,.86); box-shadow: 0 20px 50px -18px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 1px rgba(255,255,255,.14); }
 
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
@@ -653,23 +776,22 @@
 <main id="main" tabindex="-1">
   <section class="desk" id="top">
     <nav class="icons" aria-label="Sections">
-      <a class="icon" href="#rosc"><span><img src="assets/rosc-icon.png" alt=""></span>ROSC</a>
-      <a class="icon" href="#services"><span><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
-      <a class="icon" href="#process"><span><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
-      <a class="icon" href="#platforms"><span><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span>Platforms</a>
-      <a class="icon" href="#contact"><span><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact us</a>
-      <a class="icon" href="#note"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span>The team</a>
+      <a class="icon" href="#rosc"><span><img src="assets/rosc-icon.png" alt=""></span><b class="lbl">ROSC</b></a>
+      <a class="icon" href="#services"><span><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span><b class="lbl">Services</b></a>
+      <a class="icon" href="#process"><span><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><b class="lbl">Process</b></a>
+      <a class="icon" href="#platforms"><span><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span><b class="lbl">Platforms</b></a>
+      <a class="icon" href="#contact"><span><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span><b class="lbl">Contact us</b></a>
+      <a class="icon" href="#note"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span><b class="lbl">The team</b></a>
     </nav>
     <div class="home">
       <img class="home-logo" src="assets/packisher-logo.svg" alt="Packisher">
       <div class="eyebrow">Venture &amp; software studio</div>
       <h1>We craft software that connects communities and scales ideas.</h1>
-      <p class="lead">Packisher builds the apps and websites people rely on every day. We started with ROSC for a family savings group, and now build for businesses and communities too.</p>
       <div class="ctas">
         <a class="btn" href="#contact">Start a project with us</a>
       </div>
     </div>
-    <div class="widget" aria-hidden="true">
+    <a class="widget" href="#rosc" aria-label="Open ROSC">
       <div class="phone back">
         <img src="assets/detail.jpg" data-on-light="assets/detail.jpg" data-on-dark="assets/detail.jpg" alt="" width="590" height="1278">
       </div>
@@ -678,7 +800,7 @@
       </div>
       <div class="notif" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
       <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
-    </div>
+    </a>
   </section>
 
   <div class="legal"><button class="theme-toggle icon-only" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg></button><span>&copy; 2026 <b>Packisher</b></span><a href="privacy/">Privacy</a><a href="terms/">Terms</a></div>
@@ -722,6 +844,63 @@
         <div class="phone b">
           <img src="assets/detail-dark.jpg" data-on-light="assets/detail-dark.jpg" data-on-dark="assets/detail.jpg" alt="" loading="lazy" width="590" height="1278">
         </div>
+      </div>
+      <div class="demo" aria-label="Interactive ROSC demo with sample data">
+        <p class="demo-hint" id="demo-hint">Try it: open <b>Umoja Circle</b> and mark your share as sent.</p>
+        <div class="dphone">
+          <div class="dscr" id="dscr">
+            <div class="d-status" aria-hidden="true"><span>9:41</span><span class="d-isl"></span><span class="d-sys"><i></i><i></i><i class="b"></i></span></div>
+            <div class="d-toast" id="d-toast" role="status" aria-live="polite"></div>
+
+            <section class="dv" data-view="home" aria-label="Home">
+              <h4 class="d-hi">Hi, friend</h4>
+              <div class="d-sum"><span>Cycled through your groups</span><b>KES 20,250.00</b><b class="s">CAD 600.00</b><small>Across 3 groups</small></div>
+              <p class="d-label">Needs you</p>
+              <button class="d-row" type="button" data-go="group"><span class="d-av g">U</span><span class="d-tx"><b>Umoja Circle</b><span id="d-row-sub">Your turn to pay Amina</span></span><span class="d-amt">KES 5,000<em id="d-row-tag">Due Aug 28</em></span></button>
+              <p class="d-label">All set for now</p>
+              <div class="d-row static"><span class="d-av s">S</span><span class="d-tx"><b>Solidarity Circle</b><span>You're receiving · 1 of 2 paid</span></span><span class="d-amt">CAD 400</span></div>
+              <div class="d-row static"><span class="d-av j">J</span><span class="d-tx"><b>Jamii Circle</b><span>Next turn starts Sep 12</span></span><span class="d-amt">KES 2,000</span></div>
+            </section>
+
+            <section class="dv" data-view="group" aria-label="Umoja Circle" hidden>
+              <div class="d-top"><button class="d-back" type="button" data-go="home" aria-label="Back to home">‹</button><b>Umoja Circle</b></div>
+              <div class="d-card">
+                <div class="d-card-h"><span>Turn 2 of 3</span><em>Weekly</em></div>
+                <span class="d-card-l">You pay Amina</span>
+                <b class="d-card-a">KES 5,000.00</b>
+                <div class="d-card-f"><span>Payment window<b>Aug 21 to Aug 28</b></span><span>Due<b>Aug 28</b></span></div>
+              </div>
+              <div class="d-prog"><span id="d-paid">1 of 3 paid</span><i><b id="d-bar" style="width:33%"></b></i></div>
+              <ul class="d-members">
+                <li><span class="d-av sm">K</span>Kwame<em class="ok">Paid</em></li>
+                <li><span class="d-av sm">S</span>You<em id="d-me">Not sent yet</em></li>
+                <li><span class="d-av sm">A</span>Amina<em class="rc">Receiving</em></li>
+              </ul>
+              <button class="d-btn" type="button" id="d-send">Mark as sent</button>
+            </section>
+
+            <section class="dv" data-view="activity" aria-label="Notifications" hidden>
+              <h4 class="d-hi">Notifications</h4>
+              <ul class="d-feed" id="d-feed">
+                <li><span class="d-av sm g">U</span><div><b>Kwame marked his share as sent</b><span>Umoja Circle · 2h ago</span></div></li>
+                <li><span class="d-av sm s">S</span><div><b>It's your turn to receive</b><span>Solidarity Circle · yesterday</span></div></li>
+              </ul>
+            </section>
+
+            <section class="dv" data-view="profile" aria-label="Profile" hidden>
+              <h4 class="d-hi">Profile</h4>
+              <div class="d-ts"><span>Trust Score</span><b id="d-score">92</b><em>Excellent</em></div>
+              <div class="d-stats"><span><b id="d-ontime">11</b>On time</span><span><b>1</b>Late</span><span><b>0</b>Missed</span></div>
+            </section>
+
+            <nav class="d-tabs" aria-label="Demo tabs">
+              <button type="button" data-go="home" class="on">Home</button>
+              <button type="button" data-go="activity">Activity<i class="d-badge" id="d-badge" hidden></i></button>
+              <button type="button" data-go="profile">Profile</button>
+            </nav>
+          </div>
+        </div>
+        <button class="d-reset" type="button" id="d-reset">Reset demo</button>
       </div>
       <div class="r-actions">
         <div class="ctas">
@@ -925,10 +1104,12 @@
       <div>
         <div class="num">The team</div>
         <h2>The people behind Packisher.</h2>
-        <p class="lead">A small studio that brings in designers and engineers as each project needs them. New members will be introduced here as the team grows.</p>
+        <p class="lead">Every project gets a team shaped around it. Packisher leads the product and engineering, and works with a trusted network of independent specialists who join for the parts their craft is best at.</p>
         <div class="people">
-          <div class="person"><span class="av">SA</span><div><b>Sherine A.</b><span>Founder · Product and engineering</span></div></div>
-          <div class="person open-role"><span class="av">+</span><div><b>Growing soon</b><span>Designers and engineers, project by project</span></div></div>
+          <div class="person"><span class="av">SA</span><div><b>Sherine A.</b><span>Founder · Leads product and engineering</span></div></div>
+          <div class="person net"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.3V21h3.8l11-11.1-3.7-3.7L3 17.3zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7L20.7 7z"/></svg></span><div><b>Design partners</b><span>Brand, UI and product designers</span></div></div>
+          <div class="person net"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></span><div><b>Engineering partners</b><span>Mobile, web and backend developers</span></div></div>
+          <div class="person net"><span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><div><b>Testing and launch</b><span>QA, accessibility and store release</span></div></div>
         </div>
         <a class="btn ghost li" href="https://www.linkedin.com/company/packisher" data-linkedin><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Follow us on LinkedIn</a>
       </div>
@@ -1082,6 +1263,7 @@
       p.classList.toggle('active', !!top && top.id === id);
       p.setAttribute('aria-pressed', !!top && top.id === id);
     });
+    root.classList.toggle('rosc-open', state.rosc === 'open');
     const hash = top ? '#' + top.id : '';
     if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname + location.search);
   }
@@ -1095,7 +1277,7 @@
       while (pane.firstChild) f.appendChild(pane.firstChild);
       pane.appendChild(f);
     }
-    const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .notes')];
+    const devices = [...f.querySelectorAll('.android, .ios, .mac, .phones, .notes, .demo')];
     // Measure with dropdowns closed; an opened dropdown may scroll.
     const opened = [...f.querySelectorAll('details[open]')];
     opened.forEach(d => { d.open = false; });
@@ -1144,7 +1326,7 @@
   // Clicking the desktop outside a window tucks open windows into the taskbar.
   document.addEventListener('pointerdown', e => {
     if (!isOS() || e.button > 0) return;
-    if (e.target.closest('.win-sec, .taskbar, .startmenu, .nav, .icons, .glass-dlg')) return;
+    if (e.target.closest('.win-sec, .taskbar, .startmenu, .nav, .icons, .glass-dlg, .widget')) return;
     home();
   });
   function home() { for (const id of Object.keys(state)) if (state[id] === 'open') minimize(id); }
@@ -1306,6 +1488,69 @@
       requestAnimationFrame(() => requestAnimationFrame(() => note.classList.remove('in')));
     }, 450);
   }, 4200);
+
+  // ---------- Interactive ROSC demo (sample data only) ----------
+  (() => {
+    const scr = document.getElementById('dscr');
+    if (!scr) return;
+    const views = [...scr.querySelectorAll('.dv')];
+    const tabs = [...scr.querySelectorAll('.d-tabs button')];
+    const toast = document.getElementById('d-toast');
+    const hint = document.getElementById('demo-hint');
+    const send = document.getElementById('d-send');
+    let timers = [];
+    function go(v) {
+      views.forEach(x => { x.hidden = x.dataset.view !== v; });
+      tabs.forEach(t => t.classList.toggle('on', t.dataset.go === (v === 'group' ? 'home' : v)));
+      if (v === 'activity') document.getElementById('d-badge').hidden = true;
+      const first = scr.querySelector(`.dv[data-view="${v}"] button, .dv[data-view="${v}"] h4`);
+      if (first && first.tagName === 'BUTTON' && v === 'group') first.focus({ preventScroll: true });
+    }
+    scr.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) go(b.dataset.go); });
+    function say(title, sub) {
+      toast.innerHTML = `<img src="assets/rosc-icon.png" alt=""><div><b>${title}</b>${sub}</div>`;
+      toast.classList.add('show');
+      timers.push(setTimeout(() => toast.classList.remove('show'), 3200));
+    }
+    send.addEventListener('click', () => {
+      send.disabled = true;
+      send.textContent = 'Waiting for Amina to confirm';
+      const me = document.getElementById('d-me'); me.textContent = 'Sent'; me.className = 'wait';
+      document.getElementById('d-row-sub').textContent = 'Sent to Amina · waiting to confirm';
+      hint.textContent = 'Sent. Amina gets a notification to confirm she received it.';
+      timers.push(setTimeout(() => {
+        me.textContent = 'Paid'; me.className = 'ok';
+        document.getElementById('d-paid').textContent = '2 of 3 paid';
+        document.getElementById('d-bar').style.width = '67%';
+        send.textContent = 'Confirmed by Amina';
+        const tag = document.getElementById('d-row-tag'); tag.textContent = 'Paid'; tag.className = 'ok';
+        document.getElementById('d-row-sub').textContent = 'You paid Amina for turn 2';
+        document.getElementById('d-ontime').textContent = '12';
+        const li = document.createElement('li'); li.className = 'new';
+        li.innerHTML = '<span class="d-av sm g">U</span><div><b>Amina confirmed your payment</b><span>Umoja Circle · just now</span></div>';
+        document.getElementById('d-feed').prepend(li);
+        document.getElementById('d-badge').hidden = false;
+        say('Amina confirmed your payment', 'KES 5,000 · turn 2 of 3');
+        hint.innerHTML = 'Confirmed. The whole group now sees the same record. Check <b>Activity</b> and <b>Profile</b>.';
+      }, 1800));
+    });
+    function reset() {
+      timers.forEach(clearTimeout); timers = [];
+      toast.classList.remove('show');
+      send.disabled = false; send.textContent = 'Mark as sent';
+      const me = document.getElementById('d-me'); me.textContent = 'Not sent yet'; me.className = '';
+      document.getElementById('d-paid').textContent = '1 of 3 paid';
+      document.getElementById('d-bar').style.width = '33%';
+      const tag = document.getElementById('d-row-tag'); tag.textContent = 'Due Aug 28'; tag.className = '';
+      document.getElementById('d-row-sub').textContent = 'Your turn to pay Amina';
+      document.getElementById('d-ontime').textContent = '11';
+      document.querySelectorAll('#d-feed li.new').forEach(li => li.remove());
+      document.getElementById('d-badge').hidden = true;
+      hint.innerHTML = 'Try it: open <b>Umoja Circle</b> and mark your share as sent.';
+      go('home');
+    }
+    document.getElementById('d-reset').addEventListener('click', reset);
+  })();
 
   // Glass dialogs
   function showDlg(id) {
