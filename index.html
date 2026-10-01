@@ -571,12 +571,21 @@
   /* ===== Phones and tablets ===== */
   /* First screen fills the whole screen: intro, then the shortcuts */
   html:not(.os) .desk { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; justify-content: center; gap: 40px; padding-top: 32px; padding-bottom: 40px; }
-  html:not(.os) .icons { grid-template-columns: repeat(4, 1fr); max-width: 460px; }
+  html:not(.os) .icons { grid-template-columns: repeat(3, 1fr); max-width: 420px; row-gap: 14px; }
   html:not(.os) .home h1 { font-size: clamp(32px, 9vw, 44px); }
   /* A shorter page: ROSC, Services (with the process), Platforms, Contact */
-  html:not(.os) #process, html:not(.os) #note,
-  html:not(.os) .icons a[href="#process"], html:not(.os) .icons a[href="#note"],
-  html:not(.os) .mmenu a[href="#process"], html:not(.os) .mmenu a[href="#note"] { display: none; }
+  html:not(.os) #process, html:not(.os) .icons a[href="#process"], html:not(.os) .mmenu a[href="#process"] { display: none; }
+  /* Phone order: intro, ROSC, Services, The team, Platforms, Contact, footer */
+  html:not(.os) main { display: flex; flex-direction: column; }
+  html:not(.os) .ending { display: contents; }
+  html:not(.os) #top { order: 0; } html:not(.os) #rosc { order: 1; } html:not(.os) #services { order: 2; }
+  html:not(.os) #note { order: 3; } html:not(.os) #platforms { order: 4; } html:not(.os) #contact { order: 5; } html:not(.os) footer { order: 6; }
+  /* No nested scrolling on phones, so swipes always move the page */
+  html:not(.os) .a-list { max-height: none; overflow: visible; }
+  html:not(.os) .icons a[href="#note"], html:not(.os) .mmenu nav a[href="#note"] { order: 3; }
+  html:not(.os) .icons a[href="#platforms"], html:not(.os) .mmenu nav a[href="#platforms"] { order: 4; }
+  html:not(.os) .icons a[href="#contact"], html:not(.os) .mmenu nav a[href="#contact"] { order: 5; }
+  html:not(.os) .pane, html:not(.os) .dv { overscroll-behavior: auto; }
   html:not(.os) .m-process { display: block; margin-top: 8px; }
   .m-process h3 { margin: 0 0 8px; font-size: 17px; }
   .m-process ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 8px; }
@@ -1280,6 +1289,7 @@
     if (on) mmenu.querySelector('a').focus(); 
   }
   menuBtn.addEventListener('click', () => setMobileMenu(mmenu.hidden));
+  addEventListener('pageshow', () => { if (mmenu.hidden) document.body.classList.remove('menu-open'); });
   mmenu.addEventListener('click', e => { if (e.target.closest('a')) setMobileMenu(false); });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && !mmenu.hidden) { setMobileMenu(false); menuBtn.focus(); }
@@ -1462,8 +1472,10 @@
     scrollTo({ top: y, behavior: calm.matches ? 'auto' : 'smooth' });
   });
 
+  const teamNum = document.querySelector('#note .num');
   function mode() {
     root.classList.toggle('os', wide.matches);
+    if (teamNum) teamNum.textContent = wide.matches ? 'The team' : '03 · The team';
     wins.forEach(w => {
       if (isOS()) { w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'false'); }
       else { w.removeAttribute('role'); w.removeAttribute('aria-modal'); }
