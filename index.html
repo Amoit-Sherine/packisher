@@ -639,6 +639,36 @@
 
   @media (max-height: 800px) { .os .icons { gap: 0; top: 16px; } .os .icon { padding: 5px 4px; gap: 4px; } .os .icon span, .os .icon span img { width: 42px; height: 42px; } }
 
+
+  /* Desktop phone: one phone, with one notification pulled out from its screen (no motion) */
+  .os .widget .phone.front { left: auto; right: 6%; bottom: 28px; rotate: 0deg; width: clamp(140px, 12.5vw, 186px); animation: none; }
+  .os .notif.pulled { top: auto; right: auto; left: -30%; bottom: 96px; width: clamp(232px, 16vw, 252px); transform: none; transition: none; background: color-mix(in srgb, var(--card) 94%, transparent); }
+  .os .notif.pulled::after { content: ""; position: absolute; right: -16px; top: 50%; width: 16px; height: 1px; background: color-mix(in srgb, var(--ink) 25%, transparent); }
+  @media (max-height: 860px) { html.os .notif.pulled { display: flex; } }
+
+  /* News panel: one post at a time, scroll for the next */
+  .os .newsfeed { max-height: none; min-height: 0; }
+  .os .newsfeed .nf-list { height: 150px; overflow-y: auto; scroll-snap-type: y mandatory; gap: 8px; padding: 0 8px 2px; scrollbar-width: thin; }
+  .os .newsfeed .nf-item { scroll-snap-align: start; min-height: 150px; align-content: start; }
+  .nf-head span { font-variant-numeric: tabular-nums; }
+
+  /* News window: smaller, magazine layout, glass */
+  .os .win-sec.news-win { width: min(820px, calc(100vw - 300px)); height: min(600px, calc(100svh - var(--nav) - 140px)); top: calc(var(--nav) + 40px); }
+  .os .win-sec.news-win .pane { padding: 34px 40px 36px; }
+  .news-page .num { margin-bottom: 10px; }
+  .news-page h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(34px, 3.4vw, 46px); letter-spacing: -.01em; margin: 0 0 6px; }
+  .news-page > .lead { font-size: 15px; margin: 0 0 22px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+  .nf-list.big { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; margin: 0; }
+  .nf-list.big .nf-item { background: none; border: 0; border-radius: 0; padding: 0 0 18px; }
+  .nf-list.big .nf-item:first-child { grid-row: span 2; align-self: start; padding-right: 28px; border-right: 1px solid var(--rule); }
+  .nf-list.big .nf-item:first-child b { font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.15; margin-top: 8px; }
+  .nf-list.big .nf-item:first-child p { font-size: 16px; line-height: 1.6; }
+  .nf-list.big .nf-item:not(:first-child) { padding-left: 24px; }
+  .nf-list.big .nf-item:nth-child(3) { padding-top: 18px; border-top: 1px solid var(--rule); }
+  .nf-list.big .nf-item b { font-size: 17px; }
+  .nf-list.big .nf-item p { font-size: 14px; }
+  .nf-list.big .nf-item:nth-child(n+4) { grid-column: 1 / -1; padding: 18px 0 0; border-top: 1px solid var(--rule); }
+
   /* Closing screen: founder note, then the footer */
   .ending { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; }
   .ending .screen { flex: 1; min-height: 0; }
@@ -910,13 +940,10 @@
     <a class="nf-all" href="#news">See all updates</a>
   </aside>
     <a class="widget" href="#rosc" aria-label="Open ROSC">
-      <div class="phone back">
-        <img src="assets/detail.jpg" data-on-light="assets/detail.jpg" data-on-dark="assets/detail.jpg" alt="" width="590" height="1278">
-      </div>
       <div class="phone front">
         <img src="assets/home-dark.jpg" data-on-light="assets/home-dark.jpg" data-on-dark="assets/home.jpg" alt="" width="590" height="1278">
       </div>
-      <div class="notif" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
+      <div class="notif pulled" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
       <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
     </a>
   </section>
@@ -1587,29 +1614,6 @@
     document.querySelectorAll('#svc-list li').forEach(li => { li.hidden = !(f === 'all' || li.dataset.tag === f || li.dataset.tag === 'all'); });
   }));
 
-  // Notifications beside the phones, cycling slowly.
-  const note = document.getElementById('notif');
-  const feed = [
-    ['assets/rosc-icon.png', 'Amina confirmed your payment', 'KES 5,000 · turn 2 of 3'],
-    ['assets/rosc-icon.png', 'Kwame marked his share as sent', 'CAD 400 · Solidarity Circle'],
-    ['assets/rosc-icon.png', "It's your turn to receive", 'Umoja Circle · KES 15,000'],
-    ['assets/rosc-icon.png', 'New note on the noticeboard', 'Jamii Circle · 2 reactions'],
-    ['assets/rosc-icon.png', 'Cycle complete', 'Everyone paid on time'],
-  ];
-  let fi = 0;
-  if (note && !calm.matches) setInterval(() => {
-    if (!isOS() || document.hidden) return;
-    note.classList.add('out');
-    setTimeout(() => {
-      fi = (fi + 1) % feed.length;
-      const [img, t, sub] = feed[fi];
-      note.querySelector('img').src = img;
-      note.querySelector('b').textContent = t;
-      note.querySelector('span').textContent = sub;
-      note.classList.remove('out'); note.classList.add('in');
-      requestAnimationFrame(() => requestAnimationFrame(() => note.classList.remove('in')));
-    }, 450);
-  }, 4200);
 
   // ---------- Interactive ROSC demo (sample data only) ----------
   (() => {
