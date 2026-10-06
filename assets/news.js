@@ -8,9 +8,21 @@
 //   text:   one or two sentences
 //   link:   optional: "#rosc", "#contact", "#services" or a full https:// address
 //   linkText: optional label for the link
+//   image:  optional picture in assets/, shown in the full News window
+//   imageAlt: describes the picture
 //   by:     optional, defaults to "Sherine A."
 
 window.PACKISHER_NEWS = [
+  {
+    type: "rosc",
+    date: "2026-10-06",
+    title: "The new ROSC website is live",
+    text: "rosc.packisher.com has guides with screenshots, answers to common questions and a place to follow every release.",
+    image: "news-launch.jpg",
+    imageAlt: "The ROSC home page, showing the app on a phone",
+    link: "https://rosc.packisher.com",
+    linkText: "Visit rosc.packisher.com",
+  },
   {
     type: "launch",
     date: "2026-09-30",

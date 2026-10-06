@@ -630,6 +630,7 @@
   .nf-all { display: block; padding: 10px 16px 14px; font-size: 12.5px; font-weight: 600; color: var(--ink); text-decoration: none; }
   .nf-all:hover, .nf-link:hover { color: var(--bronze); }
   .news-page { max-width: 720px; }
+  .nf-shot { display: block; width: 100%; height: auto; margin-top: 12px; border-radius: 10px; border: 1px solid var(--rule); }
   .nf-list.big { gap: 10px; margin-top: 8px; }
   .nf-list.big .nf-item { padding: 16px 18px; border: 1px solid var(--rule); }
   .nf-list.big .nf-item b { font-size: 17px; }
@@ -1741,14 +1742,14 @@
     };
     const esc = t => String(t || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
-    const item = p => {
+    const item = (p, big) => {
       const t = TYPES[p.type] || TYPES.studio;
       const link = p.link ? `<a class="nf-link" href="${esc(p.link)}"${p.link === '#contact' ? ' data-tester' : ''}${/^https?:/.test(p.link) ? ' target="_blank" rel="noopener"' : ''}>${esc(p.linkText || 'Read more')}</a>` : '';
-      return `<li class="nf-item" style="--tc:${t.c}"><span class="nf-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${t.icon}</svg></span><span class="nf-tag">${t.label}</span><time datetime="${esc(p.date)}">${fmt(p.date)}</time><b>${esc(p.title)}</b><p>${esc(p.text)}</p><span class="nf-by"><i aria-hidden="true">${esc((p.by || 'Sherine A.').split(/\s+/).map(w => w[0]).join('').slice(0, 2))}</i>${esc(p.by || 'Sherine A.')}</span>${link}</li>`;
+      return `<li class="nf-item" style="--tc:${t.c}"><span class="nf-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${t.icon}</svg></span><span class="nf-tag">${t.label}</span><time datetime="${esc(p.date)}">${fmt(p.date)}</time><b>${esc(p.title)}</b><p>${esc(p.text)}</p>${big && p.image ? `<img class="nf-shot" src="assets/${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy">` : ''}<span class="nf-by"><i aria-hidden="true">${esc((p.by || 'Sherine A.').split(/\s+/).map(w => w[0]).join('').slice(0, 2))}</i>${esc(p.by || 'Sherine A.')}</span>${link}</li>`;
     };
     const mini = document.getElementById('nf-mini'), full = document.getElementById('nf-full');
-    if (mini) mini.innerHTML = posts.map(item).join('');
-    if (full) full.innerHTML = posts.map(item).join('');
+    if (mini) mini.innerHTML = posts.map(p => item(p, false)).join('');
+    if (full) full.innerHTML = posts.map(p => item(p, true)).join('');
     const today = document.getElementById('nf-today');
     if (today) today.textContent = new Date().toLocaleDateString('en-CA', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
     const count = document.querySelector('.nf-count');
