@@ -623,14 +623,14 @@
   .nf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
   .nf-item { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: baseline; padding: 10px 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--card) 70%, transparent); }
   .nf-tag { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--bronze); }
-  .nf-item time { font-size: 11.5px; color: var(--muted); justify-self: end; }
+  .nf-item time { font-size: 11.5px; color: var(--muted); justify-self: end; white-space: nowrap; }
   .nf-item b { grid-column: 1 / -1; font-size: 13.5px; margin-top: 4px; }
   .nf-item p { grid-column: 1 / -1; margin: 3px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
   .nf-link { grid-column: 1 / -1; justify-self: start; margin-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--ink); }
   .nf-all { display: block; padding: 10px 16px 14px; font-size: 12.5px; font-weight: 600; color: var(--ink); text-decoration: none; }
   .nf-all:hover, .nf-link:hover { color: var(--bronze); }
-  .news-page { max-width: 720px; }
-  .nf-shot { display: block; width: 100%; height: auto; margin-top: 12px; border-radius: 10px; border: 1px solid var(--rule); }
+  .news-page { max-width: 720px; margin-inline: auto; }
+  .nf-shot { grid-column: 1 / -1; display: block; width: 100%; min-width: 0; max-width: 100%; height: auto; margin-top: 12px; border-radius: 10px; border: 1px solid var(--rule); }
   .nf-list.big { gap: 10px; margin-top: 8px; }
   .nf-list.big .nf-item { padding: 16px 18px; border: 1px solid var(--rule); }
   .nf-list.big .nf-item b { font-size: 17px; }
