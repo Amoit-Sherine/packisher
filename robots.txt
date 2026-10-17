@@ -1,0 +1,10 @@
+# packisher.com
+# Everyone is welcome to crawl the site, including search engines (Googlebot, Bingbot) and the
+# crawlers behind AI search and assistants (OAI-SearchBot, GPTBot, ChatGPT-User, ClaudeBot,
+# Claude-SearchBot, Claude-User, PerplexityBot, Google-Extended). The only thing kept out is the
+# contact form's server endpoint, which has nothing to read.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.packisher.com/sitemap.xml

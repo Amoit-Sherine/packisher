@@ -6,6 +6,14 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "packisher.com" }],
+      "destination": "https://www.packisher.com/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -3,15 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Packisher | Venture and software studio</title>
-<meta name="description" content="Packisher is a venture and software studio building custom digital platforms and in-house products, starting with ROSC.">
+<!-- SEARCH AND SHARING
+     The main address is https://www.packisher.com/ (packisher.com redirects to it, see vercel.json).
+     The title and description below are what Google shows in results. The og: and twitter: lines
+     control the preview when the link is shared on WhatsApp, LinkedIn, X and similar. -->
+<title>Packisher | Mobile App &amp; Web Development for Kenya</title>
+<meta name="description" content="Packisher is a software studio building Flutter mobile apps, websites and backends for businesses and community groups in Kenya. Makers of ROSC.">
+<link rel="canonical" href="https://www.packisher.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#F4F1EA">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="Packisher | Venture and software studio">
-<meta property="og:description" content="We craft software that connects communities and scales ideas. Makers of ROSC.">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:site_name" content="Packisher">
+<meta property="og:title" content="Packisher | Mobile App &amp; Web Development for Kenya">
+<meta property="og:description" content="Flutter mobile apps, websites and backends for Kenyan businesses and communities. Makers of ROSC.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://packisher.com">
+<meta property="og:url" content="https://www.packisher.com/">
+<meta property="og:image" content="https://www.packisher.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Packisher: mobile apps, websites and backends for Kenya, with the ROSC app on a phone">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Packisher | Mobile App &amp; Web Development for Kenya">
+<meta name="twitter:description" content="Flutter mobile apps, websites and backends for Kenyan businesses and communities. Makers of ROSC.">
+<meta name="twitter:image" content="https://www.packisher.com/assets/og-image.png">
+<!-- STRUCTURED DATA: tells search engines and AI tools who Packisher is, what it sells and where.
+     Keep it matching the words on the page. If a service or the contact email changes, change it here too. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.packisher.com/#organization",
+      "name": "Packisher",
+      "url": "https://www.packisher.com/",
+      "logo": "https://www.packisher.com/assets/icon-512.png",
+      "image": "https://www.packisher.com/assets/og-image.png",
+      "email": "support@packisher.com",
+      "description": "Packisher is a software studio building Flutter mobile apps, websites and backends for businesses and community groups in Kenya.",
+      "slogan": "We craft software that connects communities and scales ideas.",
+      "founder": { "@type": "Person", "name": "Sherine A.", "jobTitle": "Founder" },
+      "areaServed": { "@type": "Country", "name": "Kenya" },
+      "knowsAbout": ["Mobile app development", "Flutter", "Web development", "Backend development", "Product design", "Payment integrations"],
+      "sameAs": ["https://www.linkedin.com/company/packisher"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Packisher services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile apps", "description": "iOS and Android apps from one Flutter codebase, with sign-in, payments, push notifications and offline support, including App Store and Google Play submission." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Websites", "description": "Company sites, bookings and portals: marketing sites, booking and ordering flows, customer portals and dashboards." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Backends", "description": "Databases, user accounts, roles and permissions, file storage, email and push, and admin panels." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Product design", "description": "Research, user flows, wireframes, polished screens in Figma and a clickable prototype." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integrations", "description": "Payments, maps, SMS and WhatsApp, email, calendars and language model features." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web apps and dashboards", "description": "Internal tools, admin dashboards and client portals with sign-in, roles and reports." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Care and updates", "description": "Monitoring, bug fixes, security updates, new OS versions and store updates after launch." } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.packisher.com/#website",
+      "url": "https://www.packisher.com/",
+      "name": "Packisher",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://www.packisher.com/#organization" }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://www.packisher.com/#rosc",
+      "name": "ROSC",
+      "url": "https://rosc.packisher.com",
+      "description": "A shared record for rotating savings groups. Everyone sees who paid, who received and whose turn is next.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Android, iOS",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.roscapp.roscapp",
+      "image": "https://www.packisher.com/assets/rosc-icon.png",
+      "author": { "@id": "https://www.packisher.com/#organization" },
+      "publisher": { "@id": "https://www.packisher.com/#organization" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
@@ -980,7 +1055,7 @@
   </aside>
     <a class="widget" href="#rosc" aria-label="Open ROSC">
       <div class="phone front">
-        <img src="assets/home-dark.jpg" data-on-light="assets/home-dark.jpg" data-on-dark="assets/home.jpg" alt="" width="590" height="1278">
+        <img src="assets/home-dark.jpg" data-on-light="assets/home-dark.jpg" data-on-dark="assets/home.jpg" alt="ROSC home screen showing a member's savings groups, amounts in Kenyan shillings and which payments need confirming" width="590" height="1278">
       </div>
       <div class="notif pulled" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
       <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
@@ -1024,9 +1099,9 @@
         <p class="lead">A shared record for rotating savings groups. Everyone sees who paid, who received and whose turn is next.</p>
       </div>
       <div class="phones" aria-hidden="true">
-        <div class="phone a"><img src="assets/profile.jpg" data-on-light="assets/profile.jpg" data-on-dark="assets/profile.jpg" alt="" loading="lazy" width="590" height="1278"></div>
+        <div class="phone a"><img src="assets/profile.jpg" data-on-light="assets/profile.jpg" data-on-dark="assets/profile.jpg" alt="ROSC profile screen with amounts sent and received and a Trust Score of 92 out of 100" loading="lazy" width="590" height="1278"></div>
         <div class="phone b">
-          <img src="assets/detail-dark.jpg" data-on-light="assets/detail-dark.jpg" data-on-dark="assets/detail.jpg" alt="" loading="lazy" width="590" height="1278">
+          <img src="assets/detail-dark.jpg" data-on-light="assets/detail-dark.jpg" data-on-dark="assets/detail.jpg" alt="ROSC group screen for a savings circle showing turn 2 of 3, a KES 5,000 payment due and a progress bar of members who have paid" loading="lazy" width="590" height="1278">
         </div>
       </div>
       <div class="demo" aria-label="Interactive ROSC demo with sample data">
