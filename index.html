@@ -3,15 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Packisher | Venture and software studio</title>
-<meta name="description" content="Packisher is a venture and software studio building custom digital platforms and in-house products, starting with ROSC.">
+<!-- SEARCH AND SHARING
+     The main address is https://www.packisher.com/ (packisher.com redirects to it, see vercel.json).
+     The title and description below are what Google shows in results. The og: and twitter: lines
+     control the preview when the link is shared on WhatsApp, LinkedIn, X and similar. -->
+<title>Packisher | Mobile App &amp; Web Development for Kenya</title>
+<meta name="description" content="Packisher is a software studio building Flutter mobile apps, websites and backends for businesses and community groups in Kenya. Makers of ROSC.">
+<link rel="canonical" href="https://www.packisher.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#F4F1EA">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="Packisher | Venture and software studio">
-<meta property="og:description" content="We craft software that connects communities and scales ideas. Makers of ROSC.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:site_name" content="Packisher">
+<meta property="og:title" content="Packisher | Mobile App &amp; Web Development for Kenya">
+<meta property="og:description" content="Flutter mobile apps, websites and backends for Kenyan businesses and communities. Makers of ROSC.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://packisher.com">
+<meta property="og:url" content="https://www.packisher.com/">
+<meta property="og:image" content="https://www.packisher.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Packisher: mobile apps, websites and backends for Kenya, with the ROSC app on a phone">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Packisher | Mobile App &amp; Web Development for Kenya">
+<meta name="twitter:description" content="Flutter mobile apps, websites and backends for Kenyan businesses and communities. Makers of ROSC.">
+<meta name="twitter:image" content="https://www.packisher.com/assets/og-image.png">
+<!-- STRUCTURED DATA: tells search engines and AI tools who Packisher is, what it sells and where.
+     Keep it matching the words on the page. If a service or the contact email changes, change it here too. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.packisher.com/#organization",
+      "name": "Packisher",
+      "url": "https://www.packisher.com/",
+      "logo": "https://www.packisher.com/assets/icon-512.png",
+      "image": "https://www.packisher.com/assets/og-image.png",
+      "email": "support@packisher.com",
+      "description": "Packisher is a software studio building Flutter mobile apps, websites and backends for businesses and community groups in Kenya.",
+      "slogan": "We craft software that connects communities and scales ideas.",
+      "founder": { "@type": "Person", "name": "Sherine A.", "jobTitle": "Founder" },
+      "areaServed": { "@type": "Country", "name": "Kenya" },
+      "knowsAbout": ["Mobile app development", "Flutter", "Web development", "Backend development", "Product design", "Payment integrations"],
+      "sameAs": ["https://www.linkedin.com/company/packisher"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Packisher services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile apps", "description": "iOS and Android apps from one Flutter codebase, with sign-in, payments, push notifications and offline support, including App Store and Google Play submission." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Websites", "description": "Company sites, bookings and portals: marketing sites, booking and ordering flows, customer portals and dashboards." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Backends", "description": "Databases, user accounts, roles and permissions, file storage, email and push, and admin panels." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Product design", "description": "Research, user flows, wireframes, polished screens in Figma and a clickable prototype." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integrations", "description": "Payments, maps, SMS and WhatsApp, email, calendars and language model features." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web apps and dashboards", "description": "Internal tools, admin dashboards and client portals with sign-in, roles and reports." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Care and updates", "description": "Monitoring, bug fixes, security updates, new OS versions and store updates after launch." } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.packisher.com/#website",
+      "url": "https://www.packisher.com/",
+      "name": "Packisher",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://www.packisher.com/#organization" }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://www.packisher.com/#rosc",
+      "name": "ROSC",
+      "url": "https://rosc.packisher.com",
+      "description": "A shared record for rotating savings groups. Everyone sees who paid, who received and whose turn is next.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Android, iOS",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.roscapp.roscapp",
+      "image": "https://www.packisher.com/assets/rosc-icon.png",
+      "author": { "@id": "https://www.packisher.com/#organization" },
+      "publisher": { "@id": "https://www.packisher.com/#organization" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Caveat:wght@500;600&family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
@@ -52,7 +127,7 @@
   body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
   a { color: inherit; }
   img { display: block; max-width: 100%; }
-  h1, h2, h3 { text-wrap: balance; }
+  h1, h2, h3, .h1 { text-wrap: balance; }
   .serif { font-family: var(--serif); font-style: italic; font-weight: 400; }
   .eyebrow { font: 600 12px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
   :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
@@ -92,8 +167,8 @@
   .sec > * { min-width: 0; }
   .num { font: 700 15px/1 var(--display); letter-spacing: .1em; color: var(--bronze); display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
   .num::after { content: ""; width: 44px; height: 2px; background: var(--bronze); }
-  h2 { font: 600 clamp(30px, 3.6vw, 48px)/1.08 var(--sans); letter-spacing: -.03em; margin: 0 0 16px; }
-  h2 .serif { font-size: 1.08em; letter-spacing: -.01em; color: var(--bronze); }
+  h2, h1.h2 { font: 600 clamp(30px, 3.6vw, 48px)/1.08 var(--sans); letter-spacing: -.03em; margin: 0 0 16px; }
+  h2 .serif, h1.h2 .serif { font-size: 1.08em; letter-spacing: -.01em; color: var(--bronze); }
   .lead { font-size: 18px; color: var(--ink-2); margin: 0 0 22px; max-width: 520px; }
 
   /* Opening screen. On phones it is the first screen of the scroll; on laptops it is the desktop. */
@@ -103,7 +178,7 @@
       radial-gradient(35% 45% at 20% 85%, var(--wash-2), transparent 70%); opacity: .9; }
   .home { max-width: 640px; }
   .home-logo { width: 64px; height: 64px; border-radius: 16px; margin-bottom: 26px; box-shadow: 0 18px 36px -16px rgba(var(--shade), .45); }
-  .home h1 { font: 600 clamp(30px, 3.4vw, 46px)/1.12 var(--sans); letter-spacing: -.028em; margin: 14px 0 14px; }
+  .home h1, .home .h1 { font: 600 clamp(30px, 3.4vw, 46px)/1.12 var(--sans); letter-spacing: -.028em; margin: 14px 0 14px; }
   .home .lead { font-size: 18px; }
   .icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 420px; }
   .icon { display: grid; justify-items: center; gap: 7px; padding: 10px 4px; border-radius: 12px; text-decoration: none; font-size: 12.5px; color: var(--ink-2); text-align: center; }
@@ -121,7 +196,7 @@
   .phone::after { content: ""; position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 80px; height: 23px; background: #121513; border-radius: 999px; }
 
   /* ROSC */
-  #rosc .num, #rosc h2 .serif { color: var(--rosc); }
+  #rosc .num, #rosc h2 .serif, #rosc h1.h2 .serif { color: var(--rosc); }
   #rosc .num::after { background: var(--rosc); }
   .rosc-id { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
   .rosc-id img { width: 52px; height: 52px; border-radius: 14px; }
@@ -572,9 +647,9 @@
   /* First screen fills the whole screen: intro, then the shortcuts */
   html:not(.os) .desk { min-height: calc(100svh - var(--nav)); display: flex; flex-direction: column; justify-content: center; gap: 40px; padding-top: 32px; padding-bottom: 40px; }
   html:not(.os) .icons { grid-template-columns: repeat(3, 1fr); max-width: 420px; row-gap: 14px; }
-  html:not(.os) .home h1 { font-size: clamp(32px, 9vw, 44px); }
+  html:not(.os) .home h1, html:not(.os) .home .h1 { font-size: clamp(32px, 9vw, 44px); }
   /* A shorter page: ROSC, Services (with the process), Platforms, Contact */
-  html:not(.os) #process, html:not(.os) .icons a[href="#process"], html:not(.os) .mmenu a[href="#process"] { display: none; }
+  html:not(.os):not([data-route="process"]) #process, html:not(.os) .icons a[href="/process/"], html:not(.os) .mmenu a[href="/process/"] { display: none; }
   /* Phone order: intro, ROSC, Services, The team, Platforms, Contact, footer */
   html:not(.os) main { display: flex; flex-direction: column; }
   html:not(.os) .ending { display: contents; }
@@ -582,9 +657,9 @@
   html:not(.os) #note { order: 3; } html:not(.os) #platforms { order: 4; } html:not(.os) #contact { order: 5; } html:not(.os) footer { order: 6; }
   /* No nested scrolling on phones, so swipes always move the page */
   html:not(.os) .a-list { max-height: none; overflow: visible; }
-  html:not(.os) .icons a[href="#note"], html:not(.os) .mmenu nav a[href="#note"] { order: 3; }
-  html:not(.os) .icons a[href="#platforms"], html:not(.os) .mmenu nav a[href="#platforms"] { order: 4; }
-  html:not(.os) .icons a[href="#contact"], html:not(.os) .mmenu nav a[href="#contact"] { order: 5; }
+  html:not(.os) .icons a[href="/team/"], html:not(.os) .mmenu nav a[href="/team/"] { order: 3; }
+  html:not(.os) .icons a[href="/platforms/"], html:not(.os) .mmenu nav a[href="/platforms/"] { order: 4; }
+  html:not(.os) .icons a[href="/contact/"], html:not(.os) .mmenu nav a[href="/contact/"] { order: 5; }
   html:not(.os) .pane, html:not(.os) .dv { overscroll-behavior: auto; }
   html:not(.os) .m-process { display: block; margin-top: 8px; }
   .m-process h3 { margin: 0 0 8px; font-size: 17px; }
@@ -611,6 +686,7 @@
   /* News: a glass panel on the desktop, plus a News window */
   .newsfeed, .news-win { display: none; }
   .os .news-win { display: flex; }
+  html:not(.os)[data-route="news"] .news-win { display: flex; } /* on phones the News window shows only on its own page, /news/ */
   .os .newsfeed { display: flex; flex-direction: column; position: absolute; right: clamp(24px, 3vw, 56px); top: 24px; width: clamp(250px, 21vw, 300px); max-height: calc(100% - clamp(300px, 46vh, 430px) - 226px); min-height: 150px; border-radius: 22px; overflow: hidden; z-index: 3;
     background: color-mix(in srgb, var(--card) 62%, transparent); backdrop-filter: blur(24px) saturate(1.7); -webkit-backdrop-filter: blur(24px) saturate(1.7);
     box-shadow: 0 18px 40px -18px rgba(var(--shade), .35), inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 1px rgba(255,255,255,.4); transition: opacity .35s ease, transform .35s ease; }
@@ -657,7 +733,7 @@
   .os .win-sec.news-win { width: min(1040px, calc(100vw - 220px)); height: min(680px, calc(100svh - var(--nav) - 120px)); top: calc(var(--nav) + 40px); }
   .os .win-sec.news-win .pane { padding: 34px 40px 36px; }
   .news-page .num { margin-bottom: 10px; }
-  .news-page h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(34px, 3.4vw, 46px); letter-spacing: -.01em; margin: 0 0 6px; }
+  .news-page h2, .news-page h1.h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(34px, 3.4vw, 46px); letter-spacing: -.01em; margin: 0 0 6px; }
   .news-page > .lead { font-size: 15px; margin: 0 0 22px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
   .nf-list.big { display: grid; grid-template-columns: 1.45fr 1fr; gap: 0; margin: 0; }
   .nf-list.big .nf-item { background: none; border: 0; border-radius: 0; padding: 0 0 26px; }
@@ -692,7 +768,7 @@
   /* News window: a newspaper front page */
   .mast { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 12px; padding-bottom: 14px; border-bottom: 3px double var(--ink); font-size: 13px; color: var(--muted); letter-spacing: .04em; }
   .mast span:last-child { text-align: right; }
-  .mast h2 { margin: 0; font-family: "Newsreader", Georgia, serif; font-style: normal; font-weight: 600; font-size: clamp(36px, 3.4vw, 52px); letter-spacing: -.01em; text-align: center; color: var(--ink); }
+  .mast h2, .mast h1.h2 { margin: 0; font-family: "Newsreader", Georgia, serif; font-style: normal; font-weight: 600; font-size: clamp(36px, 3.4vw, 52px); letter-spacing: -.01em; text-align: center; color: var(--ink); }
   .news-page > .lead { text-align: center; font-family: var(--serif); font-style: italic; font-size: 17px; border-bottom: 1px solid var(--rule); margin: 12px 0 28px; padding-bottom: 16px; }
   .news-page .num { display: none; }
   .nf-list.big .nf-item { grid-template-columns: auto auto 1fr; align-content: start; }
@@ -893,6 +969,16 @@
     .rv.pre { opacity: 1; transform: none; }
     .btn { transition: none; }
   }
+
+  /* The News window on a phone (only shown on its own page, /news/): the newspaper columns become one column */
+  html:not(.os) .news-page .mast { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  html:not(.os) .news-page .mast span:last-child { text-align: center; }
+  html:not(.os) .nf-list.big { grid-template-columns: 1fr; }
+  html:not(.os) .nf-list.big .nf-item:first-child,
+  html:not(.os) .nf-list.big .nf-item:not(:first-child),
+  html:not(.os) .nf-list.big .nf-item:nth-child(3),
+  html:not(.os) .nf-list.big .nf-item:nth-child(n+4) { grid-row: auto; grid-column: auto; padding: 22px 0; margin: 0; border-right: 0; border-top: 1px solid var(--rule); }
+  html:not(.os) .nf-list.big .nf-item:first-child { border-top: 0; }
 </style>
 </head>
 <body>
@@ -926,77 +1012,77 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="in">
-    <a class="brand" href="#top"><img src="assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
+    <a class="brand" href="/"><img src="/assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
     <nav aria-label="Main">
-      <a href="#rosc">ROSC</a>
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#platforms">Platforms</a>
+      <a href="/rosc/">ROSC</a>
+      <a href="/services/">Services</a>
+      <a href="/process/">Process</a>
+      <a href="/platforms/">Platforms</a>
     </nav>
-    <a class="btn sm" href="#contact">Contact us</a>
+    <a class="btn sm" href="/contact/">Contact us</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <div class="mmenu" id="mmenu" hidden>
   <nav aria-label="Menu">
-    <a href="#rosc"><span class="mi"><img src="assets/rosc-icon.png" alt=""></span>ROSC</a>
-    <a href="#services"><span class="mi" style="--c:#2E6B56"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
-    <a href="#process"><span class="mi" style="--c:#FF9500"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
-    <a href="#platforms"><span class="mi" style="--c:#3178C6"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span>Platforms</a>
-    <a href="#contact"><span class="mi" style="--c:#7A5C38"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact us</a>
-    <a href="#note"><span class="mi" style="--c:#C9A227"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span>The team</a>
+    <a href="/rosc/"><span class="mi"><img src="/assets/rosc-icon.png" alt=""></span>ROSC</a>
+    <a href="/services/"><span class="mi" style="--c:#2E6B56"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span>Services</a>
+    <a href="/process/"><span class="mi" style="--c:#FF9500"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span>Process</a>
+    <a href="/platforms/"><span class="mi" style="--c:#3178C6"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span>Platforms</a>
+    <a href="/contact/"><span class="mi" style="--c:#7A5C38"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact us</a>
+    <a href="/team/"><span class="mi" style="--c:#C9A227"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span>The team</a>
   </nav>
-  <a class="btn mm-cta" href="#contact">Start a project with us</a>
+  <a class="btn mm-cta" href="/contact/">Start a project with us</a>
   <div class="mm-foot">
     <button class="theme-toggle" type="button" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg><span>Dark mode</span></button>
-    <span><a href="privacy/" target="_blank" rel="noopener">Privacy</a> · <a href="terms/" target="_blank" rel="noopener">Terms</a></span>
+    <span><a href="/privacy/" target="_blank" rel="noopener">Privacy</a> · <a href="/terms/" target="_blank" rel="noopener">Terms</a></span>
   </div>
 </div>
 
 <main id="main" tabindex="-1">
   <section class="desk" id="top">
     <nav class="icons" aria-label="Sections">
-      <a class="icon" href="#rosc"><span><img src="assets/rosc-icon.png" alt=""></span><b class="lbl">ROSC</b></a>
-      <a class="icon" href="#services"><span><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span><b class="lbl">Services</b></a>
-      <a class="icon" href="#process"><span><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><b class="lbl">Process</b></a>
-      <a class="icon" href="#platforms"><span><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span><b class="lbl">Platforms</b></a>
-      <a class="icon" href="#contact"><span><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span><b class="lbl">Contact us</b></a>
-      <a class="icon" href="#note"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span><b class="lbl">The team</b></a>
+      <a class="icon" href="/rosc/"><span><img src="/assets/rosc-icon.png" alt=""></span><b class="lbl">ROSC</b></a>
+      <a class="icon" href="/services/"><span><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></span><b class="lbl">Services</b></a>
+      <a class="icon" href="/process/"><span><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><b class="lbl">Process</b></a>
+      <a class="icon" href="/platforms/"><span><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></span><b class="lbl">Platforms</b></a>
+      <a class="icon" href="/contact/"><span><svg viewBox="0 0 24 24" style="--c:#7A5C38"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span><b class="lbl">Contact us</b></a>
+      <a class="icon" href="/team/"><span><svg viewBox="0 0 24 24" style="--c:#C9A227"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.8 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z"/></svg></span><b class="lbl">The team</b></a>
     </nav>
     <div class="home">
-      <img class="home-logo" src="assets/packisher-logo.svg" alt="Packisher">
+      <img class="home-logo" src="/assets/packisher-logo.svg" alt="Packisher">
       <div class="eyebrow">Venture &amp; software studio</div>
       <h1>We craft software that connects communities and scales ideas.</h1>
       <div class="ctas">
-        <a class="btn" href="#contact">Start a project with us</a>
+        <a class="btn" href="/contact/">Start a project with us</a>
       </div>
     </div>
 
   <aside class="newsfeed" aria-label="News from Packisher">
     <div class="nf-head"><b>News</b><span class="nf-status" aria-hidden="true"><svg class="wifi" viewBox="0 0 24 24"><path d="M12 20.5 15.6 16a5.8 5.8 0 0 0-7.2 0zM12 4C7.5 4 3.4 5.6.3 8.3l2.2 2.8A12.6 12.6 0 0 1 12 7.6c3.6 0 6.9 1.3 9.5 3.5l2.2-2.8C20.6 5.6 16.5 4 12 4zm0 5.4c-2.9 0-5.5 1-7.6 2.7l2.2 2.8A8.4 8.4 0 0 1 12 13c2 0 3.9.7 5.4 1.9l2.2-2.8A12 12 0 0 0 12 9.4z"/></svg><svg class="bt" viewBox="0 0 24 24"><path d="M17.7 7.7 12 2h-1v7.6L6.4 5 5 6.4 10.6 12 5 17.6 6.4 19l4.6-4.6V22h1l5.7-5.7-4.3-4.3 4.3-4.3zM13 5.8l1.9 1.9L13 9.6V5.8zm1.9 10.5L13 18.2v-3.8l1.9 1.9z"/></svg><i class="bat"><i></i></i></span><span class="nf-count" aria-live="off"></span></div>
     <ul class="nf-list" id="nf-mini"></ul>
-    <a class="nf-all" href="#news">See all updates</a>
+    <a class="nf-all" href="/news/">See all updates</a>
   </aside>
-    <a class="widget" href="#rosc" aria-label="Open ROSC">
+    <a class="widget" href="/rosc/" aria-label="Open ROSC">
       <div class="phone front">
-        <img src="assets/home-dark.jpg" data-on-light="assets/home-dark.jpg" data-on-dark="assets/home.jpg" alt="" width="590" height="1278">
+        <img src="/assets/home-dark.jpg" data-on-light="/assets/home-dark.jpg" data-on-dark="/assets/home.jpg" alt="ROSC home screen showing a member's savings groups, amounts in Kenyan shillings and which payments need confirming" width="590" height="1278">
       </div>
-      <div class="notif pulled" id="notif"><img src="assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
+      <div class="notif pulled" id="notif"><img src="/assets/rosc-icon.png" alt=""><div><b>Amina confirmed your payment</b><span>KES 5,000 · turn 2 of 3</span></div><time>now</time></div>
       <p class="cap"><i class="dot"></i>ROSC · live on iOS and Android</p>
     </a>
   </section>
 
-  <div class="legal"><button class="theme-toggle icon-only" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg></button><span>&copy; 2026 <b>Packisher</b></span><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a></div>
+  <div class="legal"><button class="theme-toggle icon-only" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg></button><span>&copy; 2026 <b>Packisher</b></span><a href="/privacy/" target="_blank" rel="noopener">Privacy</a><a href="/terms/" target="_blank" rel="noopener">Terms</a></div>
 
   <div class="taskbar" aria-label="Taskbar">
-    <button class="start" type="button" aria-label="Packisher menu" aria-expanded="false"><img src="assets/packisher-logo.svg" alt=""></button>
+    <button class="start" type="button" aria-label="Packisher menu" aria-expanded="false"><img src="/assets/packisher-logo.svg" alt=""></button>
     <div class="search">
       <svg viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
       <input id="q" type="search" placeholder="Search our work" autocomplete="off" aria-label="Search our work">
       <div class="results" id="results" hidden></div>
     </div>
-    <button class="pin" type="button" data-open="rosc" aria-label="ROSC" title="ROSC"><img src="assets/rosc-icon.png" alt=""></button>
+    <button class="pin" type="button" data-open="rosc" aria-label="ROSC" title="ROSC"><img src="/assets/rosc-icon.png" alt=""></button>
     <button class="pin" type="button" data-open="services" aria-label="Services" title="Services"><svg viewBox="0 0 24 24" style="--c:#2E6B56"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></button>
     <button class="pin" type="button" data-open="process" aria-label="Process" title="Process"><svg viewBox="0 0 24 24" style="--c:#FF9500"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></button>
     <button class="pin" type="button" data-open="platforms" aria-label="Platforms" title="Platforms"><svg viewBox="0 0 24 24" style="--c:#3178C6"><path d="M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z"/></svg></button>
@@ -1005,17 +1091,17 @@
   </div>
 
   <div class="startmenu" id="startmenu" hidden>
-    <div class="sm-head"><img src="assets/packisher-logo.svg" alt=""><div><b>Packisher</b><span>Venture &amp; software studio</span></div></div>
+    <div class="sm-head"><img src="/assets/packisher-logo.svg" alt=""><div><b>Packisher</b><span>Venture &amp; software studio</span></div></div>
     <div class="sm-cols">
-      <div><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a><a href="#note">The team</a><a href="#news">News</a></div>
+      <div><h4>Studio</h4><a href="/services/">Services</a><a href="/process/">Process</a><a href="/platforms/">Platforms</a><a href="/contact/">Contact us</a><a href="/team/">The team</a><a href="/news/">News</a></div>
       <div><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
-      <div><h4>Legal</h4><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a><a href="legal/" target="_blank" rel="noopener">All policies</a></div>
+      <div><h4>Legal</h4><a href="/privacy/" target="_blank" rel="noopener">Privacy</a><a href="/terms/" target="_blank" rel="noopener">Terms</a><a href="/legal/" target="_blank" rel="noopener">All policies</a></div>
     </div>
     <div class="sm-foot">&copy; 2026 <b>Packisher</b> · support@packisher.com</div>
   </div>
 
   <section class="screen alt win-sec" id="rosc" aria-label="ROSC">
-    <div class="chrome"><span class="t"><img src="assets/rosc-icon.png" alt="">ROSC</span><button class="c-min" type="button" aria-label="Minimize ROSC"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-max" type="button" aria-label="Expand ROSC" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6zm1.6 1.6v8.8h8.8V7.6z"/></svg></button><button class="c-close" type="button" aria-label="Close ROSC"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
+    <div class="chrome"><span class="t"><img src="/assets/rosc-icon.png" alt="">ROSC</span><button class="c-min" type="button" aria-label="Minimize ROSC"><svg viewBox="0 0 24 24"><path d="M5 12h14v1.6H5z"/></svg></button><button class="c-max" type="button" aria-label="Expand ROSC" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6zm1.6 1.6v8.8h8.8V7.6z"/></svg></button><button class="c-close" type="button" aria-label="Close ROSC"><svg viewBox="0 0 24 24"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg></button></div>
     <div class="pane">
     <div class="sec rosc-sec">
       <div class="r-head">
@@ -1024,9 +1110,9 @@
         <p class="lead">A shared record for rotating savings groups. Everyone sees who paid, who received and whose turn is next.</p>
       </div>
       <div class="phones" aria-hidden="true">
-        <div class="phone a"><img src="assets/profile.jpg" data-on-light="assets/profile.jpg" data-on-dark="assets/profile.jpg" alt="" loading="lazy" width="590" height="1278"></div>
+        <div class="phone a"><img src="/assets/profile.jpg" data-on-light="/assets/profile.jpg" data-on-dark="/assets/profile.jpg" alt="ROSC profile screen with amounts sent and received and a Trust Score of 92 out of 100" loading="lazy" width="590" height="1278"></div>
         <div class="phone b">
-          <img src="assets/detail-dark.jpg" data-on-light="assets/detail-dark.jpg" data-on-dark="assets/detail.jpg" alt="" loading="lazy" width="590" height="1278">
+          <img src="/assets/detail-dark.jpg" data-on-light="/assets/detail-dark.jpg" data-on-dark="/assets/detail.jpg" alt="ROSC group screen for a savings circle showing turn 2 of 3, a KES 5,000 payment due and a progress bar of members who have paid" loading="lazy" width="590" height="1278">
         </div>
       </div>
       <div class="demo" aria-label="Interactive ROSC demo with sample data">
@@ -1092,7 +1178,7 @@
           <a class="btn store tf" href="https://rosc.packisher.com" data-testflight><svg aria-hidden="true"><use href="#i-apple"/></svg>Try it on TestFlight</a>
           <a class="link-arrow" href="https://rosc.packisher.com">Visit rosc.packisher.com <span aria-hidden="true">→</span></a>
         </div>
-        <p class="tester">ROSC is in closed testing. Not on the tester list yet? <a href="#contact" data-tester>Request tester access</a></p>
+        <p class="tester">ROSC is in closed testing. Not on the tester list yet? <a href="/contact/" data-tester>Request tester access</a></p>
         <details class="whatsnew">
           <summary>Features</summary>
           <ul class="changelog">
@@ -1167,7 +1253,7 @@
             </button></li>
           </ul>
           <div class="a-foot">
-            <a class="fab" href="#contact"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>New project</a>
+            <a class="fab" href="/contact/"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>New project</a>
             <span class="gesture"></span>
           </div>
         </div>
@@ -1222,11 +1308,11 @@
       <div class="m-body">
         <div class="m-side">
           <p>Favourites</p>
-          <a class="on" href="#platforms" style="--c:#02569B"><i></i>Mobile</a>
-          <a href="#platforms" style="--c:#3178C6"><i></i>Web</a>
-          <a href="#platforms" style="--c:#3ECF8E"><i></i>Backend</a>
-          <a href="#platforms" style="--c:#F24E1E"><i></i>Design</a>
-          <a href="#platforms" style="--c:#D97757"><i></i>Language models</a>
+          <a class="on" href="/platforms/" style="--c:#02569B"><i></i>Mobile</a>
+          <a href="/platforms/" style="--c:#3178C6"><i></i>Web</a>
+          <a href="/platforms/" style="--c:#3ECF8E"><i></i>Backend</a>
+          <a href="/platforms/" style="--c:#F24E1E"><i></i>Design</a>
+          <a href="/platforms/" style="--c:#D97757"><i></i>Language models</a>
         </div>
         <div class="m-main">
           <h3>Mobile</h3>
@@ -1343,12 +1429,12 @@
 <footer>
   <div class="f-top">
     <div>
-      <a class="f-brand" href="#top"><img src="assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
+      <a class="f-brand" href="/"><img src="/assets/packisher-logo.svg" alt=""><b>Packisher</b></a>
       <p>A venture and software studio building custom platforms and our own products.</p>
     </div>
-    <div class="f-col"><h4>Studio</h4><a href="#services">Services</a><a href="#process">Process</a><a href="#platforms">Platforms</a><a href="#contact">Contact us</a></div>
+    <div class="f-col"><h4>Studio</h4><a href="/services/">Services</a><a href="/process/">Process</a><a href="/platforms/">Platforms</a><a href="/contact/">Contact us</a></div>
     <div class="f-col"><h4>Ventures</h4><a href="https://rosc.packisher.com">ROSC</a><a href="https://logistics.packisher.com">Packisher Logistics</a></div>
-    <div class="f-col"><h4>Legal</h4><a href="privacy/" target="_blank" rel="noopener">Privacy</a><a href="terms/" target="_blank" rel="noopener">Terms</a></div>
+    <div class="f-col"><h4>Legal</h4><a href="/privacy/" target="_blank" rel="noopener">Privacy</a><a href="/terms/" target="_blank" rel="noopener">Terms</a></div>
   </div>
   <div class="f-bottom"><span>&copy; 2026 <b>Packisher</b>. All rights reserved.</span><button class="theme-toggle" type="button" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 14.3A8.5 8.5 0 0 1 9.7 3.3 9 9 0 1 0 20.7 14.3z"/></svg><span>Dark mode</span></button></div>
 </footer>
@@ -1371,7 +1457,7 @@
 </dialog>
 
 
-<script src="assets/news.js"></script>
+<script src="/assets/news.js"></script>
 <script>
 (() => {
   const calm = matchMedia('(prefers-reduced-motion: reduce)');
@@ -1379,6 +1465,14 @@
   const root = document.documentElement;
   const isOS = () => root.classList.contains('os');
   const nav = () => document.querySelector('.nav').offsetHeight;
+
+  // ---------- Addresses: every window has its own page address ----------
+  // Each window lives at a real address (like /contact/) so it can be shared, bookmarked and found on Google.
+  // The home page holds every window, so they open instantly. A window's own page (made by build.mjs)
+  // holds just that one window, so opening a different window loads that window's page.
+  const ROUTES = { rosc: '/rosc/', services: '/services/', process: '/process/', platforms: '/platforms/', contact: '/contact/', note: '/team/', news: '/news/' };
+  const idOfPath = path => Object.keys(ROUTES).find(k => ROUTES[k] === path);
+  const pageId = root.dataset.route || ''; // the window this page belongs to, e.g. "contact". Empty on the home page.
   // ---------- Theme: light by default, dark when switched on ----------
   const toggles = [...document.querySelectorAll('.theme-toggle')];
   function applyTheme(t) {
@@ -1450,8 +1544,10 @@
       p.setAttribute('aria-pressed', !!top && top.id === id);
     });
     root.classList.toggle('win-open', Object.values(state).includes('open'));
-    const hash = top ? '#' + top.id : '';
-    if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname + location.search);
+    // Keep the address bar matching the open window: /contact/ while Contact is open, / when none is.
+    // A window's own page keeps its address even after the window is minimized.
+    const path = top ? ROUTES[top.id] : (pageId ? ROUTES[pageId] : '/');
+    if (location.pathname !== path || location.hash) history.replaceState(null, '', path + location.search);
   }
   // Scale a window's content down just enough to fit without scrolling.
   function fit(w, keepOpen) {
@@ -1482,7 +1578,8 @@
   let invoker = null;
   function open(id) {
     const w = wins.get(id);
-    if (!w) return;
+    // A window that lives on its own page: go to that page.
+    if (!w) { if (ROUTES[id]) location.href = ROUTES[id]; return; }
     if (!w.contains(document.activeElement)) invoker = document.activeElement;
     w.classList.remove('to-bar');
     w.style.zIndex = ++z;
@@ -1548,7 +1645,7 @@
     ['note', 'The team', 'team people founder sherine about linkedin join careers'],
     ['news', 'News', 'news updates blog launch announcements community notice'],
   ];
-  const iconOf = id => document.querySelector(`.icon[href="#${id}"] span`)?.innerHTML || '';
+  const iconOf = id => document.querySelector(`.icon[href="${ROUTES[id]}"] span`)?.innerHTML || '';
   let hits = [], hi = 0;
   function render() {
     const t = q.value.trim().toLowerCase();
@@ -1585,13 +1682,27 @@
 
   // ---------- Links: open windows on laptops, scroll on phones ----------
   document.addEventListener('click', e => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    const id = a.getAttribute('href').slice(1);
+    const a = e.target.closest('a[href]');
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
+    // Work out which window the link is for: a window address like /contact/, "/" for home, or an older #contact link.
+    const href = a.getAttribute('href');
+    let id = null;
+    if (href.startsWith('#')) {
+      const h = href.slice(1);
+      id = ROUTES[h] || h === 'top' ? h : null;
+    } else {
+      const u = new URL(a.href, location.href);
+      if (u.origin !== location.origin || u.hash) return;
+      const p = u.pathname.endsWith('/') ? u.pathname : u.pathname + '/';
+      id = p === '/' ? 'top' : (idOfPath(p) || null);
+    }
+    if (!id) return;                                  // not one of our windows (privacy, terms, outside links): let the browser follow it
+    if (id !== 'top' && !wins.has(id)) return;        // that window lives on its own page: let the browser load it
+    if (id === 'top' && pageId) return;               // on a window's own page, Home is the real home page
     e.preventDefault();
     setMenu(false);
-    if (isOS()) { if (!id || id === 'top') home(); else open(id); return; }
-    const el = document.getElementById(id || 'top');
+    if (isOS()) { if (id === 'top') home(); else open(id); return; }
+    const el = document.getElementById(id);
     if (!el) return;
     const y = el.id === 'top' ? 0 : el.getBoundingClientRect().top + scrollY - nav();
     scrollTo({ top: y, behavior: calm.matches ? 'auto' : 'smooth' });
@@ -1608,7 +1719,8 @@
     });
     if (isOS() && !mmenu.hidden) setMobileMenu(false);
     if (isOS()) {
-      const id = location.hash.slice(1);
+      // Open the window this address is for: its own page (/contact/) or an older /#contact link.
+      const id = pageId || location.hash.slice(1);
       if (wins.has(id) && state[id] !== 'open') open(id);
     }
   }
@@ -1618,15 +1730,17 @@
   document.fonts?.ready.then(() => wins.forEach((w, id) => { if (state[id] === 'open') fit(w); }));
   addEventListener('hashchange', () => { if (isOS() && wins.has(location.hash.slice(1))) open(location.hash.slice(1)); });
   mode();
-  if (!isOS() && location.hash.length > 1) {
-    const el = document.getElementById(location.hash.slice(1));
+  // On phones, land on the right section: a window's own page, or an older /#contact link.
+  const startId = pageId || location.hash.slice(1);
+  if (!isOS() && startId) {
+    const el = document.getElementById(startId);
     if (el) scrollTo(0, el.getBoundingClientRect().top + scrollY - nav());
   }
 
   // ---------- Phones: ease content up once as it scrolls in ----------
   if (!calm.matches && !isOS() && 'IntersectionObserver' in window) {
     const vh = innerHeight;
-    const items = document.querySelectorAll('.screen .num, .screen h2, .screen .lead, .android, .ios, .mac, .phones, .notes, .changelog, form, .next');
+    const items = document.querySelectorAll('.screen .num, .screen h2, .screen h1.h2, .screen .lead, .android, .ios, .mac, .phones, .notes, .changelog, form, .next');
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
     }), { rootMargin: '0px 0px -10% 0px' });
@@ -1674,7 +1788,7 @@
     }
     scr.addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) go(b.dataset.go); });
     function say(title, sub) {
-      toast.innerHTML = `<img src="assets/rosc-icon.png" alt=""><div><b>${title}</b>${sub}</div>`;
+      toast.innerHTML = `<img src="/assets/rosc-icon.png" alt=""><div><b>${title}</b>${sub}</div>`;
       toast.classList.add('show');
       timers.push(setTimeout(() => toast.classList.remove('show'), 3200));
     }
@@ -1742,10 +1856,12 @@
     };
     const esc = t => String(t || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const fmt = d => new Date(d + 'T12:00:00').toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' });
+    // News links like "#rosc" or "#contact" open that window's page.
+    const linkHref = l => (l && l[0] === '#' && ROUTES[l.slice(1)]) || l;
     const item = (p, big) => {
       const t = TYPES[p.type] || TYPES.studio;
-      const link = p.link ? `<a class="nf-link" href="${esc(p.link)}"${p.link === '#contact' ? ' data-tester' : ''}${/^https?:/.test(p.link) ? ' target="_blank" rel="noopener"' : ''}>${esc(p.linkText || 'Read more')}</a>` : '';
-      return `<li class="nf-item" style="--tc:${t.c}"><span class="nf-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${t.icon}</svg></span><span class="nf-tag">${t.label}</span><time datetime="${esc(p.date)}">${fmt(p.date)}</time><b>${esc(p.title)}</b><p>${esc(p.text)}</p>${big && p.image ? `<img class="nf-shot" src="assets/${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy">` : ''}<span class="nf-by"><i aria-hidden="true">${esc((p.by || 'Sherine A.').split(/\s+/).map(w => w[0]).join('').slice(0, 2))}</i>${esc(p.by || 'Sherine A.')}</span>${link}</li>`;
+      const link = p.link ? `<a class="nf-link" href="${esc(linkHref(p.link))}"${p.link === '#contact' ? ' data-tester' : ''}${/^https?:/.test(p.link) ? ' target="_blank" rel="noopener"' : ''}>${esc(p.linkText || 'Read more')}</a>` : '';
+      return `<li class="nf-item" style="--tc:${t.c}"><span class="nf-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${t.icon}</svg></span><span class="nf-tag">${t.label}</span><time datetime="${esc(p.date)}">${fmt(p.date)}</time><b>${esc(p.title)}</b><p>${esc(p.text)}</p>${big && p.image ? `<img class="nf-shot" src="/assets/${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy">` : ''}<span class="nf-by"><i aria-hidden="true">${esc((p.by || 'Sherine A.').split(/\s+/).map(w => w[0]).join('').slice(0, 2))}</i>${esc(p.by || 'Sherine A.')}</span>${link}</li>`;
     };
     const mini = document.getElementById('nf-mini'), full = document.getElementById('nf-full');
     if (mini) mini.innerHTML = posts.map(p => item(p, false)).join('');
@@ -1784,8 +1900,8 @@
   });
 
   // Enquiry form: sends through /api/contact (Resend). Falls back to the visitor's email app.
-  const form = document.getElementById('enquiry');
-  form.addEventListener('submit', async e => {
+  const form = document.getElementById('enquiry'); // only on the home page and /contact/
+  form?.addEventListener('submit', async e => {
     e.preventDefault();
     const f = e.target, d = new FormData(f), note = document.getElementById('formnote');
     note.className = 'formnote'; note.textContent = '';

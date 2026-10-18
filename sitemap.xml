@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Every page that should appear in Google. When you add a page, copy a <url> block, change the
+     address, and set <lastmod> to the date you last changed that page (year-month-day). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.packisher.com/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/rosc/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/services/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/process/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/platforms/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/contact/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/team/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/news/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/privacy/</loc>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/terms/</loc>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.packisher.com/legal/</loc>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+</urlset>
