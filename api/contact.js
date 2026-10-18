@@ -8,7 +8,7 @@
 // Never commit the key itself.
 
 const MAX = { name: 120, email: 200, message: 5000 };
-const NEEDS = new Set(['Mobile app', 'Website', 'Backend', 'Product design', 'Not sure yet']);
+const NEEDS = new Set(['ROSC tester access', 'Mobile app', 'Website', 'Backend', 'Product design', 'Not sure yet']);
 const recent = new Map(); // light per-instance rate limit: ip -> [timestamps]
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -45,11 +45,12 @@ module.exports = async function handler(req, res) {
   const to = process.env.CONTACT_TO || 'support@packisher.com';
   const from = process.env.CONTACT_FROM || 'Packisher Studio Site <support@packisher.com>';
   const lookingFor = needs.length ? needs.join(', ') : 'Not specified';
+  const tester = needs.includes('ROSC tester access'); // a ROSC beta request gets its own subject so it is easy to spot
 
   const text = `New enquiry from the Packisher studio website (packisher.com)\n\nName: ${name}\nEmail: ${email}\nLooking for: ${lookingFor}\n\n${message}\n\nReply to this email to answer ${name} directly.`;
   const html = `<div style="font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1C211E">
   <p style="margin:0 0 4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7A5C38">Studio website enquiry</p>
-  <h2 style="margin:0 0 16px;font-size:20px">${esc(name)} wants to talk about a project</h2>
+  <h2 style="margin:0 0 16px;font-size:20px">${esc(name)} ${tester ? 'asked for ROSC tester access' : 'wants to talk about a project'}</h2>
   <table style="border-collapse:collapse;margin-bottom:16px">
     <tr><td style="padding:4px 16px 4px 0;color:#6A726C">Email</td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
     <tr><td style="padding:4px 16px 4px 0;color:#6A726C">Looking for</td><td>${esc(lookingFor)}</td></tr>
@@ -66,7 +67,7 @@ module.exports = async function handler(req, res) {
         from,
         to: [to],
         reply_to: email,
-        subject: `[Studio site] New project enquiry from ${name}`,
+        subject: tester ? `[Studio site] ROSC tester request from ${name}` : `[Studio site] New project enquiry from ${name}`,
         text,
         html,
         tags: [{ name: 'source', value: 'studio_site' }],

@@ -86,5 +86,10 @@ canonical.
 - `favicon-48.png`, `apple-touch-icon.png`, `assets/icon-192.png`, `assets/icon-512.png`:
   PNG versions of the logo for Google results, iPhones and the structured data.
 
+Positioning: Packisher is described as a venture studio whose current venture is ROSC, with client
+work as a second line. Keep the title, description and structured data in `index.html`, and the
+entries in `build.mjs`, in step with the hero text. ROSC records contributions and does not hold
+or move money, so no page should say it does until that is true and approved.
+
 After a deploy that changes the home page: Google Search Console > URL Inspection >
 paste `https://www.packisher.com/` > Request indexing.

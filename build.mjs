@@ -21,13 +21,13 @@ const SITE = 'https://www.packisher.com';
 const PAGES = [
   {
     id: 'rosc', path: '/rosc/', name: 'ROSC',
-    title: 'ROSC: Savings Group App for Chamas | Packisher',
-    description: 'ROSC is a shared record for rotating savings groups (chamas): who paid, who received and whose turn is next. Built by Packisher, in closed testing on iOS and Android.',
+    title: 'ROSC: Savings Circle App for Chamas | Packisher',
+    description: 'ROSC is an app for rotating savings groups (chamas). It records who paid, who received and whose turn is next. Invite-only beta on iOS and Android.',
   },
   {
     id: 'services', path: '/services/', name: 'Services',
-    title: 'App and Web Development Services in Kenya | Packisher',
-    description: 'Packisher builds Flutter mobile apps, websites, backends, integrations and dashboards for businesses and community groups in Kenya, then looks after them after launch.',
+    title: 'Mobile App and Web Development Studio | Packisher',
+    description: 'Flutter mobile apps, websites, backends and integrations for businesses and community groups in Kenya, Canada and elsewhere, with support after launch.',
   },
   {
     id: 'process', path: '/process/', name: 'Process',
@@ -41,8 +41,8 @@ const PAGES = [
   },
   {
     id: 'contact', path: '/contact/', name: 'Contact us',
-    title: 'Start a Project | Contact Packisher',
-    description: 'Tell Packisher about your app, website or backend. We reply within two business days with questions or a first outline, then a written plan covering scope, timeline and price.',
+    title: 'Contact Packisher: Try ROSC or Start a Project',
+    description: 'Ask for ROSC tester access or tell Packisher about your app, website or backend. We reply within two business days with questions or a first outline.',
   },
   {
     id: 'note', path: '/team/', name: 'The team',
