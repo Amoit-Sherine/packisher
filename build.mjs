@@ -26,8 +26,8 @@ const PAGES = [
   },
   {
     id: 'services', path: '/services/', name: 'Services',
-    title: 'App and Web Development Services in Kenya | Packisher',
-    description: 'Packisher builds Flutter mobile apps, websites, backends, integrations and dashboards for businesses and community groups in Kenya, then looks after them after launch.',
+    title: 'App and Web Development Services | Packisher',
+    description: 'Packisher builds Flutter mobile apps, websites, backends, integrations and dashboards for businesses and community groups worldwide, then looks after them after launch.',
   },
   {
     id: 'process', path: '/process/', name: 'Process',
